@@ -2,6 +2,7 @@
 
 ![Ui](docs/images/Ui.png)
 
+Ace 2103/T helps CS2103/T students manage their tasks. It is optimized for CLI users so that each task can be managed faster by typing in commands.
 
 * This is **a sample project for Software Engineering (SE) students**.<br>
   Example usages:
