@@ -1,9 +1,8 @@
 ---
-layout: page
-title: User Guide
+User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Ace 2103/T is a **desktop app for managing task requirements of CS2103/T, optimized for use via Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Ace 2103/T can get your learning tasks managed faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -142,19 +141,22 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+### Deleting a customized task: `delete`
+
+Deletes a customized task in the task manager.
+
+Format: `delete TASK_NUMBER`
+
+* The task indexed at TASK_NUMBER will be deleted.
+
+Example:
+* `delete 0601`: Task indexed at 0601 will be deleted.
+
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
-
-### Saving the data
-
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Archiving data files `[coming in v2.0]`
-
-_{explain the feature here}_
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -171,8 +173,9 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete** | `delete TASK_NUMBER`<br> e.g., `delete 0601`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Exit** | `exit`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
