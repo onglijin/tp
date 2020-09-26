@@ -1,5 +1,6 @@
 ---
-User Guide
+layout: page
+title: User Guide
 ---
 
 Ace 2103/T is a **desktop app for managing task requirements of CS2103/T, optimized for use via Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Ace 2103/T can get your learning tasks managed faster than traditional GUI apps.
