@@ -62,18 +62,24 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 Shows a message explaning how to access the help page.
 
-![help message](images/helpMessage.png)
-
 Format: `help [PARAMETER]`
 
 List of PARAMETERs :
+
 No parameters: List all the supported commands for the task manager.
+
 get: `get [PARAMETER]`. Gets specified administrative information by parameters.
+
 find: `find KEYWORD`. Lists all tasks that contain the keyword.
+
 list: `list WEEK_NUMBER`. Lists all tasks in a specific week.
+
 deadline: `deadline TASK_NUMBER DEADLINE`. Adds a customized deadline to a preloaded task.
+
 add: `add DESCRIPTION DEADLINE [REMARKS]`. Adds a customized task in the task manager.
+
 delete: `delete TASK_NUMBER`. Deletes a customized task in the task manager.
+
 exit: `exit`. Exits the task manager.
 
 
