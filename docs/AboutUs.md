@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Gao Gui
 
-<img src="images/gaogui.png" width="200px">
+<img src="images/perpetual09.png" width="200px">
 
 [[homepage](https://github.com/Perpetual09)]
 [[github](https://github.com/Perpetual09)]
