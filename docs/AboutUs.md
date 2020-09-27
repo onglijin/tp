@@ -28,6 +28,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Team Lead
 * Responsibilities: UI
+### Jin Yuze
+
+<img src="images/unicornjin.png" width="200px">
+
+[[github](https://github.com/UnicornJin)]
+[[portfolio]()]
 
 ### Ong Li Jin
 
