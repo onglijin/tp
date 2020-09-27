@@ -58,6 +58,23 @@ Ace 2103/T is a **desktop app for managing task requirements of CS2103/T, optimi
 
 </div>
 
+### Viewing help: `help`
+
+Lists all available commands or format and usage for a specified command.
+
+Format: `help [PARAMETER]`
+
+List of PARAMETERs :
+
+* No parameters: List all the supported commands for the task manager.
+* get: `get [PARAMETER]`. Gets specified administrative information by parameters.
+* find: `find KEYWORD`. Lists all tasks that contain the keyword.
+* list: `list WEEK_NUMBER`. Lists all tasks in a specific week.
+* deadline: `deadline TASK_NUMBER DEADLINE`. Adds a customized deadline to a preloaded task.
+* add: `add DESCRIPTION DEADLINE [REMARKS]`. Adds a customized task in the task manager.
+* delete: `delete TASK_NUMBER`. Deletes a customized task in the task manager.
+* exit: `exit`. Exits the task manager.
+
 ### Viewing administrative information: `get`
     
 Gets specified administrative information by parameters.
@@ -106,6 +123,19 @@ Format: `delete TASK_NUMBER`
 
 Example:
 * `delete 0601`: Task indexed at 0601 will be deleted.
+
+### Adding a deadline: `deadline`
+
+Adds a customized deadline to a preloaded task.
+
+Format: `deadline TASK_NUMBER DEADLINE`
+
+* The task indexed at TASK_NUMBER will be given a DEADLINE.
+
+Example:
+* `deadline 0601 15-09-2020 23:59 `: Adds a customized deadline of 23:59 on 15th September 2020 to the first task of teaching week 6 which is indexed at TASK_NUMBER 0601.
+
+
 
 ### Exiting the program : `exit`
 
