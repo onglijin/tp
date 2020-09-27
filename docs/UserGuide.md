@@ -107,6 +107,19 @@ Format: `delete TASK_NUMBER`
 Example:
 * `delete 0601`: Task indexed at 0601 will be deleted.
 
+### Adding a deadline: `deadline`
+
+Adds a customized deadline to a preloaded task.
+
+Format: `deadline TASK_NUMBER DEADLINE`
+
+* The task indexed at TASK_NUMBER will be given a DEADLINE.
+
+Example:
+* `deadline 0601 15-09-2020 23:59 `: Adds a customized deadline of 23:59 on 15th September 2020 to the first task of teaching week 6 which is indexed at TASK_NUMBER 0601.
+
+
+
 ### Exiting the program : `exit`
 
 Exits the program.
