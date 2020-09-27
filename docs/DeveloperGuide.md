@@ -236,13 +236,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* Students who take CS2103 or CS2103/T
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* is reasonably comfortable using CLI apps due to prior experience with CLI apps 
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+Provide CS2103 and CS2103/T students with integrated timeline and checklists for weekly tasks in categories, and enable their customised managements of these tasks.
 
 
 ### User stories
@@ -251,11 +252,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
+| `* * *`  | new user                                   | see usage instructions         | understand how to use the features of the app                 |
+| `* * *`  | user                                       | get the tP GitHub link         | check the GitHub updates easily                                                                       |
+| `* * *`  | user                                       | get the module overview        | have a general idea about the course                                  |
+| `* * *`  | user                                       | get MicroSoft Team links       | get updates from the teaching team
+| `* * *`  | user                                       | get progress dashboard links   | keep track of the progress for iP and tP    
+| `* * *`  | user                                       | add a task with description, deadline and remarks | track additional tasks besides preloaded ones from the CS2103/T website
+| `* * *`  | user                                       | edit a customised task set up wrongly 
+| `* * *`  | user                                       | delete a customised task set up wrongly
+| `* * *`  | user                                       | search for tasks using a keyword | find a specific task without reading through the whole task list
+| `* * *`  | user                                       | add a customised deadline to a task | record when a task needs to be done according to my own schedule
+| `* * *`  | user                                       | read instructions on how to initialize IntelliJ and other essential tools        | 
+| `* *`    | user                                       | get Prof and TA emails         | ask them questions to clear doubts      |
 | `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
 
 *{More to be added}*
