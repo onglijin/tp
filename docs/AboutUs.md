@@ -9,15 +9,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Gao Gui
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/perpetual09.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](https://github.com/Perpetual09)]
+[[github](https://github.com/Perpetual09)]
+[[portfolio](https://github.com/Perpetual09/tp)]
 
-* Role: Project Advisor
+* Role: Developer
 
 ### Jane Doe
 

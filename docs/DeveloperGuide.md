@@ -485,7 +485,12 @@ Actor: User
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
+4.  A user who enrolled in CS2103/T should be quite familiar with default tasks every week, which are pre-loaded in the application.
+5.  Modified data will be updated within 1 second.
+6.  Should be able to contain up to 1000 customized tasks created by user.
+7.  Help information and pre-load instructions will be displayed within 1 second.
+8.  The application should load in 2 second when the number of customized tasks are within 1000.
+9.  A user will be prohibited from editing the pre-load tasks or information.
 *{More to be added}*
 
 ### Glossary
