@@ -45,7 +45,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Zhang Yunjie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zhang-yunjie.png" width="200px">
 
 [[github](http://github.com/zhang-yunjie)]
 
