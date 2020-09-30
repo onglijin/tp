@@ -497,6 +497,7 @@ Actor: User
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Customize tasks**: use `add` to add customized tasks into application which make it more personal
 
 --------------------------------------------------------------------------------------------------------------------
 
