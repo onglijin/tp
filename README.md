@@ -16,4 +16,3 @@ Ace 2103/T is a **desktop app for managing task requirements of CS2103/T, optimi
 
 **Acknowledgements**
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
-
