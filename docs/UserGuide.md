@@ -16,7 +16,7 @@ Ace 2103/T is a **desktop app for managing task requirements of CS2103/T, optimi
 
 1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your Ace 2103/T.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -24,13 +24,9 @@ Ace 2103/T is a **desktop app for managing task requirements of CS2103/T, optimi
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`list`**`6` : Lists all tasks for week 6.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
+   * **`deadline`**`0601 15-09-2020 23:59` : Adds a deadline 15-09-2020 23:59 to task indexed at 0601.
 
    * **`exit`** : Exits the app.
 
@@ -45,16 +41,10 @@ Ace 2103/T is a **desktop app for managing task requirements of CS2103/T, optimi
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `list WEEK_NUMBER`, `WEEK_NUMBER` is a parameter which can be used as `list 6`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g `help [PARAMETER]` can be used as `help find` or as `help`.
 
 </div>
 
@@ -133,9 +123,7 @@ Format: `deadline TASK_NUMBER DEADLINE`
 * The task indexed at TASK_NUMBER will be given a DEADLINE.
 
 Example:
-* `deadline 0601 15-09-2020 23:59 `: Adds a customized deadline of 23:59 on 15th September 2020 to the first task of teaching week 6 which is indexed at TASK_NUMBER 0601.
-
-
+* `deadline 0601 15-09-2020 23:59`: Adds a customized deadline of 23:59 on 15th September 2020 to the first task of teaching week 6 which is indexed at TASK_NUMBER 0601.
 
 ### Exiting the program : `exit`
 
@@ -156,11 +144,10 @@ Format: `exit`
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
+**Deadline** | `deadline TASK_NUMBER DEADLINE` <br> e.g., `deadline 0601 15-09-2020 23:59`
 **Delete** | `delete TASK_NUMBER`<br> e.g., `delete 0601`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Exit** | `exit`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+**Find** | `find KEYWORD`<br> e.g., `find book`
+**Get**  | `get [PARAMETER]`
+**Help** | `help [PARAMETER]`
+**List** | `list WEEK_NUMBER` <br> e.g., `list 6`
