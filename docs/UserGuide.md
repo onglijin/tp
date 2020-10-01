@@ -121,7 +121,7 @@ Format: `deadline TASK_NUMBER DEADLINE`
 * The task indexed at TASK_NUMBER will be given a DEADLINE.
 
 Example:
-* `deadline 0601 15-09-2020 23:59`: Adds a customized deadline of 23:59 on 15th September 2020 to the first task of teaching week 6 which is indexed at TASK_NUMBER 0601.
+* `deadline 0601 29-09-2020 23:59`: Adds a customized deadline of 23:59 on 29th September 2020 to the first task of teaching week 6 which is indexed at TASK_NUMBER 0601.
 
 ### Exiting the program : `exit`
 
