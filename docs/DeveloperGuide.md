@@ -236,13 +236,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* Students who take CS2103 or CS2103/T
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* is reasonably comfortable using CLI apps due to prior experience with CLI apps 
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+Provide CS2103 and CS2103/T students with integrated timeline and checklists for weekly tasks in categories, and enable their customised managements of these tasks.
 
 
 ### User stories
@@ -251,11 +252,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
+| `* * *`  | new user                                   | see usage instructions         | understand how to use the features of the app                 |
+| `* * *`  | user                                       | get the tP GitHub link         | check the GitHub updates easily                                                                       |
+| `* * *`  | user                                       | get the module overview        | have a general idea about the course                                  |
+| `* * *`  | user                                       | get MicroSoft Team links       | get updates from the teaching team
+| `* * *`  | user                                       | get progress dashboard links   | keep track of the progress for iP and tP    
+| `* * *`  | user                                       | add a task with description, deadline and remarks | track additional tasks besides preloaded ones from the CS2103/T website
+| `* * *`  | user                                       | edit a customised task set up wrongly 
+| `* * *`  | user                                       | delete a customised task set up wrongly
+| `* * *`  | user                                       | search for tasks using a keyword | find a specific task without reading through the whole task list
+| `* * *`  | user                                       | add a customised deadline to a task | record when a task needs to be done according to my own schedule
+| `* * *`  | user                                       | read instructions on how to initialize IntelliJ and other essential tools        | 
+| `* *`    | user                                       | get Prof and TA emails         | ask them questions to clear doubts      |
 | `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
 
 *{More to be added}*
@@ -477,13 +485,19 @@ Actor: User
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
+4.  A user who enrolled in CS2103/T should be quite familiar with default tasks every week, which are pre-loaded in the application.
+5.  Modified data will be updated within 1 second.
+6.  Should be able to contain up to 1000 customized tasks created by user.
+7.  Help information and pre-load instructions will be displayed within 1 second.
+8.  The application should load in 2 second when the number of customized tasks are within 1000.
+9.  A user will be prohibited from editing the pre-load tasks or information.
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Customize tasks**: use `add` to add customized tasks into application which make it more personal
 
 --------------------------------------------------------------------------------------------------------------------
 
