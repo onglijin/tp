@@ -1,19 +1,19 @@
 package tp.acecs2103.model;
 
 import tp.acecs2103.model.task.Task;
-import tp.acecs2103.storage.TaskStorage;
-import tp.acecs2103.ui.UiTaskList;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class TaskList {
-    private static ArrayList<Task> taskList = new ArrayList<>();
-    private static String keyWord; // This is to store condition for searching and displaying.
-    private static int timeRange;
+    private ArrayList<Task> taskList = new ArrayList<>();
+    private String keyWord; // This is to store condition for searching and displaying.
+    private int timeRange;
 
-    public static void initialize() {
-        taskList.addAll(TaskStorage.readTaskList());
-        UiTaskList.addAll(find(keyWord));
+    public TaskList(ArrayList<Task> taskList, int timeRange) {
+        this.taskList = taskList;
+        this.keyWord = "";
+        this.timeRange = timeRange;
     }
 
     /**
@@ -21,29 +21,62 @@ public class TaskList {
      *
      * @return a ArrayList consisting of all satisfied tasks.
      */
-    public static ArrayList<Task> find() {
-        return taskList;
+    public ArrayList<Task> find() {
+        ArrayList<Task> newList = new ArrayList<>();
+        for (Task task: taskList) {
+            if (task.contains(keyWord) && task.isWeekX(timeRange)) {
+                newList.add(task);
+            }
+        }
+        return newList;
     }
 
     /**
      * Finds tasks based on new keyWord and timeRange.
-     * @param keyWord is new keyword given by user.
+     * @param newKeyWord is new keyword given by user.
      *
      * @return a new ArrayList to display.
      */
-    public static ArrayList<Task> find(String keyWord) {
-        return taskList;
+    public ArrayList<Task> find(String newKeyWord) {
+        keyWord = newKeyWord;
+        ArrayList<Task> newList = new ArrayList<>();
+        for (Task task: taskList) {
+            if (task.contains(keyWord)) {
+                newList.add(task);
+            }
+        }
+        return newList;
     }
 
-    public static ArrayList<Task> list(int weekNumber) {
+    public ArrayList<Task> list(int weekNumber) {
+        timeRange = weekNumber;
+        ArrayList<Task> newList = new ArrayList<Task>();
+        for (Task task: taskList) {
+            if (task.isWeekX(weekNumber) && task.isWeekX(timeRange)) {
+                newList.add(task);
+            }
+        }
+        return newList;
+    }
+
+    public ArrayList<Task> delete(String taskIndex) {
+        int i = 0;
+        for (Task task: taskList) {
+            i++;
+            if (task.hasIndex(taskIndex)) {
+                break;
+            }
+        }
+        taskList.remove(i);
         return find();
     }
 
-    public static ArrayList<Task> delete(String taskIndex) {
-        return find();
-    }
-
-    public static ArrayList<Task> deadline() {
+    public ArrayList<Task> deadline(String taskIndex, LocalDate deadline) {
+        for (Task task: taskList) {
+            if (task.hasIndex(taskIndex)) {
+                task.setDeadline(deadline);
+            }
+        }
         return find();
     }
 }
