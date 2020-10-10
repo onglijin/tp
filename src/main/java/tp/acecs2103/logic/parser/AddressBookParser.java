@@ -57,14 +57,20 @@ public class AddressBookParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
-
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
+        case DeadlineCommand.COMMAND_WORD:
+                return new DeadlineCommandParser().parse(arguments);
+
+        case GetCommand.COMMAND_WORD:
+                return new GetCommandParser().parse(arguments);
+
         case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+                return new HelpCommandParser().parse(arguments);
+
+        case ListCommand.COMMAND_WORD:
+                return new ListCommandParser().parse(arguments);
 
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
