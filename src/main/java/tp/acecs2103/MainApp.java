@@ -15,19 +15,10 @@ import tp.acecs2103.commons.util.ConfigUtil;
 import tp.acecs2103.commons.util.StringUtil;
 import tp.acecs2103.logic.Logic;
 import tp.acecs2103.logic.LogicManager;
-import tp.acecs2103.model.AddressBook;
-import tp.acecs2103.model.Model;
-import tp.acecs2103.model.ModelManager;
-import tp.acecs2103.model.ReadOnlyAddressBook;
-import tp.acecs2103.model.ReadOnlyUserPrefs;
-import tp.acecs2103.model.UserPrefs;
+import tp.acecs2103.model.*;
+import tp.acecs2103.model.task.Task;
 import tp.acecs2103.model.util.SampleDataUtil;
-import tp.acecs2103.storage.AddressBookStorage;
-import tp.acecs2103.storage.JsonAddressBookStorage;
-import tp.acecs2103.storage.JsonUserPrefsStorage;
-import tp.acecs2103.storage.Storage;
-import tp.acecs2103.storage.StorageManager;
-import tp.acecs2103.storage.UserPrefsStorage;
+import tp.acecs2103.storage.*;
 import tp.acecs2103.ui.Ui;
 import tp.acecs2103.ui.UiManager;
 
@@ -56,8 +47,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        TaskListStorage taskListStorage = new JsonTaskListStorage(userPrefs.getTaskListFilePath());
+        storage = new StorageManager(taskListStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -74,20 +65,20 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<TaskList> taskListOptional;
+        TaskList initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
+            taskListOptional = storage.readTaskList();
+            if (!taskListOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = taskListOptional.get();
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Data file not in the correct format. Will be starting with an empty TaskList");
+            initialData = new TaskList();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Problem while reading from the file. Will be starting with an empty TaskList");
+            initialData = new TaskList();
         }
 
         return new ModelManager(initialData, userPrefs);
