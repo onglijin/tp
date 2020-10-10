@@ -5,8 +5,10 @@ import tp.acecs2103.model.task.Task;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import static java.util.Objects.requireNonNull;
+
 public class TaskList {
-    private ArrayList<Task> taskList = new ArrayList<>();
+    private ArrayList<Task> taskList;
     private String keyWord; // This is to store condition for searching and displaying.
     private int timeRange;
 
@@ -14,6 +16,47 @@ public class TaskList {
         this.taskList = taskList;
         this.keyWord = "";
         this.timeRange = timeRange;
+    }
+
+    public TaskList() {
+        this.taskList = new ArrayList<>();
+        this.keyWord = "";
+        this.timeRange = 1;
+    }
+
+    public TaskList(TaskList taskList) {
+        resetData(taskList);
+    }
+
+    public void resetData(TaskList newData) {
+        requireNonNull(newData);
+        taskList = newData.getTaskList();
+        keyWord = newData.getKeyWord();
+        timeRange = newData.getTimeRange();
+    }
+
+    public ArrayList<Task> getTaskList() {
+       return taskList;
+    }
+
+    public String getKeyWord() {
+        return keyWord;
+    }
+
+    public int getTimeRange() {
+        return timeRange;
+    }
+
+    public void setTimeRange(int weekNumber) {
+        timeRange = weekNumber;
+    }
+
+    public void addTask(Task task) {
+        taskList.add(task);
+    }
+
+    public boolean hasTask(Task task) {
+        return taskList.contains(task);
     }
 
     /**
@@ -77,6 +120,10 @@ public class TaskList {
                 task.setDeadline(deadline);
             }
         }
+        return find();
+    }
+
+    public ArrayList<Task> getUiTaskList() {
         return find();
     }
 }

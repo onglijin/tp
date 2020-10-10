@@ -46,6 +46,14 @@ public class Task {
         return customizedDeadline;
     }
 
+    public String getRemark() {
+        return remark;
+    }
+
+    public TaskCategory getCategory() {
+        return TaskCategory.TASK;
+    }
+
     public boolean hasIndex(String taskIndex) {
         return this.index == taskIndex;
     }

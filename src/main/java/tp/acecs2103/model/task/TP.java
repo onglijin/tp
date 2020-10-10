@@ -6,4 +6,9 @@ public class TP extends Task{
     public TP(String index, int weekNumber, String description, LocalDate officialDeadline, LocalDate customizedDeadline, String remark) {
         super(index, weekNumber, description, officialDeadline, customizedDeadline, remark);
     }
+
+    @Override
+    public TaskCategory getCategory() {
+        return TaskCategory.TP;
+    }
 }

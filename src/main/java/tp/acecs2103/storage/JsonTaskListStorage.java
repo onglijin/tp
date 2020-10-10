@@ -1,23 +1,19 @@
 package tp.acecs2103.storage;
 
 import tp.acecs2103.commons.exceptions.DataConversionException;
-import tp.acecs2103.model.ReadOnlyAddressBook;
-import tp.acecs2103.model.task.Task;
+import tp.acecs2103.commons.exceptions.IllegalValueException;
+import tp.acecs2103.commons.util.FileUtil;
+import tp.acecs2103.commons.util.JsonUtil;
+import tp.acecs2103.model.TaskList;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Optional;
-import java.util.Scanner;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
 
-public class JsonTaskListStorage {
+import static java.util.Objects.requireNonNull;
+
+public class JsonTaskListStorage implements TaskListStorage {
 
 
     private Path filePath;
@@ -31,34 +27,44 @@ public class JsonTaskListStorage {
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException {
-        return readAddressBook(filePath);
+    public Optional<TaskList> readTaskList() throws DataConversionException {
+        return readTaskList(filePath);
     }
-    public TaskStorage(String fileName) {
-        String dir = System.getProperty("user.dir");
-        this.path = path;
-        Path path = Paths.get(dir, "project", fileName);
-        File file = path.toFile();
-        if (file.exists()) {
-            this.file = file;
-        } else {
-            try {
-                file.getParentFile().mkdirs();
-                file.createNewFile();
-                this.file = file;
-            } catch (IOException e) {
-                System.out.println("Failed to create" + fileName);
-            }
+
+    /**
+     * Similar to {@link #readTaskList()}}.
+     *
+     * @param filePath location of the data. Cannot be null.
+     * @throws DataConversionException if the file is not in the correct format.
+     */
+    public Optional<TaskList> readTaskList(Path filePath) throws DataConversionException {
+        requireNonNull(filePath);
+
+        Optional<JsonSerializableTaskList> jsonTaskList = JsonUtil.readJsonFile(
+                filePath, JsonSerializableTaskList.class);
+        if (!jsonTaskList.isPresent()) {
+            return Optional.empty();
+        }
+
+        try {
+            return Optional.of(jsonTaskList.get().toModelType());
+        } catch (IllegalValueException ive) {
+            throw new DataConversionException(ive);
         }
     }
 
-
-    public ArrayList<Task> readTaskList() {
-
+    @Override
+    public void saveTaskList(TaskList taskList) throws IOException {
+        saveTaskList(taskList, filePath);
     }
 
-    public void writeTaskList(ArrayList<Task> taskList) {
+    @Override
+    public void saveTaskList(TaskList taskList, Path filePath) throws IOException {
+        requireNonNull(taskList);
+        requireNonNull(filePath);
 
+        FileUtil.createIfMissing(filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableTaskList(taskList), filePath);
     }
-
 }
+
