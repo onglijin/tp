@@ -46,7 +46,31 @@ public class Task {
         return customizedDeadline;
     }
 
-    public boolean contain(String keyword) {
+    public String getRemark() {
+        return remark;
+    }
 
+    public TaskCategory getCategory() {
+        return TaskCategory.TASK;
+    }
+
+    public boolean hasIndex(String taskIndex) {
+        return this.index == taskIndex;
+    }
+
+    public boolean hasDeadline() {
+        return customizedDeadline != null;
+    }
+
+    public void setDeadline(LocalDate deadline) {
+        customizedDeadline = deadline;
+    }
+
+    public boolean isWeekX(int weekIndex) {
+        return weekIndex == weekNumber;
+    }
+
+    public boolean contains(String keyword) {
+        return description.contains(keyword) || remark.contains(keyword);
     }
 }
