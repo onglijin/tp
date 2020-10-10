@@ -51,9 +51,6 @@ public class TaskList {
         timeRange = weekNumber;
     }
 
-    public void addTask(Task task) {
-        taskList.add(task);
-    }
 
     public boolean hasTask(Task task) {
         return taskList.contains(task);
@@ -99,7 +96,12 @@ public class TaskList {
                 newList.add(task);
             }
         }
-        return newList;
+        return find();
+    }
+
+    public ArrayList<Task> add(Task task) {
+        taskList.add(task);
+        return find();
     }
 
     public ArrayList<Task> delete(String taskIndex) {

@@ -53,7 +53,7 @@ class JsonSerializableTaskList {
             if (taskList.hasTask(task)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            taskList.addTask(task);
+            taskList.add(task);
         }
         return taskList;
     }
