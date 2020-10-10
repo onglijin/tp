@@ -1,11 +1,9 @@
 package seedu.address.ui;
 
-import java.time.LocalDate;
-import java.util.Comparator;  //not sure will need it
+//import java.time.LocalDate;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.Task;
@@ -29,6 +27,10 @@ public class TaskBox extends UiPart<Region> {
     @FXML
     private Label remark;
 
+    /**
+     * Creates a TaskBox object.
+     * @param task is a task object.
+     */
     public TaskBox(Task task) {
         super(FXML);
         this.task = task;

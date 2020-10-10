@@ -3,18 +3,23 @@ package seedu.address.model;
 public enum TaskCategory {
     ADMIN, IP, TP, TOPIC, TASK;
 
+    /**
+     * Converts a taskCategory object to String representation.
+     * @param category a TaskCategory object.
+     * @return String representation of category.
+     */
     public String categoryToString(TaskCategory category) {
         switch (category) {
-            case ADMIN:
-                return "admin";
-            case TOPIC:
-                return "topic";
-            case IP:
-                return "ip";
-            case TP:
-                return "tp";
-            default:
-                return "";
+        case ADMIN:
+            return "admin";
+        case TOPIC:
+            return "topic";
+        case IP:
+            return "ip";
+        case TP:
+            return "tp";
+        default:
+            return "";
         }
     }
 

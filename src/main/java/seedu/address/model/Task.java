@@ -1,9 +1,8 @@
 package seedu.address.model;
 
-import seedu.address.commons.util.CollectionUtil;
-
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+
+import seedu.address.commons.util.CollectionUtil;
 
 /**
  * Represents a general task in Ace CS2103/T.
@@ -16,7 +15,17 @@ public class Task {
     private LocalDate customizedDeadline;
     private String remark;
 
-    public Task(String index, int weekNumber, String description, LocalDate officialDeadline, LocalDate customizedDeadline, String remark) {
+    /**
+     * Creates a task object.
+     * @param index index of a task.
+     * @param weekNumber weekNumber of a task.
+     * @param description description of a task.
+     * @param officialDeadline officialDeadline of a task.
+     * @param customizedDeadline customizedDeadline officialDeadline of a task.
+     * @param remark remark of a task.
+     */
+    public Task(String index, int weekNumber, String description, LocalDate officialDeadline,
+                LocalDate customizedDeadline, String remark) {
         CollectionUtil.requireAllNonNull(index, weekNumber, description);
         this.index = index;
         this.weekNumber = weekNumber;
