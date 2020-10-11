@@ -7,9 +7,10 @@ import java.util.ArrayList;
 
 public class UiTaskList {
     private static ObservableList<Admin> adminList;
-    private static ObservableList<Topic> topicList;
-    private static ObservableList<IP> ipList;
-    private static ObservableList<TP> tpList;
+    private static ObservableList<Topic>  topicList;
+    private static ObservableList<IP>  ipList;
+    private static ObservableList<TP>  tpList;
+
 
     public UiTaskList(ArrayList<Task> source) {
         addAll(source);
@@ -34,17 +35,20 @@ public class UiTaskList {
     }
     
 
-    public ObservableList<Admin> getAdminList() {
+
+    public ObservableList<Admin>  getAdminList() {
         return adminList;
     }
 
-    public static ObservableList<IP> getIpList() {
+    public static ObservableList<IP>  getIpList() {
+
         return ipList;
     }
 
     public static ObservableList<TP> getTpList() {
         return tpList;
     }
+
 
     public static ObservableList<Topic> getTopicList() {
         return topicList;

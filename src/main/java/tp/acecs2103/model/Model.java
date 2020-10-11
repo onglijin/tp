@@ -6,8 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import tp.acecs2103.commons.core.GuiSettings;
-import tp.acecs2103.model.task.Person;
-import tp.acecs2103.model.task.Task;
+import tp.acecs2103.model.task.*;
 
 /**
  * The API of the Model component.
@@ -98,6 +97,14 @@ public interface Model {
      * Gets  a ui task list for displaying.
      */
     UiTaskList getUiTaskList();
+
+    ObservableList<Admin> getAdminList();
+
+    ObservableList<Topic> getTopicList();
+
+    ObservableList<IP> getIpList();
+
+    ObservableList<TP> getTpList();
 
 
 
