@@ -1,5 +1,6 @@
 package tp.acecs2103.model;
 
+import tp.acecs2103.commons.util.AppUtil;
 import tp.acecs2103.model.task.Task;
 
 import java.time.LocalDate;
@@ -21,7 +22,7 @@ public class TaskList {
     public TaskList() {
         this.taskList = new ArrayList<>();
         this.keyWord = "";
-        this.timeRange = 1;
+        this.timeRange = AppUtil.getCurrentWeekNumber();
     }
 
     public TaskList(TaskList taskList) {
