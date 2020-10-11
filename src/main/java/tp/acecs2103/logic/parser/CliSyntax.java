@@ -12,4 +12,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_OFFICIALDDL = new Prefix("o/");
     public static final Prefix PREFIX_CUSTOMIZEDDDL = new Prefix("c/");
     public static final Prefix PREFIX_REMARK = new Prefix("r/");
+    public static final Prefix PREFIX_TYPE = new Prefix("t/");
 }

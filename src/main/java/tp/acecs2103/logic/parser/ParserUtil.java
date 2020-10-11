@@ -87,6 +87,14 @@ public class ParserUtil {
         return trimmedDes;
     }
 
+    public static String parseType(String type) throws ParseException {
+        requireNonNull(type);
+        String trimmedType = type.trim();
+        if (trimmedType.isEmpty()) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return trimmedType;
+    }
     /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
