@@ -35,6 +35,7 @@ public class TaskList {
         timeRange = newData.getTimeRange();
     }
 
+
     public ArrayList<Task> getTaskList() {
        return taskList;
     }
@@ -51,9 +52,22 @@ public class TaskList {
         timeRange = weekNumber;
     }
 
-
     public boolean hasTask(Task task) {
         return taskList.contains(task);
+    }
+
+    /**
+     * Finds a certain task based on index.
+     *
+     * @return a task with the required index.
+     */
+    public Task getTask(String index) {
+        for (Task task: taskList) {
+            if (index == task.getIndex()) { //index is stored as String in task object, so a conversion from string to int is needed
+                return task;
+            }
+        }
+        return null;
     }
 
     /**
@@ -125,7 +139,21 @@ public class TaskList {
         return find();
     }
 
+    public ArrayList<Task> resetTask(Task target, Task newTask) {
+        requireNonNull(target);
+        requireNonNull(newTask);
+
+        int index = taskList.indexOf(target);
+        taskList.set(index, newTask);
+        return find();
+    }
+
+
     public ArrayList<Task> getUiTaskList() {
         return find();
+    }
+
+    public int size() {
+        return taskList.size();
     }
 }

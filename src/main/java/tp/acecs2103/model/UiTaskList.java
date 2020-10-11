@@ -31,6 +31,7 @@ public class UiTaskList {
             }
         }
     }
+    
 
     public ArrayList<Admin> getAdminList() {
         return adminList;
