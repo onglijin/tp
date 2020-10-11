@@ -3,15 +3,7 @@ package tp.acecs2103.logic.parser;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import tp.acecs2103.logic.commands.AddCommand;
-import tp.acecs2103.logic.commands.ClearCommand;
-import tp.acecs2103.logic.commands.Command;
-import tp.acecs2103.logic.commands.DeleteCommand;
-import tp.acecs2103.logic.commands.EditCommand;
-import tp.acecs2103.logic.commands.ExitCommand;
-import tp.acecs2103.logic.commands.FindCommand;
-import tp.acecs2103.logic.commands.HelpCommand;
-import tp.acecs2103.logic.commands.ListCommand;
+import tp.acecs2103.logic.commands.*;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
 import tp.acecs2103.commons.core.Messages;
 

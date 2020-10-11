@@ -1,6 +1,7 @@
 package tp.acecs2103.logic.parser;
 
 import tp.acecs2103.commons.core.index.Index;
+import tp.acecs2103.logic.commands.DeadlineCommand;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
 
 import java.time.LocalDate;
