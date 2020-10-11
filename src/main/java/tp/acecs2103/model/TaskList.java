@@ -35,13 +35,6 @@ public class TaskList {
         timeRange = newData.getTimeRange();
     }
 
-    public void resetTask(Task target, Task newTask) {
-        requireNonNull(target);
-        requireNonNull(newTask);
-
-        int index = taskList.indexOf(target);
-        taskList.set(index, newTask);
-    }
 
     public ArrayList<Task> getTaskList() {
        return taskList;
@@ -143,6 +136,15 @@ public class TaskList {
                 task.setDeadline(deadline);
             }
         }
+        return find();
+    }
+
+    public ArrayList<Task> resetTask(Task target, Task newTask) {
+        requireNonNull(target);
+        requireNonNull(newTask);
+
+        int index = taskList.indexOf(target);
+        taskList.set(index, newTask);
         return find();
     }
 

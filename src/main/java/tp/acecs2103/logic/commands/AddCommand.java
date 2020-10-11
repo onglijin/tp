@@ -56,6 +56,7 @@ public class AddCommand extends Command {
         }
 
         model.addTask(toAdd);
+        model.getUiTaskList();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

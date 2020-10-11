@@ -21,7 +21,7 @@ import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.TaskList;
 import tp.acecs2103.model.task.*;
-import tp.acecs2103.model.tag.Tag;
+
 
 /**
  * Edits the details of an existing person in the address book.
@@ -79,7 +79,6 @@ public class EditCommand extends Command {
         }
 
         model.setTask(taskToEdit, editedTask);
-        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
 

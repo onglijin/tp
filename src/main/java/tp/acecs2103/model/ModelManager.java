@@ -88,10 +88,7 @@ public class ModelManager implements Model {
         this.taskList.resetData(taskList);
     }
 
-    @Override
-    public void setTask(Task target, Task editedTask) {
-        this.taskList.resetTask(target, editedTask);
-    };
+
 
     @Override
     public TaskList getTaskList() {
@@ -128,6 +125,11 @@ public class ModelManager implements Model {
     public void deadlineTask(String index, LocalDate deadline) {
         uiTaskList.addAll(taskList.deadline(index, deadline));
     }
+
+    @Override
+    public void setTask(Task target, Task editedTask) {
+        uiTaskList.addAll(taskList.resetTask(target, editedTask));
+    };
 
     //=========== UiTaskList ================================================================================
 
