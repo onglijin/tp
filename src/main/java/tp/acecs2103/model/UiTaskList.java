@@ -49,4 +49,8 @@ public class UiTaskList {
     public static ObservableList<Topic> getTopicList() {
         return topicList;
     }
+
+    public int size() {
+        return adminList.size() + ipList.size() + tpList.size() + topicList.size();
+    }
 }
