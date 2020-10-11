@@ -13,6 +13,8 @@ public enum TaskCategory {
                 return "ip";
             case TP:
                 return "tp";
+            default:
+                return "";
         }
     }
 

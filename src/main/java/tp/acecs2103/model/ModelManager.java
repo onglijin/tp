@@ -33,7 +33,7 @@ public class ModelManager implements Model {
         super();
         CollectionUtil.requireAllNonNull(taskList, userPrefs);
 
-        logger.fine("Initializing with address book: " + taskList + " and user prefs " + userPrefs);
+        logger.fine("Initializing with task list: " + taskList + " and user prefs " + userPrefs);
 
         this.taskList = new TaskList(taskList);
         this.userPrefs = new UserPrefs(userPrefs);
@@ -89,9 +89,20 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setTask(Task target, Task editedTask) {
+        this.taskList.resetTask(target, editedTask);
+    };
+
+    @Override
     public TaskList getTaskList() {
         return taskList;
     }
+
+    @Override
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return taskList.hasTask(task);
+        }
 
     @Override
     public void addTask(Task task) {
@@ -125,4 +136,4 @@ public class ModelManager implements Model {
         return uiTaskList;
     }
 
-}
+    }
