@@ -92,14 +92,12 @@ public class EditCommand extends Command {
 
         String updatedIndex = editTaskDescriptor.getIndex().orElse(taskToEdit.getIndex());
         int updatedWeekNumber = editTaskDescriptor.getWeekNumber().orElse(taskToEdit.getWeekNumber());
-        String undatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
+        String updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         LocalDate updatedOfficialDeadline = editTaskDescriptor.getOfficialDeadline().orElse(taskToEdit.getOfficialDeadline());
         LocalDate updatedCustomizedDeadline = editTaskDescriptor.getCustomizedDeadline().orElse(taskToEdit.getOfficialDeadline());
         String remark = editTaskDescriptor.getRemark().orElse(taskToEdit.getRemark());
 
-        return new Task() {
-            String index, int weekNumber, String description, LocalDate officialDeadline, LocalDate customizedDeadline, String remark
-        }
+        return new Task(updatedIndex, updatedWeekNumber, updatedDescription, updatedOfficialDeadline, updatedCustomizedDeadline, remark);
     }
 
     @Override
