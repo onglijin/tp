@@ -88,8 +88,6 @@ public class ModelManager implements Model {
         this.taskList.resetData(taskList);
     }
 
-
-
     @Override
     public TaskList getTaskList() {
         return taskList;
@@ -103,7 +101,7 @@ public class ModelManager implements Model {
 
     @Override
     public void addTask(Task task) {
-        uiTaskList.addAll(taskList.add(task));
+        UiTaskList.addAll(taskList.add(task));
     }
 
     @Override

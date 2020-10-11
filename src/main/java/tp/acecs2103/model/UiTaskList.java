@@ -11,11 +11,11 @@ public class UiTaskList {
     private static ObservableList<IP> ipList;
     private static ObservableList<TP> tpList;
 
-    public UiTaskList(ObservableList<Task> source) {
+    public UiTaskList(ArrayList<Task> source) {
         addAll(source);
     }
 
-    public static void addAll(ObservableList<Task> taskList) {
+    public static void addAll(ArrayList<Task> taskList) {
         adminList.clear();
         topicList.clear();
         ipList.clear();
