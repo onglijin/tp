@@ -11,6 +11,7 @@ public class UiTaskList {
     private static ObservableList<IP>  ipList;
     private static ObservableList<TP>  tpList;
 
+
     public UiTaskList(ArrayList<Task> source) {
         addAll(source);
     }
@@ -32,12 +33,15 @@ public class UiTaskList {
             }
         }
     }
+    
+
 
     public ObservableList<Admin>  getAdminList() {
         return adminList;
     }
 
     public static ObservableList<IP>  getIpList() {
+
         return ipList;
     }
 
@@ -45,7 +49,12 @@ public class UiTaskList {
         return tpList;
     }
 
-    public static ObservableList<Topic>  getTopicList() {
+
+    public static ObservableList<Topic> getTopicList() {
         return topicList;
+    }
+
+    public int size() {
+        return adminList.size() + ipList.size() + tpList.size() + topicList.size();
     }
 }
