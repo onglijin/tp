@@ -12,9 +12,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import tp.acecs2103.commons.core.GuiSettings;
 import tp.acecs2103.commons.core.LogsCenter;
-import tp.acecs2103.model.task.Person;
+import tp.acecs2103.model.task.*;
 import tp.acecs2103.commons.util.CollectionUtil;
-import tp.acecs2103.model.task.Task;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -123,6 +122,26 @@ public class ModelManager implements Model {
     @Override
     public UiTaskList getUiTaskList() {
         return uiTaskList;
+    }
+
+    @Override
+    public ObservableList<Admin> getAdminList() {
+        return uiTaskList.getAdminList();
+    }
+
+    @Override
+    public ObservableList<Topic> getTopicList() {
+        return uiTaskList.getTopicList();
+    }
+
+    @Override
+    public ObservableList<IP> getIpList() {
+        return uiTaskList.getIpList();
+    }
+
+    @Override
+    public ObservableList<TP> getTpList() {
+        return uiTaskList.getTpList();
     }
 
 }
