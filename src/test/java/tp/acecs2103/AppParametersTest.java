@@ -1,7 +1,6 @@
 package tp.acecs2103;
 
-import javafx.application.Application;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.nio.file.Paths;
 import java.util.Collections;
@@ -9,7 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import javafx.application.Application;
+import org.junit.jupiter.api.Test;
 
 public class AppParametersTest {
     private final ParametersStub parametersStub = new ParametersStub();
