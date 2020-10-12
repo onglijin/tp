@@ -18,6 +18,7 @@
         </rowConstraints>
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0">
+
                <children>
                   <Label fx:id="description" prefHeight="44.0" prefWidth="276.0" text="\$description" styleClass="cell_big_label"/>
                </children>

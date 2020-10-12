@@ -7,11 +7,9 @@ import java.util.logging.Logger;
 
 import tp.acecs2103.commons.core.LogsCenter;
 import tp.acecs2103.commons.exceptions.DataConversionException;
-import tp.acecs2103.model.ReadOnlyAddressBook;
 import tp.acecs2103.model.ReadOnlyUserPrefs;
 import tp.acecs2103.model.TaskList;
 import tp.acecs2103.model.UserPrefs;
-import tp.acecs2103.model.task.Task;
 
 /**
  * Manages storage of AddressBook data in local storage.

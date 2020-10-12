@@ -5,11 +5,13 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import tp.acecs2103.model.AddressBook;
-import tp.acecs2103.model.ReadOnlyAddressBook;
 import tp.acecs2103.model.TaskList;
-import tp.acecs2103.model.task.*;
 import tp.acecs2103.model.tag.Tag;
+import tp.acecs2103.model.task.Admin;
+import tp.acecs2103.model.task.IP;
+import tp.acecs2103.model.task.TP;
+import tp.acecs2103.model.task.Task;
+import tp.acecs2103.model.task.Topic;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.

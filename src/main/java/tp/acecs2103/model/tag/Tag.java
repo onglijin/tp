@@ -1,9 +1,8 @@
 package tp.acecs2103.model.tag;
+import static java.util.Objects.requireNonNull;
 
 import tp.acecs2103.commons.util.AppUtil;
 
-import static java.util.Objects.requireNonNull;
-import static tp.acecs2103.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Tag in the address book.
