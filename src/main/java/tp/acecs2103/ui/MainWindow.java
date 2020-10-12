@@ -42,7 +42,7 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane weekDisplayPlaceholder;
-    
+
     @FXML
     private HBox categoryPanelPlaceholder;
 
@@ -61,13 +61,11 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
-        
     }
 
     public Stage getPrimaryStage() {
         return primaryStage;
     }
-    
 
     /**
      * Fills up all the placeholders of this window.
@@ -77,7 +75,6 @@ public class MainWindow extends UiPart<Stage> {
         categoryPanel = new CategoryPanel((ObservableList<Task>) logic.getTaskList());
         // Bug: to be fixed
         categoryPanelPlaceholder.getChildren().add(categoryPanelPlaceholder);
-        
         weekDisplay = new WeekDisplay("Week 1 [Mon,Aug 10th to Thu, Aug 13th]");
         weekDisplayPlaceholder.getChildren().add(weekDisplay.getRoot());
 

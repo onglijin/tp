@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import tp.acecs2103.model.AddressBook;
 import tp.acecs2103.model.Model;
+import tp.acecs2103.model.TaskList;
+import tp.acecs2103.model.task.Task;
 
 /**
  * Clears the address book.
@@ -18,7 +20,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setAddressBook(new AddressBook());
+        model.setTaskList(new TaskList());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

@@ -33,8 +33,6 @@ public class UiTaskList {
             }
         }
     }
-    
-
 
     public ObservableList<Admin>  getAdminList() {
         return adminList;
@@ -48,7 +46,6 @@ public class UiTaskList {
     public static ObservableList<TP> getTpList() {
         return tpList;
     }
-
 
     public static ObservableList<Topic> getTopicList() {
         return topicList;
