@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import tp.acecs2103.commons.core.Messages;
 import tp.acecs2103.model.Model;
+import tp.acecs2103.model.task.NameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -18,25 +19,24 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final String keyword;
+    private final NameContainsKeywordsPredicate predicate;
 
-    public FindCommand(String keyword) {
-        this.keyword = keyword;
+    public FindCommand(NameContainsKeywordsPredicate predicate) {
+        this.predicate = predicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.findTasks(keyword);
-
+        model.updateFilteredPersonList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getUiTaskList().size()));
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FindCommand // instanceof handles nulls
-                && keyword.equals(((FindCommand) other).keyword)); // state check
+                && predicate.equals(((FindCommand) other).predicate)); // state check
     }
 }

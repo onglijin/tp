@@ -1,7 +1,6 @@
 package tp.acecs2103.model.task;
 
 import tp.acecs2103.commons.util.CollectionUtil;
-import tp.acecs2103.ui.CategoryBox;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -16,7 +15,6 @@ public class Task {
     private LocalDate officialDeadline;
     private LocalDate customizedDeadline;
     private String remark;
-    private TaskCategory category;
 
     public Task(String index, int weekNumber, String description, LocalDate officialDeadline, LocalDate customizedDeadline, String remark) {
         CollectionUtil.requireAllNonNull(index, weekNumber, description);
@@ -26,7 +24,6 @@ public class Task {
         this.officialDeadline = officialDeadline;
         this.customizedDeadline = customizedDeadline;
         this.remark = remark;
-        this.category = TaskCategory.TASK;
     }
 
     public String getIndex() {
@@ -75,9 +72,5 @@ public class Task {
 
     public boolean contains(String keyword) {
         return description.contains(keyword) || remark.contains(keyword);
-    }
-
-    public boolean isSameTask(Task task) {
-        return index.equals(task.getIndex());
     }
 }

@@ -20,7 +20,6 @@ class JsonAdaptedTask {
     private String officialDeadline;
     private String customizedDeadline;
     private String remark;
-    private String category;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -28,15 +27,13 @@ class JsonAdaptedTask {
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("index") String index, @JsonProperty("weekNumber") String weekNumber,
                            @JsonProperty("description") String description, @JsonProperty("officialDeadline") String officialDeadline,
-                           @JsonProperty("customizedDeadline") String customizedDeadline, @JsonProperty("remark") String remark,
-                           @JsonProperty("category") String category) {
+                           @JsonProperty("customizedDeadline") String customizedDeadline, @JsonProperty("remark") String remark) {
         this.index = index;
         this.weekNumber = weekNumber;
         this.description = description;
         this.officialDeadline = officialDeadline;
         this.customizedDeadline = customizedDeadline;
         this.remark = remark;
-        this.category = category;
     }
 
     /**
@@ -61,7 +58,6 @@ class JsonAdaptedTask {
         } else {
             remark = null;
         }
-        category = TaskCategory.categoryToString(task.getCategory());
     }
 
     /**
@@ -81,21 +77,7 @@ class JsonAdaptedTask {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "description"));
         }
 
-        if (TaskCategory.isAdmin(category)) {
-            return new Admin(index, Integer.parseInt(weekNumber), description, parseDeadline(officialDeadline), parseDeadline(customizedDeadline), remark);
-        }
-
-        if (TaskCategory.isTopic(category)) {
-            return new Topic(index, Integer.parseInt(weekNumber), description, parseDeadline(officialDeadline), parseDeadline(customizedDeadline), remark);
-        }
-
-        if (TaskCategory.isIP(category)) {
-            return new IP(index, Integer.parseInt(weekNumber), description, parseDeadline(officialDeadline), parseDeadline(customizedDeadline), remark);
-        }
-
-        if (TaskCategory.isTP(category)) {
-            return new TP(index, Integer.parseInt(weekNumber), description, parseDeadline(officialDeadline), parseDeadline(customizedDeadline), remark);
-        }
+        return new Task(index, Integer.parseInt(weekNumber), description, parseDeadline(officialDeadline), parseDeadline(customizedDeadline), remark);
     }
 
     public LocalDate parseDeadline(String deadline) {

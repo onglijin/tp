@@ -8,10 +8,7 @@ import tp.acecs2103.commons.core.Messages;
 import tp.acecs2103.commons.core.index.Index;
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.model.Model;
-import tp.acecs2103.model.TaskList;
-import tp.acecs2103.model.UiTaskList;
 import tp.acecs2103.model.task.Person;
-import tp.acecs2103.model.task.Task;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -25,7 +22,7 @@ public class DeleteCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Task: %1$s";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
     private final Index targetIndex;
 
@@ -36,15 +33,15 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        TaskList lastShownList = model.getTaskList();
+        List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (targetIndex.getIntIndex() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
-        String strIndex = targetIndex.getStrIndex();
-        Task taskToDelete = lastShownList.getTask(strIndex);
-        model.deleteTask(strIndex);
-        return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
+
+        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deletePerson(personToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
 
     @Override
