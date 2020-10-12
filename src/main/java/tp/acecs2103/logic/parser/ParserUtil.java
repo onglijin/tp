@@ -2,7 +2,6 @@ package tp.acecs2103.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -28,17 +27,7 @@ public class ParserUtil {
      * trimmed.
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
-    public static String parseIndex(String oneBasedIndex) throws ParseException {
-        requireNonNull(oneBasedIndex);
-        String trimmedIndex = oneBasedIndex.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
-        }
-        return trimmedIndex;
-    }
-
-    public static Index parseIndexObj(String oneBasedIndex) throws ParseException {
-        requireNonNull(oneBasedIndex);
+    public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
@@ -46,55 +35,6 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
-    public static int parseWeekNumber(String weekno) throws ParseException {
-        requireNonNull(weekno);
-        String trimmedWN = weekno.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedWN)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
-        }
-        return Integer.parseInt(trimmedWN);
-    }
-    public static String parseDescription(String description) throws ParseException {
-        requireNonNull(description);
-        String trimmedDes = description.trim();
-        return trimmedDes;
-    }
-    public static LocalDate parseOfficialDeadline(String officialddl) throws ParseException {
-        requireNonNull(officialddl);
-        String trimmedddl = officialddl.trim();
-        LocalDate result;
-        try {
-            result = LocalDate.parse(trimmedddl);
-        } catch (Exception e) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
-        }
-        return result;
-    }
-    public static LocalDate parseCustomizedDeadline(String customizedddl) throws ParseException {
-        requireNonNull(customizedddl);
-        String trimmedddl = customizedddl.trim();
-        LocalDate result;
-        try {
-            result = LocalDate.parse(trimmedddl);
-        } catch (Exception e) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
-        }
-        return result;
-    }
-    public static String parseRemark(String remark) throws ParseException {
-        requireNonNull(remark);
-        String trimmedDes = remark.trim();
-        return trimmedDes;
-    }
-
-    public static String parseType(String type) throws ParseException {
-        requireNonNull(type);
-        String trimmedType = type.trim();
-        if (trimmedType.isEmpty()) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
-        }
-        return trimmedType;
-    }
     /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.

@@ -24,7 +24,9 @@ public class FindCommandParser implements Parser<FindCommand> {
                     String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        return new FindCommand(trimmedArgs);
+        String[] nameKeywords = trimmedArgs.split("\\s+");
+
+        return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
 }

@@ -10,7 +10,6 @@ import static tp.acecs2103.logic.parser.CliSyntax.PREFIX_TAG;
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.task.Person;
-import tp.acecs2103.model.task.Task;
 
 /**
  * Adds a person to the address book.
@@ -19,7 +18,7 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -34,29 +33,28 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New task added: %1$s";
-    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list";
+    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
-    private final Task toAdd;
+    private final Person toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Task}
+     * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddCommand(Task task) {
-        requireNonNull(task);
-        toAdd = task;
+    public AddCommand(Person person) {
+        requireNonNull(person);
+        toAdd = person;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasTask(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_TASK);
+        if (model.hasPerson(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.addTask(toAdd);
-        model.getUiTaskList();
+        model.addPerson(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

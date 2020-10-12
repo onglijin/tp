@@ -10,8 +10,6 @@ import tp.acecs2103.logic.parser.exceptions.ParseException;
 import tp.acecs2103.model.ReadOnlyAddressBook;
 import tp.acecs2103.model.task.Person;
 import tp.acecs2103.model.Model;
-import tp.acecs2103.model.TaskList;
-import tp.acecs2103.model.task.Task;
 
 /**
  * API of the Logic component
@@ -27,22 +25,19 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the TaskList.
+     * Returns the AddressBook.
      *
-     * @see Model#getTaskList()
+     * @see Model#getAddressBook()
      */
-    TaskList getTaskList();
+    ReadOnlyAddressBook getAddressBook();
 
-    /*
-    /** Returns an unmodifiable view of the filtered list of persons
-    ObservableList<Task> getFilteredPersonList();
-    */
-
+    /** Returns an unmodifiable view of the filtered list of persons */
+    ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Returns the user prefs' task list file path.
+     * Returns the user prefs' address book file path.
      */
-    Path getTaskListFilePath();
+    Path getAddressBookFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

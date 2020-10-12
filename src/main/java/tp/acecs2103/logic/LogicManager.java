@@ -4,15 +4,17 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import tp.acecs2103.commons.core.GuiSettings;
 import tp.acecs2103.commons.core.LogsCenter;
 import tp.acecs2103.logic.commands.Command;
 import tp.acecs2103.logic.commands.CommandResult;
 import tp.acecs2103.logic.commands.exceptions.CommandException;
-import tp.acecs2103.logic.parser.TaskListParser;
+import tp.acecs2103.logic.parser.AddressBookParser;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
 import tp.acecs2103.model.Model;
-import tp.acecs2103.model.TaskList;
+import tp.acecs2103.model.ReadOnlyAddressBook;
+import tp.acecs2103.model.task.Person;
 import tp.acecs2103.storage.Storage;
 
 /**
@@ -24,7 +26,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final TaskListParser taskListParser;
+    private final AddressBookParser addressBookParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -32,7 +34,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        taskListParser = new TaskListParser();
+        addressBookParser = new AddressBookParser();
     }
 
     @Override
@@ -40,11 +42,11 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = taskListParser.parseCommand(commandText);
+        Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
-            storage.saveTaskList(model.getTaskList());
+            storage.saveAddressBook(model.getAddressBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -53,20 +55,18 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public TaskList getTaskList() {
-        return model.getTaskList();
+    public ReadOnlyAddressBook getAddressBook() {
+        return model.getAddressBook();
     }
 
-    /*
     @Override
-    public ObservableList<Task> getFilteredPersonList() {
+    public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
     }
-    */
 
     @Override
-    public Path getTaskListFilePath() {
-        return model.getTaskListFilePath();
+    public Path getAddressBookFilePath() {
+        return model.getAddressBookFilePath();
     }
 
     @Override

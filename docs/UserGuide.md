@@ -123,18 +123,6 @@ Format: `deadline TASK_NUMBER DEADLINE`
 Example:
 * `deadline 0601 29-09-2020 23:59`: Adds a customized deadline of 23:59 on 29th September 2020 to the first task of teaching week 6 which is indexed at TASK_NUMBER 0601.
 
-### Adding a customized task: `add`
-
-Adds a customized task in the task manager.
-
-Format: `add DESCRIPTION DEADLINE REMARK`
-
-* The task with DESCRIPTION as description, DEADLINE as customised deadline, REMARK as remark will be added into task list.
-
-Example:
-* `add update documentation 01-10-2020 23：59 check tp dashboard`: 
-Task to update documentation with deadline set at 23：59 on 01-10-2020 and a remark message to check tp dashboard is added to the task list.
-
 ### Exiting the program : `exit`
 
 Exits the program.

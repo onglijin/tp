@@ -9,31 +9,46 @@ package tp.acecs2103.commons.core.index;
  * convert it back to an int if the index will not be passed to a different component again.
  */
 public class Index {
-    private String strIndex; // to keep the correct format for index like "0601"
-    private int intIndex;
+    private int zeroBasedIndex;
 
-
-    private Index(String strIndex) {
-        int intIndex = Integer.parseInt(strIndex);
-        if (intIndex < 0) {
+    /**
+     * Index can only be created by calling {@link Index#fromZeroBased(int)} or
+     * {@link Index#fromOneBased(int)}.
+     */
+    private Index(int zeroBasedIndex) {
+        if (zeroBasedIndex < 0) {
             throw new IndexOutOfBoundsException();
         }
-        this.strIndex = strIndex;
-        this.intIndex = intIndex;
+
+        this.zeroBasedIndex = zeroBasedIndex;
     }
 
-    public int getIntIndex() {
-        return intIndex;
+    public int getZeroBased() {
+        return zeroBasedIndex;
     }
 
-    public String getStrIndex() {
-        return strIndex;
+    public int getOneBased() {
+        return zeroBasedIndex + 1;
+    }
+
+    /**
+     * Creates a new {@code Index} using a zero-based index.
+     */
+    public static Index fromZeroBased(int zeroBasedIndex) {
+        return new Index(zeroBasedIndex);
+    }
+
+    /**
+     * Creates a new {@code Index} using a one-based index.
+     */
+    public static Index fromOneBased(int oneBasedIndex) {
+        return new Index(oneBasedIndex - 1);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Index // instanceof handles nulls
-                && strIndex == ((Index) other).strIndex); // state check
+                && zeroBasedIndex == ((Index) other).zeroBasedIndex); // state check
     }
 }
