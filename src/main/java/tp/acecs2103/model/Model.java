@@ -98,13 +98,13 @@ public interface Model {
      */
     UiTaskList getUiTaskList();
 
-    ObservableList<Admin> getAdminList();
+    ObservableList<Task> getAdminList();
 
-    ObservableList<Topic> getTopicList();
+    ObservableList<Task> getTopicList();
 
-    ObservableList<IP> getIpList();
+    ObservableList<Task> getIpList();
 
-    ObservableList<TP> getTpList();
+    ObservableList<Task> getTpList();
 
 
 

@@ -1,22 +1,23 @@
 package tp.acecs2103.model;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import tp.acecs2103.model.task.*;
 
 import java.util.ArrayList;
 
 public class UiTaskList {
-    private static ObservableList<Admin> adminList;
-    private static ObservableList<Topic>  topicList;
-    private static ObservableList<IP>  ipList;
-    private static ObservableList<TP>  tpList;
+    private ObservableList<Task> adminList = FXCollections.observableArrayList();
+    private ObservableList<Task>  topicList = FXCollections.observableArrayList();
+    private ObservableList<Task>  ipList = FXCollections.observableArrayList();
+    private ObservableList<Task>  tpList = FXCollections.observableArrayList();
 
 
     public UiTaskList(ArrayList<Task> source) {
         addAll(source);
     }
 
-    public static void addAll(ArrayList<Task> taskList) {
+    public void addAll(ArrayList<Task> taskList) {
         adminList.clear();
         topicList.clear();
         ipList.clear();
@@ -34,20 +35,20 @@ public class UiTaskList {
         }
     }
 
-    public ObservableList<Admin>  getAdminList() {
+    public ObservableList<Task>  getAdminList() {
         return adminList;
     }
 
-    public static ObservableList<IP>  getIpList() {
+    public ObservableList<Task>  getIpList() {
 
         return ipList;
     }
 
-    public static ObservableList<TP> getTpList() {
+    public ObservableList<Task> getTpList() {
         return tpList;
     }
 
-    public static ObservableList<Topic> getTopicList() {
+    public ObservableList<Task> getTopicList() {
         return topicList;
     }
 

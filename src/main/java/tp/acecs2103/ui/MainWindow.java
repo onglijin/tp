@@ -10,8 +10,10 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import tp.acecs2103.commons.core.GuiSettings;
 import tp.acecs2103.commons.core.LogsCenter;
@@ -72,9 +74,15 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         // TODO: change the method to get each category panel
-        categoryPanel = new CategoryPanel((ObservableList<Task>) logic.getTaskList());
-        // Bug: to be fixed
-        categoryPanelPlaceholder.getChildren().add(categoryPanelPlaceholder);
+        logger.info("The size of adminlist" + logic.getUiTaskList().getAdminList().size());
+        categoryPanel = new CategoryPanel(logic.getUiTaskList().getAdminList());
+        categoryPanelPlaceholder.getChildren().add(categoryPanel.getRoot());
+        categoryPanel = new CategoryPanel(logic.getUiTaskList().getTopicList());
+        categoryPanelPlaceholder.getChildren().add(categoryPanel.getRoot());
+        categoryPanel = new CategoryPanel(logic.getUiTaskList().getIpList());
+        categoryPanelPlaceholder.getChildren().add(categoryPanel.getRoot());
+        categoryPanel = new CategoryPanel(logic.getUiTaskList().getTpList());
+        categoryPanelPlaceholder.getChildren().add(categoryPanel.getRoot());
         weekDisplay = new WeekDisplay("Week 1 [Mon,Aug 10th to Thu, Aug 13th]");
         weekDisplayPlaceholder.getChildren().add(weekDisplay.getRoot());
 

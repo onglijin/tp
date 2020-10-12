@@ -6,11 +6,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import tp.acecs2103.commons.core.LogsCenter;
 import tp.acecs2103.model.task.Task;
+
+import java.util.logging.Logger;
 
 public class TaskBox extends UiPart<Region> {
     private static final String FXML = "TaskBox.fxml";
     public final Task task;
+    private final Logger logger = LogsCenter.getLogger(TaskBox.class);
 
     @FXML
     private HBox cardPane;
@@ -33,6 +37,7 @@ public class TaskBox extends UiPart<Region> {
      */
     public TaskBox(Task task) {
         super(FXML);
+        logger.info("here!");
         this.task = task;
         index.setText(task.getIndex());
         weekNumber.setText(Integer.toString(task.getWeekNumber()));

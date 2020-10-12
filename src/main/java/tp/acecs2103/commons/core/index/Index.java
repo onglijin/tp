@@ -13,7 +13,7 @@ public class Index {
     private int intIndex;
 
 
-    private Index(String strIndex) {
+    public Index(String strIndex) {
         int intIndex = Integer.parseInt(strIndex);
         if (intIndex < 0) {
             throw new IndexOutOfBoundsException();

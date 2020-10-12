@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import tp.acecs2103.commons.core.GuiSettings;
 import tp.acecs2103.commons.core.LogsCenter;
 import tp.acecs2103.logic.commands.Command;
@@ -13,6 +14,7 @@ import tp.acecs2103.logic.parser.TaskListParser;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.TaskList;
+import tp.acecs2103.model.UiTaskList;
 import tp.acecs2103.storage.Storage;
 
 /**
@@ -55,6 +57,11 @@ public class LogicManager implements Logic {
     @Override
     public TaskList getTaskList() {
         return model.getTaskList();
+    }
+
+    @Override
+    public UiTaskList getUiTaskList() {
+        return model.getUiTaskList();
     }
 
     /*

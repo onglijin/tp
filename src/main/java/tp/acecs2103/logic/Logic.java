@@ -8,6 +8,7 @@ import tp.acecs2103.logic.commands.CommandResult;
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
 import tp.acecs2103.model.ReadOnlyAddressBook;
+import tp.acecs2103.model.UiTaskList;
 import tp.acecs2103.model.task.Person;
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.TaskList;
@@ -39,6 +40,7 @@ public interface Logic {
     */
 
 
+    UiTaskList getUiTaskList();
     /**
      * Returns the user prefs' task list file path.
      */

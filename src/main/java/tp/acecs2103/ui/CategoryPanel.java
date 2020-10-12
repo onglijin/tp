@@ -18,7 +18,7 @@ public class CategoryPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(CategoryPanel.class);
 
     @FXML
-    private ListView<Task> categoryView;
+    private ListView<Task> categoryView = new ListView<>();
 
     /**
      * Creates a {@code CategoryPanel} with the given {@code ObservableList}.
@@ -26,7 +26,9 @@ public class CategoryPanel extends UiPart<Region> {
     public CategoryPanel(ObservableList<Task> taskList) {
         super(FXML);
         categoryView.setItems(taskList);
+        logger.info("1");
         categoryView.setCellFactory(listView -> new CategoryCell());
+        logger.info("2");
     }
 
     /**
@@ -42,6 +44,7 @@ public class CategoryPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 setGraphic(new TaskBox(task).getRoot());
+
             }
         }
     }

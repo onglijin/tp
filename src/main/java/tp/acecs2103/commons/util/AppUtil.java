@@ -48,10 +48,11 @@ public class AppUtil {
      * @return current week number.
      */
     public static int getCurrentWeekNumber() {
-        LocalDate currentTime = LocalDate.now();
-        LocalDate weekOne = LocalDate.of(2020, 8, 10);
-        Duration duration = Duration.between(weekOne, currentTime);
-        int difference = (int) duration.toDays();
-        return difference / 7;
+//        LocalDate currentTime = LocalDate.now();
+//        LocalDate weekOne = LocalDate.of(2020, 8, 10);
+//        Duration duration = Duration.between(weekOne, currentTime);
+//        int difference = (int) duration.toDays();
+//        return difference / 7;
+        return 1;
     }
 }

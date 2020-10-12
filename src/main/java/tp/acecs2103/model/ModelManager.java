@@ -29,7 +29,6 @@ public class ModelManager implements Model {
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(TaskList taskList, ReadOnlyUserPrefs userPrefs) {
-        super();
         CollectionUtil.requireAllNonNull(taskList, userPrefs);
 
         logger.fine("Initializing with task list: " + taskList + " and user prefs " + userPrefs);
@@ -37,6 +36,7 @@ public class ModelManager implements Model {
         this.taskList = new TaskList(taskList);
         this.userPrefs = new UserPrefs(userPrefs);
         this.uiTaskList = new UiTaskList(this.taskList.getUiTaskList());
+        logger.info("The size of uitasklist" + this.uiTaskList.size());
     }
 
     public ModelManager() {
@@ -100,7 +100,7 @@ public class ModelManager implements Model {
 
     @Override
     public void addTask(Task task) {
-        UiTaskList.addAll(taskList.add(task));
+        uiTaskList.addAll(taskList.add(task));
     }
 
     @Override
@@ -137,22 +137,22 @@ public class ModelManager implements Model {
 
 
     @Override
-    public ObservableList<Admin> getAdminList() {
+    public ObservableList<Task> getAdminList() {
         return uiTaskList.getAdminList();
     }
 
     @Override
-    public ObservableList<Topic> getTopicList() {
+    public ObservableList<Task> getTopicList() {
         return uiTaskList.getTopicList();
     }
 
     @Override
-    public ObservableList<IP> getIpList() {
+    public ObservableList<Task> getIpList() {
         return uiTaskList.getIpList();
     }
 
     @Override
-    public ObservableList<TP> getTpList() {
+    public ObservableList<Task> getTpList() {
         return uiTaskList.getTpList();
     }
 
