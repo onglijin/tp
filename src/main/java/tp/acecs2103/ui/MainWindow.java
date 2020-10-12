@@ -2,8 +2,10 @@ package tp.acecs2103.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -18,6 +20,7 @@ import tp.acecs2103.logic.commands.Command;
 import tp.acecs2103.logic.commands.CommandResult;
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
+import tp.acecs2103.model.task.Task;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -71,8 +74,9 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         // TODO: change the method to get each category panel
-        categoryPanel = new CategoryPanel(logic.getFilteredPersonList());
-        categoryPanelPlaceholder.getChildren().add(categoryPanelPlaceholder.getRoot());
+        categoryPanel = new CategoryPanel((ObservableList<Task>) logic.getTaskList());
+        // Bug: to be fixed
+        categoryPanelPlaceholder.getChildren().add(categoryPanelPlaceholder);
         
         weekDisplay = new WeekDisplay("Week 1 [Mon,Aug 10th to Thu, Aug 13th]");
         weekDisplayPlaceholder.getChildren().add(weekDisplay.getRoot());
@@ -108,9 +112,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
-    }
 
     /**
      * Executes the command and returns the result.
@@ -121,7 +122,7 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-            categoryPanel.setFeedbackToUser(commandResult.getFeedbackToUser());
+//            categoryPanel.setFeedbackToUser(commandResult.getFeedbackToUser());
             
             if (commandResult.isExit()) {
                 handleExit();
@@ -130,7 +131,7 @@ public class MainWindow extends UiPart<Stage> {
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
-            categoryPanel.setFeedbackToUser(e.getMessage());
+//            categoryPanel.setFeedbackToUser(e.getMessage());
             throw e;
         }
     }

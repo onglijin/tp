@@ -11,7 +11,7 @@ import tp.acecs2103.commons.core.LogsCenter;
 import tp.acecs2103.model.task.Task;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of tasks for each category.
  */
 public class CategoryPanel extends UiPart<Region> {
     private static final String FXML = "CategoryPanel.fxml";
@@ -21,7 +21,7 @@ public class CategoryPanel extends UiPart<Region> {
     private ListView<Task> categoryView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code CategoryPanel} with the given {@code ObservableList}.
      */
     public CategoryPanel(ObservableList<Task> taskList) {
         super(FXML);
@@ -30,7 +30,7 @@ public class CategoryPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code CategoryCell} that displays the graphics of a {@code Task} using a {@code TaskBox}.
      */
     class CategoryCell extends ListCell<Task> {
         @Override
