@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
-import javafx.collections.ObservableList;
 import tp.acecs2103.commons.core.GuiSettings;
 import tp.acecs2103.commons.core.LogsCenter;
 import tp.acecs2103.logic.commands.Command;

@@ -12,7 +12,10 @@ public class Index {
     private String strIndex; // to keep the correct format for index like "0601"
     private int intIndex;
 
-
+    /**
+     * Constructs an Index.
+     * @param strIndex is index of task.
+     */
     public Index(String strIndex) {
         int intIndex = Integer.parseInt(strIndex);
         if (intIndex < 0) {

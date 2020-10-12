@@ -1,19 +1,16 @@
 package tp.acecs2103.model;
 
 import static java.util.Objects.requireNonNull;
-import static tp.acecs2103.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.time.LocalDate;
-import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import tp.acecs2103.commons.core.GuiSettings;
 import tp.acecs2103.commons.core.LogsCenter;
-import tp.acecs2103.model.task.*;
 import tp.acecs2103.commons.util.CollectionUtil;
+import tp.acecs2103.model.task.Task;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -26,7 +23,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given taskList and userPrefs.
      */
     public ModelManager(TaskList taskList, ReadOnlyUserPrefs userPrefs) {
         CollectionUtil.requireAllNonNull(taskList, userPrefs);
@@ -39,6 +36,9 @@ public class ModelManager implements Model {
         logger.info("The size of uitasklist" + this.uiTaskList.size());
     }
 
+    /**
+     * Initializes a ModelManager.
+     */
     public ModelManager() {
         this.taskList = new TaskList();
         this.userPrefs = new UserPrefs();
@@ -96,7 +96,7 @@ public class ModelManager implements Model {
     public boolean hasTask(Task task) {
         requireNonNull(task);
         return taskList.hasTask(task);
-        }
+    }
 
     @Override
     public void addTask(Task task) {

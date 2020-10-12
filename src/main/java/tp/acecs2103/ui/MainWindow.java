@@ -2,27 +2,16 @@ package tp.acecs2103.ui;
 
 import java.util.logging.Logger;
 
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextInputControl;
-import javafx.scene.input.KeyCombination;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import tp.acecs2103.commons.core.GuiSettings;
 import tp.acecs2103.commons.core.LogsCenter;
 import tp.acecs2103.logic.Logic;
-import tp.acecs2103.logic.commands.Command;
 import tp.acecs2103.logic.commands.CommandResult;
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
-import tp.acecs2103.model.task.Task;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -127,7 +116,7 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-//            categoryPanel.setFeedbackToUser(commandResult.getFeedbackToUser());
+            // categoryPanel.setFeedbackToUser(commandResult.getFeedbackToUser());
             if (commandResult.isExit()) {
                 handleExit();
             }
@@ -135,7 +124,7 @@ public class MainWindow extends UiPart<Stage> {
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
-//            categoryPanel.setFeedbackToUser(e.getMessage());
+            // categoryPanel.setFeedbackToUser(e.getMessage());
             throw e;
         }
     }

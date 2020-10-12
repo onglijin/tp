@@ -1,6 +1,6 @@
 package tp.acecs2103.ui;
 
-//import java.time.LocalDate;
+import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -9,7 +9,7 @@ import javafx.scene.layout.Region;
 import tp.acecs2103.commons.core.LogsCenter;
 import tp.acecs2103.model.task.Task;
 
-import java.util.logging.Logger;
+
 
 public class TaskBox extends UiPart<Region> {
     private static final String FXML = "TaskBox.fxml";

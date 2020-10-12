@@ -1,9 +1,10 @@
 package tp.acecs2103.logic.parser;
 
+import static tp.acecs2103.logic.parser.CliSyntax.PREFIX_WEEKNO;
+
 import tp.acecs2103.logic.commands.ListCommand;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
 
-import static tp.acecs2103.logic.parser.CliSyntax.*;
 public class ListCommandParser implements Parser<ListCommand> {
     @Override
     public ListCommand parse(String args) throws ParseException {

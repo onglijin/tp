@@ -1,11 +1,19 @@
 package tp.acecs2103.storage;
 
+import java.time.LocalDate;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import tp.acecs2103.commons.exceptions.IllegalValueException;
-import tp.acecs2103.model.task.*;
 
-import java.time.LocalDate;
+import tp.acecs2103.commons.exceptions.IllegalValueException;
+import tp.acecs2103.model.task.Admin;
+import tp.acecs2103.model.task.IP;
+import tp.acecs2103.model.task.TP;
+import tp.acecs2103.model.task.Task;
+import tp.acecs2103.model.task.TaskCategory;
+import tp.acecs2103.model.task.Topic;
+
+
 
 /**
  * Jackson-friendly version of {@link Task}.
@@ -26,9 +34,12 @@ class JsonAdaptedTask {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedTask(@JsonProperty("index") String index, @JsonProperty("weekNumber") String weekNumber,
-                           @JsonProperty("description") String description, @JsonProperty("officialDeadline") String officialDeadline,
-                           @JsonProperty("customizedDeadline") String customizedDeadline, @JsonProperty("remark") String remark,
+    public JsonAdaptedTask(@JsonProperty("index") String index,
+                           @JsonProperty("weekNumber") String weekNumber,
+                           @JsonProperty("description") String description,
+                           @JsonProperty("officialDeadline") String officialDeadline,
+                           @JsonProperty("customizedDeadline") String customizedDeadline,
+                           @JsonProperty("remark") String remark,
                            @JsonProperty("category") String category) {
         this.index = index;
         this.weekNumber = weekNumber;
@@ -82,22 +93,27 @@ class JsonAdaptedTask {
         }
 
         if (TaskCategory.isAdmin(category)) {
-            return new Admin(index, Integer.parseInt(weekNumber), description, parseDeadline(officialDeadline), parseDeadline(customizedDeadline), remark);
+            return new Admin(index, Integer.parseInt(weekNumber), description,
+                    parseDeadline(officialDeadline), parseDeadline(customizedDeadline), remark);
         }
 
         if (TaskCategory.isTopic(category)) {
-            return new Topic(index, Integer.parseInt(weekNumber), description, parseDeadline(officialDeadline), parseDeadline(customizedDeadline), remark);
+            return new Topic(index, Integer.parseInt(weekNumber), description,
+                    parseDeadline(officialDeadline), parseDeadline(customizedDeadline), remark);
         }
 
         if (TaskCategory.isIP(category)) {
-            return new IP(index, Integer.parseInt(weekNumber), description, parseDeadline(officialDeadline), parseDeadline(customizedDeadline), remark);
+            return new IP(index, Integer.parseInt(weekNumber), description,
+                    parseDeadline(officialDeadline), parseDeadline(customizedDeadline), remark);
         }
 
         if (TaskCategory.isTP(category)) {
-            return new TP(index, Integer.parseInt(weekNumber), description, parseDeadline(officialDeadline), parseDeadline(customizedDeadline), remark);
+            return new TP(index, Integer.parseInt(weekNumber), description,
+                    parseDeadline(officialDeadline), parseDeadline(customizedDeadline), remark);
         }
 
-        return new Task(index, Integer.parseInt(weekNumber), description, parseDeadline(officialDeadline), parseDeadline(customizedDeadline), remark);
+        return new Task(index, Integer.parseInt(weekNumber), description,
+                parseDeadline(officialDeadline), parseDeadline(customizedDeadline), remark);
     }
 
     public LocalDate parseDeadline(String deadline) {
