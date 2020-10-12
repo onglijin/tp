@@ -12,7 +12,6 @@ import javafx.scene.text.Text;
  * A ui for the week display that is displayed at the top of the application.
  */
 public class WeekDisplay extends UiPart<Region> {
-  
     private static final String FXML = "WeekDisplay.fxml";
 
     @FXML
