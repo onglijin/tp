@@ -6,15 +6,14 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import tp.acecs2103.commons.core.GuiSettings;
-import tp.acecs2103.model.task.Person;
-import tp.acecs2103.model.task.Task;
+import tp.acecs2103.model.task.*;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -42,6 +41,11 @@ public interface Model {
     Path getTaskListFilePath();
 
     /**
+     * Returns true if a task with the same identity as {@code task} exists in the task list.
+     */
+    boolean hasTask(Task task);
+
+    /**
      * Sets the user prefs' task list file path.
      */
     void setTaskListFilePath(Path taskListFilePath);
@@ -53,6 +57,13 @@ public interface Model {
 
     /** Returns the TaskList */
     TaskList getTaskList();
+
+    /**
+     * Replaces the given task {@code target} with {@code editedTask}.
+     * {@code target} must exist in the task list.
+     * The person identity of {@code editedPerson} must not be the same as another existing task in the task list
+     */
+    void setTask(Task target, Task editedTask);
 
     /**
      * Adds task into task list.
@@ -74,6 +85,7 @@ public interface Model {
      */
     void listTasks(int weekNumber);
 
+
     /**
      * Sets a customized deadline to a certain.
      * @param index is the index of task we want to set a deadline to.
@@ -85,6 +97,14 @@ public interface Model {
      * Gets  a ui task list for displaying.
      */
     UiTaskList getUiTaskList();
+
+    ObservableList<Admin> getAdminList();
+
+    ObservableList<Topic> getTopicList();
+
+    ObservableList<IP> getIpList();
+
+    ObservableList<TP> getTpList();
 
 
 

@@ -73,4 +73,8 @@ public class Task {
     public boolean contains(String keyword) {
         return description.contains(keyword) || remark.contains(keyword);
     }
+
+    public boolean isSameTask(Task task) {
+        return index.equals(task.getIndex());
+    }
 }
