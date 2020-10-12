@@ -10,7 +10,7 @@ import tp.acecs2103.commons.core.Messages;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class TaskListParser {
 
     /**
      * Used for initial separation of command word and args.
