@@ -96,6 +96,8 @@ class JsonAdaptedTask {
         if (TaskCategory.isTP(category)) {
             return new TP(index, Integer.parseInt(weekNumber), description, parseDeadline(officialDeadline), parseDeadline(customizedDeadline), remark);
         }
+
+        return new Task(index, Integer.parseInt(weekNumber), description, parseDeadline(officialDeadline), parseDeadline(customizedDeadline), remark);
     }
 
     public LocalDate parseDeadline(String deadline) {
