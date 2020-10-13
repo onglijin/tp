@@ -1,5 +1,6 @@
 package tp.acecs2103.ui;
 
+import java.util.Objects;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
@@ -10,7 +11,9 @@ import tp.acecs2103.commons.core.LogsCenter;
 import tp.acecs2103.model.task.Task;
 
 
-
+/**
+ * Encapsulate a task box to display information for a particular task.
+ */
 public class TaskBox extends UiPart<Region> {
     private static final String FXML = "TaskBox.fxml";
     public final Task task;
@@ -39,11 +42,23 @@ public class TaskBox extends UiPart<Region> {
         super(FXML);
         logger.info("here!");
         this.task = task;
-        index.setText(task.getIndex());
-        weekNumber.setText(Integer.toString(task.getWeekNumber()));
-        description.setText(task.getDescription());
-        officialDeadline.setText(task.getOfficialDeadline().toString());
-        customizedDeadline.setText(task.getCustomizedDeadline().toString());
-        remark.setText(task.getRemark());
+        if (!Objects.isNull(task.getIndex())) {
+            index.setText("Index: " + task.getIndex());
+        }
+        if (!Objects.isNull(task.getWeekNumber())) {
+            weekNumber.setText("Week number: " + Integer.toString(task.getWeekNumber()));
+        }
+        if (!Objects.isNull(task.getDescription())) {
+            description.setText("Description: " + task.getDescription());
+        }
+        if (!Objects.isNull(task.getOfficialDeadline())) {
+            officialDeadline.setText("Official Deadline: " + task.getOfficialDeadline().toString());
+        }
+        if (!Objects.isNull(task.getCustomizedDeadline())) {
+            customizedDeadline.setText("Customized Deadline: " + task.getCustomizedDeadline().toString());
+        }
+        if (!Objects.isNull(task.getCustomizedDeadline())) {
+            remark.setText("Remark: " + task.getRemark());
+        }
     }
 }

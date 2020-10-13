@@ -8,6 +8,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import tp.acecs2103.model.task.TaskCategory;
 
+/**
+ * Encapsulates a box which displays the category for a panel.
+ */
 public class CategoryBox extends UiPart<Region> {
     private static final String FXML = "CategoryBox.fxml";
 
