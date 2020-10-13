@@ -33,7 +33,7 @@ public class ModelManager implements Model {
         this.taskList = new TaskList(taskList);
         this.userPrefs = new UserPrefs(userPrefs);
         this.uiTaskList = new UiTaskList(this.taskList.getUiTaskList());
-        logger.info("The size of uitasklist" + this.uiTaskList.size());
+        logger.info("The size of uitasklist is: " + this.uiTaskList.size());
     }
 
     /**

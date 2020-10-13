@@ -40,7 +40,6 @@ public class TaskBox extends UiPart<Region> {
      */
     public TaskBox(Task task) {
         super(FXML);
-        logger.info("here!");
         this.task = task;
         if (!Objects.isNull(task.getIndex())) {
             index.setText("Index: " + task.getIndex());
@@ -57,7 +56,7 @@ public class TaskBox extends UiPart<Region> {
         if (!Objects.isNull(task.getCustomizedDeadline())) {
             customizedDeadline.setText("Customized Deadline: " + task.getCustomizedDeadline().toString());
         }
-        if (!Objects.isNull(task.getCustomizedDeadline())) {
+        if (!Objects.isNull(task.getRemark())) {
             remark.setText("Remark: " + task.getRemark());
         }
     }

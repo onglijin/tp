@@ -1,13 +1,17 @@
 package tp.acecs2103.model.task;
 
 import java.time.LocalDate;
+import java.util.logging.Logger;
 
+import tp.acecs2103.commons.core.LogsCenter;
 import tp.acecs2103.commons.util.CollectionUtil;
 
 /**
  * Represents a general task in Ace CS2103/T.
  */
 public class Task {
+    private static final Logger logger = LogsCenter.getLogger(Task.class);
+
     private String index;
     private int weekNumber;
     private String description;
@@ -31,8 +35,11 @@ public class Task {
         this.category = TaskCategory.TASK;
     }
 
-    public Task(String index, int weekNumber,
-                String description, LocalDate officialDeadline, LocalDate customizedDeadline, String remark, TaskCategory taskCategory) {
+    /**
+     * Creates a {@code Task} with given details.
+     */
+    public Task(String index, int weekNumber, String description,
+                LocalDate officialDeadline, LocalDate customizedDeadline, String remark, TaskCategory taskCategory) {
         CollectionUtil.requireAllNonNull(index, weekNumber, description);
         this.index = index;
         this.weekNumber = weekNumber;
