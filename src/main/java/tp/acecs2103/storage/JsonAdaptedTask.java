@@ -8,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import tp.acecs2103.commons.core.LogsCenter;
 import tp.acecs2103.commons.exceptions.IllegalValueException;
-import tp.acecs2103.model.ModelManager;
 import tp.acecs2103.model.task.Admin;
 import tp.acecs2103.model.task.IP;
 import tp.acecs2103.model.task.TP;
@@ -23,8 +22,8 @@ import tp.acecs2103.model.task.Topic;
  */
 class JsonAdaptedTask {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonAdaptedTask.class);
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
+    private static final Logger logger = LogsCenter.getLogger(JsonAdaptedTask.class);
 
     private String index;
     private String weekNumber;
