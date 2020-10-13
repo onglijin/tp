@@ -3,7 +3,6 @@ package tp.acecs2103.commons.util;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.temporal.ChronoUnit;
 
 import javafx.scene.image.Image;
