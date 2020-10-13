@@ -1,11 +1,9 @@
 package tp.acecs2103.logic.parser;
 
-import java.util.Arrays;
-
+import tp.acecs2103.commons.core.Messages;
 import tp.acecs2103.logic.commands.FindCommand;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
-import tp.acecs2103.model.task.NameContainsKeywordsPredicate;
-import tp.acecs2103.commons.core.Messages;
+
 
 /**
  * Parses input arguments and creates a new FindCommand object

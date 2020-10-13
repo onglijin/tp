@@ -1,10 +1,9 @@
 package tp.acecs2103.logic.parser;
 
+import static tp.acecs2103.logic.parser.CliSyntax.PREFIX_TYPE;
+
 import tp.acecs2103.logic.commands.GetCommand;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
-
-import static tp.acecs2103.logic.parser.CliSyntax.PREFIX_TYPE;
-import static tp.acecs2103.logic.parser.CliSyntax.PREFIX_WEEKNO;
 
 public class GetCommandParser implements Parser<GetCommand> {
     @Override

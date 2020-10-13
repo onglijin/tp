@@ -1,19 +1,16 @@
 package tp.acecs2103.model;
 
 import static java.util.Objects.requireNonNull;
-import static tp.acecs2103.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.time.LocalDate;
-import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import tp.acecs2103.commons.core.GuiSettings;
 import tp.acecs2103.commons.core.LogsCenter;
-import tp.acecs2103.model.task.*;
 import tp.acecs2103.commons.util.CollectionUtil;
+import tp.acecs2103.model.task.Task;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -26,10 +23,9 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given taskList and userPrefs.
      */
     public ModelManager(TaskList taskList, ReadOnlyUserPrefs userPrefs) {
-        super();
         CollectionUtil.requireAllNonNull(taskList, userPrefs);
 
         logger.fine("Initializing with task list: " + taskList + " and user prefs " + userPrefs);
@@ -37,8 +33,12 @@ public class ModelManager implements Model {
         this.taskList = new TaskList(taskList);
         this.userPrefs = new UserPrefs(userPrefs);
         this.uiTaskList = new UiTaskList(this.taskList.getUiTaskList());
+        logger.info("The size of uitasklist" + this.uiTaskList.size());
     }
 
+    /**
+     * Initializes a ModelManager.
+     */
     public ModelManager() {
         this.taskList = new TaskList();
         this.userPrefs = new UserPrefs();
@@ -96,11 +96,11 @@ public class ModelManager implements Model {
     public boolean hasTask(Task task) {
         requireNonNull(task);
         return taskList.hasTask(task);
-        }
+    }
 
     @Override
     public void addTask(Task task) {
-        UiTaskList.addAll(taskList.add(task));
+        uiTaskList.addAll(taskList.add(task));
     }
 
     @Override
@@ -137,22 +137,22 @@ public class ModelManager implements Model {
 
 
     @Override
-    public ObservableList<Admin> getAdminList() {
+    public ObservableList<Task> getAdminList() {
         return uiTaskList.getAdminList();
     }
 
     @Override
-    public ObservableList<Topic> getTopicList() {
+    public ObservableList<Task> getTopicList() {
         return uiTaskList.getTopicList();
     }
 
     @Override
-    public ObservableList<IP> getIpList() {
+    public ObservableList<Task> getIpList() {
         return uiTaskList.getIpList();
     }
 
     @Override
-    public ObservableList<TP> getTpList() {
+    public ObservableList<Task> getTpList() {
         return uiTaskList.getTpList();
     }
 

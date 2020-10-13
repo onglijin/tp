@@ -2,15 +2,11 @@ package tp.acecs2103.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
-
 import tp.acecs2103.commons.core.Messages;
 import tp.acecs2103.commons.core.index.Index;
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.TaskList;
-import tp.acecs2103.model.UiTaskList;
-import tp.acecs2103.model.task.Person;
 import tp.acecs2103.model.task.Task;
 
 /**

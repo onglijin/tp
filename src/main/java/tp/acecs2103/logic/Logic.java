@@ -2,16 +2,14 @@ package tp.acecs2103.logic;
 
 import java.nio.file.Path;
 
-import javafx.collections.ObservableList;
 import tp.acecs2103.commons.core.GuiSettings;
 import tp.acecs2103.logic.commands.CommandResult;
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
-import tp.acecs2103.model.ReadOnlyAddressBook;
-import tp.acecs2103.model.task.Person;
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.TaskList;
-import tp.acecs2103.model.task.Task;
+import tp.acecs2103.model.UiTaskList;
+
 
 /**
  * API of the Logic component
@@ -39,6 +37,7 @@ public interface Logic {
     */
 
 
+    UiTaskList getUiTaskList();
     /**
      * Returns the user prefs' task list file path.
      */
