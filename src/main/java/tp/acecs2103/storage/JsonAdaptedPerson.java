@@ -10,12 +10,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import tp.acecs2103.commons.exceptions.IllegalValueException;
+import tp.acecs2103.model.tag.Tag;
 import tp.acecs2103.model.task.Address;
 import tp.acecs2103.model.task.Email;
 import tp.acecs2103.model.task.Name;
 import tp.acecs2103.model.task.Person;
 import tp.acecs2103.model.task.Phone;
-import tp.acecs2103.model.tag.Tag;
+
 
 /**
  * Jackson-friendly version of {@link Person}.

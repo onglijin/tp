@@ -2,6 +2,7 @@ package tp.acecs2103.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,11 +10,12 @@ import java.util.Set;
 import tp.acecs2103.commons.core.index.Index;
 import tp.acecs2103.commons.util.StringUtil;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
+import tp.acecs2103.model.tag.Tag;
 import tp.acecs2103.model.task.Address;
 import tp.acecs2103.model.task.Email;
 import tp.acecs2103.model.task.Name;
 import tp.acecs2103.model.task.Phone;
-import tp.acecs2103.model.tag.Tag;
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -27,12 +29,111 @@ public class ParserUtil {
      * trimmed.
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
-    public static Index parseIndex(String oneBasedIndex) throws ParseException {
+    public static String parseIndex(String oneBasedIndex) throws ParseException {
+        requireNonNull(oneBasedIndex);
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
-        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+        return trimmedIndex;
+    }
+
+    /**
+     * Parses {@code onBasedIndex} into an {@Code Index} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    public static Index parseIndexObj(String oneBasedIndex) throws ParseException {
+        requireNonNull(oneBasedIndex);
+        String trimmedIndex = oneBasedIndex.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return new Index(trimmedIndex);
+    }
+
+    /**
+     * Parses a week number.
+     * @param weekno
+     * @throws ParseException
+     */
+    public static int parseWeekNumber(String weekno) throws ParseException {
+        requireNonNull(weekno);
+        String trimmedWN = weekno.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedWN)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return Integer.parseInt(trimmedWN);
+    }
+
+    /**
+     * Parses a description.
+     * @param description
+     * @throws ParseException
+     */
+    public static String parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDes = description.trim();
+        return trimmedDes;
+    }
+
+    /**
+     * Parses official deadline.
+     * @param officialddl
+     * @throws ParseException
+     */
+    public static LocalDate parseOfficialDeadline(String officialddl) throws ParseException {
+        requireNonNull(officialddl);
+        String trimmedddl = officialddl.trim();
+        LocalDate result;
+        try {
+            result = LocalDate.parse(trimmedddl);
+        } catch (Exception e) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return result;
+    }
+
+    /**
+     * Parses a customized deadline.
+     * @param customizedddl
+     * @throws ParseException
+     */
+    public static LocalDate parseCustomizedDeadline(String customizedddl) throws ParseException {
+        requireNonNull(customizedddl);
+        String trimmedddl = customizedddl.trim();
+        LocalDate result;
+        try {
+            result = LocalDate.parse(trimmedddl);
+        } catch (Exception e) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return result;
+    }
+
+    /**
+     * Parses remark.
+     * @param remark
+     * @throws ParseException
+     */
+    public static String parseRemark(String remark) throws ParseException {
+        requireNonNull(remark);
+        String trimmedDes = remark.trim();
+        return trimmedDes;
+    }
+
+    /**
+     * Parses a type.
+     * @param type
+     * @throws ParseException
+     */
+    public static String parseType(String type) throws ParseException {
+        requireNonNull(type);
+        String trimmedType = type.trim();
+        if (trimmedType.isEmpty()) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return trimmedType;
     }
 
     /**

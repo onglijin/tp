@@ -1,12 +1,11 @@
 package tp.acecs2103.storage;
 
-import tp.acecs2103.commons.exceptions.DataConversionException;
-import tp.acecs2103.model.ReadOnlyAddressBook;
-import tp.acecs2103.model.TaskList;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
+
+import tp.acecs2103.commons.exceptions.DataConversionException;
+import tp.acecs2103.model.TaskList;
 
 public interface TaskListStorage {
     /**
