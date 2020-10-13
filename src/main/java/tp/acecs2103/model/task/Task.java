@@ -31,6 +31,18 @@ public class Task {
         this.category = TaskCategory.TASK;
     }
 
+    public Task(String index, int weekNumber,
+                String description, LocalDate officialDeadline, LocalDate customizedDeadline, String remark, TaskCategory taskCategory) {
+        CollectionUtil.requireAllNonNull(index, weekNumber, description);
+        this.index = index;
+        this.weekNumber = weekNumber;
+        this.description = description;
+        this.officialDeadline = officialDeadline;
+        this.customizedDeadline = customizedDeadline;
+        this.remark = remark;
+        this.category = taskCategory;
+    }
+
     /**
      * Gets the task index.
      */
@@ -84,7 +96,7 @@ public class Task {
      * Checks whether the task has index {@code taskIndex}
      */
     public boolean hasIndex(String taskIndex) {
-        return this.index == taskIndex;
+        return this.index.equals(taskIndex);
     }
 
     /**
