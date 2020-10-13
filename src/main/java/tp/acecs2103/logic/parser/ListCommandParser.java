@@ -8,9 +8,8 @@ import tp.acecs2103.logic.parser.exceptions.ParseException;
 public class ListCommandParser implements Parser<ListCommand> {
     @Override
     public ListCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_WEEKNO);
-
-        int weekNumber = ParserUtil.parseWeekNumber(argMultimap.getValue(PREFIX_WEEKNO).get());
+        String trimmedArgs = args.trim();
+        int weekNumber = ParserUtil.parseWeekNumber(trimmedArgs);
 
         return new ListCommand(weekNumber);
     }
