@@ -41,10 +41,14 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         EditCommand.EditTaskDescriptor editTaskDescriptor = new EditCommand.EditTaskDescriptor();
+        /*
         if (argMultimap.getValue(CliSyntax.PREFIX_INDEX).isPresent()) {
             editTaskDescriptor.setIndex(
                     ParserUtil.parseIndex(argMultimap.getValue(CliSyntax.PREFIX_INDEX).get()));
         }
+        */
+
+
         if (argMultimap.getValue(CliSyntax.PREFIX_WEEKNO).isPresent()) {
             editTaskDescriptor.setWeekNumber(
                     ParserUtil.parseWeekNumber(argMultimap.getValue(CliSyntax.PREFIX_WEEKNO).get()));
