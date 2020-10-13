@@ -1,13 +1,17 @@
 package tp.acecs2103.model.task;
 
 import java.time.LocalDate;
+import java.util.logging.Logger;
 
+import tp.acecs2103.commons.core.LogsCenter;
 import tp.acecs2103.commons.util.CollectionUtil;
 
 /**
  * Represents a general task in Ace CS2103/T.
  */
 public class Task {
+    private static final Logger logger = LogsCenter.getLogger(Task.class);
+
     private String index;
     private int weekNumber;
     private String description;
