@@ -9,7 +9,6 @@ import static tp.acecs2103.logic.parser.CliSyntax.PREFIX_TAG;
 
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.model.Model;
-import tp.acecs2103.model.task.Person;
 import tp.acecs2103.model.task.Task;
 
 /**

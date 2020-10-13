@@ -5,7 +5,6 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import tp.acecs2103.commons.exceptions.DataConversionException;
-import tp.acecs2103.model.ReadOnlyAddressBook;
 import tp.acecs2103.model.ReadOnlyUserPrefs;
 import tp.acecs2103.model.TaskList;
 import tp.acecs2103.model.UserPrefs;

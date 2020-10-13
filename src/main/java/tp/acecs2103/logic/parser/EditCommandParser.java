@@ -7,11 +7,12 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
+import tp.acecs2103.commons.core.Messages;
 import tp.acecs2103.commons.core.index.Index;
 import tp.acecs2103.logic.commands.EditCommand;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
 import tp.acecs2103.model.tag.Tag;
-import tp.acecs2103.commons.core.Messages;
+
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -26,34 +27,43 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_WEEKNO, CliSyntax.PREFIX_INDEX, CliSyntax.PREFIX_DESCRIPTION, CliSyntax.PREFIX_OFFICIALDDL, CliSyntax.PREFIX_CUSTOMIZEDDDL, CliSyntax.PREFIX_REMARK);
+                ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_WEEKNO, CliSyntax.PREFIX_INDEX,
+                        CliSyntax.PREFIX_DESCRIPTION, CliSyntax.PREFIX_OFFICIALDDL,
+                        CliSyntax.PREFIX_CUSTOMIZEDDDL, CliSyntax.PREFIX_REMARK);
 
         Index index;
 
         try {
             index = ParserUtil.parseIndexObj(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditCommand.MESSAGE_USAGE), pe);
         }
 
         EditCommand.EditTaskDescriptor editTaskDescriptor = new EditCommand.EditTaskDescriptor();
         if (argMultimap.getValue(CliSyntax.PREFIX_INDEX).isPresent()) {
-            editTaskDescriptor.setIndex(ParserUtil.parseIndex(argMultimap.getValue(CliSyntax.PREFIX_INDEX).get()));
+            editTaskDescriptor.setIndex(
+                    ParserUtil.parseIndex(argMultimap.getValue(CliSyntax.PREFIX_INDEX).get()));
         }
         if (argMultimap.getValue(CliSyntax.PREFIX_WEEKNO).isPresent()) {
-            editTaskDescriptor.setWeekNumber(ParserUtil.parseWeekNumber(argMultimap.getValue(CliSyntax.PREFIX_WEEKNO).get()));
+            editTaskDescriptor.setWeekNumber(
+                    ParserUtil.parseWeekNumber(argMultimap.getValue(CliSyntax.PREFIX_WEEKNO).get()));
         }
         if (argMultimap.getValue(CliSyntax.PREFIX_DESCRIPTION).isPresent()) {
-            editTaskDescriptor.setDescription(ParserUtil.parseDescription(argMultimap.getValue(CliSyntax.PREFIX_DESCRIPTION).get()));
+            editTaskDescriptor.setDescription(
+                    ParserUtil.parseDescription(argMultimap.getValue(CliSyntax.PREFIX_DESCRIPTION).get()));
         }
         if (argMultimap.getValue(CliSyntax.PREFIX_OFFICIALDDL).isPresent()) {
-            editTaskDescriptor.setOfficialDeadline(ParserUtil.parseOfficialDeadline(argMultimap.getValue(CliSyntax.PREFIX_OFFICIALDDL).get()));
+            editTaskDescriptor.setOfficialDeadline(
+                    ParserUtil.parseOfficialDeadline(argMultimap.getValue(CliSyntax.PREFIX_OFFICIALDDL).get()));
         }
         if (argMultimap.getValue(CliSyntax.PREFIX_CUSTOMIZEDDDL).isPresent()) {
-            editTaskDescriptor.setCustomizedDeadline(ParserUtil.parseCustomizedDeadline(argMultimap.getValue(CliSyntax.PREFIX_CUSTOMIZEDDDL).get()));
+            editTaskDescriptor.setCustomizedDeadline(
+                    ParserUtil.parseCustomizedDeadline(argMultimap.getValue(CliSyntax.PREFIX_CUSTOMIZEDDDL).get()));
         }
         if (argMultimap.getValue(CliSyntax.PREFIX_REMARK).isPresent()) {
-            editTaskDescriptor.setRemark(ParserUtil.parseRemark(argMultimap.getValue(CliSyntax.PREFIX_REMARK).get()));
+            editTaskDescriptor.setRemark(
+                    ParserUtil.parseRemark(argMultimap.getValue(CliSyntax.PREFIX_REMARK).get()));
         }
 
         if (!editTaskDescriptor.isAnyFieldEdited()) {
