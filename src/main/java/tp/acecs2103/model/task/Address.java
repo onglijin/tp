@@ -1,9 +1,7 @@
 package tp.acecs2103.model.task;
+import static java.util.Objects.requireNonNull;
 
 import tp.acecs2103.commons.util.AppUtil;
-
-import static java.util.Objects.requireNonNull;
-import static tp.acecs2103.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's address in the address book.

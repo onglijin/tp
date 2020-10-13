@@ -1,18 +1,16 @@
 package tp.acecs2103.model;
 
 import static java.util.Objects.requireNonNull;
-import static tp.acecs2103.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.function.Predicate;
+import java.time.LocalDate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import tp.acecs2103.commons.core.GuiSettings;
 import tp.acecs2103.commons.core.LogsCenter;
-import tp.acecs2103.model.task.Person;
 import tp.acecs2103.commons.util.CollectionUtil;
+import tp.acecs2103.model.task.Task;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -20,26 +18,31 @@ import tp.acecs2103.commons.util.CollectionUtil;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final TaskList taskList;
+    private final UiTaskList uiTaskList;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given taskList and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        super();
-        CollectionUtil.requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(TaskList taskList, ReadOnlyUserPrefs userPrefs) {
+        CollectionUtil.requireAllNonNull(taskList, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with task list: " + taskList + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.taskList = new TaskList(taskList);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.uiTaskList = new UiTaskList(this.taskList.getUiTaskList());
+        logger.info("The size of uitasklist" + this.uiTaskList.size());
     }
 
+    /**
+     * Initializes a ModelManager.
+     */
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this.taskList = new TaskList();
+        this.userPrefs = new UserPrefs();
+        this.uiTaskList = new UiTaskList(taskList.getUiTaskList());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -67,86 +70,91 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getTaskListFilePath() {
+        return userPrefs.getTaskListFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setTaskListFilePath(Path taskListFilePath) {
+        requireNonNull(taskListFilePath);
+        userPrefs.setTaskListFilePath(taskListFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== TaskList ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setTaskList(TaskList taskList) {
+        this.taskList.resetData(taskList);
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public TaskList getTaskList() {
+        return taskList;
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return taskList.hasTask(task);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addTask(Task task) {
+        uiTaskList.addAll(taskList.add(task));
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        CollectionUtil.requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
-    }
-
-    //=========== Filtered Person List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public void deleteTask(String index) {
+        uiTaskList.addAll(taskList.delete(index));
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+    public void findTasks(String keyword) {
+        uiTaskList.addAll(taskList.find(keyword));
+    };
+
+    @Override
+    public void listTasks(int weekNumber) {
+        uiTaskList.addAll(taskList.list(weekNumber));
+    };
+
+    @Override
+    public void deadlineTask(String index, LocalDate deadline) {
+        uiTaskList.addAll(taskList.deadline(index, deadline));
     }
 
     @Override
-    public boolean equals(Object obj) {
-        // short circuit if same object
-        if (obj == this) {
-            return true;
-        }
+    public void setTask(Task target, Task editedTask) {
+        uiTaskList.addAll(taskList.resetTask(target, editedTask));
+    };
 
-        // instanceof handles nulls
-        if (!(obj instanceof ModelManager)) {
-            return false;
-        }
+    //=========== UiTaskList ================================================================================
 
-        // state check
-        ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+    @Override
+    public UiTaskList getUiTaskList() {
+        return uiTaskList;
+    }
+
+
+    @Override
+    public ObservableList<Task> getAdminList() {
+        return uiTaskList.getAdminList();
+    }
+
+    @Override
+    public ObservableList<Task> getTopicList() {
+        return uiTaskList.getTopicList();
+    }
+
+    @Override
+    public ObservableList<Task> getIpList() {
+        return uiTaskList.getIpList();
+    }
+
+    @Override
+    public ObservableList<Task> getTpList() {
+        return uiTaskList.getTpList();
     }
 
 }
+

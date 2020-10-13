@@ -7,23 +7,17 @@ import static tp.acecs2103.logic.parser.CliSyntax.PREFIX_NAME;
 import static tp.acecs2103.logic.parser.CliSyntax.PREFIX_PHONE;
 import static tp.acecs2103.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
+import java.time.LocalDate;
 import java.util.Optional;
-import java.util.Set;
 
 import tp.acecs2103.commons.core.Messages;
 import tp.acecs2103.commons.core.index.Index;
 import tp.acecs2103.commons.util.CollectionUtil;
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.model.Model;
-import tp.acecs2103.model.task.Address;
-import tp.acecs2103.model.task.Email;
-import tp.acecs2103.model.task.Name;
-import tp.acecs2103.model.task.Person;
-import tp.acecs2103.model.task.Phone;
-import tp.acecs2103.model.tag.Tag;
+import tp.acecs2103.model.TaskList;
+import tp.acecs2103.model.task.Task;
+
 
 /**
  * Edits the details of an existing person in the address book.
@@ -45,60 +39,66 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditTaskDescriptor editTaskDescriptor;
 
     /**
      * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param editTaskDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditTaskDescriptor editTaskDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editTaskDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editTaskDescriptor = new EditTaskDescriptor(editTaskDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        TaskList lastShownList = model.getTaskList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        if (index.getIntIndex() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Task taskToEdit = lastShownList.getTask(index.getStrIndex());
+        Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
+            throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        model.setTask(taskToEdit, editedTask);
+        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
 
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) {
+        assert taskToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        String updatedIndex = editTaskDescriptor
+                .getIndex().orElse(taskToEdit.getIndex());
+        int updatedWeekNumber = editTaskDescriptor
+                .getWeekNumber().orElse(taskToEdit.getWeekNumber());
+        String updatedDescription = editTaskDescriptor
+                .getDescription().orElse(taskToEdit.getDescription());
+        LocalDate updatedOfficialDeadline = editTaskDescriptor
+                .getOfficialDeadline().orElse(taskToEdit.getOfficialDeadline());
+        LocalDate updatedCustomizedDeadline = editTaskDescriptor
+                .getCustomizedDeadline().orElse(taskToEdit.getOfficialDeadline());
+        String remark = editTaskDescriptor.getRemark().orElse(taskToEdit.getRemark());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Task(updatedIndex, updatedWeekNumber, updatedDescription,
+                updatedOfficialDeadline, updatedCustomizedDeadline, remark);
     }
 
     @Override
@@ -116,88 +116,99 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editTaskDescriptor.equals(e.editTaskDescriptor);
     }
 
     /**
      * Stores the details to edit the person with. Each non-empty field value will replace the
      * corresponding field value of the person.
      */
-    public static class EditPersonDescriptor {
-        private Name name;
-        private Phone phone;
-        private Email email;
-        private Address address;
-        private Set<Tag> tags;
+    public static class EditTaskDescriptor {
+        private String index;
+        private int weekNumber;
+        private String description;
+        private LocalDate officialDeadline;
+        private LocalDate customizedDeadline;
+        private String remark;
 
-        public EditPersonDescriptor() {}
+        public EditTaskDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
-            setName(toCopy.name);
-            setPhone(toCopy.phone);
-            setEmail(toCopy.email);
-            setAddress(toCopy.address);
-            setTags(toCopy.tags);
+        public EditTaskDescriptor(EditTaskDescriptor toCopy) {
+            setIndex(toCopy.index);
+            setWeekNumber(toCopy.weekNumber);
+            setDescription(toCopy.description);
+            setOfficialDeadline(toCopy.officialDeadline);
+            setCustomizedDeadline(toCopy.customizedDeadline);
+            setRemark(toCopy.remark);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(index,
+                    weekNumber, description, officialDeadline, customizedDeadline, remark);
         }
 
-        public void setName(Name name) {
-            this.name = name;
+        public void setIndex(String index) {
+            this.index = index;
         }
 
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
+        public Optional<String> getIndex() {
+            return Optional.ofNullable(index);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setWeekNumber(int weekNumber) {
+            this.weekNumber = weekNumber;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Optional<Integer> getWeekNumber() {
+            return Optional.ofNullable(weekNumber);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setDescription(String description) {
+            this.description = description;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<String> getDescription() {
+            return Optional.ofNullable(description);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setOfficialDeadline(LocalDate officialDeadline) {
+            this.officialDeadline = officialDeadline;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<LocalDate> getOfficialDeadline() {
+            return Optional.ofNullable(officialDeadline);
+        }
+
+        public void setCustomizedDeadline(LocalDate customizedDeadline) {
+            this.customizedDeadline = customizedDeadline;
+        }
+
+        public Optional<LocalDate> getCustomizedDeadline() {
+            return Optional.ofNullable(customizedDeadline);
         }
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
+         * Sets {@code remark} to this object's {@code remark}.
+         * A defensive copy of {@code remark} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setRemark(String remark) {
+            this.remark = remark;
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable remark, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * Returns {@code Optional#empty()} if {@code remark} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<String> getRemark() {
+            return Optional.ofNullable(remark);
         }
 
         @Override
@@ -208,18 +219,19 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditTaskDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditTaskDescriptor e = (EditTaskDescriptor) other;
 
-            return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+            return getIndex().equals(e.getIndex())
+                    && getWeekNumber().equals(e.getWeekNumber())
+                    && getDescription().equals(e.getDescription())
+                    && getOfficialDeadline().equals(e.getOfficialDeadline())
+                    && getCustomizedDeadline().equals(e.getCustomizedDeadline())
+                    && getRemark().equals(e.getRemark());
         }
     }
 }

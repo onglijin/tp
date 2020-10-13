@@ -2,14 +2,14 @@ package tp.acecs2103.logic;
 
 import java.nio.file.Path;
 
-import javafx.collections.ObservableList;
 import tp.acecs2103.commons.core.GuiSettings;
 import tp.acecs2103.logic.commands.CommandResult;
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
-import tp.acecs2103.model.ReadOnlyAddressBook;
-import tp.acecs2103.model.task.Person;
 import tp.acecs2103.model.Model;
+import tp.acecs2103.model.TaskList;
+import tp.acecs2103.model.UiTaskList;
+
 
 /**
  * API of the Logic component
@@ -25,19 +25,23 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the TaskList.
      *
-     * @see Model#getAddressBook()
+     * @see Model#getTaskList()
      */
-    ReadOnlyAddressBook getAddressBook();
+    TaskList getTaskList();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    /*
+    /** Returns an unmodifiable view of the filtered list of persons
+    ObservableList<Task> getFilteredPersonList();
+    */
 
+
+    UiTaskList getUiTaskList();
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' task list file path.
      */
-    Path getAddressBookFilePath();
+    Path getTaskListFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

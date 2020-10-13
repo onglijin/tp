@@ -1,18 +1,19 @@
 package tp.acecs2103.model;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import tp.acecs2103.commons.core.GuiSettings;
-import tp.acecs2103.model.task.Person;
+import tp.acecs2103.model.task.Task;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -35,53 +36,77 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' task list file path.
      */
-    Path getAddressBookFilePath();
+    Path getTaskListFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Returns true if a task with the same identity as {@code task} exists in the task list.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    boolean hasTask(Task task);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Sets the user prefs' task list file path.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
-
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    void setTaskListFilePath(Path taskListFilePath);
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Replaces task list data with the data in {@code taskList}.
      */
-    boolean hasPerson(Person person);
+    void setTaskList(TaskList taskList);
+
+    /** Returns the TaskList */
+    TaskList getTaskList();
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Replaces the given task {@code target} with {@code editedTask}.
+     * {@code target} must exist in the task list.
+     * The person identity of {@code editedPerson} must not be the same as another existing task in the task list
      */
-    void deletePerson(Person target);
+    void setTask(Task target, Task editedTask);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds task into task list.
      */
-    void addPerson(Person person);
+    void addTask(Task task);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Deletes one task out of task list with given index.
      */
-    void setPerson(Person target, Person editedPerson);
-
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    void deleteTask(String index);
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
+     * Finds tasks based on given keyword.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void findTasks(String keyword);
+
+    /**
+     * Lists tasks in certain week.
+     */
+    void listTasks(int weekNumber);
+
+
+    /**
+     * Sets a customized deadline to a certain.
+     * @param index is the index of task we want to set a deadline to.
+     * @param deadline is a customized deadline.
+     */
+    void deadlineTask(String index, LocalDate deadline);
+
+    /**
+     * Gets  a ui task list for displaying.
+     */
+    UiTaskList getUiTaskList();
+
+    ObservableList<Task> getAdminList();
+
+    ObservableList<Task> getTopicList();
+
+    ObservableList<Task> getIpList();
+
+    ObservableList<Task> getTpList();
+
+
+
+
 }

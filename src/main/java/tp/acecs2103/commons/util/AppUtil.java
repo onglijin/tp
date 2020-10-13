@@ -2,8 +2,12 @@ package tp.acecs2103.commons.util;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
 import javafx.scene.image.Image;
 import tp.acecs2103.MainApp;
+
 
 /**
  * A container for App specific utility functions
@@ -38,5 +42,16 @@ public class AppUtil {
         if (!condition) {
             throw new IllegalArgumentException(errorMessage);
         }
+    }
+
+    /**
+     * Gets current week number based on local time.
+     * @return current week number.
+     */
+    public static int getCurrentWeekNumber() {
+        LocalDate currentTime = LocalDate.now();
+        LocalDate weekOne = LocalDate.of(2020, 8, 10);
+        int difference = (int) weekOne.until(currentTime, ChronoUnit.DAYS);
+        return difference / 7 + 1;
     }
 }

@@ -5,14 +5,14 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import tp.acecs2103.commons.exceptions.DataConversionException;
-import tp.acecs2103.model.ReadOnlyAddressBook;
 import tp.acecs2103.model.ReadOnlyUserPrefs;
+import tp.acecs2103.model.TaskList;
 import tp.acecs2103.model.UserPrefs;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends AddressBookStorage, UserPrefsStorage {
+public interface Storage extends TaskListStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -21,12 +21,12 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getAddressBookFilePath();
+    Path getTaskListFilePath();
 
     @Override
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<TaskList> readTaskList() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    void saveTaskList(TaskList taskList) throws IOException;
 
 }

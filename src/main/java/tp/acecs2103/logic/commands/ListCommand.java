@@ -11,13 +11,23 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_SUCCESS = "Listed all persons";
+    public static final String MESSAGE_SUCCESS = "Listed all tasks for the selected week";
+
+    private final int weekNumber;
+
+    /**
+     * Creates a {@code ListCommand} with given Week number.
+     */
+    public ListCommand(int weekNumber) {
+        requireNonNull(weekNumber);
+        this.weekNumber = weekNumber;
+    }
 
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        model.listTasks(weekNumber);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
