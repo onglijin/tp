@@ -33,8 +33,8 @@ public enum TaskCategory {
      * Checks whether a category belongs to Admin.
      * @param category A valid {@code String}.
      */
-    public static boolean isAdmin(String category) {
-        return category == "admin";
+    public static boolean isStringAdmin(String category) {
+        return category.equals("admin");
     }
 
     /**
@@ -49,8 +49,8 @@ public enum TaskCategory {
      * Checks whether a category belongs to Topic.
      * @param category A valid {@code String}.
      */
-    public static boolean isTopic(String category) {
-        return category == "topic";
+    public static boolean isStringTopic(String category) {
+        return category.equals("topic");
     }
 
     /**
@@ -65,8 +65,8 @@ public enum TaskCategory {
      * Checks whether a category belongs to IP.
      * @param category A valid {@code String}.
      */
-    public static boolean isIP(String category) {
-        return category == "ip";
+    public static boolean isStringIP(String category) {
+        return category.equals("ip");
     }
 
     /**
@@ -81,7 +81,7 @@ public enum TaskCategory {
      * Checks whether a category belongs to TP.
      * @param category A valid {@code String}.
      */
-    public static boolean isTP(String category) {
-        return category == "tp";
+    public static boolean isStringTP(String category) {
+        return category.equals("tp");
     }
 }
