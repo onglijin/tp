@@ -77,7 +77,7 @@ public class Task {
      * Gets the category of the task.
      */
     public TaskCategory getCategory() {
-        return TaskCategory.TASK;
+        return this.category;
     }
 
     /**
