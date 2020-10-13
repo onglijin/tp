@@ -1,14 +1,13 @@
 package tp.acecs2103.model.task;
 
-import static tp.acecs2103.commons.util.CollectionUtil.requireAllNonNull;
-
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import tp.acecs2103.model.tag.Tag;
 import tp.acecs2103.commons.util.CollectionUtil;
+import tp.acecs2103.model.tag.Tag;
+
 
 /**
  * Represents a Person in the address book.

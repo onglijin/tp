@@ -2,7 +2,6 @@ package tp.acecs2103.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import tp.acecs2103.model.AddressBook;
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.TaskList;
 

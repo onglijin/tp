@@ -8,11 +8,7 @@ import static tp.acecs2103.logic.parser.CliSyntax.PREFIX_PHONE;
 import static tp.acecs2103.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.time.LocalDate;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import tp.acecs2103.commons.core.Messages;
 import tp.acecs2103.commons.core.index.Index;
@@ -20,7 +16,7 @@ import tp.acecs2103.commons.util.CollectionUtil;
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.TaskList;
-import tp.acecs2103.model.task.*;
+import tp.acecs2103.model.task.Task;
 
 
 /**
@@ -89,14 +85,20 @@ public class EditCommand extends Command {
     private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) {
         assert taskToEdit != null;
 
-        String updatedIndex = editTaskDescriptor.getIndex().orElse(taskToEdit.getIndex());
-        int updatedWeekNumber = editTaskDescriptor.getWeekNumber().orElse(taskToEdit.getWeekNumber());
-        String updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
-        LocalDate updatedOfficialDeadline = editTaskDescriptor.getOfficialDeadline().orElse(taskToEdit.getOfficialDeadline());
-        LocalDate updatedCustomizedDeadline = editTaskDescriptor.getCustomizedDeadline().orElse(taskToEdit.getOfficialDeadline());
+        String updatedIndex = editTaskDescriptor
+                .getIndex().orElse(taskToEdit.getIndex());
+        int updatedWeekNumber = editTaskDescriptor
+                .getWeekNumber().orElse(taskToEdit.getWeekNumber());
+        String updatedDescription = editTaskDescriptor
+                .getDescription().orElse(taskToEdit.getDescription());
+        LocalDate updatedOfficialDeadline = editTaskDescriptor
+                .getOfficialDeadline().orElse(taskToEdit.getOfficialDeadline());
+        LocalDate updatedCustomizedDeadline = editTaskDescriptor
+                .getCustomizedDeadline().orElse(taskToEdit.getOfficialDeadline());
         String remark = editTaskDescriptor.getRemark().orElse(taskToEdit.getRemark());
 
-        return new Task(updatedIndex, updatedWeekNumber, updatedDescription, updatedOfficialDeadline, updatedCustomizedDeadline, remark);
+        return new Task(updatedIndex, updatedWeekNumber, updatedDescription,
+                updatedOfficialDeadline, updatedCustomizedDeadline, remark);
     }
 
     @Override
@@ -148,7 +150,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(index, weekNumber, description, officialDeadline, customizedDeadline,remark);
+            return CollectionUtil.isAnyNonNull(index,
+                    weekNumber, description, officialDeadline, customizedDeadline, remark);
         }
 
         public void setIndex(String index) {

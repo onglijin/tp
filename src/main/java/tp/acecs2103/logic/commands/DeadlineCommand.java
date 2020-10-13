@@ -2,12 +2,11 @@ package tp.acecs2103.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+
 import tp.acecs2103.commons.core.index.Index;
 import tp.acecs2103.model.Model;
-import tp.acecs2103.model.task.Task;
-import tp.acecs2103.commons.core.index.Index;
 
-import java.time.LocalDate;
 
 public class DeadlineCommand extends Command {
     public static final String COMMAND_WORD = "deadline";
@@ -17,6 +16,9 @@ public class DeadlineCommand extends Command {
     private final Index targetIndex;
     private final LocalDate newDeadline;
 
+    /**
+     * Creates a {@code DeadlineCommand} with given index and newDeadline
+     */
     public DeadlineCommand(Index targetIndex, LocalDate newDeadline) {
         requireNonNull(targetIndex);
         requireNonNull(newDeadline);

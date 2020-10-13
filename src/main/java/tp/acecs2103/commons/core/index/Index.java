@@ -13,6 +13,10 @@ public class Index {
     private int intIndex;
 
 
+    /**
+     * Constructs an Index.
+     * @param strIndex is index of task.
+     */
     public Index(String strIndex) {
         int intIndex = Integer.parseInt(strIndex);
         if (intIndex < 0) {

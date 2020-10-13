@@ -1,9 +1,8 @@
 package tp.acecs2103.model.task;
 
-import tp.acecs2103.commons.util.AppUtil;
-
 import static java.util.Objects.requireNonNull;
-import static tp.acecs2103.commons.util.AppUtil.checkArgument;
+
+import tp.acecs2103.commons.util.AppUtil;
 
 /**
  * Represents a Person's email in the address book.

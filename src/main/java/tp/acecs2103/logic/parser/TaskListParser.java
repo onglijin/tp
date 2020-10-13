@@ -3,9 +3,19 @@ package tp.acecs2103.logic.parser;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import tp.acecs2103.logic.commands.*;
-import tp.acecs2103.logic.parser.exceptions.ParseException;
 import tp.acecs2103.commons.core.Messages;
+import tp.acecs2103.logic.commands.AddCommand;
+import tp.acecs2103.logic.commands.Command;
+import tp.acecs2103.logic.commands.DeadlineCommand;
+import tp.acecs2103.logic.commands.DeleteCommand;
+import tp.acecs2103.logic.commands.EditCommand;
+import tp.acecs2103.logic.commands.ExitCommand;
+import tp.acecs2103.logic.commands.FindCommand;
+import tp.acecs2103.logic.commands.GetCommand;
+import tp.acecs2103.logic.commands.HelpCommand;
+import tp.acecs2103.logic.commands.ListCommand;
+import tp.acecs2103.logic.parser.exceptions.ParseException;
+
 
 /**
  * Parses user input.
@@ -50,16 +60,16 @@ public class TaskListParser {
             return new ExitCommand();
 
         case DeadlineCommand.COMMAND_WORD:
-                return new DeadlineCommandParser().parse(arguments);
+            return new DeadlineCommandParser().parse(arguments);
 
         case GetCommand.COMMAND_WORD:
-                return new GetCommandParser().parse(arguments);
+            return new GetCommandParser().parse(arguments);
 
         case HelpCommand.COMMAND_WORD:
-                return new HelpCommandParser().parse(arguments);
+            return new HelpCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
-                return new ListCommandParser().parse(arguments);
+            return new ListCommandParser().parse(arguments);
 
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
