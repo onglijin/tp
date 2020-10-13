@@ -15,10 +15,18 @@ import tp.acecs2103.commons.util.ConfigUtil;
 import tp.acecs2103.commons.util.StringUtil;
 import tp.acecs2103.logic.Logic;
 import tp.acecs2103.logic.LogicManager;
-import tp.acecs2103.model.*;
-import tp.acecs2103.model.task.Task;
+import tp.acecs2103.model.Model;
+import tp.acecs2103.model.ModelManager;
+import tp.acecs2103.model.ReadOnlyUserPrefs;
+import tp.acecs2103.model.TaskList;
+import tp.acecs2103.model.UserPrefs;
 import tp.acecs2103.model.util.SampleDataUtil;
-import tp.acecs2103.storage.*;
+import tp.acecs2103.storage.JsonTaskListStorage;
+import tp.acecs2103.storage.JsonUserPrefsStorage;
+import tp.acecs2103.storage.Storage;
+import tp.acecs2103.storage.StorageManager;
+import tp.acecs2103.storage.TaskListStorage;
+import tp.acecs2103.storage.UserPrefsStorage;
 import tp.acecs2103.ui.Ui;
 import tp.acecs2103.ui.UiManager;
 
@@ -72,7 +80,8 @@ public class MainApp extends Application {
             if (!taskListOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
-            initialData = taskListOptional.get();
+            initialData = taskListOptional.orElseGet(SampleDataUtil::getSampleTaskList);
+            logger.info("The size of tasklist:" + initialData.size());
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty TaskList");
             initialData = new TaskList();

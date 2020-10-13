@@ -1,17 +1,18 @@
 package tp.acecs2103.storage;
 
+import static java.util.Objects.requireNonNull;
+
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.Optional;
+
 import tp.acecs2103.commons.exceptions.DataConversionException;
 import tp.acecs2103.commons.exceptions.IllegalValueException;
 import tp.acecs2103.commons.util.FileUtil;
 import tp.acecs2103.commons.util.JsonUtil;
 import tp.acecs2103.model.TaskList;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.Optional;
 
-
-import static java.util.Objects.requireNonNull;
 
 public class JsonTaskListStorage implements TaskListStorage {
 

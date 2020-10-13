@@ -3,22 +3,24 @@ package tp.acecs2103.logic.parser;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import tp.acecs2103.commons.core.Messages;
 import tp.acecs2103.logic.commands.AddCommand;
-import tp.acecs2103.logic.commands.ClearCommand;
 import tp.acecs2103.logic.commands.Command;
+import tp.acecs2103.logic.commands.DeadlineCommand;
 import tp.acecs2103.logic.commands.DeleteCommand;
 import tp.acecs2103.logic.commands.EditCommand;
 import tp.acecs2103.logic.commands.ExitCommand;
 import tp.acecs2103.logic.commands.FindCommand;
+import tp.acecs2103.logic.commands.GetCommand;
 import tp.acecs2103.logic.commands.HelpCommand;
 import tp.acecs2103.logic.commands.ListCommand;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
-import tp.acecs2103.commons.core.Messages;
+
 
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class TaskListParser {
 
     /**
      * Used for initial separation of command word and args.
@@ -51,20 +53,23 @@ public class AddressBookParser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
+        case DeadlineCommand.COMMAND_WORD:
+            return new DeadlineCommandParser().parse(arguments);
+
+        case GetCommand.COMMAND_WORD:
+            return new GetCommandParser().parse(arguments);
+
         case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+            return new HelpCommandParser().parse(arguments);
+
+        case ListCommand.COMMAND_WORD:
+            return new ListCommandParser().parse(arguments);
 
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);

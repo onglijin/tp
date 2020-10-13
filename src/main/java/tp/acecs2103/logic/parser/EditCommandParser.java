@@ -7,11 +7,12 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
+import tp.acecs2103.commons.core.Messages;
 import tp.acecs2103.commons.core.index.Index;
 import tp.acecs2103.logic.commands.EditCommand;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
 import tp.acecs2103.model.tag.Tag;
-import tp.acecs2103.commons.core.Messages;
+
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -26,36 +27,50 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_PHONE, CliSyntax.PREFIX_EMAIL, CliSyntax.PREFIX_ADDRESS, CliSyntax.PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_WEEKNO, CliSyntax.PREFIX_INDEX,
+                        CliSyntax.PREFIX_DESCRIPTION, CliSyntax.PREFIX_OFFICIALDDL,
+                        CliSyntax.PREFIX_CUSTOMIZEDDDL, CliSyntax.PREFIX_REMARK);
 
         Index index;
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            index = ParserUtil.parseIndexObj(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditCommand.MESSAGE_USAGE), pe);
         }
 
-        EditCommand.EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();
-        if (argMultimap.getValue(CliSyntax.PREFIX_NAME).isPresent()) {
-            editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_NAME).get()));
+        EditCommand.EditTaskDescriptor editTaskDescriptor = new EditCommand.EditTaskDescriptor();
+        if (argMultimap.getValue(CliSyntax.PREFIX_INDEX).isPresent()) {
+            editTaskDescriptor.setIndex(
+                    ParserUtil.parseIndex(argMultimap.getValue(CliSyntax.PREFIX_INDEX).get()));
         }
-        if (argMultimap.getValue(CliSyntax.PREFIX_PHONE).isPresent()) {
-            editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(CliSyntax.PREFIX_PHONE).get()));
+        if (argMultimap.getValue(CliSyntax.PREFIX_WEEKNO).isPresent()) {
+            editTaskDescriptor.setWeekNumber(
+                    ParserUtil.parseWeekNumber(argMultimap.getValue(CliSyntax.PREFIX_WEEKNO).get()));
         }
-        if (argMultimap.getValue(CliSyntax.PREFIX_EMAIL).isPresent()) {
-            editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(CliSyntax.PREFIX_EMAIL).get()));
+        if (argMultimap.getValue(CliSyntax.PREFIX_DESCRIPTION).isPresent()) {
+            editTaskDescriptor.setDescription(
+                    ParserUtil.parseDescription(argMultimap.getValue(CliSyntax.PREFIX_DESCRIPTION).get()));
         }
-        if (argMultimap.getValue(CliSyntax.PREFIX_ADDRESS).isPresent()) {
-            editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(CliSyntax.PREFIX_ADDRESS).get()));
+        if (argMultimap.getValue(CliSyntax.PREFIX_OFFICIALDDL).isPresent()) {
+            editTaskDescriptor.setOfficialDeadline(
+                    ParserUtil.parseOfficialDeadline(argMultimap.getValue(CliSyntax.PREFIX_OFFICIALDDL).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(CliSyntax.PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+        if (argMultimap.getValue(CliSyntax.PREFIX_CUSTOMIZEDDDL).isPresent()) {
+            editTaskDescriptor.setCustomizedDeadline(
+                    ParserUtil.parseCustomizedDeadline(argMultimap.getValue(CliSyntax.PREFIX_CUSTOMIZEDDDL).get()));
+        }
+        if (argMultimap.getValue(CliSyntax.PREFIX_REMARK).isPresent()) {
+            editTaskDescriptor.setRemark(
+                    ParserUtil.parseRemark(argMultimap.getValue(CliSyntax.PREFIX_REMARK).get()));
+        }
 
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
+        if (!editTaskDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editPersonDescriptor);
+        return new EditCommand(index, editTaskDescriptor);
     }
 
     /**

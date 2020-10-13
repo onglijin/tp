@@ -1,16 +1,16 @@
 package tp.acecs2103.model.task;
 
 import static java.util.Objects.requireNonNull;
-import static tp.acecs2103.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import tp.acecs2103.commons.util.CollectionUtil;
 import tp.acecs2103.model.task.exceptions.DuplicatePersonException;
 import tp.acecs2103.model.task.exceptions.PersonNotFoundException;
-import tp.acecs2103.commons.util.CollectionUtil;
+
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
