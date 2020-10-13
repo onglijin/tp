@@ -29,7 +29,7 @@ import tp.acecs2103.testutil.*;
 
 public class AddressBookParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final TaskListParser parser = new TaskListParser();
 
     @Test
     public void parseCommand_add() throws Exception {
