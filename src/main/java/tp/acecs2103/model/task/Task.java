@@ -35,8 +35,11 @@ public class Task {
         this.category = TaskCategory.TASK;
     }
 
-    public Task(String index, int weekNumber,
-                String description, LocalDate officialDeadline, LocalDate customizedDeadline, String remark, TaskCategory taskCategory) {
+    /**
+     * Creates a {@code Task} with given details.
+     */
+    public Task(String index, int weekNumber, String description,
+                LocalDate officialDeadline, LocalDate customizedDeadline, String remark, TaskCategory taskCategory) {
         CollectionUtil.requireAllNonNull(index, weekNumber, description);
         this.index = index;
         this.weekNumber = weekNumber;

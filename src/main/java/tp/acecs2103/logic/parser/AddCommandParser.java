@@ -1,14 +1,26 @@
 package tp.acecs2103.logic.parser;
 
+import static tp.acecs2103.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static tp.acecs2103.logic.parser.CliSyntax.PREFIX_CUSTOMIZEDDDL;
+import static tp.acecs2103.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static tp.acecs2103.logic.parser.CliSyntax.PREFIX_INDEX;
+import static tp.acecs2103.logic.parser.CliSyntax.PREFIX_REMARK;
+import static tp.acecs2103.logic.parser.CliSyntax.PREFIX_WEEKNO;
+
 import java.time.LocalDate;
 import java.util.stream.Stream;
 
 import tp.acecs2103.commons.core.Messages;
 import tp.acecs2103.logic.commands.AddCommand;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
-import tp.acecs2103.model.task.*;
+import tp.acecs2103.model.task.Admin;
+import tp.acecs2103.model.task.IP;
+import tp.acecs2103.model.task.TP;
+import tp.acecs2103.model.task.Task;
+import tp.acecs2103.model.task.TaskCategory;
+import tp.acecs2103.model.task.Topic;
 
-import static tp.acecs2103.logic.parser.CliSyntax.*;
+
 
 /**
  * Parses input arguments and creates a new AddCommand object
