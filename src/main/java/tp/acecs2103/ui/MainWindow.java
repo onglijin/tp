@@ -63,14 +63,13 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         // TODO: change the method to get each category panel
-        logger.info("The size of adminlist" + logic.getUiTaskList().getAdminList().size());
-        categoryPanel = new CategoryPanel(logic.getUiTaskList().getAdminList());
+        categoryPanel = new CategoryPanel(logic.getUiTaskList().getAdminList(), "Admin");
         categoryPanelPlaceholder.getChildren().add(categoryPanel.getRoot());
-        categoryPanel = new CategoryPanel(logic.getUiTaskList().getTopicList());
+        categoryPanel = new CategoryPanel(logic.getUiTaskList().getTopicList(), "Topic");
         categoryPanelPlaceholder.getChildren().add(categoryPanel.getRoot());
-        categoryPanel = new CategoryPanel(logic.getUiTaskList().getIpList());
+        categoryPanel = new CategoryPanel(logic.getUiTaskList().getIpList(), "Ip");
         categoryPanelPlaceholder.getChildren().add(categoryPanel.getRoot());
-        categoryPanel = new CategoryPanel(logic.getUiTaskList().getTpList());
+        categoryPanel = new CategoryPanel(logic.getUiTaskList().getTpList(), "Tp");
         categoryPanelPlaceholder.getChildren().add(categoryPanel.getRoot());
         weekDisplay = new WeekDisplay("Week 1 [Mon,Aug 10th to Thu, Aug 13th]");
         weekDisplayPlaceholder.getChildren().add(weekDisplay.getRoot());

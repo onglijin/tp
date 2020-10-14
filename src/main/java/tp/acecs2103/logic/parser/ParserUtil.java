@@ -15,6 +15,7 @@ import tp.acecs2103.model.task.Address;
 import tp.acecs2103.model.task.Email;
 import tp.acecs2103.model.task.Name;
 import tp.acecs2103.model.task.Phone;
+import tp.acecs2103.model.task.TaskCategory;
 
 
 /**
@@ -46,7 +47,9 @@ public class ParserUtil {
     public static Index parseIndexObj(String oneBasedIndex) throws ParseException {
         requireNonNull(oneBasedIndex);
         String trimmedIndex = oneBasedIndex.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+        try {
+            Index test = new Index(trimmedIndex);
+        } catch (IndexOutOfBoundsException i) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return new Index(trimmedIndex);
@@ -134,6 +137,24 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return trimmedType;
+    }
+
+    /**
+     * Parses a category.
+     */
+    public static TaskCategory parseCategory(String category) throws ParseException {
+        switch (category) {
+        case "Admin":
+            return TaskCategory.ADMIN;
+        case "Topic":
+            return TaskCategory.TOPIC;
+        case "Ip":
+            return TaskCategory.IP;
+        case "Tp":
+            return TaskCategory.TP;
+        default:
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
     }
 
     /**

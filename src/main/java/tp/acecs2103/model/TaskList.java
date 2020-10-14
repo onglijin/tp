@@ -12,7 +12,6 @@ import tp.acecs2103.model.task.Task;
 
 public class TaskList {
     private ArrayList<Task> taskList;
-    private String keyWord; // This is to store condition for searching and displaying.
     private int timeRange;
 
     /**
@@ -23,7 +22,6 @@ public class TaskList {
      */
     public TaskList(ArrayList<Task> taskList, int timeRange) {
         this.taskList = taskList;
-        this.keyWord = "";
         this.timeRange = timeRange;
     }
 
@@ -32,7 +30,6 @@ public class TaskList {
      */
     public TaskList() {
         this.taskList = new ArrayList<>();
-        this.keyWord = "";
         this.timeRange = AppUtil.getCurrentWeekNumber();
     }
 
@@ -51,7 +48,6 @@ public class TaskList {
     public void resetData(TaskList newData) {
         requireNonNull(newData);
         taskList = newData.getTaskList();
-        keyWord = newData.getKeyWord();
         timeRange = newData.getTimeRange();
     }
 
@@ -65,14 +61,6 @@ public class TaskList {
         return taskList;
     }
 
-    /**
-     * Gets a key word.
-     *
-     * @return a string of key word.
-     */
-    public String getKeyWord() {
-        return keyWord;
-    }
 
     /**
      * Gets time range.
@@ -125,7 +113,7 @@ public class TaskList {
     public ArrayList<Task> find() {
         ArrayList<Task> newList = new ArrayList<>();
         for (Task task: taskList) {
-            if (task.contains(keyWord) && task.isWeekX(timeRange)) {
+            if (task.isWeekX(timeRange)) {
                 newList.add(task);
             }
         }
@@ -135,11 +123,10 @@ public class TaskList {
     /**
      * Finds tasks based on new keyWord and timeRange.
      *
-     * @param newKeyWord is new keyword given by user.
+     * @param keyWord is new keyword given by user.
      * @return a new ArrayList to display.
      */
-    public ArrayList<Task> find(String newKeyWord) {
-        keyWord = newKeyWord;
+    public ArrayList<Task> find(String keyWord) {
         ArrayList<Task> newList = new ArrayList<>();
         for (Task task: taskList) {
             if (task.contains(keyWord)) {
@@ -159,7 +146,7 @@ public class TaskList {
         timeRange = weekNumber;
         ArrayList<Task> newList = new ArrayList<Task>();
         for (Task task: taskList) {
-            if (task.isWeekX(weekNumber) && task.isWeekX(timeRange)) {
+            if (task.isWeekX(weekNumber)) {
                 newList.add(task);
             }
         }
@@ -185,10 +172,10 @@ public class TaskList {
     public ArrayList<Task> delete(String taskIndex) {
         int i = 0;
         for (Task task: taskList) {
-            i++;
             if (task.hasIndex(taskIndex)) {
                 break;
             }
+            i++;
         }
         taskList.remove(i);
         return find();
