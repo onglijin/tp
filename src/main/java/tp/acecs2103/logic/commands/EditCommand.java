@@ -1,11 +1,6 @@
 package tp.acecs2103.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static tp.acecs2103.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static tp.acecs2103.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static tp.acecs2103.logic.parser.CliSyntax.PREFIX_NAME;
-import static tp.acecs2103.logic.parser.CliSyntax.PREFIX_PHONE;
-import static tp.acecs2103.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -26,18 +21,7 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+    public static final String MESSAGE_USAGE = COMMAND_WORD;
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -85,8 +69,6 @@ public class EditCommand extends Command {
     private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) {
         assert taskToEdit != null;
 
-        String updatedIndex = editTaskDescriptor
-                .getIndex().orElse(taskToEdit.getIndex());
         int updatedWeekNumber = editTaskDescriptor
                 .getWeekNumber().orElse(taskToEdit.getWeekNumber());
         String updatedDescription = editTaskDescriptor
@@ -97,7 +79,7 @@ public class EditCommand extends Command {
                 .getCustomizedDeadline().orElse(taskToEdit.getOfficialDeadline());
         String remark = editTaskDescriptor.getRemark().orElse(taskToEdit.getRemark());
 
-        return new Task(updatedIndex, updatedWeekNumber, updatedDescription,
+        return new Task(taskToEdit.getIndex(), updatedWeekNumber, updatedDescription,
                 updatedOfficialDeadline, updatedCustomizedDeadline, remark);
     }
 
@@ -124,7 +106,7 @@ public class EditCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditTaskDescriptor {
-        private String index;
+        //private String index;
         private int weekNumber;
         private String description;
         private LocalDate officialDeadline;
@@ -138,7 +120,7 @@ public class EditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
-            setIndex(toCopy.index);
+            //setIndex(toCopy.index);
             setWeekNumber(toCopy.weekNumber);
             setDescription(toCopy.description);
             setOfficialDeadline(toCopy.officialDeadline);
@@ -150,17 +132,15 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(index,
+            return CollectionUtil.isAnyNonNull(//index,
                     weekNumber, description, officialDeadline, customizedDeadline, remark);
         }
 
-        public void setIndex(String index) {
-            this.index = index;
-        }
+        //public void setIndex(String index) {this.index = index;}
 
-        public Optional<String> getIndex() {
-            return Optional.ofNullable(index);
-        }
+        //public Optional<String> getIndex() {
+        //    return Optional.ofNullable(index);
+        //}
 
         public void setWeekNumber(int weekNumber) {
             this.weekNumber = weekNumber;
@@ -226,8 +206,8 @@ public class EditCommand extends Command {
             // state check
             EditTaskDescriptor e = (EditTaskDescriptor) other;
 
-            return getIndex().equals(e.getIndex())
-                    && getWeekNumber().equals(e.getWeekNumber())
+            return //getIndex().equals(e.getIndex())
+                    getWeekNumber().equals(e.getWeekNumber())
                     && getDescription().equals(e.getDescription())
                     && getOfficialDeadline().equals(e.getOfficialDeadline())
                     && getCustomizedDeadline().equals(e.getCustomizedDeadline())

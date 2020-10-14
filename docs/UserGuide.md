@@ -24,7 +24,7 @@ Ace 2103/T is a **desktop app for managing task requirements of CS2103/T, optimi
 
    * **`list`**`6` : Lists all tasks for week 6.
 
-   * **`deadline`**`0601 15-09-2020 23:59` : Adds a deadline 15-09-2020 23:59 to task indexed at 0601.
+   * **`deadline`**`i/0601 c/15-09-2020` : Adds a deadline 15-09-2020 to task indexed at 0601.
 
    * **`exit`** : Exits the app.
 
@@ -55,11 +55,11 @@ Format: `help [PARAMETER]`
 List of PARAMETERs :
 
 * No parameters: List all the supported commands for the task manager.
-* get: `get [PARAMETER]`. Gets specified administrative information by parameters.
+* get: `get PARAMETER`. Gets specified administrative information by parameters.
 * find: `find KEYWORD`. Lists all tasks that contain the keyword.
 * list: `list WEEK_NUMBER`. Lists all tasks in a specific week.
-* deadline: `deadline TASK_NUMBER DEADLINE`. Adds a customized deadline to a preloaded task.
-* add: `add DESCRIPTION DEADLINE [REMARKS]`. Adds a customized task in the task manager.
+* deadline: `deadline i/TASK_NUMBER c/DEADLINE`. Adds a customized deadline to a preloaded task.
+* add: `add d/DESCRIPTION c/DEADLINE r/REMARKS`. Adds a customized task in the task manager.
 * delete: `delete TASK_NUMBER`. Deletes a customized task in the task manager.
 * exit: `exit`. Exits the task manager.
 
@@ -67,7 +67,7 @@ List of PARAMETERs :
     
 Gets specified administrative information by parameters.
     
-Format: `get [PARAMETER]`
+Format: `get PARAMETER`
     
 List of PARAMETERs :
 
@@ -116,24 +116,24 @@ Example:
 
 Adds a customized deadline to a preloaded task.
 
-Format: `deadline TASK_NUMBER DEADLINE`
+Format: `deadline i/TASK_NUMBER c/DEADLINE`
 
 * The task indexed at TASK_NUMBER will be given a DEADLINE.
 
 Example:
-* `deadline 0601 29-09-2020 23:59`: Adds a customized deadline of 23:59 on 29th September 2020 to the first task of teaching week 6 which is indexed at TASK_NUMBER 0601.
+* `deadline i/0601 c/2020-09-29`: Adds a customized deadline on 29th September 2020 to the first task of teaching week 6 which is indexed at TASK_NUMBER 0601.
 
 ### Adding a customized task: `add`
 
 Adds a customized task in the task manager.
 
-Format: `add DESCRIPTION DEADLINE REMARK`
+Format: `add d/DESCRIPTION c/DEADLINE r/REMARK a/CATEGORY`
 
-* The task with DESCRIPTION as description, DEADLINE as customised deadline, REMARK as remark will be added into task list.
+* The task with DESCRIPTION as description, DEADLINE as customised deadline, REMARK as remark, CATEGORY as the category will be added into task list.
 
 Example:
-* `add update documentation 01-10-2020 23：59 check tp dashboard`: 
-Task to update documentation with deadline set at 23：59 on 01-10-2020 and a remark message to check tp dashboard is added to the task list.
+* `add d/update c/documentation c/2020-10-02 r/check tp dashboard a/Tp`: 
+Task to update documentation with deadline set on 2020-10-02 of category tp with a remark to check tp dashboard is added to the task list.
 
 ### Exiting the program : `exit`
 
@@ -154,10 +154,16 @@ Format: `exit`
 
 Action | Format, Examples
 --------|------------------
-**Deadline** | `deadline TASK_NUMBER DEADLINE` <br> e.g., `deadline 0601 15-09-2020 23:59`
-**Delete** | `delete TASK_NUMBER`<br> e.g., `delete 0601`
+
 **Exit** | `exit`
-**Find** | `find KEYWORD`<br> e.g., `find book`
-**Get**  | `get [PARAMETER]`
-**Help** | `help [PARAMETER]`
-**List** | `list WEEK_NUMBER` <br> e.g., `list 6`
+
+
+**Help** | `help PARAMETER`<br>
+**Get**  | `get PARAMETER` <br>
+**List** | `list WEEK_NUMBER`  e.g., `list 6` <br>
+**Find** | `find KEYWORD` e.g., `find book` <br>
+**Add** | `add d/DESCRIPTION c/DEADLINE r/REMARK a/CATEGORY` <br> e.g. 'add d/meeting c/2020-10-20 r/urgent a/Tp'
+**Edit** | `add d/DESCRIPTION c/DEADLINE r/REMARK a/CATEGORY` <br> e.g. 'add d/meeting c/2020-10-20 r/urgent a/Tp'
+**Deadline** | `deadline i/TASK_NUMBER c/DEADLINE` <br> e.g., `deadline i/0601 c/2020-09-20`
+**Deadline** | `deadline i/TASK_NUMBER c/DEADLINE` <br> e.g., `deadline i/0601 c/2020-09-20`
+**Delete** | `delete TASK_NUMBER`<br> e.g., `delete 0601`

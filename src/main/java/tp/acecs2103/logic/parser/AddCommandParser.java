@@ -1,9 +1,9 @@
 package tp.acecs2103.logic.parser;
 
+import static tp.acecs2103.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static tp.acecs2103.logic.parser.CliSyntax.PREFIX_CUSTOMIZEDDDL;
 import static tp.acecs2103.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static tp.acecs2103.logic.parser.CliSyntax.PREFIX_INDEX;
-import static tp.acecs2103.logic.parser.CliSyntax.PREFIX_OFFICIALDDL;
 import static tp.acecs2103.logic.parser.CliSyntax.PREFIX_REMARK;
 import static tp.acecs2103.logic.parser.CliSyntax.PREFIX_WEEKNO;
 
@@ -13,7 +13,14 @@ import java.util.stream.Stream;
 import tp.acecs2103.commons.core.Messages;
 import tp.acecs2103.logic.commands.AddCommand;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
+import tp.acecs2103.model.task.Admin;
+import tp.acecs2103.model.task.IP;
+import tp.acecs2103.model.task.TP;
 import tp.acecs2103.model.task.Task;
+import tp.acecs2103.model.task.TaskCategory;
+import tp.acecs2103.model.task.Topic;
+
+
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -28,7 +35,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_INDEX, PREFIX_WEEKNO, PREFIX_DESCRIPTION,
-                        PREFIX_OFFICIALDDL, PREFIX_CUSTOMIZEDDDL, PREFIX_REMARK);
+                        PREFIX_CUSTOMIZEDDDL, PREFIX_REMARK, PREFIX_CATEGORY);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_INDEX, PREFIX_WEEKNO, PREFIX_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -41,14 +48,27 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ParserUtil.parseWeekNumber(argMultimap.getValue(PREFIX_WEEKNO).get());
         String description =
                 ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
-        LocalDate officialDeadline =
-                ParserUtil.parseOfficialDeadline(argMultimap.getValue(PREFIX_OFFICIALDDL).get());
         LocalDate customizedDeadline =
                 ParserUtil.parseCustomizedDeadline(argMultimap.getValue(PREFIX_CUSTOMIZEDDDL).get());
         String remark =
                 ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get());
+        TaskCategory category = ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get());
 
-        Task task = new Task(index, weekNumber, description, officialDeadline, customizedDeadline, remark);
+        if (category.equals(TaskCategory.ADMIN)) {
+            Admin admin = new Admin(index, weekNumber, description, null, customizedDeadline, remark);
+            return new AddCommand(admin);
+        } else if (category.equals(TaskCategory.TOPIC)) {
+            Topic topic = new Topic(index, weekNumber, description, null, customizedDeadline, remark);
+            return new AddCommand(topic);
+        } else if (category.equals(TaskCategory.IP)) {
+            IP ip = new IP(index, weekNumber, description, null, customizedDeadline, remark);
+            return new AddCommand(ip);
+        } else if (category.equals(TaskCategory.TP)) {
+            TP tp = new TP(index, weekNumber, description, null, customizedDeadline, remark);
+            return new AddCommand(tp);
+        }
+
+        Task task = new Task(index, weekNumber, description, null, customizedDeadline, remark, category);
         return new AddCommand(task);
     }
 
