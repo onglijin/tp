@@ -2,6 +2,9 @@ package tp.acecs2103.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.logging.Logger;
+
+import tp.acecs2103.commons.core.LogsCenter;
 import tp.acecs2103.commons.core.Messages;
 import tp.acecs2103.commons.core.index.Index;
 import tp.acecs2103.logic.commands.exceptions.CommandException;
@@ -23,6 +26,8 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Task: %1$s";
 
+    private final Logger logger = LogsCenter.getLogger(getClass());
+
     private final Index targetIndex;
 
     public DeleteCommand(Index targetIndex) {
@@ -33,13 +38,13 @@ public class DeleteCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         TaskList lastShownList = model.getTaskList();
-
-        if (targetIndex.getIntIndex() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
-        }
         String strIndex = targetIndex.getStrIndex();
         Task taskToDelete = lastShownList.getTask(strIndex);
-        model.deleteTask(strIndex);
+        try {
+            model.deleteTask(strIndex);
+        } catch (Exception e) {
+            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        }
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
     }
 

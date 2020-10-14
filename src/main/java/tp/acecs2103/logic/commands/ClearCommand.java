@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.TaskList;
 
-
 /**
  * Clears the address book.
  * To be modified.
