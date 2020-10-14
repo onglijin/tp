@@ -63,7 +63,6 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         // TODO: change the method to get each category panel
-        logger.info("The size of adminlist" + logic.getUiTaskList().getAdminList().size());
         categoryPanel = new CategoryPanel(logic.getUiTaskList().getAdminList(), "Admin");
         categoryPanelPlaceholder.getChildren().add(categoryPanel.getRoot());
         categoryPanel = new CategoryPanel(logic.getUiTaskList().getTopicList(), "Topic");

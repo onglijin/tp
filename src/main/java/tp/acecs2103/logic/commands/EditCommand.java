@@ -69,8 +69,6 @@ public class EditCommand extends Command {
     private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) {
         assert taskToEdit != null;
 
-       // String updatedIndex = editTaskDescriptor
-       //         .getIndex().orElse(taskToEdit.getIndex());
         int updatedWeekNumber = editTaskDescriptor
                 .getWeekNumber().orElse(taskToEdit.getWeekNumber());
         String updatedDescription = editTaskDescriptor

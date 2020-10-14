@@ -30,9 +30,7 @@ public class CategoryPanel extends UiPart<Region> {
         super(FXML);
         categoryLabel.setText(categoryString);
         categoryView.setItems(taskList);
-        logger.info("1");
         categoryView.setCellFactory(listView -> new CategoryCell());
-        logger.info("2");
     }
 
     /**
