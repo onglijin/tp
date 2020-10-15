@@ -154,16 +154,12 @@ Format: `exit`
 
 Action | Format, Examples
 --------|------------------
-
+**Add** | `add d/DESCRIPTION c/DEADLINE r/REMARK a/CATEGORY` <br> e.g. 'add d/meeting c/2020-10-20 r/urgent a/Tp'
+**Deadline** | `deadline i/TASK_NUMBER c/DEADLINE` <br> e.g., `deadline i/0601 c/2020-09-20`
+**Delete** | `delete TASK_NUMBER`<br> e.g., `delete 0601`
+**Edit** | `add d/DESCRIPTION c/DEADLINE r/REMARK a/CATEGORY` <br> e.g. 'add d/meeting c/2020-10-20 r/urgent a/Tp'
 **Exit** | `exit`
-
-
+**Find** | `find KEYWORD` e.g., `find book` <br>
 **Help** | `help PARAMETER`<br>
 **Get**  | `get PARAMETER` <br>
 **List** | `list WEEK_NUMBER`  e.g., `list 6` <br>
-**Find** | `find KEYWORD` e.g., `find book` <br>
-**Add** | `add d/DESCRIPTION c/DEADLINE r/REMARK a/CATEGORY` <br> e.g. 'add d/meeting c/2020-10-20 r/urgent a/Tp'
-**Edit** | `add d/DESCRIPTION c/DEADLINE r/REMARK a/CATEGORY` <br> e.g. 'add d/meeting c/2020-10-20 r/urgent a/Tp'
-**Deadline** | `deadline i/TASK_NUMBER c/DEADLINE` <br> e.g., `deadline i/0601 c/2020-09-20`
-**Deadline** | `deadline i/TASK_NUMBER c/DEADLINE` <br> e.g., `deadline i/0601 c/2020-09-20`
-**Delete** | `delete TASK_NUMBER`<br> e.g., `delete 0601`
