@@ -71,7 +71,7 @@ public class MainWindow extends UiPart<Stage> {
         categoryPanelPlaceholder.getChildren().add(categoryPanel.getRoot());
         categoryPanel = new CategoryPanel(logic.getUiTaskList().getTpList(), "Tp");
         categoryPanelPlaceholder.getChildren().add(categoryPanel.getRoot());
-        weekDisplay = new WeekDisplay("Week 1 [Mon,Aug 10th to Thu, Aug 13th]");
+        weekDisplay = new WeekDisplay("Week 10 [Fri, Oct 16th to Thu, Oct 22nd]");
         weekDisplayPlaceholder.getChildren().add(weekDisplay.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand); // bottom of Ace CS2103/T
