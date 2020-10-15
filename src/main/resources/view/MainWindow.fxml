@@ -14,7 +14,9 @@
   </icons>
   <scene>
     <Scene>
-
+      <stylesheets>
+        <URL value="@TaskBox.css" />
+      </stylesheets>
       <VBox prefHeight="498.0" prefWidth="549.0">
 
         <StackPane fx:id="weekDisplayPlaceholder" maxHeight="100" minHeight="29.0" prefHeight="40.0" prefWidth="550.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
