@@ -20,7 +20,6 @@ public class WeekDisplay extends UiPart<Region> {
     // TODO: Connect method to weekToDisplay
     public WeekDisplay(String weekToDisplay) {
         super(FXML);
-        System.out.println(weekToDisplay);
         weekNumberAndDate.setText(weekToDisplay);
     }
 }
