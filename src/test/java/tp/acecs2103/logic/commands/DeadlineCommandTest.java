@@ -10,7 +10,7 @@ import tp.acecs2103.commons.core.index.Index;
 import tp.acecs2103.model.task.Task;
 
 public class DeadlineCommandTest {
-    
+
     @Test
     public void equals() {
         Task taskOne = new Task("00101", 10, "Week 10 Admin",
