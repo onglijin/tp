@@ -14,7 +14,7 @@ Ace 2103/T is a **desktop app for managing task requirements of CS2103/T, optimi
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Copy the file to the folder you want to use as the _home folder_ for your Ace 2103/T.
+2. Copy the file to the folder you want to use as the _home folder_ for your Ace CS2103/T.
 
 3. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -154,16 +154,12 @@ Format: `exit`
 
 Action | Format, Examples
 --------|------------------
-
+**Add** | `add d/DESCRIPTION c/DEADLINE r/REMARK a/CATEGORY` <br> e.g. 'add d/meeting c/2020-10-20 r/urgent a/Tp'
+**Deadline** | `deadline i/TASK_NUMBER c/DEADLINE` <br> e.g., `deadline i/0601 c/2020-09-20`
+**Delete** | `delete TASK_NUMBER`<br> e.g., `delete 0601`
+**Edit** | `add d/DESCRIPTION c/DEADLINE r/REMARK a/CATEGORY` <br> e.g. 'add d/meeting c/2020-10-20 r/urgent a/Tp'
 **Exit** | `exit`
-
-
+**Find** | `find KEYWORD` e.g., `find book` <br>
 **Help** | `help PARAMETER`<br>
 **Get**  | `get PARAMETER` <br>
 **List** | `list WEEK_NUMBER`  e.g., `list 6` <br>
-**Find** | `find KEYWORD` e.g., `find book` <br>
-**Add** | `add d/DESCRIPTION c/DEADLINE r/REMARK a/CATEGORY` <br> e.g. 'add d/meeting c/2020-10-20 r/urgent a/Tp'
-**Edit** | `add d/DESCRIPTION c/DEADLINE r/REMARK a/CATEGORY` <br> e.g. 'add d/meeting c/2020-10-20 r/urgent a/Tp'
-**Deadline** | `deadline i/TASK_NUMBER c/DEADLINE` <br> e.g., `deadline i/0601 c/2020-09-20`
-**Deadline** | `deadline i/TASK_NUMBER c/DEADLINE` <br> e.g., `deadline i/0601 c/2020-09-20`
-**Delete** | `delete TASK_NUMBER`<br> e.g., `delete 0601`
