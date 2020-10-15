@@ -13,15 +13,15 @@ public class DeadlineCommandTest {
     
     @Test
     public void equals() {
-        Task taskOne = new Task("00101", 10, "Week 10 Admin", 
+        Task taskOne = new Task("00101", 10, "Week 10 Admin",
                 LocalDate.of(2020,12,02),null, "Nothing here");
-        Task taskTwo = new Task("00101", 10, "Week 10 Admin", 
+        Task taskTwo = new Task("00101", 10, "Week 10 Admin",
                 LocalDate.of(2020,12,02),null, "Nothing here");
-        DeadlineCommand newDeadlineTaskOneCommand = new DeadlineCommand(new Index(taskOne.getIndex()), 
+        DeadlineCommand newDeadlineTaskOneCommand = new DeadlineCommand(new Index(taskOne.getIndex()),
                 LocalDate.of(2020,12,02));
-        DeadlineCommand newDeadlineTaskTwoCommand = new DeadlineCommand(new Index(taskTwo.getIndex()), 
+        DeadlineCommand newDeadlineTaskTwoCommand = new DeadlineCommand(new Index(taskTwo.getIndex()),
                 LocalDate.of(2020,12,02));
-        
+
         // same object -> returns true
         assertTrue(newDeadlineTaskOneCommand.getNewDeadline().equals(newDeadlineTaskTwoCommand.getNewDeadline()));
     }
