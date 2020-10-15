@@ -112,6 +112,4 @@ public class UiTaskList {
         assert weekNumber != 10000;
         return weekNumber;
     }
-
-
 }
