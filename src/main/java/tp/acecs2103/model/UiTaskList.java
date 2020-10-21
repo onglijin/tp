@@ -17,6 +17,7 @@ public class UiTaskList {
     private ObservableList<Task> topicList = FXCollections.observableArrayList();
     private ObservableList<Task> ipList = FXCollections.observableArrayList();
     private ObservableList<Task> tpList = FXCollections.observableArrayList();
+    private ArrayList<Task> combinedTaskList;
 
     /**
      * Creates a {@code UiTaskList} with given source.
@@ -31,6 +32,7 @@ public class UiTaskList {
      * @param taskList A array list consisting of tasks which need to be added to {@code UiTaskList}.
      */
     public void addAll(ArrayList<Task> taskList) {
+        combinedTaskList = taskList;
         adminList.clear();
         topicList.clear();
         ipList.clear();
@@ -81,5 +83,33 @@ public class UiTaskList {
      */
     public int size() {
         return adminList.size() + ipList.size() + tpList.size() + topicList.size();
+    }
+
+    /**
+     * Gets the largest week number of all tasks to be displayed.
+     */
+    public int getMaxWeekNumber() {
+        int weekNumber = -1;
+        for (Task task: combinedTaskList) {
+            if (task.getWeekNumber() > weekNumber) {
+                weekNumber = task.getWeekNumber();
+            }
+        }
+        assert weekNumber != -1;
+        return weekNumber;
+    }
+
+    /**
+     * Gets the smallest week number of all tasks to be displayed.
+     */
+    public int getMinWeekNumber() {
+        int weekNumber = 10000;
+        for (Task task: combinedTaskList) {
+            if (task.getWeekNumber() < weekNumber) {
+                weekNumber = task.getWeekNumber();
+            }
+        }
+        assert weekNumber != 10000;
+        return weekNumber;
     }
 }
