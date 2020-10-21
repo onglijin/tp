@@ -1,0 +1,17 @@
+.HBox {
+    -fx-background-radius: 10;
+}
+
+.GridPane {
+    -fx-background-radius: 10;
+}
+
+.VBox {
+    -fx-background-color:  #87CEFA;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+.Label {
+    -fx-padding: 5;
+}
