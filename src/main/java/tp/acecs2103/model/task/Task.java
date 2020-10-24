@@ -118,7 +118,7 @@ public class Task {
      * @param deadline A valid LocalDate.
      */
     public void setDeadline(LocalDate deadline) {
-        assert deadline == null;
+        assert deadline != null;
         customizedDeadline = deadline;
     }
 
