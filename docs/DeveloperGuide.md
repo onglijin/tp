@@ -140,7 +140,7 @@ description
 official deadline  
 customized deadline (if any)  
 and remark (if any)  
-&nbsp
+<br/>
 The constructor is called by Category panel and the data is obtained by passing in a task object from an observable task list.  
 **Why**  
 Since there will be multiple tasks under a category panel, task box constructor should be called in category panel and use a default method in JavaFX to generate all the task boxes in one step.   
@@ -154,7 +154,7 @@ Category panel is used to encapsulates a list of tasks which are of the same cat
 Category panel contains the following fields:  
 category label  
 category view  
-&nbsp;
+<br/>
 Category panel will read in a category label and an observable task list from Ui Task List class. The category label will be passed into the constructor of category box which will generate the header of the panel. Every task object in the task list will be used to create to a corresponding task box.  
 **Why**   
 Since a category panel should contains multiple tasks and a category box which indicate the category name, it is necessary to call the constructor of task box and pass in every task object to a corresponding task box. Besides, category label will be passed into the constructor of category box which will generate the header of the panel.  
@@ -167,7 +167,7 @@ A category box is a header box to indicate the category of the tasks below.
 **Implementation**  
 Category box contains the following field:  
 category label  
-&nbsp;
+<br/>
 Category box will just simply read in a string of category then create a corresponding category box.  
 **Why**  
 Since there are four different categories, it is necessary to have header box to indicate the different categories.  
@@ -180,7 +180,7 @@ User can enter commands in the command box.
 **Implementation**  
 Command box contains the following field:  
 Input command  
-&nbsp;
+<br/>
 User command will be passed into input command filed and it will then pass to parser to finish subsequent procedures.  
 **Why**  
 It is necessary to implement user command box such that the application will know what functionalities should be processed.  
@@ -193,7 +193,7 @@ Week display component will display the number of the week among all the filtere
 **Implementation**  
 Week display contains the following field:  
 Week Number and Date  
-&nbsp;
+<br/>
 Week display will receive the maximum and minimum week number among all the filtered tasks, and it will display the week and the corresponding date. Whenever the filtered tasks change, the component will do auto check and the week number should be changed correspondingly.  
 **Why**  
 Although it is not essential, having this week display box can facilitate users to know the week that tasks belong to.  
@@ -206,7 +206,7 @@ After entering a command, the message window will tell users whether the command
 **Implementation**  
 Message window contains the following field:  
 Message text  
-&nbsp;
+<br/>
 Message window will accept a string of message from the parser which indicates the status of the command, and then display it at the bottom of the application. Besides, the displayed message should be refreshed and updated whenever a new command is entered.  
 **Why**  
 In order to make sure the application is responsive for every command; it is necessary to add such a functionality so that users can clearly know weather the command is executed successfully or not instead of being unaware of a failed command.  
