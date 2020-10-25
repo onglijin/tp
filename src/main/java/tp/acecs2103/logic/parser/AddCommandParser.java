@@ -55,20 +55,25 @@ public class AddCommandParser implements Parser<AddCommand> {
         TaskCategory category = ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get());
 
         if (category.equals(TaskCategory.ADMIN)) {
-            Admin admin = new Admin(index, weekNumber, description, null, customizedDeadline, remark);
+            Admin admin = new Admin(index, weekNumber, description, null,
+                    customizedDeadline, remark, true);
             return new AddCommand(admin);
         } else if (category.equals(TaskCategory.TOPIC)) {
-            Topic topic = new Topic(index, weekNumber, description, null, customizedDeadline, remark);
+            Topic topic = new Topic(index, weekNumber, description, null,
+                    customizedDeadline, remark, true);
             return new AddCommand(topic);
         } else if (category.equals(TaskCategory.IP)) {
-            IP ip = new IP(index, weekNumber, description, null, customizedDeadline, remark);
+            IP ip = new IP(index, weekNumber, description, null,
+                    customizedDeadline, remark, true);
             return new AddCommand(ip);
         } else if (category.equals(TaskCategory.TP)) {
-            TP tp = new TP(index, weekNumber, description, null, customizedDeadline, remark);
+            TP tp = new TP(index, weekNumber, description, null,
+                    customizedDeadline, remark, true);
             return new AddCommand(tp);
         }
 
-        Task task = new Task(index, weekNumber, description, null, customizedDeadline, remark, category);
+        Task task = new Task(index, weekNumber, description, null,
+                customizedDeadline, remark, category, true);
         return new AddCommand(task);
     }
 
