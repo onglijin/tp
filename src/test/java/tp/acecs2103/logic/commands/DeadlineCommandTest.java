@@ -14,7 +14,7 @@ public class DeadlineCommandTest {
     @Test
     public void equals() {
         Task taskOne = new Task("00101", 10, "Week 10 Admin",
-                LocalDate.of(2020, 12, 02), null, "Nothing here",false);
+                LocalDate.of(2020, 12, 02), null, "Nothing here", false);
         Task taskTwo = new Task("00101", 10, "Week 10 Admin",
                 LocalDate.of(2020, 12, 02), null, "Nothing here", false);
         DeadlineCommand newDeadlineTaskOneCommand = new DeadlineCommand(new Index(taskOne.getIndex()),
