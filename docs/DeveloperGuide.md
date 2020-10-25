@@ -141,6 +141,7 @@ A task box contains the following fields:
 + official deadline  
 + customized deadline (if any)  
 + remark (if any)  
+
 The constructor is called by Category panel and the data is obtained by passing in a task object from an observable task list.  
 <br/>
 **Why:**  
@@ -157,6 +158,7 @@ Category panel is used to encapsulates a list of tasks which are of the same cat
 Category panel contains the following fields:  
 + category label  
 + category view  
+
 Category panel will read in a category label and an observable task list from Ui Task List class. The category label will be passed into the constructor of category box which will generate the header of the panel. Every task object in the task list will be used to create to a corresponding task box.  
 <br/>
 **Why:**   
@@ -172,6 +174,7 @@ A category box is a header box to indicate the category of the tasks below.
 **Implementation:**  
 Category box contains the following field:  
 + category label  
+
 Category box will just simply read in a string of category then create a corresponding category box.  
 <br/>
 **Why:**  
@@ -187,6 +190,7 @@ User can enter commands in the command box.
 **Implementation:**  
 Command box contains the following field:  
 + input command  
+
 User command will be passed into input command filed and it will then pass to parser to finish subsequent procedures.  
 <br/>
 **Why:**  
@@ -202,6 +206,7 @@ Week display component will display the number of the week among all the filtere
 **Implementation:**  
 Week display contains the following field:  
 + week number and date  
+
 Week display will receive the maximum and minimum week number among all the filtered tasks, and it will display the week and the corresponding date. Whenever the filtered tasks change, the component will do auto check and the week number should be changed correspondingly.  
 <br/>
 **Why:**  
@@ -217,6 +222,7 @@ After entering a command, the message window will tell users whether the command
 **Implementation:**  
 Message window contains the following field:  
 + message text  
+
 Message window will accept a string of message from the parser which indicates the status of the command, and then display it at the bottom of the application. Besides, the displayed message should be refreshed and updated whenever a new command is entered.  
 <br/>
 **Why:**  
