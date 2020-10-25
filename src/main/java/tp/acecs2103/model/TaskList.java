@@ -143,6 +143,7 @@ public class TaskList {
      * @return a array list consisting of all satisfied tasks.
      */
     public ArrayList<Task> list(int weekNumber) {
+        assert weekNumber <= 13;
         timeRange = weekNumber;
         ArrayList<Task> newList = new ArrayList<Task>();
         for (Task task: taskList) {

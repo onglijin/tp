@@ -26,6 +26,13 @@ public class DeadlineCommand extends Command {
         this.newDeadline = newDeadline;
     }
 
+    public Index getTargetIndex() {
+        return targetIndex;
+    }
+
+    public LocalDate getNewDeadline() {
+        return newDeadline;
+    }
 
     @Override
     public CommandResult execute(Model model) {
