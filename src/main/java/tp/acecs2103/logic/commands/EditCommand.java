@@ -80,7 +80,7 @@ public class EditCommand extends Command {
         String remark = editTaskDescriptor.getRemark().orElse(taskToEdit.getRemark());
 
         return new Task(taskToEdit.getIndex(), updatedWeekNumber, updatedDescription,
-                updatedOfficialDeadline, updatedCustomizedDeadline, remark);
+                updatedOfficialDeadline, updatedCustomizedDeadline, remark, true);
     }
 
     @Override

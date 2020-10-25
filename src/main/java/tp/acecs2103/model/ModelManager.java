@@ -10,6 +10,8 @@ import javafx.collections.ObservableList;
 import tp.acecs2103.commons.core.GuiSettings;
 import tp.acecs2103.commons.core.LogsCenter;
 import tp.acecs2103.commons.util.CollectionUtil;
+import tp.acecs2103.model.exceptions.InvalidTaskListOperationException;
+import tp.acecs2103.model.exceptions.ModelException;
 import tp.acecs2103.model.task.Task;
 
 /**
@@ -104,8 +106,17 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteTask(String index) {
-        uiTaskList.addAll(taskList.delete(index));
+    public boolean isTaskCustomized(String index) {
+        return taskList.isTaskCustomized(index);
+    }
+
+    @Override
+    public void deleteTask(String index) throws ModelException {
+        try {
+            uiTaskList.addAll(taskList.delete(index));
+        } catch (InvalidTaskListOperationException e) {
+            throw new ModelException(e.getMessage());
+        }
     }
 
     @Override
