@@ -97,13 +97,13 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103-T14-4/tp/blob/master/src/main/java/tp/acecs2103/model/Model.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the task list data.
+* exposes an `UiTaskList` object containing four `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
@@ -117,15 +117,15 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103-T14-4/tp/blob/master/src/main/java/tp/acecs2103/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the task list data in json format and read it back.
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `tp.acecs2103.commons` package.
 
 ## **UI Enhancements**  
 
@@ -229,7 +229,28 @@ Message window will accept a string of message from the parser which indicates t
 In order to make sure the application is responsive for every command; it is necessary to add such a functionality so that users can clearly know weather the command is executed successfully or not instead of being unaware of a failed command.  
 <br/>
 **Other Considerations:**  
-The message should be clear and succinct that not occupy a large area.  
+The message should be clear and succinct that not occupy a large area. 
+
+## **Model Enhancements**  
+
+### UiTaskList
+**Description:**  
+UiTaskList is a task list used for Ui display. 
+<br/>
+**Implementation:**  
+UiTaskList includes four sub task lists for `Admin`, `Topic`, `TP` and `IP`:
++ adminList
++ topicList
++ ipList
++ tpList 
+
+After running a command, UiTaskList will be refreshed to contain all the tasks satisfying current key condition. 
+<br/>
+**Why:**  
+It is to separate tasks which should be used for Ui display from TaskList used in command operation. This makes TaskList safer to avoid conflicts between Ui and Model.
+<br/>
+**Other Considerations:**  
+The UiTaskList must be refreshed every time after the command is run in case there is any change for it.
 
 --------------------------------------------------------------------------------------------------------------------
 

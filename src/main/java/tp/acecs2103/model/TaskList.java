@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import tp.acecs2103.commons.util.AppUtil;
+import tp.acecs2103.model.exceptions.InvalidTaskListOperationException;
 import tp.acecs2103.model.task.Task;
 
 
@@ -166,20 +167,42 @@ public class TaskList {
     }
 
     /**
-     * Deletes a certain task.
-     * @param taskIndex A valid task index.
-     * @return a new array list after find().
+     * Checks whether the certain task is customized.
+     *
+     * @param taskIndex A valid task index,
      */
-    public ArrayList<Task> delete(String taskIndex) {
+    public boolean isTaskCustomized(String taskIndex) {
         int i = 0;
-        for (Task task: taskList) {
+        for (Task task : taskList) {
             if (task.hasIndex(taskIndex)) {
                 break;
             }
             i++;
         }
-        taskList.remove(i);
-        return find();
+        Task task = taskList.get(i);
+        return task.isCustomized();
+    }
+
+    /**
+     * Deletes a certain task.
+     *
+     * @param taskIndex A valid task index.
+     * @return a new array list after find().
+     */
+    public ArrayList<Task> delete(String taskIndex) throws InvalidTaskListOperationException {
+        int i = 0;
+        for (Task task : taskList) {
+            if (task.hasIndex(taskIndex)) {
+                break;
+            }
+            i++;
+        }
+        Task task = taskList.get(i);
+        if (task.isCustomized()) {
+            taskList.remove(i);
+            return find();
+        }
+        throw new InvalidTaskListOperationException("The task is default task which can not be deleted.");
     }
 
     /**
