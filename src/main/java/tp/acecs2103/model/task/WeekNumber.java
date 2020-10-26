@@ -13,15 +13,15 @@ import tp.acecs2103.ui.WeekDisplay;
  * TODO: Check parser and all for parsing of string and integers
  */
 public class WeekNumber {
-    
-    public static final String MESSAGE_CONSTRAINTS = 
+
+    public static final String MESSAGE_CONSTRAINTS =
             "Week numbers should only contain numbers, and be between 1 to 13.";
-    
+
     public final String value;
 
     /**
      * Constructs a {@code WeekNumber}.
-     * 
+     *
      * @param weekNumber A valid week number.
      */
     public WeekNumber(String weekNumber) {
@@ -29,21 +29,21 @@ public class WeekNumber {
         checkArgument(isValidWeekNumber(weekNumber), MESSAGE_CONSTRAINTS);
         value = weekNumber;
     }
-    
+
     public static boolean isValidWeekNumber(String test) {
         int weekNumberInteger = Integer.parseInt(test);
         return weekNumberInteger >= 1 && weekNumberInteger <= 13;
     }
-    
+
     public int getWeekValueInt() {
         return Integer.parseInt(value);
     }
-    
+
     @Override
     public String toString() {
         return value;
     }
-    
+
     @Override
     public boolean equals(Object other) {
         return other == this

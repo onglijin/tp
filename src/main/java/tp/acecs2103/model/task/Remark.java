@@ -29,6 +29,6 @@ public class Remark {
     public boolean contains(String keyword) {
         return value.contains(keyword);
     }
-    
+
     // TODO: check if hashCode needed
 }

@@ -24,7 +24,7 @@ public class Task {
      * Creates a {@code Task} with given details.
      */
     public Task(Index index, WeekNumber weekNumber,
-                Description description, OfficialDeadline officialDeadline, 
+                Description description, OfficialDeadline officialDeadline,
                 CustomizedDeadline customizedDeadline, Remark remark) {
         CollectionUtil.requireAllNonNull(index, weekNumber, description, officialDeadline);
         this.index = index;
@@ -40,7 +40,7 @@ public class Task {
      * Creates a {@code Task} with given details.
      */
     public Task(Index index, WeekNumber weekNumber, Description description,
-                OfficialDeadline officialDeadline, CustomizedDeadline customizedDeadline, 
+                OfficialDeadline officialDeadline, CustomizedDeadline customizedDeadline,
                 Remark remark, TaskCategory taskCategory) {
         CollectionUtil.requireAllNonNull(index, weekNumber, description, officialDeadline);
         this.index = index;

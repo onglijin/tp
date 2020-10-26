@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class IP extends Task {
     public IP(Index index, WeekNumber weekNumber,
-              Description description, OfficialDeadline officialDeadline, 
+              Description description, OfficialDeadline officialDeadline,
               CustomizedDeadline customizedDeadline, Remark remark) {
         super(index, weekNumber, description, officialDeadline, customizedDeadline, remark);
     }

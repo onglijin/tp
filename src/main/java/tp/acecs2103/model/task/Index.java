@@ -8,8 +8,8 @@ import static tp.acecs2103.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidIndex(String)}
  */
 public class Index {
-    
-    public static final String MESSAGE_CONSTRAINTS = 
+
+    public static final String MESSAGE_CONSTRAINTS =
             "Indexes should only contain numbers, be at least 4 digits long and should not be blank";
 
     /**
@@ -20,7 +20,7 @@ public class Index {
     public static final String VALIDATION_REGEX = "\\A[0][1-9][0-9]+\\z";
 
     public final String value;
-    
+
     /**
      * Constructs a {@code Index}.
      *
@@ -38,22 +38,22 @@ public class Index {
     public static boolean isValidIndex(String test) {
         return test.matches(VALIDATION_REGEX);
     }
-    
+
     public int getIndexValue() {
         return Integer.parseInt(value);
     }
-    
+
     @Override
     public String toString() {
         return value;
     }
-    
+
     @Override
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof Index
                 && value.equals(((Index) other).value));
     }
-    
+
     // TODO: check if hashCode needed
 }
