@@ -1,6 +1,5 @@
 package tp.acecs2103.ui;
 
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;

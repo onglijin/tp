@@ -62,9 +62,9 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103-T14-4/tp/blob/master/src/main/java/tp/acecs2103/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `CategoryPanel`, `WeekDisplay` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -97,13 +97,13 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103-T14-4/tp/blob/master/src/main/java/tp/acecs2103/model/Model.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the task list data.
+* exposes an `UiTaskList` object containing four `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
@@ -117,15 +117,140 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103-T14-4/tp/blob/master/src/main/java/tp/acecs2103/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the task list data in json format and read it back.
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `tp.acecs2103.commons` package.
+
+## **UI Enhancements**  
+
+### Task Box  
+**Description:**  
+Task Box is used to encapsulates a pre-defined or a customized task, which will be displayed in the category panel.  
+<br/>
+**Implementation:**  
+A task box contains the following fields:   
++ index  
++ week number  
++ description  
++ official deadline  
++ customized deadline (if any)  
++ remark (if any)  
+
+The constructor is called by Category panel and the data is obtained by passing in a task object from an observable task list.  
+<br/>
+**Why:**  
+Since there will be multiple tasks under a category panel, task box constructor should be called in category panel and use a default method in JavaFX to generate all the task boxes in one step.   
+<br/>
+**Other Considerations:**  
+Since the data in task box may change depending on the user input, therefore it should be able to check if need to update the content whenever data change happens. Therefore, it is necessary to implement update item method such that it can automatically check the update.  
+
+### Category Panel
+**Description:**  
+Category panel is used to encapsulates a list of tasks which are of the same category as the header of the category panel.   
+<br/>
+**Implementation:**  
+Category panel contains the following fields:  
++ category label  
++ category view  
+
+Category panel will read in a category label and an observable task list from Ui Task List class. The category label will be passed into the constructor of category box which will generate the header of the panel. Every task object in the task list will be used to create to a corresponding task box.  
+<br/>
+**Why:**   
+Since a category panel should contains multiple tasks and a category box which indicate the category name, it is necessary to call the constructor of task box and pass in every task object to a corresponding task box. Besides, category label will be passed into the constructor of category box which will generate the header of the panel.  
+<br/>
+**Other Considerations:**  
+Since all the tasks are divided into four categories, and the structure for each panel is the same (header and tasks), there is only one category panel component needed. For styling, different colour and style will be implemented for different category panel.  
+
+### Category Box
+**Description:**  
+A category box is a header box to indicate the category of the tasks below.  
+<br/>
+**Implementation:**  
+Category box contains the following field:  
++ category label  
+
+Category box will just simply read in a string of category then create a corresponding category box.  
+<br/>
+**Why:**  
+Since there are four different categories, it is necessary to have header box to indicate the different categories.  
+<br/>
+**Other Considerations:**  
+The category field in the task box is not needed because category box can clearly show the category already.  
+
+### Command Box
+**Description:**  
+User can enter commands in the command box.  
+<br/>
+**Implementation:**  
+Command box contains the following field:  
++ input command  
+
+User command will be passed into input command filed and it will then pass to parser to finish subsequent procedures.  
+<br/>
+**Why:**  
+It is necessary to implement user command box such that the application will know what functionalities should be processed.  
+<br/> 
+**Other Considerations:**  
+Since users are supposed to use keyboard only, submit button is replaced by click “Enter”.  
+
+### Week Display
+**Description:**  
+Week display component will display the number of the week among all the filtered tasks if they are in the same week.  
+<br/>
+**Implementation:**  
+Week display contains the following field:  
++ week number and date  
+
+Week display will receive the maximum and minimum week number among all the filtered tasks, and it will display the week and the corresponding date. Whenever the filtered tasks change, the component will do auto check and the week number should be changed correspondingly.  
+<br/>
+**Why:**  
+Although it is not essential, having this week display box can facilitate users to know the week that tasks belong to.  
+<br/>
+**Other Considerations:**  
+The text style should be different from others and it should be obvious.  
+
+### Message Window
+**Description:**  
+After entering a command, the message window will tell users whether the command is executed successfully or not.  
+<br/>
+**Implementation:**  
+Message window contains the following field:  
++ message text  
+
+Message window will accept a string of message from the parser which indicates the status of the command, and then display it at the bottom of the application. Besides, the displayed message should be refreshed and updated whenever a new command is entered.  
+<br/>
+**Why:**  
+In order to make sure the application is responsive for every command; it is necessary to add such a functionality so that users can clearly know weather the command is executed successfully or not instead of being unaware of a failed command.  
+<br/>
+**Other Considerations:**  
+The message should be clear and succinct that not occupy a large area. 
+
+## **Model Enhancements**  
+
+### UiTaskList
+**Description:**  
+UiTaskList is a task list used for Ui display. 
+<br/>
+**Implementation:**  
+UiTaskList includes four sub task lists for `Admin`, `Topic`, `TP` and `IP`:
++ adminList
++ topicList
++ ipList
++ tpList 
+
+After running a command, UiTaskList will be refreshed to contain all the tasks satisfying current key condition. 
+<br/>
+**Why:**  
+It is to separate tasks which should be used for Ui display from TaskList used in command operation. This makes TaskList safer to avoid conflicts between Ui and Model.
+<br/>
+**Other Considerations:**  
+The UiTaskList must be refreshed every time after the command is run in case there is any change for it.
 
 --------------------------------------------------------------------------------------------------------------------
 
