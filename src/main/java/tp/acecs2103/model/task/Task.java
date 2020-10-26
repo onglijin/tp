@@ -20,24 +20,8 @@ public class Task {
     private String remark;
     private TaskCategory category;
     private boolean customized;
+    private boolean doneStatus;
 
-    /**
-     * Creates a {@code Task} with given details.
-     */
-    public Task(String index, int weekNumber,
-                String description, LocalDate officialDeadline,
-                LocalDate customizedDeadline, String remark,
-                boolean customized) {
-        CollectionUtil.requireAllNonNull(index, weekNumber, description);
-        this.index = index;
-        this.weekNumber = weekNumber;
-        this.description = description;
-        this.officialDeadline = officialDeadline;
-        this.customizedDeadline = customizedDeadline;
-        this.remark = remark;
-        this.category = TaskCategory.TASK;
-        this.customized = customized;
-    }
 
     /**
      * Creates a {@code Task} with given details.
@@ -54,6 +38,7 @@ public class Task {
         this.remark = remark;
         this.category = taskCategory;
         this.customized = customized;
+        this.doneStatus = false; // initialized task are assumed to be unfinished
     }
 
     /**
@@ -113,6 +98,13 @@ public class Task {
     }
 
     /**
+     * Checks whether the task is done
+     */
+    public boolean isDone() {
+        return this.doneStatus;
+    }
+
+    /**
      * Checks whether the task has index {@code taskIndex}
      */
     public boolean hasIndex(String taskIndex) {
@@ -124,6 +116,14 @@ public class Task {
      */
     public boolean hasDeadline() {
         return customizedDeadline != null;
+    }
+
+    /**
+     * Mark the task as done.
+     */
+    public void markAsDone() {
+        assert !doneStatus;
+        doneStatus = true;
     }
 
     /**

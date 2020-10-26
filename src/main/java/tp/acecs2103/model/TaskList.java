@@ -171,7 +171,7 @@ public class TaskList {
      *
      * @param taskIndex A valid task index,
      */
-    public boolean isTaskCustomized(String taskIndex) {
+    public boolean isCustomizedTask(String taskIndex) {
         int i = 0;
         for (Task task : taskList) {
             if (task.hasIndex(taskIndex)) {
@@ -203,6 +203,28 @@ public class TaskList {
             return find();
         }
         throw new InvalidTaskListOperationException("The task is default task which can not be deleted.");
+    }
+
+    /**
+     * Mark a task as done.
+     *
+     * @param taskIndex A valid task index.
+     * @return a new array list after find().
+     */
+    public ArrayList<Task> done(String taskIndex) throws InvalidTaskListOperationException {
+        int i = 0;
+        for (Task task : taskList) {
+            if (task.hasIndex(taskIndex)) {
+                break;
+            }
+            i++;
+        }
+        Task task = taskList.get(i);
+        if (!task.isDone()) {
+            task.markAsDone();
+            return find();
+        }
+        throw new InvalidTaskListOperationException("The task is already marked as done.");
     }
 
     /**

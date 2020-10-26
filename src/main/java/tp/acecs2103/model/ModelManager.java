@@ -106,8 +106,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean isTaskCustomized(String index) {
-        return taskList.isTaskCustomized(index);
+    public boolean isCustomizedTask(String index) {
+        return taskList.isCustomizedTask(index);
     }
 
     @Override
@@ -118,6 +118,12 @@ public class ModelManager implements Model {
             throw new ModelException(e.getMessage());
         }
     }
+
+    @Override
+    public void markTaskAsDone(String index) throws ModelException {
+        uiTaskList.addAll(taskList.done(index));
+    }
+
 
     @Override
     public void findTasks(String keyword) {

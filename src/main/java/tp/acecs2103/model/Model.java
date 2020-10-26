@@ -74,12 +74,17 @@ public interface Model {
     /**
      * Checks whether the task is customized.
      */
-    boolean isTaskCustomized(String index);
+    boolean isCustomizedTask(String index);
 
     /**
      * Deletes one task out of task list with given index.
      */
     void deleteTask(String index) throws ModelException;
+
+    /**
+     * Mark one task out of task list with given index as done.
+     */
+    void markTaskAsDone(String index) throws ModelException;
 
     /**
      * Finds tasks based on given keyword.
