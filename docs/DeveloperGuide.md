@@ -247,10 +247,10 @@ UiTaskList includes four sub task lists for `Admin`, `Topic`, `TP` and `IP`:
 After running a command, UiTaskList will be refreshed to contain all the tasks satisfying current key condition. 
 <br/>
 **Why:**  
-In order to make sure the application is responsive for every command; it is necessary to add such a functionality so that users can clearly know weather the command is executed successfully or not instead of being unaware of a failed command.  
+It is to separate tasks which should be used for Ui display from TaskList used in command operation. This makes TaskList safer to avoid conflicts between Ui and Model.
 <br/>
 **Other Considerations:**  
-The message should be clear and succinct that not occupy a large area. 
+The UiTaskList must be refreshed every time after the command is run in case there is any change for it.
 
 --------------------------------------------------------------------------------------------------------------------
 
