@@ -125,7 +125,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `tp.acecs2103.commons` package.
 
 ## **UI Enhancements**  
 
@@ -229,7 +229,28 @@ Message window will accept a string of message from the parser which indicates t
 In order to make sure the application is responsive for every command; it is necessary to add such a functionality so that users can clearly know weather the command is executed successfully or not instead of being unaware of a failed command.  
 <br/>
 **Other Considerations:**  
-The message should be clear and succinct that not occupy a large area.  
+The message should be clear and succinct that not occupy a large area. 
+
+## **Model Enhancements**  
+
+### UiTaskList
+**Description:**  
+UiTaskList is a task list used for Ui display. 
+<br/>
+**Implementation:**  
+UiTaskList includes four sub task lists for `Admin`, `Topic`, `TP` and `IP`:
++ adminList
++ topicList
++ ipList
++ tpList 
+
+After running a command, UiTaskList will be refreshed to contain all the tasks satisfying current key condition. 
+<br/>
+**Why:**  
+In order to make sure the application is responsive for every command; it is necessary to add such a functionality so that users can clearly know weather the command is executed successfully or not instead of being unaware of a failed command.  
+<br/>
+**Other Considerations:**  
+The message should be clear and succinct that not occupy a large area. 
 
 --------------------------------------------------------------------------------------------------------------------
 
