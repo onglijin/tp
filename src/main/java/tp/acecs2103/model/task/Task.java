@@ -12,20 +12,21 @@ import tp.acecs2103.commons.util.CollectionUtil;
 public class Task {
     private static final Logger logger = LogsCenter.getLogger(Task.class);
 
-    private String index;
-    private int weekNumber;
-    private String description;
-    private LocalDate officialDeadline;
-    private LocalDate customizedDeadline;
-    private String remark;
+    private Index index;
+    private WeekNumber weekNumber;
+    private Description description;
+    private OfficialDeadline officialDeadline;
+    private CustomizedDeadline customizedDeadline;
+    private Remark remark;
     private TaskCategory category;
 
     /**
      * Creates a {@code Task} with given details.
      */
-    public Task(String index, int weekNumber,
-                String description, LocalDate officialDeadline, LocalDate customizedDeadline, String remark) {
-        CollectionUtil.requireAllNonNull(index, weekNumber, description);
+    public Task(Index index, WeekNumber weekNumber,
+                Description description, OfficialDeadline officialDeadline, 
+                CustomizedDeadline customizedDeadline, Remark remark) {
+        CollectionUtil.requireAllNonNull(index, weekNumber, description, officialDeadline);
         this.index = index;
         this.weekNumber = weekNumber;
         this.description = description;
@@ -38,9 +39,10 @@ public class Task {
     /**
      * Creates a {@code Task} with given details.
      */
-    public Task(String index, int weekNumber, String description,
-                LocalDate officialDeadline, LocalDate customizedDeadline, String remark, TaskCategory taskCategory) {
-        CollectionUtil.requireAllNonNull(index, weekNumber, description);
+    public Task(Index index, WeekNumber weekNumber, Description description,
+                OfficialDeadline officialDeadline, CustomizedDeadline customizedDeadline, 
+                Remark remark, TaskCategory taskCategory) {
+        CollectionUtil.requireAllNonNull(index, weekNumber, description, officialDeadline);
         this.index = index;
         this.weekNumber = weekNumber;
         this.description = description;
@@ -53,42 +55,42 @@ public class Task {
     /**
      * Gets the task index.
      */
-    public String getIndex() {
+    public Index getIndex() {
         return index;
     }
 
     /**
      * Gets the week number.
      */
-    public int getWeekNumber() {
+    public WeekNumber getWeekNumber() {
         return weekNumber;
     }
 
     /**
      * Gets the task description.
      */
-    public String getDescription() {
+    public Description getDescription() {
         return description;
     }
 
     /**
      * Gets the official deadline of task.
      */
-    public LocalDate getOfficialDeadline() {
+    public OfficialDeadline getOfficialDeadline() {
         return officialDeadline;
     }
 
     /**
      * Gets the customized deadline of task.
      */
-    public LocalDate getCustomizedDeadline() {
+    public CustomizedDeadline getCustomizedDeadline() {
         return customizedDeadline;
     }
 
     /**
      * Gets the remark of the task.
      */
-    public String getRemark() {
+    public Remark getRemark() {
         return remark;
     }
 
@@ -102,7 +104,7 @@ public class Task {
     /**
      * Checks whether the task has index {@code taskIndex}
      */
-    public boolean hasIndex(String taskIndex) {
+    public boolean hasIndex(Index taskIndex) {
         return this.index.equals(taskIndex);
     }
 
@@ -117,7 +119,7 @@ public class Task {
      * Sets a deadline to the task.
      * @param deadline A valid LocalDate.
      */
-    public void setDeadline(LocalDate deadline) {
+    public void setDeadline(CustomizedDeadline deadline) {
         assert deadline != null;
         customizedDeadline = deadline;
     }
@@ -125,7 +127,7 @@ public class Task {
     /**
      * Check whether the task is in week {@code weekIndex}.
      */
-    public boolean isWeekX(int weekIndex) {
+    public boolean isWeekX(WeekNumber weekIndex) {
         return weekIndex == weekNumber;
     }
 
