@@ -124,6 +124,10 @@ public class ModelManager implements Model {
         uiTaskList.addAll(taskList.done(index));
     }
 
+    @Override
+    public void filterTasks(boolean isDone, boolean byOfficialDeadline, int weekNumber) {
+        uiTaskList.addAll(taskList.filter(isDone,byOfficialDeadline,weekNumber));
+    }
 
     @Override
     public void findTasks(String keyword) {

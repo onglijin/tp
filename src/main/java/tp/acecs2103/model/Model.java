@@ -96,6 +96,11 @@ public interface Model {
      */
     void listTasks(int weekNumber);
 
+    /**
+     * Lists tasks in certain week.
+     */
+    void filterTasks(boolean isDone, boolean byOfficialDeadline, int weekNumber);
+
 
     /**
      * Sets a customized deadline to a certain.

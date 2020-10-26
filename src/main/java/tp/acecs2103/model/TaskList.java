@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import tp.acecs2103.commons.util.AppUtil;
 import tp.acecs2103.model.exceptions.InvalidTaskListOperationException;
@@ -132,6 +134,41 @@ public class TaskList {
         for (Task task: taskList) {
             if (task.contains(keyWord)) {
                 newList.add(task);
+            }
+        }
+        return newList;
+    }
+
+    /**
+     * Filter the task list based on criteria given.
+     *
+     * @param isDone is the boolean value to describe if filter criteria is to display done tasks only
+     * @param byOfficialDeadline is the boolean value to describe if filter criteria is to display pending tasks by official deadline
+     * @param weekNumber is the int value to describe the week number of the tasks to be displayed(optional)
+     * @return a new ArrayList to display.
+     */
+    public ArrayList<Task> filter(boolean isDone, boolean byOfficialDeadline, int weekNumber) {
+        ArrayList<Task> newList = new ArrayList<>();
+        if (weekNumber > 0) {
+            newList = list(weekNumber);
+        }
+
+        for (Task task : taskList) {
+            if (task.isDone() == isDone) {
+                newList.add(task);
+            }
+        }
+
+        if (!isDone) {
+            if (byOfficialDeadline) {
+                Collections.sort(newList);
+            } else {
+                Collections.sort(newList, new Comparator<Task>() {
+                    @Override
+                    public int compare(Task o1, Task o2) {
+                        return o1.getCustomizedDeadline().compareTo(o2.getCustomizedDeadline());
+                    }
+                });
             }
         }
         return newList;

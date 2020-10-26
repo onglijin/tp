@@ -9,7 +9,7 @@ import tp.acecs2103.commons.util.CollectionUtil;
 /**
  * Represents a general task in Ace CS2103/T.
  */
-public class Task {
+public class Task implements Comparable<Task> {
     private static final Logger logger = LogsCenter.getLogger(Task.class);
 
     private String index;
@@ -162,4 +162,10 @@ public class Task {
     public boolean isSameTask(Task task) {
         return index.equals(task.getIndex());
     }
+
+    @Override
+    public int compareTo(Task o) {
+        return getOfficialDeadline().compareTo(o.getOfficialDeadline());
+    }
+
 }
