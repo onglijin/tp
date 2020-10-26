@@ -26,6 +26,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list.";
+    public static final String MESSAGE_INVALID_EDITION = "Only customised deadline and remark can be changed for a default task.";
 
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
@@ -66,21 +67,24 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) {
+    private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) throws CommandException{
         assert taskToEdit != null;
 
+        if (!taskToEdit.isCustomized()) {
+            if (editTaskDescriptor.getWeekNumber() != null || editTaskDescriptor.getDescription() != null)
+            throw new CommandException(MESSAGE_INVALID_EDITION);
+        }
         int updatedWeekNumber = editTaskDescriptor
                 .getWeekNumber().orElse(taskToEdit.getWeekNumber());
         String updatedDescription = editTaskDescriptor
                 .getDescription().orElse(taskToEdit.getDescription());
-        LocalDate updatedOfficialDeadline = editTaskDescriptor
-                .getOfficialDeadline().orElse(taskToEdit.getOfficialDeadline());
         LocalDate updatedCustomizedDeadline = editTaskDescriptor
                 .getCustomizedDeadline().orElse(taskToEdit.getOfficialDeadline());
         String remark = editTaskDescriptor.getRemark().orElse(taskToEdit.getRemark());
 
         return new Task(taskToEdit.getIndex(), updatedWeekNumber, updatedDescription,
-                updatedOfficialDeadline, updatedCustomizedDeadline, remark, true);
+                taskToEdit.getOfficialDeadline(), updatedCustomizedDeadline, remark,
+                taskToEdit.getCategory(), taskToEdit.isCustomized(), taskToEdit.isDone());
     }
 
     @Override
@@ -106,10 +110,8 @@ public class EditCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditTaskDescriptor {
-        //private String index;
         private int weekNumber;
         private String description;
-        private LocalDate officialDeadline;
         private LocalDate customizedDeadline;
         private String remark;
 
@@ -120,10 +122,8 @@ public class EditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
-            //setIndex(toCopy.index);
             setWeekNumber(toCopy.weekNumber);
             setDescription(toCopy.description);
-            setOfficialDeadline(toCopy.officialDeadline);
             setCustomizedDeadline(toCopy.customizedDeadline);
             setRemark(toCopy.remark);
         }
@@ -133,14 +133,8 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(//index,
-                    weekNumber, description, officialDeadline, customizedDeadline, remark);
+                    weekNumber, description, customizedDeadline, remark);
         }
-
-        //public void setIndex(String index) {this.index = index;}
-
-        //public Optional<String> getIndex() {
-        //    return Optional.ofNullable(index);
-        //}
 
         public void setWeekNumber(int weekNumber) {
             this.weekNumber = weekNumber;
@@ -158,18 +152,9 @@ public class EditCommand extends Command {
             return Optional.ofNullable(description);
         }
 
-        public void setOfficialDeadline(LocalDate officialDeadline) {
-            this.officialDeadline = officialDeadline;
-        }
-
-        public Optional<LocalDate> getOfficialDeadline() {
-            return Optional.ofNullable(officialDeadline);
-        }
-
         public void setCustomizedDeadline(LocalDate customizedDeadline) {
             this.customizedDeadline = customizedDeadline;
         }
-
         public Optional<LocalDate> getCustomizedDeadline() {
             return Optional.ofNullable(customizedDeadline);
         }
@@ -209,7 +194,6 @@ public class EditCommand extends Command {
             return //getIndex().equals(e.getIndex())
                     getWeekNumber().equals(e.getWeekNumber())
                     && getDescription().equals(e.getDescription())
-                    && getOfficialDeadline().equals(e.getOfficialDeadline())
                     && getCustomizedDeadline().equals(e.getCustomizedDeadline())
                     && getRemark().equals(e.getRemark());
         }

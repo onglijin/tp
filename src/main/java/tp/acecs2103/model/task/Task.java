@@ -28,7 +28,7 @@ public class Task {
      */
     public Task(String index, int weekNumber, String description,
                 LocalDate officialDeadline, LocalDate customizedDeadline, String remark,
-                TaskCategory taskCategory, boolean customized) {
+                TaskCategory taskCategory, boolean customized, boolean doneStatus) {
         CollectionUtil.requireAllNonNull(index, weekNumber, description);
         this.index = index;
         this.weekNumber = weekNumber;
@@ -38,7 +38,7 @@ public class Task {
         this.remark = remark;
         this.category = taskCategory;
         this.customized = customized;
-        this.doneStatus = false; // initialized task are assumed to be unfinished
+        this.doneStatus = doneStatus;
     }
 
     /**
@@ -133,6 +133,13 @@ public class Task {
     public void setDeadline(LocalDate deadline) {
         assert deadline != null;
         customizedDeadline = deadline;
+    }
+
+    /**
+     * Check whether the task a valid task, aka if the official deadline is correctly set to null for a customised task.
+     */
+    public boolean isValid() {
+        return isCustomized() == (officialDeadline == null);
     }
 
     /**

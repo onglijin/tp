@@ -17,14 +17,18 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list";
+    public static final String MESSAGE_INVALID_TASK = "A customised task should not have an official deadline";
 
     private final Task toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Task}
      */
-    public AddCommand(Task task) {
+    public AddCommand(Task task) throws CommandException{
         requireNonNull(task);
+        if (!task.isValid()) {
+            throw new CommandException(MESSAGE_INVALID_TASK);
+        }
         toAdd = task;
     }
 
