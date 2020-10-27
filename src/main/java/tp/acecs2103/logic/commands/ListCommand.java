@@ -3,6 +3,7 @@ package tp.acecs2103.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import tp.acecs2103.model.Model;
+import tp.acecs2103.model.task.WeekNumber;
 
 /**
  * Lists all persons in the address book to the user.
@@ -13,12 +14,12 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all tasks for the selected week";
 
-    private final int weekNumber;
+    private final WeekNumber weekNumber;
 
     /**
      * Creates a {@code ListCommand} with given Week number.
      */
-    public ListCommand(int weekNumber) {
+    public ListCommand(WeekNumber weekNumber) {
         requireNonNull(weekNumber);
         this.weekNumber = weekNumber;
     }
@@ -27,7 +28,7 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.listTasks(weekNumber);
+        model.listTasks(weekNumber.getWeekValueInt());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 
-import tp.acecs2103.commons.core.index.Index;
+import tp.acecs2103.model.task.Index;
 import tp.acecs2103.model.Model;
 
 
@@ -37,7 +37,7 @@ public class DeadlineCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.deadlineTask(targetIndex.getStrIndex(), newDeadline);
+        model.deadlineTask(targetIndex.toString(), newDeadline);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
