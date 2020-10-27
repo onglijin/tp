@@ -91,8 +91,8 @@ public class UiTaskList {
     public int getMaxWeekNumber() {
         int weekNumber = -1;
         for (Task task: combinedTaskList) {
-            if (task.getWeekNumber() > weekNumber) {
-                weekNumber = task.getWeekNumber();
+            if (task.getWeekNumber().getWeekValueInt() > weekNumber) {
+                weekNumber = task.getWeekNumber().getWeekValueInt();
             }
         }
         assert weekNumber != -1;
@@ -105,8 +105,8 @@ public class UiTaskList {
     public int getMinWeekNumber() {
         int weekNumber = 10000;
         for (Task task: combinedTaskList) {
-            if (task.getWeekNumber() < weekNumber) {
-                weekNumber = task.getWeekNumber();
+            if (task.getWeekNumber().getWeekValueInt() < weekNumber) {
+                weekNumber = task.getWeekNumber().getWeekValueInt();
             }
         }
         assert weekNumber != 10000;

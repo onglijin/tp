@@ -10,7 +10,11 @@ import javafx.collections.ObservableList;
 import tp.acecs2103.commons.core.GuiSettings;
 import tp.acecs2103.commons.core.LogsCenter;
 import tp.acecs2103.commons.util.CollectionUtil;
+import tp.acecs2103.model.task.CustomizedDeadline;
+import tp.acecs2103.model.task.Index;
+import tp.acecs2103.model.task.OfficialDeadline;
 import tp.acecs2103.model.task.Task;
+import tp.acecs2103.model.task.WeekNumber;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -41,6 +45,7 @@ public class ModelManager implements Model {
      */
     public ModelManager() {
         this.taskList = new TaskList();
+        logger.info("The size of tasklist is: " + taskList.size());
         this.userPrefs = new UserPrefs();
         this.uiTaskList = new UiTaskList(taskList.getUiTaskList());
     }
@@ -105,7 +110,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteTask(String index) {
-        uiTaskList.addAll(taskList.delete(index));
+        uiTaskList.addAll(taskList.delete(new Index(index)));
     }
 
     @Override
@@ -115,12 +120,12 @@ public class ModelManager implements Model {
 
     @Override
     public void listTasks(int weekNumber) {
-        uiTaskList.addAll(taskList.list(weekNumber));
+        uiTaskList.addAll(taskList.list(new WeekNumber(Integer.toString(weekNumber))));
     };
 
     @Override
     public void deadlineTask(String index, LocalDate deadline) {
-        uiTaskList.addAll(taskList.deadline(index, deadline));
+        uiTaskList.addAll(taskList.deadline(new Index(index), new CustomizedDeadline(deadline.toString())));
     }
 
     @Override
