@@ -88,6 +88,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Task task = new Task(indexObject, weekNumberObject, descriptionObject, null, 
                 customizedDeadlineObject, remarkObject, category);
+
         return new AddCommand(task);
     }
 

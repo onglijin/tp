@@ -19,6 +19,7 @@ public class Task {
     private CustomizedDeadline customizedDeadline;
     private Remark remark;
     private TaskCategory category;
+    private boolean customized;
 
     /**
      * Creates a {@code Task} with given details.
@@ -34,6 +35,7 @@ public class Task {
         this.customizedDeadline = customizedDeadline;
         this.remark = remark;
         this.category = TaskCategory.TASK;
+        this.customized = customized;
     }
 
     /**
@@ -50,6 +52,7 @@ public class Task {
         this.customizedDeadline = customizedDeadline;
         this.remark = remark;
         this.category = taskCategory;
+        this.customized = customized;
     }
 
     /**
@@ -99,6 +102,13 @@ public class Task {
      */
     public TaskCategory getCategory() {
         return this.category;
+    }
+
+    /**
+     * Checks whether the task is customized.
+     */
+    public boolean isCustomized() {
+        return this.customized;
     }
 
     /**

@@ -37,6 +37,7 @@ class JsonAdaptedTask {
     private String customizedDeadline;
     private String remark;
     private String category;
+    private String customized;
 
     /**
      * Constructs a {@code JsonAdaptedTask} with the given person details.
@@ -48,7 +49,8 @@ class JsonAdaptedTask {
                            @JsonProperty("officialDeadline") String officialDeadline,
                            @JsonProperty("customizedDeadline") String customizedDeadline,
                            @JsonProperty("remark") String remark,
-                           @JsonProperty("category") String category) {
+                           @JsonProperty("category") String category,
+                           @JsonProperty("customized") String customized) {
         this.index = index;
         this.weekNumber = weekNumber;
         this.description = description;
@@ -56,6 +58,7 @@ class JsonAdaptedTask {
         this.customizedDeadline = customizedDeadline;
         this.remark = remark;
         this.category = category;
+        this.customized = customized;
     }
 
     /**
@@ -80,6 +83,11 @@ class JsonAdaptedTask {
             remark = null;
         }
         category = TaskCategory.categoryToString(task.getCategory());
+        if (task.isCustomized()) {
+            customized = "true";
+        } else {
+            customized = "false";
+        }
     }
 
     /**
@@ -97,6 +105,13 @@ class JsonAdaptedTask {
         }
         if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "description"));
+        }
+
+        boolean isCustomized;
+        if (customized.equals("true")) {
+            isCustomized = true;
+        } else {
+            isCustomized = false;
         }
 
         if (TaskCategory.isStringAdmin(category)) {
