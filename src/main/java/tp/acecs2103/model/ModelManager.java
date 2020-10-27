@@ -112,7 +112,7 @@ public class ModelManager implements Model {
 
     @Override
     public boolean isTaskCustomized(String index) {
-        return taskList.isTaskCustomized(index);
+        return taskList.isTaskCustomized(new Index(index));
     }
 
     @Override

@@ -26,7 +26,7 @@ public class Task {
      */
     public Task(Index index, WeekNumber weekNumber,
                 Description description, OfficialDeadline officialDeadline,
-                CustomizedDeadline customizedDeadline, Remark remark) {
+                CustomizedDeadline customizedDeadline, Remark remark, boolean customized) {
         CollectionUtil.requireAllNonNull(index, weekNumber, description);
         this.index = index;
         this.weekNumber = weekNumber;
@@ -43,7 +43,7 @@ public class Task {
      */
     public Task(Index index, WeekNumber weekNumber, Description description,
                 OfficialDeadline officialDeadline, CustomizedDeadline customizedDeadline,
-                Remark remark, TaskCategory taskCategory) {
+                Remark remark, TaskCategory taskCategory, boolean customized) {
         CollectionUtil.requireAllNonNull(index, weekNumber, description);
         this.index = index;
         this.weekNumber = weekNumber;
