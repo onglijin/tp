@@ -26,7 +26,7 @@ public class Task {
     public Task(Index index, WeekNumber weekNumber,
                 Description description, OfficialDeadline officialDeadline,
                 CustomizedDeadline customizedDeadline, Remark remark) {
-        CollectionUtil.requireAllNonNull(index, weekNumber, description, officialDeadline);
+        CollectionUtil.requireAllNonNull(index, weekNumber, description);
         this.index = index;
         this.weekNumber = weekNumber;
         this.description = description;
@@ -42,7 +42,7 @@ public class Task {
     public Task(Index index, WeekNumber weekNumber, Description description,
                 OfficialDeadline officialDeadline, CustomizedDeadline customizedDeadline,
                 Remark remark, TaskCategory taskCategory) {
-        CollectionUtil.requireAllNonNull(index, weekNumber, description, officialDeadline);
+        CollectionUtil.requireAllNonNull(index, weekNumber, description);
         this.index = index;
         this.weekNumber = weekNumber;
         this.description = description;
@@ -128,7 +128,7 @@ public class Task {
      * Check whether the task is in week {@code weekIndex}.
      */
     public boolean isWeekX(WeekNumber weekIndex) {
-        return weekIndex == weekNumber;
+        return weekNumber.equals(weekIndex);
     }
 
     /**

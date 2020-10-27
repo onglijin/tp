@@ -23,7 +23,9 @@ public class CustomizedDeadline {
      * @param customizedDeadline A valid customized deadline.
      */
     public CustomizedDeadline(String customizedDeadline) {
-        checkArgument(isValidOfficialDeadline(customizedDeadline), MESSAGE_CONSTRAINTS);
+        if (customizedDeadline != null) {
+            checkArgument(isValidCustomizedDeadline(customizedDeadline), MESSAGE_CONSTRAINTS);
+        }
         value = customizedDeadline;
     }
 
