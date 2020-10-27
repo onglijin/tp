@@ -3,9 +3,10 @@ package tp.acecs2103.model.task;
 import java.time.LocalDate;
 
 public class Topic extends Task {
-    public Topic(String index, int weekNumber,
-                 String description, LocalDate officialDeadline, LocalDate customizedDeadline, String remark) {
-        super(index, weekNumber, description, officialDeadline, customizedDeadline, remark);
+    public Topic(Index index, WeekNumber weekNumber,
+                 Description description, OfficialDeadline officialDeadline,
+                 CustomizedDeadline customizedDeadline, Remark remark, boolean isCustomized) {
+        super(index, weekNumber, description, officialDeadline, customizedDeadline, remark, isCustomized);
     }
 
     @Override

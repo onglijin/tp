@@ -6,13 +6,17 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import tp.acecs2103.commons.util.AppUtil;
+import tp.acecs2103.model.task.CustomizedDeadline;
+import tp.acecs2103.model.task.Index;
+import tp.acecs2103.model.task.OfficialDeadline;
+import tp.acecs2103.model.exceptions.InvalidTaskListOperationException;
 import tp.acecs2103.model.task.Task;
-
+import tp.acecs2103.model.task.WeekNumber;
 
 
 public class TaskList {
     private ArrayList<Task> taskList;
-    private int timeRange;
+    private WeekNumber timeRange;
 
     /**
      * Initializes a {@code TaskList} with given task list and time range.
@@ -20,7 +24,7 @@ public class TaskList {
      * @param taskList is given task list.
      * @param timeRange is given time range.
      */
-    public TaskList(ArrayList<Task> taskList, int timeRange) {
+    public TaskList(ArrayList<Task> taskList, WeekNumber timeRange) {
         this.taskList = taskList;
         this.timeRange = timeRange;
     }
@@ -67,7 +71,7 @@ public class TaskList {
      *
      * @return a int of time range.
      */
-    public int getTimeRange() {
+    public WeekNumber getTimeRange() {
         return timeRange;
     }
 
@@ -76,7 +80,7 @@ public class TaskList {
      *
      * @param weekNumber is new time range.
      */
-    public void setTimeRange(int weekNumber) {
+    public void setTimeRange(WeekNumber weekNumber) {
         timeRange = weekNumber;
     }
 
@@ -95,10 +99,10 @@ public class TaskList {
      *
      * @return a task with the required index.
      */
-    public Task getTask(String index) {
+    public Task getTask(Index index) {
         for (Task task: taskList) {
             //index is stored as String in task object,// so a conversion from string to int is needed
-            if (index == task.getIndex()) {
+            if (task.getIndex().equals(index)) {
                 return task;
             }
         }
@@ -142,8 +146,9 @@ public class TaskList {
      * @param weekNumber A valid week number.
      * @return a array list consisting of all satisfied tasks.
      */
-    public ArrayList<Task> list(int weekNumber) {
-        assert weekNumber <= 13;
+    public ArrayList<Task> list(WeekNumber weekNumber) {
+        // TODO: include assertion?
+//        assert weekNumber.value <= 13;
         timeRange = weekNumber;
         ArrayList<Task> newList = new ArrayList<Task>();
         for (Task task: taskList) {
@@ -166,20 +171,42 @@ public class TaskList {
     }
 
     /**
-     * Deletes a certain task.
-     * @param taskIndex A valid task index.
-     * @return a new array list after find().
+     * Checks whether the certain task is customized.
+     *
+     * @param taskIndex A valid task index,
      */
-    public ArrayList<Task> delete(String taskIndex) {
+    public boolean isTaskCustomized(Index taskIndex) {
         int i = 0;
-        for (Task task: taskList) {
+        for (Task task : taskList) {
             if (task.hasIndex(taskIndex)) {
                 break;
             }
             i++;
         }
-        taskList.remove(i);
-        return find();
+        Task task = taskList.get(i);
+        return task.isCustomized();
+    }
+
+    /**
+     * Deletes a certain task.
+     *
+     * @param taskIndex A valid task index.
+     * @return a new array list after find().
+     */
+    public ArrayList<Task> delete(Index taskIndex) throws InvalidTaskListOperationException {
+        int i = 0;
+        for (Task task : taskList) {
+            if (task.hasIndex(taskIndex)) {
+                break;
+            }
+            i++;
+        }
+        Task task = taskList.get(i);
+        if (task.isCustomized()) {
+            taskList.remove(i);
+            return find();
+        }
+        throw new InvalidTaskListOperationException("The task is default task which can not be deleted.");
     }
 
     /**
@@ -189,7 +216,7 @@ public class TaskList {
      * @param deadline A valid deadline.
      * @return a new array list after find().
      */
-    public ArrayList<Task> deadline(String taskIndex, LocalDate deadline) {
+    public ArrayList<Task> deadline(Index taskIndex, CustomizedDeadline deadline) {
         for (Task task: taskList) {
             if (task.hasIndex(taskIndex)) {
                 task.setDeadline(deadline);
@@ -230,3 +257,4 @@ public class TaskList {
         return taskList.size();
     }
 }
+

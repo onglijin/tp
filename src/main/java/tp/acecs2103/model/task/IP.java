@@ -2,10 +2,18 @@ package tp.acecs2103.model.task;
 
 import java.time.LocalDate;
 
+/**
+ * Represents a IP task.
+ */
 public class IP extends Task {
-    public IP(String index, int weekNumber,
-              String description, LocalDate officialDeadline, LocalDate customizedDeadline, String remark) {
-        super(index, weekNumber, description, officialDeadline, customizedDeadline, remark);
+  
+     /**
+     * Creates a {@code IP} task.
+     */
+    public IP(Index index, WeekNumber weekNumber,
+              Description description, OfficialDeadline officialDeadline,
+              CustomizedDeadline customizedDeadline, Remark remark, boolean isCustomized) {
+        super(index, weekNumber, description, officialDeadline, customizedDeadline, remark, isCustomized);
     }
 
     @Override
