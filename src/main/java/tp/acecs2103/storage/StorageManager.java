@@ -12,7 +12,7 @@ import tp.acecs2103.model.TaskList;
 import tp.acecs2103.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of TaskList data in local storage.
  */
 public class StorageManager implements Storage {
 
@@ -21,7 +21,7 @@ public class StorageManager implements Storage {
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code TaskListStorage} and {@code UserPrefStorage}.
      */
     public StorageManager(TaskListStorage taskListStorage, UserPrefsStorage userPrefsStorage) {
         super();
@@ -47,7 +47,7 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ TaskList methods ==============================
 
     @Override
     public Path getTaskListFilePath() {

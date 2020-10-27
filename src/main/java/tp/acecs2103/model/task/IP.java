@@ -6,14 +6,14 @@ import java.time.LocalDate;
  * Represents a IP task.
  */
 public class IP extends Task {
-    /**
+  
+     /**
      * Creates a {@code IP} task.
      */
-    public IP(String index, int weekNumber,
-              String description, LocalDate officialDeadline, LocalDate customizedDeadline,
-              String remark, boolean customized) {
-        super(index, weekNumber, description, officialDeadline, customizedDeadline,
-                remark, customized);
+    public IP(Index index, WeekNumber weekNumber,
+              Description description, OfficialDeadline officialDeadline,
+              CustomizedDeadline customizedDeadline, Remark remark) {
+        super(index, weekNumber, description, officialDeadline, customizedDeadline, remark);
     }
 
     @Override
