@@ -13,6 +13,8 @@ import tp.acecs2103.commons.util.CollectionUtil;
 import tp.acecs2103.model.task.CustomizedDeadline;
 import tp.acecs2103.model.task.Index;
 import tp.acecs2103.model.task.OfficialDeadline;
+import tp.acecs2103.model.exceptions.InvalidTaskListOperationException;
+import tp.acecs2103.model.exceptions.ModelException;
 import tp.acecs2103.model.task.Task;
 import tp.acecs2103.model.task.WeekNumber;
 
@@ -109,8 +111,17 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteTask(String index) {
-        uiTaskList.addAll(taskList.delete(new Index(index)));
+    public boolean isTaskCustomized(String index) {
+        return taskList.isTaskCustomized(new Index(index));
+    }
+
+    @Override
+    public void deleteTask(String index) throws ModelException {
+        try {
+            uiTaskList.addAll(taskList.delete(new Index(index)));
+        } catch (InvalidTaskListOperationException e) {
+            throw new ModelException(e.getMessage());
+        }
     }
 
     @Override

@@ -70,24 +70,25 @@ public class AddCommandParser implements Parser<AddCommand> {
         
         if (category.equals(TaskCategory.ADMIN)) {
             Admin admin = new Admin(indexObject, weekNumberObject, descriptionObject, null, 
-                    customizedDeadlineObject, remarkObject);
+                    customizedDeadlineObject, remarkObject, true);
             return new AddCommand(admin);
         } else if (category.equals(TaskCategory.TOPIC)) {
             Topic topic = new Topic(indexObject, weekNumberObject, descriptionObject, null, 
-                    customizedDeadlineObject, remarkObject);
+                    customizedDeadlineObject, remarkObject, true);
             return new AddCommand(topic);
         } else if (category.equals(TaskCategory.IP)) {
             IP ip = new IP(indexObject, weekNumberObject, descriptionObject, null, 
-                    customizedDeadlineObject, remarkObject);
+                    customizedDeadlineObject, remarkObject, true);
             return new AddCommand(ip);
         } else if (category.equals(TaskCategory.TP)) {
             TP tp = new TP(indexObject, weekNumberObject, descriptionObject, null, 
-                    customizedDeadlineObject, remarkObject);
+                    customizedDeadlineObject, remarkObject, true);
             return new AddCommand(tp);
         }
 
         Task task = new Task(indexObject, weekNumberObject, descriptionObject, null, 
-                customizedDeadlineObject, remarkObject, category);
+                customizedDeadlineObject, remarkObject, category, true);
+
         return new AddCommand(task);
     }
 

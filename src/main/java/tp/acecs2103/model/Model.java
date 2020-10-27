@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import tp.acecs2103.commons.core.GuiSettings;
+import tp.acecs2103.model.exceptions.ModelException;
 import tp.acecs2103.model.task.Task;
 
 /**
@@ -71,9 +72,14 @@ public interface Model {
     void addTask(Task task);
 
     /**
+     * Checks whether the task is customized.
+     */
+    boolean isTaskCustomized(String index);
+
+    /**
      * Deletes one task out of task list with given index.
      */
-    void deleteTask(String index);
+    void deleteTask(String index) throws ModelException;
 
     /**
      * Finds tasks based on given keyword.
