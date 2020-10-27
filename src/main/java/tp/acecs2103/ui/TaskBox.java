@@ -45,7 +45,7 @@ public class TaskBox extends UiPart<Region> {
             index.setText("Index: " + task.getIndex());
         }
         if (!Objects.isNull(task.getWeekNumber())) {
-            weekNumber.setText("Week number: " + Integer.toString(task.getWeekNumber()));
+            weekNumber.setText("Week number: " + task.getWeekNumber().toString());
         }
         if (!Objects.isNull(task.getDescription())) {
             description.setText("Description: " + task.getDescription());
