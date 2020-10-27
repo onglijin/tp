@@ -175,7 +175,7 @@ public class TaskList {
      *
      * @param taskIndex A valid task index,
      */
-    public boolean isTaskCustomized(String taskIndex) {
+    public boolean isTaskCustomized(Index taskIndex) {
         int i = 0;
         for (Task task : taskList) {
             if (task.hasIndex(taskIndex)) {
