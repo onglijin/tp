@@ -64,11 +64,11 @@ List of PARAMETERs :
 * exit: `exit`. Exits the task manager.
 
 ### Viewing administrative information: `get`
-    
+
 Gets specified administrative information by parameters.
-    
+
 Format: `get PARAMETER`
-    
+ 
 List of PARAMETERs :
 
 * contact: Returns the email addresses of professors and TAs in charge of CS2103/T.
@@ -132,7 +132,7 @@ Format: `add d/DESCRIPTION c/DEADLINE r/REMARK a/CATEGORY`
 * The task with DESCRIPTION as description, DEADLINE as customised deadline, REMARK as remark, CATEGORY as the category will be added into task list.
 
 Example:
-* `add d/update c/documentation c/2020-10-02 r/check tp dashboard a/Tp`: 
+* `add d/update c/documentation c/2020-10-02 r/check tp dashboard a/Tp`:
 Task to update documentation with deadline set on 2020-10-02 of category tp with a remark to check tp dashboard is added to the task list.
 
 ### Exiting the program : `exit`
