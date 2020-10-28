@@ -187,6 +187,7 @@ public class Task implements Comparable<Task> {
 
     @Override
     public String toString() {
-        return "Week " + this.getWeekNumber().value + " task indexed at " + this.getIndex().value;
+        return "[Week " + this.getWeekNumber().value + "] Task " + this.getIndex().value + " with description: " +
+                this.getDescription().value;
     }
 }
