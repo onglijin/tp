@@ -1,7 +1,5 @@
 package tp.acecs2103.ui;
 
-//import java.time.LocalDate;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;

@@ -19,13 +19,14 @@ public class Task {
     private CustomizedDeadline customizedDeadline;
     private Remark remark;
     private TaskCategory category;
+    private boolean customized;
 
     /**
      * Creates a {@code Task} with given details.
      */
     public Task(Index index, WeekNumber weekNumber,
                 Description description, OfficialDeadline officialDeadline,
-                CustomizedDeadline customizedDeadline, Remark remark) {
+                CustomizedDeadline customizedDeadline, Remark remark, boolean customized) {
         CollectionUtil.requireAllNonNull(index, weekNumber, description);
         this.index = index;
         this.weekNumber = weekNumber;
@@ -34,6 +35,7 @@ public class Task {
         this.customizedDeadline = customizedDeadline;
         this.remark = remark;
         this.category = TaskCategory.TASK;
+        this.customized = customized;
     }
 
     /**
@@ -41,7 +43,7 @@ public class Task {
      */
     public Task(Index index, WeekNumber weekNumber, Description description,
                 OfficialDeadline officialDeadline, CustomizedDeadline customizedDeadline,
-                Remark remark, TaskCategory taskCategory) {
+                Remark remark, TaskCategory taskCategory, boolean customized) {
         CollectionUtil.requireAllNonNull(index, weekNumber, description);
         this.index = index;
         this.weekNumber = weekNumber;
@@ -50,6 +52,7 @@ public class Task {
         this.customizedDeadline = customizedDeadline;
         this.remark = remark;
         this.category = taskCategory;
+        this.customized = customized;
     }
 
     /**
@@ -99,6 +102,13 @@ public class Task {
      */
     public TaskCategory getCategory() {
         return this.category;
+    }
+
+    /**
+     * Checks whether the task is customized.
+     */
+    public boolean isCustomized() {
+        return this.customized;
     }
 
     /**

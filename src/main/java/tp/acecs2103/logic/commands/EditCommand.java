@@ -10,13 +10,7 @@ import tp.acecs2103.commons.util.CollectionUtil;
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.TaskList;
-import tp.acecs2103.model.task.CustomizedDeadline;
-import tp.acecs2103.model.task.Description;
-import tp.acecs2103.model.task.Index;
-import tp.acecs2103.model.task.OfficialDeadline;
-import tp.acecs2103.model.task.Remark;
-import tp.acecs2103.model.task.Task;
-import tp.acecs2103.model.task.WeekNumber;
+import tp.acecs2103.model.task.*;
 
 
 /**
@@ -85,8 +79,9 @@ public class EditCommand extends Command {
         Remark remark = editTaskDescriptor.getRemark().orElse(taskToEdit.getRemark());
 
         return new Task(taskToEdit.getIndex(), updatedWeekNumber, updatedDescription,
-                updatedOfficialDeadline, updatedCustomizedDeadline, remark);
+                updatedOfficialDeadline, updatedCustomizedDeadline, remark, taskToEdit.getCategory(), false);
     }
+
 
     @Override
     public boolean equals(Object other) {
