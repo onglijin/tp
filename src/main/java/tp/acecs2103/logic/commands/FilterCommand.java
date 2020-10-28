@@ -9,6 +9,7 @@ import tp.acecs2103.commons.core.index.Index;
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.task.Task;
+import tp.acecs2103.model.task.WeekNumber;
 
 
 public class FilterCommand extends Command {
@@ -20,7 +21,7 @@ public class FilterCommand extends Command {
 
     private final String keyword;
     private final String ddlType; // optional, only for pending tasks
-    private final int weekNumber; //optional
+    private final WeekNumber weekNumber; //optional
 
     /**
      * Creates an FilterCommand to display tasks that fulfill given criteria.
@@ -33,14 +34,14 @@ public class FilterCommand extends Command {
         }
         this.keyword = keyword;
         this.ddlType = null;
-        this.weekNumber = -1;
+        this.weekNumber = new WeekNumber("-1"); // set the default week number to -1
     }
 
     /**
      * Creates an FilterCommand to display tasks that fulfill given criteria.
      * For display of completed tasks when week number is given
      */
-    public FilterCommand(String keyword, int weekNumber) throws CommandException{
+    public FilterCommand(String keyword, WeekNumber weekNumber) throws CommandException{
         requireNonNull(keyword);
         if (keyword != "done") {
             throw new CommandException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
@@ -61,14 +62,14 @@ public class FilterCommand extends Command {
         }
         this.keyword = keyword;
         this.ddlType = ddlType;
-        this.weekNumber = -1;
+        this.weekNumber = new WeekNumber("-1"); // set the default week number to -1
     }
 
     /**
      * Creates an FilterCommand to display tasks that fulfill given criteria.
      * For pending tasks with ddl type specified and week number given.
      */
-    public FilterCommand(String keyword, String ddlType, int weekNumber) throws CommandException{
+    public FilterCommand(String keyword, String ddlType, WeekNumber weekNumber) throws CommandException{
         requireNonNull(keyword);
         if (keyword != "pending" || (ddlType != "official" && ddlType != "customised")) {
             throw new CommandException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
@@ -82,7 +83,7 @@ public class FilterCommand extends Command {
     public CommandResult execute(Model model)  {
         requireNonNull(model);
         boolean isDone = (keyword == "done");
-        boolean byOfficialDdl = (ddlType == "offical");
+        boolean byOfficialDdl = (ddlType == "official");
 
         model.filterTasks(isDone, byOfficialDdl, weekNumber);
         model.getUiTaskList();
