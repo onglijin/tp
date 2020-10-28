@@ -11,6 +11,7 @@ import tp.acecs2103.model.task.TP;
 import tp.acecs2103.model.task.Task;
 import tp.acecs2103.model.task.Topic;
 import tp.acecs2103.model.task.WeekNumber;
+import java.time.LocalDate;
 
 /**
  * Contains utility methods for populating {@code TaskList} with sample data.
