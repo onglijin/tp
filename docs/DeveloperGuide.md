@@ -194,7 +194,7 @@ The category field in the task box is not needed because category box can clearl
 
 ### Command Box
 **Description:**
-User can enter commands in the command box. 
+User can enter commands in the command box.
 <br/>
 <br/>
 **Implementation:**
@@ -239,7 +239,7 @@ After entering a command, the message window will tell users whether the command
 Message window contains the following field:
 + message text
 
-Message window will accept a string of message from the parser which indicates the status of the command, and then display it at the bottom of the application. Besides, the displayed message should be refreshed and updated whenever a new command is entered. 
+Message window will accept a string of message from the parser which indicates the status of the command, and then display it at the bottom of the application. Besides, the displayed message should be refreshed and updated whenever a new command is entered.
 <br/>
 <br/>
 **Why:**

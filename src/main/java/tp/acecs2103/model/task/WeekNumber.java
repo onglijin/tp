@@ -35,7 +35,7 @@ public class WeekNumber {
 
     /**
      * Get the int value from the WeekNumber String.
-     * 
+     *
      * @return int value of String.
      */
     public int getWeekValueInt() {
