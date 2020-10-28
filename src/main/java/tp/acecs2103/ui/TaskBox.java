@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import tp.acecs2103.commons.core.LogsCenter;
 import tp.acecs2103.model.task.Task;
 
@@ -19,6 +20,8 @@ public class TaskBox extends UiPart<Region> {
     public final Task task;
     private final Logger logger = LogsCenter.getLogger(TaskBox.class);
 
+    @FXML
+    private VBox box;
     @FXML
     private HBox cardPane;
     @FXML
@@ -59,5 +62,8 @@ public class TaskBox extends UiPart<Region> {
         if (!Objects.isNull(task.getRemark())) {
             remark.setText("Remark: " + task.getRemark());
         }
+
+        box.getStyleClass().add("done-task");
+        logger.info(String.valueOf(box.getStyleClass().size()));
     }
 }
