@@ -149,22 +149,24 @@ public class TaskList {
      * @return a new ArrayList to display.
      */
     public ArrayList<Task> filter(boolean isDone, boolean byOfficialDeadline, WeekNumber weekNumber) {
-        ArrayList<Task> newList = new ArrayList<>();
-        if (Integer.parseInt(weekNumber.value) > 0) {
+        ArrayList<Task> newList = new ArrayList<>(taskList);
+        ArrayList<Task> additionalList = new ArrayList<>();
+
+        if (weekNumber != null) {
             newList = list(weekNumber);
         }
 
-        for (Task task : taskList) {
+        for (Task task : newList) {
             if (task.isDone() == isDone) {
-                newList.add(task);
+                additionalList.add(task);
             }
         }
 
         if (!isDone) {
             if (byOfficialDeadline) {
-                Collections.sort(newList);
+                Collections.sort(additionalList);
             } else {
-                Collections.sort(newList, new Comparator<Task>() {
+                Collections.sort(additionalList, new Comparator<Task>() {
                     @Override
                     public int compare(Task o1, Task o2) {
                         return o1.getCustomizedDeadline().compareTo(o2.getCustomizedDeadline());
@@ -172,7 +174,7 @@ public class TaskList {
                 });
             }
         }
-        return newList;
+        return additionalList;
     }
 
     /**
