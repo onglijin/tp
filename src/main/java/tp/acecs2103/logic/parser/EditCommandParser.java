@@ -4,10 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static tp.acecs2103.logic.parser.ParserUtil.parseWeekNumber;
 
 import java.time.LocalDate;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
 
 import tp.acecs2103.commons.core.Messages;
 import tp.acecs2103.logic.commands.EditCommand;
@@ -15,11 +11,9 @@ import tp.acecs2103.logic.parser.exceptions.ParseException;
 import tp.acecs2103.model.task.CustomizedDeadline;
 import tp.acecs2103.model.task.Description;
 import tp.acecs2103.model.task.Index;
-import tp.acecs2103.model.tag.Tag;
 import tp.acecs2103.model.task.OfficialDeadline;
 import tp.acecs2103.model.task.Remark;
 import tp.acecs2103.model.task.WeekNumber;
-
 
 /**
  * Parses input arguments and creates a new EditCommand object

@@ -5,11 +5,9 @@ import static tp.acecs2103.logic.parser.CliSyntax.PREFIX_INDEX;
 
 import java.time.LocalDate;
 
-import tp.acecs2103.model.task.Index;
 import tp.acecs2103.logic.commands.DeadlineCommand;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
-
-
+import tp.acecs2103.model.task.Index;
 
 public class DeadlineCommandParser implements Parser<DeadlineCommand> {
     @Override

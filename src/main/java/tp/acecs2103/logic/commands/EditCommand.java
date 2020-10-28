@@ -2,7 +2,6 @@ package tp.acecs2103.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDate;
 import java.util.Optional;
 
 import tp.acecs2103.commons.core.Messages;
@@ -10,7 +9,13 @@ import tp.acecs2103.commons.util.CollectionUtil;
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.TaskList;
-import tp.acecs2103.model.task.*;
+import tp.acecs2103.model.task.CustomizedDeadline;
+import tp.acecs2103.model.task.Description;
+import tp.acecs2103.model.task.Index;
+import tp.acecs2103.model.task.OfficialDeadline;
+import tp.acecs2103.model.task.Remark;
+import tp.acecs2103.model.task.Task;
+import tp.acecs2103.model.task.WeekNumber;
 
 
 /**

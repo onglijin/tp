@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-Ace 2103/T is a **desktop app for managing task requirements of CS2103/T, optimized for use via Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Ace 2103/T can get your learning tasks managed faster than traditional GUI apps.
+Ace CS2103/T is a **desktop app for managing task requirements of CS2103/T, optimized for use via Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Ace CS2103/T can get your learning tasks managed faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -68,7 +68,7 @@ List of PARAMETERs :
 Gets specified administrative information by parameters.
 
 Format: `get PARAMETER`
- 
+
 List of PARAMETERs :
 
 * contact: Returns the email addresses of professors and TAs in charge of CS2103/T.

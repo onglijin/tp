@@ -2,16 +2,14 @@ package tp.acecs2103.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
 import tp.acecs2103.commons.util.AppUtil;
+import tp.acecs2103.model.exceptions.InvalidTaskListOperationException;
 import tp.acecs2103.model.task.CustomizedDeadline;
 import tp.acecs2103.model.task.Index;
-import tp.acecs2103.model.task.OfficialDeadline;
-import tp.acecs2103.model.exceptions.InvalidTaskListOperationException;
 import tp.acecs2103.model.task.Task;
 import tp.acecs2103.model.task.WeekNumber;
 
@@ -184,8 +182,6 @@ public class TaskList {
      * @return a array list consisting of all satisfied tasks.
      */
     public ArrayList<Task> list(WeekNumber weekNumber) {
-        // TODO: include assertion?
-//        assert weekNumber.value <= 13;
         timeRange = weekNumber;
         ArrayList<Task> newList = new ArrayList<Task>();
         for (Task task: taskList) {
