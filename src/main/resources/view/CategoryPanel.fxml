@@ -5,13 +5,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="295.0" style="-fx-border-insets: 20; -fx-background-radius: 10; -fx-border-radius: 10; -fx-padding: 20, 20, 20, 20;" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="295.0" style="-fx-text-align:center; -fx-border-insets: 20; -fx-background-radius: 10; -fx-border-radius: 10; -fx-padding: 20, 20, 20, 20;" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
 
    <children>
-      <Label fx:id="categoryLabel" prefHeight="46.0" prefWidth="75.0" style="-fx-background-radius: 10; -fx-label-padding: 10, 10, 10, 10; -fx-background-color: #AFEEEE; -fx-border-radius: 10;" text="Label" textFill="#3cc4a9">
+      <Label fx:id="categoryLabel" prefHeight="46.0" prefWidth="500.0" style="-fx-background-radius: 10; -fx-label-padding: 10, 10, 10, 10; -fx-background-color: #AFEEEE; -fx-border-radius: 10;" text="Label" textFill="#3cc4a9">
          <font>
             <Font name="MS Outlook" size="14.0" />
-         </font></Label>
+         </font>
+      </Label>
       <ListView fx:id="categoryView" VBox.vgrow="ALWAYS" />
    </children>
 </VBox>
