@@ -1,13 +1,6 @@
 package tp.acecs2103.model.task;
 
-import static java.util.Objects.requireNonNull;
-import static tp.acecs2103.commons.util.AppUtil.checkArgument;
-
 import java.time.LocalDate;
-import java.util.logging.Logger;
-
-import tp.acecs2103.AppParameters;
-import tp.acecs2103.commons.core.LogsCenter;
 
 /**
  * Represents a Task's official deadline in the task manager.

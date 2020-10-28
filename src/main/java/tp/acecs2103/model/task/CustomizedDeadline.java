@@ -2,9 +2,6 @@ package tp.acecs2103.model.task;
 
 import java.time.LocalDate;
 
-import static tp.acecs2103.commons.util.AppUtil.checkArgument;
-import static tp.acecs2103.model.task.OfficialDeadline.isValidOfficialDeadline;
-
 /**
  * Represents a Task's official deadline in the task manager.
  * Guarantees: is valid as declared in {@link #isValidDeadline(String)}
@@ -19,6 +16,4 @@ public class CustomizedDeadline extends Deadline{
     public CustomizedDeadline(String customizedDeadline, LocalDate timeInfo) {
         super(customizedDeadline, timeInfo);
     }
-
-
 }

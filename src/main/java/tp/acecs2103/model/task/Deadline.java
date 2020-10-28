@@ -27,6 +27,7 @@ public class Deadline {
      */
     public Deadline(String Deadline, LocalDate timeInfo) {
         if (Deadline != null) {
+            requireNonNull(Deadline);
             checkArgument(isValidDeadline(Deadline), MESSAGE_CONSTRAINTS);
         }
         this.value =Deadline;
