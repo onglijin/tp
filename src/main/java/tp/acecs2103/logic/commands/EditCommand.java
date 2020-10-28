@@ -46,7 +46,7 @@ public class EditCommand extends Command {
         requireNonNull(model);
         TaskList lastShownList = model.getTaskList();
 
-        if (index.getIndexValue() >= lastShownList.size()) {
+        if (lastShownList.getTask(index) == null) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 

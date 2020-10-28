@@ -129,32 +129,46 @@ class JsonAdaptedTask {
             isDone = false;
         }
 
+        OfficialDeadline officialddl ;
+        if (officialDeadline == null){
+            officialddl = null;
+        } else {
+            officialddl = new OfficialDeadline(officialDeadline, LocalDate.parse(officialDeadline));
+        }
+
+        CustomizedDeadline customizedddl;
+        if (customizedDeadline == null) {
+            customizedddl = null;
+        } else {
+            customizedddl = new CustomizedDeadline(customizedDeadline, LocalDate.parse(customizedDeadline));
+        }
+
         if (TaskCategory.isStringAdmin(category)) {
             return new Admin(new Index(index), new WeekNumber(weekNumber), new Description(description),
-                    new OfficialDeadline(officialDeadline, LocalDate.parse(officialDeadline)), new CustomizedDeadline(customizedDeadline, LocalDate.parse(customizedDeadline)),
+                    officialddl, customizedddl,
                     new Remark(remark), isCustomized, isDone);
         }
 
         if (TaskCategory.isStringTopic(category)) {
             return new Topic(new Index(index), new WeekNumber(weekNumber), new Description(description),
-                    new OfficialDeadline(officialDeadline, LocalDate.parse(officialDeadline)), new CustomizedDeadline(customizedDeadline, LocalDate.parse(customizedDeadline)),
+                    officialddl, customizedddl,
                     new Remark(remark), isCustomized, isDone);
         }
 
         if (TaskCategory.isStringIP(category)) {
             return new IP(new Index(index), new WeekNumber(weekNumber), new Description(description),
-                    new OfficialDeadline(officialDeadline, LocalDate.parse(officialDeadline)), new CustomizedDeadline(customizedDeadline, LocalDate.parse(customizedDeadline)),
+                    officialddl, customizedddl,
                     new Remark(remark), isCustomized, isDone);
         }
 
         if (TaskCategory.isStringTP(category)) {
             return new TP(new Index(index), new WeekNumber(weekNumber), new Description(description),
-                    new OfficialDeadline(officialDeadline, LocalDate.parse(officialDeadline)), new CustomizedDeadline(customizedDeadline, LocalDate.parse(customizedDeadline)),
+                    officialddl, customizedddl,
                     new Remark(remark), isCustomized, isDone);
         }
 
         return new Task(new Index(index), new WeekNumber(weekNumber), new Description(description),
-                new OfficialDeadline(officialDeadline, LocalDate.parse(officialDeadline)), new CustomizedDeadline(customizedDeadline, LocalDate.parse(customizedDeadline)),
+                officialddl, customizedddl,
                 new Remark(remark), true, isDone);
     }
 
