@@ -8,14 +8,17 @@ import java.util.Collections;
 import java.util.Comparator;
 
 import tp.acecs2103.commons.util.AppUtil;
+import tp.acecs2103.model.task.CustomizedDeadline;
+import tp.acecs2103.model.task.Index;
+import tp.acecs2103.model.task.OfficialDeadline;
 import tp.acecs2103.model.exceptions.InvalidTaskListOperationException;
 import tp.acecs2103.model.task.Task;
-
+import tp.acecs2103.model.task.WeekNumber;
 
 
 public class TaskList {
     private ArrayList<Task> taskList;
-    private int timeRange;
+    private WeekNumber timeRange;
 
     /**
      * Initializes a {@code TaskList} with given task list and time range.
@@ -23,7 +26,7 @@ public class TaskList {
      * @param taskList is given task list.
      * @param timeRange is given time range.
      */
-    public TaskList(ArrayList<Task> taskList, int timeRange) {
+    public TaskList(ArrayList<Task> taskList, WeekNumber timeRange) {
         this.taskList = taskList;
         this.timeRange = timeRange;
     }
@@ -70,7 +73,7 @@ public class TaskList {
      *
      * @return a int of time range.
      */
-    public int getTimeRange() {
+    public WeekNumber getTimeRange() {
         return timeRange;
     }
 
@@ -79,7 +82,7 @@ public class TaskList {
      *
      * @param weekNumber is new time range.
      */
-    public void setTimeRange(int weekNumber) {
+    public void setTimeRange(WeekNumber weekNumber) {
         timeRange = weekNumber;
     }
 
@@ -98,10 +101,10 @@ public class TaskList {
      *
      * @return a task with the required index.
      */
-    public Task getTask(String index) {
+    public Task getTask(Index index) {
         for (Task task: taskList) {
             //index is stored as String in task object,// so a conversion from string to int is needed
-            if (index == task.getIndex()) {
+            if (task.getIndex().equals(index)) {
                 return task;
             }
         }
@@ -147,9 +150,9 @@ public class TaskList {
      * @param weekNumber is the int value to describe the week number of the tasks to be displayed(optional)
      * @return a new ArrayList to display.
      */
-    public ArrayList<Task> filter(boolean isDone, boolean byOfficialDeadline, int weekNumber) {
+    public ArrayList<Task> filter(boolean isDone, boolean byOfficialDeadline, WeekNumber weekNumber) {
         ArrayList<Task> newList = new ArrayList<>();
-        if (weekNumber > 0) {
+        if (Integer.parseInt(weekNumber.value) > 0) {
             newList = list(weekNumber);
         }
 
@@ -180,8 +183,9 @@ public class TaskList {
      * @param weekNumber A valid week number.
      * @return a array list consisting of all satisfied tasks.
      */
-    public ArrayList<Task> list(int weekNumber) {
-        assert weekNumber <= 13;
+    public ArrayList<Task> list(WeekNumber weekNumber) {
+        // TODO: include assertion?
+//        assert weekNumber.value <= 13;
         timeRange = weekNumber;
         ArrayList<Task> newList = new ArrayList<Task>();
         for (Task task: taskList) {
@@ -208,7 +212,8 @@ public class TaskList {
      *
      * @param taskIndex A valid task index,
      */
-    public boolean isCustomizedTask(String taskIndex) {
+
+    public boolean isCustomizedTask(Index taskIndex) {
         int i = 0;
         for (Task task : taskList) {
             if (task.hasIndex(taskIndex)) {
@@ -226,7 +231,7 @@ public class TaskList {
      * @param taskIndex A valid task index.
      * @return a new array list after find().
      */
-    public ArrayList<Task> delete(String taskIndex) throws InvalidTaskListOperationException {
+    public ArrayList<Task> delete(Index taskIndex) throws InvalidTaskListOperationException {
         int i = 0;
         for (Task task : taskList) {
             if (task.hasIndex(taskIndex)) {
@@ -248,7 +253,7 @@ public class TaskList {
      * @param taskIndex A valid task index.
      * @return a new array list after find().
      */
-    public ArrayList<Task> done(String taskIndex) throws InvalidTaskListOperationException {
+    public ArrayList<Task> done(Index taskIndex) throws InvalidTaskListOperationException {
         int i = 0;
         for (Task task : taskList) {
             if (task.hasIndex(taskIndex)) {
@@ -271,7 +276,7 @@ public class TaskList {
      * @param deadline A valid deadline.
      * @return a new array list after find().
      */
-    public ArrayList<Task> deadline(String taskIndex, LocalDate deadline) {
+    public ArrayList<Task> deadline(Index taskIndex, CustomizedDeadline deadline) {
         for (Task task: taskList) {
             if (task.hasIndex(taskIndex)) {
                 task.setDeadline(deadline);
@@ -312,3 +317,4 @@ public class TaskList {
         return taskList.size();
     }
 }
+

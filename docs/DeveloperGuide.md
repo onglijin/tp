@@ -71,20 +71,20 @@ The `UI` component,
 
 ### Logic component
 
-![Structure of the Logic Component](images/LogicClassDiagram.png)
+![Structure of the Logic Component](images/Ace2103LogicClassDiagram.jpg)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103-T14-4/tp/blob/master/src/main/java/tp/acecs2103/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `TaskListParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding a customised task).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 0101")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete 1` Command](images/Ace2103DeleteSequenceDiagram.jpg)
 
 ### Model component
 
@@ -355,9 +355,9 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps due to prior experience with CLI apps 
+* is reasonably comfortable using CLI apps due to prior experience with CLI apps
 
-**Value proposition**: 
+**Value proposition**:
 Provide CS2103 and CS2103/T students with integrated timeline and checklists for weekly tasks in categories, and enable their customised managements of these tasks.
 
 
@@ -371,9 +371,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | get the tP GitHub link         | check the GitHub updates easily                                                                       |
 | `* * *`  | user                                       | get the module overview        | have a general idea about the course                                  |
 | `* * *`  | user                                       | get MicroSoft Team links       | get updates from the teaching team
-| `* * *`  | user                                       | get progress dashboard links   | keep track of the progress for iP and tP    
+| `* * *`  | user                                       | get progress dashboard links   | keep track of the progress for iP and tP
 | `* * *`  | user                                       | add a task with description, deadline and remarks | track additional tasks besides preloaded ones from the CS2103/T website
-| `* * *`  | user                                       | edit a customised task set up wrongly 
+| `* * *`  | user                                       | edit a customised task set up wrongly
 | `* * *`  | user                                       | delete a customised task set up wrongly
 | `* * *`  | user                                       | search for tasks using a keyword | find a specific task without reading through the whole task list
 | `* * *`  | user                                       | add a customised deadline to a task | record when a task needs to be done according to my own schedule
@@ -393,13 +393,13 @@ Actor: User
 
 1.  User asks for help information of a specified command name
 2.  Task manager shows information about the asking command name
-    
+
     Use case ends
 
 **Extensions**
 
 1a. User does not provide specified command name
-    
+
     1a1. Task manager lists all the commands used in this software.
         Use case ends
 
@@ -425,7 +425,7 @@ Actor: User
 **Extensions**
 
 1a. Parameter provided by user is invalid
-    
+
     1a1.  Task manager informs user the parameter is invalid and lists all the valid parameters.
         Use case ends
 
@@ -433,9 +433,9 @@ Actor: User
 
     1b1. Task manager lists all the valid parameters.
         Use case ends
-        
-        
-        
+   
+   
+    
 **Use case: UC03 - Search for tasks**
 
 Actor: User
@@ -450,7 +450,7 @@ Actor: User
 **Extensions**
 
 1a. User does not provide a keyword
-    
+
     1a1. Task manager informs user to add a parameter
         Use case ends
 
@@ -476,12 +476,12 @@ Actor: User
 **Extensions**
 
 1a. User provides an invalid week number
-    
+
     1a1.  Task manager informs the user the week number is incorrect
         Use case ends
 
 1b. User does not provide week number
-    
+
     1b1. Task manager informs the user to provide valid week number
         Use case ends
 
@@ -530,13 +530,13 @@ Actor: User
 **MSS**
 1.  User requests for adding customized task and provides the necessary information
 2.  Task manager adds the task and shows user an overview of task added
-    
+
     Use case ends.
 
 **Extensions**
 
 1a.  Information provided by user is not complete
-    
+
     1a1.  Task manager informs user the correct format and asks for a new order
         Use case ends
 
@@ -562,7 +562,7 @@ Actor: User
 **Extensions**
 
 1a.  User provides an invalid task index
-    
+
     1a1. Task manager informs the user to provide a valid task index
         Use case ends
 
@@ -581,7 +581,7 @@ Actor: User
 **MSS**
 1.  User requests to exit from task manager
 2.  Task manager shows goodbye words and stops program
- 
+
     Use case ends.
 
 **Extensions**
@@ -590,7 +590,7 @@ Actor: User
 
     *a1. Task manager shows goodbye words and exits
          Use case ends.
-    
+
 
 
 

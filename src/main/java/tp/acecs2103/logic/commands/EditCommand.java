@@ -6,12 +6,11 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 import tp.acecs2103.commons.core.Messages;
-import tp.acecs2103.commons.core.index.Index;
 import tp.acecs2103.commons.util.CollectionUtil;
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.TaskList;
-import tp.acecs2103.model.task.Task;
+import tp.acecs2103.model.task.*;
 
 
 /**
@@ -48,11 +47,11 @@ public class EditCommand extends Command {
         requireNonNull(model);
         TaskList lastShownList = model.getTaskList();
 
-        if (index.getIntIndex() >= lastShownList.size()) {
+        if (index.getIndexValue() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        Task taskToEdit = lastShownList.getTask(index.getStrIndex());
+        Task taskToEdit = lastShownList.getTask(index);
         Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
 
         if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
@@ -64,20 +63,24 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
     private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) throws CommandException{
         assert taskToEdit != null;
 
+<<<<<<< HEAD
         if (!taskToEdit.isCustomized()) {
             if (editTaskDescriptor.getWeekNumber() != null || editTaskDescriptor.getDescription() != null)
             throw new CommandException(MESSAGE_INVALID_EDITION);
         }
         int updatedWeekNumber = editTaskDescriptor
+=======
+        WeekNumber updatedWeekNumber = editTaskDescriptor
+>>>>>>> upstream/master
                 .getWeekNumber().orElse(taskToEdit.getWeekNumber());
-        String updatedDescription = editTaskDescriptor
+        Description updatedDescription = editTaskDescriptor
                 .getDescription().orElse(taskToEdit.getDescription());
+<<<<<<< HEAD
         LocalDate updatedCustomizedDeadline = editTaskDescriptor
                 .getCustomizedDeadline().orElse(taskToEdit.getOfficialDeadline());
         String remark = editTaskDescriptor.getRemark().orElse(taskToEdit.getRemark());
@@ -85,7 +88,19 @@ public class EditCommand extends Command {
         return new Task(taskToEdit.getIndex(), updatedWeekNumber, updatedDescription,
                 taskToEdit.getOfficialDeadline(), updatedCustomizedDeadline, remark,
                 taskToEdit.getCategory(), taskToEdit.isCustomized(), taskToEdit.isDone());
+=======
+        OfficialDeadline updatedOfficialDeadline = editTaskDescriptor
+                .getOfficialDeadline().orElse(taskToEdit.getOfficialDeadline());
+        // TODO: check
+        CustomizedDeadline updatedCustomizedDeadline = editTaskDescriptor
+                .getCustomizedDeadline().orElse(taskToEdit.getCustomizedDeadline());
+        Remark remark = editTaskDescriptor.getRemark().orElse(taskToEdit.getRemark());
+
+        return new Task(taskToEdit.getIndex(), updatedWeekNumber, updatedDescription,
+                updatedOfficialDeadline, updatedCustomizedDeadline, remark, taskToEdit.getCategory(), false);
+>>>>>>> upstream/master
     }
+
 
     @Override
     public boolean equals(Object other) {
@@ -110,10 +125,19 @@ public class EditCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditTaskDescriptor {
+<<<<<<< HEAD
         private int weekNumber;
         private String description;
         private LocalDate customizedDeadline;
         private String remark;
+=======
+        //private String index;
+        private WeekNumber weekNumber;
+        private Description description;
+        private OfficialDeadline officialDeadline;
+        private CustomizedDeadline customizedDeadline;
+        private Remark remark;
+>>>>>>> upstream/master
 
         public EditTaskDescriptor() {}
 
@@ -136,26 +160,52 @@ public class EditCommand extends Command {
                     weekNumber, description, customizedDeadline, remark);
         }
 
+<<<<<<< HEAD
         public void setWeekNumber(int weekNumber) {
+=======
+        //public void setIndex(String index) {this.index = index;}
+
+        //public Optional<String> getIndex() {
+        //    return Optional.ofNullable(index);
+        //}
+
+        public void setWeekNumber(WeekNumber weekNumber) {
+>>>>>>> upstream/master
             this.weekNumber = weekNumber;
         }
 
-        public Optional<Integer> getWeekNumber() {
+        public Optional<WeekNumber> getWeekNumber() {
             return Optional.ofNullable(weekNumber);
         }
 
-        public void setDescription(String description) {
+        public void setDescription(Description description) {
             this.description = description;
         }
 
-        public Optional<String> getDescription() {
+        public Optional<Description> getDescription() {
             return Optional.ofNullable(description);
         }
 
+<<<<<<< HEAD
         public void setCustomizedDeadline(LocalDate customizedDeadline) {
             this.customizedDeadline = customizedDeadline;
         }
         public Optional<LocalDate> getCustomizedDeadline() {
+=======
+        public void setOfficialDeadline(OfficialDeadline officialDeadline) {
+            this.officialDeadline = officialDeadline;
+        }
+
+        public Optional<OfficialDeadline> getOfficialDeadline() {
+            return Optional.ofNullable(officialDeadline);
+        }
+
+        public void setCustomizedDeadline(CustomizedDeadline customizedDeadline) {
+            this.customizedDeadline = customizedDeadline;
+        }
+
+        public Optional<CustomizedDeadline> getCustomizedDeadline() {
+>>>>>>> upstream/master
             return Optional.ofNullable(customizedDeadline);
         }
 
@@ -163,7 +213,7 @@ public class EditCommand extends Command {
          * Sets {@code remark} to this object's {@code remark}.
          * A defensive copy of {@code remark} is used internally.
          */
-        public void setRemark(String remark) {
+        public void setRemark(Remark remark) {
             this.remark = remark;
         }
 
@@ -172,7 +222,7 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code remark} is null.
          */
-        public Optional<String> getRemark() {
+        public Optional<Remark> getRemark() {
             return Optional.ofNullable(remark);
         }
 

@@ -1,7 +1,8 @@
 package tp.acecs2103.logic.parser;
 
 import tp.acecs2103.commons.core.Messages;
-import tp.acecs2103.commons.core.index.Index;
+
+import tp.acecs2103.model.task.Index;
 import tp.acecs2103.logic.commands.DeleteCommand;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
 
@@ -18,7 +19,8 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      */
     public DeleteCommand parse(String args) throws ParseException {
         try {
-            Index index = ParserUtil.parseIndexObj(args);
+            String indexParsed = ParserUtil.parseIndex(args);
+            Index index = new Index(indexParsed);
             return new DeleteCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(

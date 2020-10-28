@@ -30,6 +30,7 @@ public class MainWindow extends UiPart<Stage> {
     private CategoryPanel categoryPanel;
     private WeekDisplay weekDisplay;
     private CommandBox commandBox;
+    private FeedbackBox feedbackBox;
 
     @FXML
     private StackPane weekDisplayPlaceholder;
@@ -39,6 +40,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane commandBoxPlaceholder;
+
+    @FXML
+    private StackPane feedbackBoxPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -74,7 +78,8 @@ public class MainWindow extends UiPart<Stage> {
 
         weekDisplay = new WeekDisplay("Ace CS2103/T");
         weekDisplayPlaceholder.getChildren().add(weekDisplay.getRoot());
-
+        feedbackBox = new FeedbackBox();
+        feedbackBoxPlaceholder.getChildren().add(feedbackBox.getRoot());
         CommandBox commandBox = new CommandBox(this::executeCommand); // bottom of Ace CS2103/T
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
@@ -116,6 +121,7 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
+            feedbackBox.setFeedbackToUser(commandResult.getFeedbackToUser());
             // categoryPanel.setFeedbackToUser(commandResult.getFeedbackToUser());
             if (commandResult.isExit()) {
                 handleExit();
@@ -124,6 +130,7 @@ public class MainWindow extends UiPart<Stage> {
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
+            feedbackBox.setFeedbackToUser("Invalid command: " + commandText);
             // categoryPanel.setFeedbackToUser(e.getMessage());
             throw e;
         }
