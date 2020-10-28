@@ -5,8 +5,8 @@ import java.time.LocalDate;
 public class Topic extends Task {
     public Topic(Index index, WeekNumber weekNumber,
                  Description description, OfficialDeadline officialDeadline,
-                 CustomizedDeadline customizedDeadline, Remark remark) {
-        super(index, weekNumber, description, officialDeadline, customizedDeadline, remark);
+                 CustomizedDeadline customizedDeadline, Remark remark, boolean isCustomized) {
+        super(index, weekNumber, description, officialDeadline, customizedDeadline, remark, isCustomized);
     }
 
     @Override

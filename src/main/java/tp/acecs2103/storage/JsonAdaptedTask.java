@@ -117,30 +117,30 @@ class JsonAdaptedTask {
         if (TaskCategory.isStringAdmin(category)) {
             return new Admin(new Index(index), new WeekNumber(weekNumber), new Description(description),
                     new OfficialDeadline(officialDeadline), new CustomizedDeadline(customizedDeadline),
-                    new Remark(remark));
+                    new Remark(remark), isCustomized);
         }
 
         if (TaskCategory.isStringTopic(category)) {
             return new Topic(new Index(index),  new WeekNumber(weekNumber), new Description(description),
                     new OfficialDeadline(officialDeadline), new CustomizedDeadline(customizedDeadline), 
-                    new Remark(remark));
+                    new Remark(remark), isCustomized);
         }
 
         if (TaskCategory.isStringIP(category)) {
             return new IP(new Index(index),  new WeekNumber(weekNumber), new Description(description),
                     new OfficialDeadline(officialDeadline), new CustomizedDeadline(customizedDeadline),
-                    new Remark(remark));
+                    new Remark(remark), isCustomized);
         }
 
         if (TaskCategory.isStringTP(category)) {
             return new TP(new Index(index),  new WeekNumber(weekNumber), new Description(description),
                     new OfficialDeadline(officialDeadline), new CustomizedDeadline(customizedDeadline),
-                    new Remark(remark));
+                    new Remark(remark), isCustomized);
         }
 
         return new Task(new Index(index),  new WeekNumber(weekNumber), new Description(description),
                 new OfficialDeadline(officialDeadline), new CustomizedDeadline(customizedDeadline),
-                new Remark(remark));
+                new Remark(remark), true);
     }
 
     public LocalDate parseDeadline(String deadline) {
