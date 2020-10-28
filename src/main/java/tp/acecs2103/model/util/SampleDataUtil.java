@@ -12,6 +12,8 @@ import tp.acecs2103.model.task.Task;
 import tp.acecs2103.model.task.Topic;
 import tp.acecs2103.model.task.WeekNumber;
 
+import java.time.LocalDate;
+
 /**
  * Contains utility methods for populating {@code TaskList} with sample data.
  */
@@ -19,7 +21,7 @@ public class SampleDataUtil {
     public static Task[] getSampleTasks() {
         return new Task[] {
             new Admin(new Index("0101"), new WeekNumber("1"), new Description("Submit pre-lecture quiz"),
-                new OfficialDeadline("2020-08-17",LocalDate.of(2020,8,17)), null, new Remark("Nothing here"), false, false),
+                new OfficialDeadline("2020-08-17", LocalDate.of(2020,8,17)), null, new Remark("Nothing here"), false, false),
             new Topic(new Index("0102"), new WeekNumber("1"), new Description("OOP: Classes & Objects"),
                     new OfficialDeadline("2020-08-14",LocalDate.of(2020,8,14)), null, new Remark("Nothing here"), false, false),
             new Admin(new Index("0103"), new WeekNumber("1"), new Description("Submit the pre-module survey"),

@@ -18,15 +18,10 @@
   </icons>
   <scene>
     <Scene>
-<<<<<<< HEAD
-
-      <VBox prefHeight="498.0" prefWidth="549.0">
-=======
       <stylesheets>
         <URL value="@TaskBox.css" />
       </stylesheets>
       <VBox prefHeight="498.0" prefWidth="520.0">
->>>>>>> upstream/master
 
         <StackPane fx:id="weekDisplayPlaceholder" maxHeight="60.0" minHeight="60.0" prefHeight="60.0" prefWidth="550.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
