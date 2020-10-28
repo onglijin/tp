@@ -10,7 +10,7 @@ public class IllegalValueException extends Exception {
     public IllegalValueException(String message) {
         super(message);
     }
-    
+
     /**
      * @param message should contain relevant information on the failed constraint(s)
      * @param cause of the main exception
