@@ -171,6 +171,15 @@ public class Task implements Comparable<Task> {
         return index.equals(task.getIndex());
     }
 
+    /**
+     * Checks is a task if overdue (i.e. passed ddl but have not done yet )
+     */
+    public boolean isOverdue(Task task) {
+        assert !task.isDone();
+        return task.getOfficialDeadline().getTimeInfo().compareTo(LocalDate.now()) < 0;
+    }
+
+
     @Override
     public int compareTo(Task o) {
         return getOfficialDeadline().compareTo(o.getOfficialDeadline());
