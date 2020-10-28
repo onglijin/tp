@@ -68,7 +68,7 @@ List of PARAMETERs :
 Gets specified administrative information by parameters.
 
 Format: `get PARAMETER`
- 
+
 List of PARAMETERs :
 
 * contact: Returns the email addresses of professors and TAs in charge of CS2103/T.

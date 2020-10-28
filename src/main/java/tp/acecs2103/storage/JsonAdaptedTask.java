@@ -122,7 +122,7 @@ class JsonAdaptedTask {
 
         if (TaskCategory.isStringTopic(category)) {
             return new Topic(new Index(index),  new WeekNumber(weekNumber), new Description(description),
-                    new OfficialDeadline(officialDeadline), new CustomizedDeadline(customizedDeadline), 
+                    new OfficialDeadline(officialDeadline), new CustomizedDeadline(customizedDeadline),
                     new Remark(remark), isCustomized);
         }
 

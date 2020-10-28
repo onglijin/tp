@@ -49,44 +49,44 @@ public class AddCommandParser implements Parser<AddCommand> {
         String index =
                 ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
         Index indexObject = new Index(index);
-        
+
         int weekNumber =
                 ParserUtil.parseWeekNumber(argMultimap.getValue(PREFIX_WEEK_NUMBER).get());
         WeekNumber weekNumberObject = new WeekNumber(Integer.toString(weekNumber));
-        
+
         String description =
                 ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Description descriptionObject = new Description(description);
-        
+
         LocalDate customizedDeadline =
                 ParserUtil.parseCustomizedDeadline(argMultimap.getValue(PREFIX_CUSTOMIZED_DEADLINE).get());
         CustomizedDeadline customizedDeadlineObject = new CustomizedDeadline(customizedDeadline.toString());
-        
+
         String remark =
                 ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get());
         Remark remarkObject = new Remark(remark);
-        
+
         TaskCategory category = ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get());
-        
+
         if (category.equals(TaskCategory.ADMIN)) {
-            Admin admin = new Admin(indexObject, weekNumberObject, descriptionObject, null, 
+            Admin admin = new Admin(indexObject, weekNumberObject, descriptionObject, null,
                     customizedDeadlineObject, remarkObject, true);
             return new AddCommand(admin);
         } else if (category.equals(TaskCategory.TOPIC)) {
-            Topic topic = new Topic(indexObject, weekNumberObject, descriptionObject, null, 
+            Topic topic = new Topic(indexObject, weekNumberObject, descriptionObject, null,
                     customizedDeadlineObject, remarkObject, true);
             return new AddCommand(topic);
         } else if (category.equals(TaskCategory.IP)) {
-            IP ip = new IP(indexObject, weekNumberObject, descriptionObject, null, 
+            IP ip = new IP(indexObject, weekNumberObject, descriptionObject, null,
                     customizedDeadlineObject, remarkObject, true);
             return new AddCommand(ip);
         } else if (category.equals(TaskCategory.TP)) {
-            TP tp = new TP(indexObject, weekNumberObject, descriptionObject, null, 
+            TP tp = new TP(indexObject, weekNumberObject, descriptionObject, null,
                     customizedDeadlineObject, remarkObject, true);
             return new AddCommand(tp);
         }
 
-        Task task = new Task(indexObject, weekNumberObject, descriptionObject, null, 
+        Task task = new Task(indexObject, weekNumberObject, descriptionObject, null,
                 customizedDeadlineObject, remarkObject, category, true);
 
         return new AddCommand(task);

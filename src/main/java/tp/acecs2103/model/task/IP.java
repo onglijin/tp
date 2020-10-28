@@ -6,7 +6,7 @@ import java.time.LocalDate;
  * Represents a IP task.
  */
 public class IP extends Task {
-  
+
      /**
      * Creates a {@code IP} task.
      */

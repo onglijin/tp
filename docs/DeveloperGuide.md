@@ -127,222 +127,151 @@ The `Storage` component,
 
 Classes used by multiple components are in the `tp.acecs2103.commons` package.
 
-## **UI Enhancements**  
+## **UI Enhancements**
 
-### Task Box  
-**Description:**  
-Task Box is used to encapsulates a pre-defined or a customized task, which will be displayed in the category panel.  
+### Task Box
+**Description:**
+Task Box is used to encapsulates a pre-defined or a customized task, which will be displayed in the category panel.
 <br/>
-**Implementation:**  
-A task box contains the following fields:   
-+ index  
-+ week number  
-+ description  
-+ official deadline  
-+ customized deadline (if any)  
-+ remark (if any)  
+<br/>
+**Implementation:**
+A task box contains the following fields:
++ index
++ week number
++ description
++ official deadline
++ customized deadline (if any)
++ remark (if any)
 
-The constructor is called by Category panel and the data is obtained by passing in a task object from an observable task list.  
+The constructor is called by Category panel and the data is obtained by passing in a task object from an observable task list.
 <br/>
-**Why:**  
-Since there will be multiple tasks under a category panel, task box constructor should be called in category panel and use a default method in JavaFX to generate all the task boxes in one step.   
 <br/>
-**Other Considerations:**  
-Since the data in task box may change depending on the user input, therefore it should be able to check if need to update the content whenever data change happens. Therefore, it is necessary to implement update item method such that it can automatically check the update.  
+**Why:**
+Since there will be multiple tasks under a category panel, task box constructor should be called in category panel and use a default method in JavaFX to generate all the task boxes in one step.
+<br/>
+<br/>
+**Other Considerations:**
+Since the data in task box may change depending on the user input, therefore it should be able to check if need to update the content whenever data change happens. Therefore, it is necessary to implement update item method such that it can automatically check the update.
 
 ### Category Panel
-**Description:**  
-Category panel is used to encapsulates a list of tasks which are of the same category as the header of the category panel.   
+**Description:**
+Category panel is used to encapsulates a list of tasks which are of the same category as the header of the category panel.
 <br/>
-**Implementation:**  
-Category panel contains the following fields:  
-+ category label  
-+ category view  
+<br/>
+**Implementation:**
+Category panel contains the following fields:
++ category label
++ category view
 
-Category panel will read in a category label and an observable task list from Ui Task List class. The category label will be passed into the constructor of category box which will generate the header of the panel. Every task object in the task list will be used to create to a corresponding task box.  
+Category panel will read in a category label and an observable task list from Ui Task List class. The category label will be passed into the constructor of category box which will generate the header of the panel. Every task object in the task list will be used to create to a corresponding task box.
 <br/>
-**Why:**   
-Since a category panel should contains multiple tasks and a category box which indicate the category name, it is necessary to call the constructor of task box and pass in every task object to a corresponding task box. Besides, category label will be passed into the constructor of category box which will generate the header of the panel.  
 <br/>
-**Other Considerations:**  
-Since all the tasks are divided into four categories, and the structure for each panel is the same (header and tasks), there is only one category panel component needed. For styling, different colour and style will be implemented for different category panel.  
+**Why:**
+Since a category panel should contains multiple tasks and a category box which indicate the category name, it is necessary to call the constructor of task box and pass in every task object to a corresponding task box. Besides, category label will be passed into the constructor of category box which will generate the header of the panel.
+<br/>
+<br/>
+**Other Considerations:**
+Since all the tasks are divided into four categories, and the structure for each panel is the same (header and tasks), there is only one category panel component needed. For styling, different colour and style will be implemented for different category panel.
 
 ### Category Box
-**Description:**  
-A category box is a header box to indicate the category of the tasks below.  
+**Description:**
+A category box is a header box to indicate the category of the tasks below.
 <br/>
-**Implementation:**  
-Category box contains the following field:  
-+ category label  
+<br/>
+**Implementation:**
+Category box contains the following field:
++ category label
 
-Category box will just simply read in a string of category then create a corresponding category box.  
+Category box will just simply read in a string of category then create a corresponding category box.
 <br/>
-**Why:**  
-Since there are four different categories, it is necessary to have header box to indicate the different categories.  
 <br/>
-**Other Considerations:**  
-The category field in the task box is not needed because category box can clearly show the category already.  
+**Why:**
+Since there are four different categories, it is necessary to have header box to indicate the different categories.
+<br/>
+<br/>
+**Other Considerations:**
+The category field in the task box is not needed because category box can clearly show the category already.
 
 ### Command Box
-**Description:**  
-User can enter commands in the command box.  
+**Description:**
+User can enter commands in the command box. 
 <br/>
-**Implementation:**  
-Command box contains the following field:  
-+ input command  
+<br/>
+**Implementation:**
+Command box contains the following field:
++ input command
 
-User command will be passed into input command filed and it will then pass to parser to finish subsequent procedures.  
+User command will be passed into input command filed and it will then pass to parser to finish subsequent procedures.
 <br/>
-**Why:**  
-It is necessary to implement user command box such that the application will know what functionalities should be processed.  
-<br/> 
-**Other Considerations:**  
-Since users are supposed to use keyboard only, submit button is replaced by click “Enter”.  
+<br/>
+**Why:**
+It is necessary to implement user command box such that the application will know what functionalities should be processed.
+<br/>
+<br/>
+**Other Considerations:**
+Since users are supposed to use keyboard only, submit button is replaced by click “Enter”.
 
 ### Week Display
-**Description:**  
-Week display component will display the number of the week among all the filtered tasks if they are in the same week.  
+**Description:**
+Week display component will display the number of the week among all the filtered tasks if they are in the same week.
 <br/>
-**Implementation:**  
-Week display contains the following field:  
-+ week number and date  
+<br/>
+**Implementation:**
+Week display contains the following field:
++ week number and date
 
-Week display will receive the maximum and minimum week number among all the filtered tasks, and it will display the week and the corresponding date. Whenever the filtered tasks change, the component will do auto check and the week number should be changed correspondingly.  
+Week display will receive the maximum and minimum week number among all the filtered tasks, and it will display the week and the corresponding date. Whenever the filtered tasks change, the component will do auto check and the week number should be changed correspondingly.
 <br/>
-**Why:**  
-Although it is not essential, having this week display box can facilitate users to know the week that tasks belong to.  
 <br/>
-**Other Considerations:**  
-The text style should be different from others and it should be obvious.  
+**Why:**
+Although it is not essential, having this week display box can facilitate users to know the week that tasks belong to.
+<br/>
+<br/>
+**Other Considerations:**
+The text style should be different from others and it should be obvious.
 
 ### Message Window
-**Description:**  
-After entering a command, the message window will tell users whether the command is executed successfully or not.  
+**Description:**
+After entering a command, the message window will tell users whether the command is executed successfully or not.
 <br/>
-**Implementation:**  
-Message window contains the following field:  
-+ message text  
+<br/>
+**Implementation:**
+Message window contains the following field:
++ message text
 
-Message window will accept a string of message from the parser which indicates the status of the command, and then display it at the bottom of the application. Besides, the displayed message should be refreshed and updated whenever a new command is entered.  
+Message window will accept a string of message from the parser which indicates the status of the command, and then display it at the bottom of the application. Besides, the displayed message should be refreshed and updated whenever a new command is entered. 
 <br/>
-**Why:**  
-In order to make sure the application is responsive for every command; it is necessary to add such a functionality so that users can clearly know weather the command is executed successfully or not instead of being unaware of a failed command.  
 <br/>
-**Other Considerations:**  
-The message should be clear and succinct that not occupy a large area. 
+**Why:**
+In order to make sure the application is responsive for every command; it is necessary to add such a functionality so that users can clearly know weather the command is executed successfully or not instead of being unaware of a failed command.
+<br/>
+<br/>
+**Other Considerations:**
+The message should be clear and succinct that not occupy a large area.
 
-## **Model Enhancements**  
+## **Model Enhancements**
 
 ### UiTaskList
-**Description:**  
-UiTaskList is a task list used for Ui display. 
+**Description:**
+UiTaskList is a task list used for Ui display.
 <br/>
-**Implementation:**  
+<br/>
+**Implementation:**
 UiTaskList includes four sub task lists for `Admin`, `Topic`, `TP` and `IP`:
 + adminList
 + topicList
 + ipList
-+ tpList 
++ tpList
 
-After running a command, UiTaskList will be refreshed to contain all the tasks satisfying current key condition. 
+After running a command, UiTaskList will be refreshed to contain all the tasks satisfying current key condition.
 <br/>
-**Why:**  
+<br/>
+**Why:**
 It is to separate tasks which should be used for Ui display from TaskList used in command operation. This makes TaskList safer to avoid conflicts between Ui and Model.
 <br/>
-**Other Considerations:**  
+<br/>
+**Other Considerations:**
 The UiTaskList must be refreshed every time after the command is run in case there is any change for it.
-
---------------------------------------------------------------------------------------------------------------------
-
-## **Implementation**
-
-This section describes some noteworthy details on how certain features are implemented.
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -387,7 +316,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | delete a customised task set up wrongly
 | `* * *`  | user                                       | search for tasks using a keyword | find a specific task without reading through the whole task list
 | `* * *`  | user                                       | add a customised deadline to a task | record when a task needs to be done according to my own schedule
-| `* * *`  | user                                       | read instructions on how to initialize IntelliJ and other essential tools        | 
+| `* * *`  | user                                       | read instructions on how to initialize IntelliJ and other essential tools        |
 | `* *`    | user                                       | get Prof and TA emails         | ask them questions to clear doubts      |
 | `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
 
@@ -443,9 +372,7 @@ Actor: User
 
     1b1. Task manager lists all the valid parameters.
         Use case ends
-   
-   
-    
+
 **Use case: UC03 - Search for tasks**
 
 Actor: User

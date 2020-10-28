@@ -40,12 +40,7 @@ public class WeekNumber {
     public int getWeekValueInt() {
         return Integer.parseInt(value);
     }
-    
-//    public boolean weekNumberEqual(WeekNumber weekNumber) {
-//        return this.value.equals(weekNumber.getWeekValueInt());
-//    }
-    
-    
+
     @Override
     public String toString() {
         return value;
