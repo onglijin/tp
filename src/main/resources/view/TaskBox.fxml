@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="164.0" prefWidth="235.0" styleClass="HBox" stylesheets="@TaskBox.css" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="164.0" prefWidth="235.0" styleClass="HBox" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <GridPane prefHeight="400.0" prefWidth="600.0" styleClass="GridPane" stylesheets="@TaskBox.css" HBox.hgrow="ALWAYS">
+      <GridPane prefHeight="400.0" prefWidth="600.0" styleClass="GridPane" HBox.hgrow="ALWAYS">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -17,14 +17,14 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <VBox prefHeight="115.0" prefWidth="184.0" style="-fx-background-color: #87CEFA;" styleClass="VBox" stylesheets="@TaskBox.css">
+            <VBox fx:id="box" prefHeight="115.0" prefWidth="184.0" styleClass="VBox">
                <children>
-                  <Label fx:id="index" prefHeight="19.0" prefWidth="140.0" styleClass="Label" stylesheets="@TaskBox.css" text="Index: None" />
-                  <Label fx:id="weekNumber" prefHeight="17.0" prefWidth="150.0" styleClass="Label" stylesheets="@TaskBox.css" text="Week Number: None" />
-                  <Label fx:id="description" prefHeight="17.0" prefWidth="169.0" styleClass="Label" stylesheets="@TaskBox.css" text="Description: None" />
-                  <Label fx:id="officialDeadline" prefHeight="17.0" prefWidth="177.0" styleClass="Label" stylesheets="@TaskBox.css" text="Official Deadline: None" />
-                  <Label fx:id="customizedDeadline" prefHeight="17.0" prefWidth="191.0" styleClass="Label" stylesheets="@TaskBox.css" text="Customized Deadline: None" />
-                  <Label fx:id="remark" prefHeight="17.0" prefWidth="202.0" styleClass="Label" stylesheets="@TaskBox.css" text="Remark: None" />
+                  <Label fx:id="index" prefHeight="19.0" prefWidth="140.0" styleClass="Label" text="Index: None" />
+                  <Label fx:id="weekNumber" prefHeight="17.0" prefWidth="150.0" styleClass="Label" text="Week Number: None" />
+                  <Label fx:id="description" prefHeight="17.0" prefWidth="169.0" styleClass="Label" text="Description: None" />
+                  <Label fx:id="officialDeadline" prefHeight="17.0" prefWidth="177.0" styleClass="Label" text="Official Deadline: None" />
+                  <Label fx:id="customizedDeadline" prefHeight="17.0" prefWidth="191.0" styleClass="Label" text="Customized Deadline: None" />
+                  <Label fx:id="remark" prefHeight="17.0" prefWidth="202.0" styleClass="Label" text="Remark: None" />
                </children>
             </VBox>
          </children>
