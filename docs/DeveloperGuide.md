@@ -262,13 +262,31 @@ It is to separate tasks which should be used for Ui display from TaskList used i
 <br/>
 **Other Considerations:**
 The UiTaskList must be refreshed every time after the command is run in case there is any change for it.
-<<<<<<< HEAD
+
+
+## **Logic Enhancements**
+
+### Command
+**Description:**
+Command is an abstract class for all types of commands available in Ace 2103/T.
+<br/>
+<br/>
+**Implementation:**
+
+
+After running a command, UiTaskList will be refreshed to contain all the tasks satisfying current key condition.
+<br/>
+<br/>
+**Why:**
+It is to separate tasks which should be used for Ui display from TaskList used in command operation. This makes TaskList safer to avoid conflicts between Ui and Model.
+<br/>
+<br/>
+**Other Considerations:**
+The UiTaskList must be refreshed every time after the command is run in case there is any change for it.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
-### List feature
-#### Implementation
 
 ### \[Proposed\] Undo/redo feature
 
@@ -354,9 +372,6 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-
-=======
->>>>>>> upstream/master
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**

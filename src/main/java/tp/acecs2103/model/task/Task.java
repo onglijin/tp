@@ -184,4 +184,9 @@ public class Task implements Comparable<Task> {
     public int compareTo(Task o) {
         return getOfficialDeadline().compareTo(o.getOfficialDeadline());
     }
+
+    @Override
+    public String toString() {
+        return "Week " + this.getWeekNumber().value + " task indexed at " + this.getIndex().value;
+    }
 }
