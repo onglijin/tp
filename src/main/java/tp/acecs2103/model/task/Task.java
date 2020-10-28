@@ -1,5 +1,6 @@
 package tp.acecs2103.model.task;
 
+import java.time.LocalDate;
 import java.util.logging.Logger;
 
 import tp.acecs2103.commons.core.LogsCenter;
@@ -175,7 +176,6 @@ public class Task implements Comparable<Task> {
      * Checks is a task if overdue (i.e. passed ddl but have not done yet )
      */
     public boolean isOverdue() {
-        assert !isDone();
         return getOfficialDeadline().getTimeInfo().compareTo(LocalDate.now()) < 0;
     }
 

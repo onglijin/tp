@@ -4,16 +4,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import tp.acecs2103.commons.core.Messages;
-import tp.acecs2103.logic.commands.AddCommand;
-import tp.acecs2103.logic.commands.Command;
-import tp.acecs2103.logic.commands.DeadlineCommand;
-import tp.acecs2103.logic.commands.DeleteCommand;
-import tp.acecs2103.logic.commands.EditCommand;
-import tp.acecs2103.logic.commands.ExitCommand;
-import tp.acecs2103.logic.commands.FindCommand;
-import tp.acecs2103.logic.commands.GetCommand;
-import tp.acecs2103.logic.commands.HelpCommand;
-import tp.acecs2103.logic.commands.ListCommand;
+import tp.acecs2103.logic.commands.*;
+import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
 
 
@@ -34,7 +26,7 @@ public class TaskListParser {
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    public Command parseCommand(String userInput) throws ParseException {
+    public Command parseCommand(String userInput) throws ParseException, CommandException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
@@ -70,6 +62,15 @@ public class TaskListParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommandParser().parse(arguments);
+
+        case DoneCommand.COMMAND_WORD:
+            return new DoneCommandParser().parse(arguments);
+
+        case UndoneCommand.COMMAND_WORD:
+                return new UndoneCommandParser().parse(arguments);
+
+        case FilterCommand.COMMAND_WORD:
+                return new FilterCommandParser().parse(arguments);
 
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);

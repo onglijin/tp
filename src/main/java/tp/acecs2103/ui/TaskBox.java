@@ -63,7 +63,18 @@ public class TaskBox extends UiPart<Region> {
             remark.setText("Remark: " + task.getRemark());
         }
 
-        box.getStyleClass().add("done-task");
-        logger.info(String.valueOf(box.getStyleClass().size()));
+        if (task.isDone()) {
+            logger.info("done");
+            box.getStyleClass().add("done-task");
+        } else {
+            if (task.isOverdue()) {
+                logger.info("overdue");
+                box.getStyleClass().add("overdue-task");
+            } else {
+                logger.info("pending");
+                 box.getStyleClass().add("pending-task");
+            }
+        }
+
     }
 }

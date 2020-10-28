@@ -29,7 +29,8 @@ public class FilterCommand extends Command {
      */
     public FilterCommand(String keyword) throws CommandException{
         requireNonNull(keyword);
-        if (keyword.equals("done")) {
+
+        if (!keyword.equals("done")) {
             throw new CommandException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
         }
         this.keyword = keyword;
@@ -43,7 +44,7 @@ public class FilterCommand extends Command {
      */
     public FilterCommand(String keyword, WeekNumber weekNumber) throws CommandException{
         requireNonNull(keyword);
-        if (keyword.equals("done")) {
+        if (!keyword.equals("done")) {
             throw new CommandException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
         }
         this.keyword = keyword;
@@ -57,7 +58,8 @@ public class FilterCommand extends Command {
      */
     public FilterCommand(String keyword, String ddlType) throws CommandException{
         requireNonNull(keyword);
-        if (keyword.equals("pending") || (!ddlType.equals("official") && !ddlType.equals("customised"))) {
+
+        if (!keyword.equals("pending") || (!ddlType.equals("official") && !ddlType.equals("customised"))) {
             throw new CommandException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
         }
         this.keyword = keyword;
@@ -71,7 +73,8 @@ public class FilterCommand extends Command {
      */
     public FilterCommand(String keyword, String ddlType, WeekNumber weekNumber) throws CommandException{
         requireNonNull(keyword);
-        if (keyword.equals("pending") || (!ddlType.equals("official") && !ddlType.equals("customised"))) {
+
+        if (!keyword.equals("pending") || (!ddlType.equals("official") && !ddlType.equals("customised"))) {
             throw new CommandException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
         }
         this.keyword = keyword;
@@ -83,7 +86,7 @@ public class FilterCommand extends Command {
     public CommandResult execute(Model model)  {
         requireNonNull(model);
         boolean isDone = (keyword.equals("done"));
-        boolean byOfficialDdl = (ddlType.equals("official"));
+        boolean byOfficialDdl = false ? (ddlType == null)  : ddlType.equals("official");
 
         model.filterTasks(isDone, byOfficialDdl, weekNumber);
         model.getUiTaskList();

@@ -9,6 +9,7 @@ import tp.acecs2103.commons.util.CollectionUtil;
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.TaskList;
+
 import tp.acecs2103.model.task.CustomizedDeadline;
 import tp.acecs2103.model.task.Description;
 import tp.acecs2103.model.task.Index;
@@ -56,7 +57,7 @@ public class EditCommand extends Command {
         requireNonNull(model);
         TaskList lastShownList = model.getTaskList();
 
-        if (index.getIndexValue() >= lastShownList.size()) {
+        if (lastShownList.getTask(index) == null) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
@@ -88,7 +89,7 @@ public class EditCommand extends Command {
 
         OfficialDeadline updatedOfficialDeadline = editTaskDescriptor
                 .getOfficialDeadline().orElse(taskToEdit.getOfficialDeadline());
-        // TODO: check
+
         CustomizedDeadline updatedCustomizedDeadline = editTaskDescriptor
                 .getCustomizedDeadline().orElse(taskToEdit.getCustomizedDeadline());
         Remark remark = editTaskDescriptor.getRemark().orElse(taskToEdit.getRemark());

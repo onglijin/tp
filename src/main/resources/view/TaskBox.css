@@ -25,7 +25,7 @@
     -fx-background-radius: 10;
 }
 .pending-task {
-    -fx-background-color:  #dcdcdc;
+    -fx-background-color:  grey;
 }
 
 .done-task {

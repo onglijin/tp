@@ -1,6 +1,7 @@
 package tp.acecs2103.model.task;
 
 import java.time.LocalDate;
+
 /**
  * Represents a Task's official deadline in the task manager.
  * Guarantees: is valid as declared in {@link #isValidDeadline(String)}

@@ -404,21 +404,22 @@ Provide CS2103 and CS2103/T students with integrated timeline and checklists for
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| Priority | As a …​                                    | I want to …​                   | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | understand how to use the features of the app                 |
+| `* * *`  | new user                                   | learn about the commands       | understand how to use the features of the app                 |
 | `* * *`  | user                                       | get the tP GitHub link         | check the GitHub updates easily                                                                       |
 | `* * *`  | user                                       | get the module overview        | have a general idea about the course                                  |
-| `* * *`  | user                                       | get MicroSoft Team links       | get updates from the teaching team
+| `* * *`  | user                                       | get Microsoft Team links       | get updates from the teaching team
 | `* * *`  | user                                       | get progress dashboard links   | keep track of the progress for iP and tP
-| `* * *`  | user                                       | add a task with description, deadline and remarks | track additional tasks besides preloaded ones from the CS2103/T website
-| `* * *`  | user                                       | edit a customised task set up wrongly
-| `* * *`  | user                                       | delete a customised task set up wrongly
+| `* * *`  | user                                       | add a customized task          | track additional tasks beside the preloaded ones from the CS2103/T website
+| `* * *`  | user                                       | edit a customized task         | include an update or correct a mistake
+| `* * *`  | user                                       | delete a customized task       | remove a task that I do not want anymore
 | `* * *`  | user                                       | search for tasks using a keyword | find a specific task without reading through the whole task list
 | `* * *`  | user                                       | add a customised deadline to a task | record when a task needs to be done according to my own schedule
 | `* * *`  | user                                       | read instructions on how to initialize IntelliJ and other essential tools        |
 | `* *`    | user                                       | get Prof and TA emails         | ask them questions to clear doubts      |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `*`      | user with many tasks in the task manager   | find task by keyword           | locate a task easily
+                                                |
 
 *{More to be added}*
 
