@@ -29,13 +29,15 @@ public class CategoryPanel extends UiPart<Region> {
      */
     public CategoryPanel(ObservableList<Task> taskList, ArrayList<Integer> weekRange, String categoryString) {
         super(FXML);
-        String startWeek = "Week " + Integer.toString(weekRange.get(0));
-        String endWeek = "Week " + Integer.toString(weekRange.get(1));
+//        String startWeek = "Week " + Integer.toString(weekRange.get(0));
+//        String endWeek = "Week " + Integer.toString(weekRange.get(1));
 
-        categoryLabel.setText(categoryString + " (" + startWeek + ", " + endWeek+ ")");
+//        categoryLabel.setText(categoryString + " (" + startWeek + ", " + endWeek+ ")");
+        categoryLabel.setText(categoryString);
         categoryView.setItems(taskList);
         categoryView.setCellFactory(listView -> new CategoryCell());
     }
+
 
     /**
      * Custom {@code CategoryCell} that displays the graphics of a {@code Task} using a {@code TaskBox}.

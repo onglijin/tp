@@ -64,6 +64,5 @@ public class TaskBox extends UiPart<Region> {
         }
 
         box.getStyleClass().add("done-task");
-        logger.info(String.valueOf(box.getStyleClass().size()));
     }
 }
