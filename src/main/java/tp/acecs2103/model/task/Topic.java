@@ -1,7 +1,5 @@
 package tp.acecs2103.model.task;
 
-import java.time.LocalDate;
-
 public class Topic extends Task {
     public Topic(Index index, WeekNumber weekNumber,
                  Description description, OfficialDeadline officialDeadline,

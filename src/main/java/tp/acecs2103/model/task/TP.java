@@ -1,7 +1,5 @@
 package tp.acecs2103.model.task;
 
-import java.time.LocalDate;
-
 /**
  * Represents a TP task.
  */

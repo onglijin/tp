@@ -1,11 +1,9 @@
 package tp.acecs2103.logic.parser;
 
 import tp.acecs2103.commons.core.Messages;
-
-import tp.acecs2103.model.task.Index;
 import tp.acecs2103.logic.commands.DeleteCommand;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
-
+import tp.acecs2103.model.task.Index;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object

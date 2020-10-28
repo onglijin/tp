@@ -4,9 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 
-import tp.acecs2103.model.task.Index;
 import tp.acecs2103.model.Model;
-
+import tp.acecs2103.model.task.Index;
 
 public class DeadlineCommand extends Command {
     public static final String COMMAND_WORD = "deadline";
