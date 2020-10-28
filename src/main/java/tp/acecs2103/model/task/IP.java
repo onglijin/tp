@@ -10,8 +10,8 @@ public class IP extends Task {
      */
     public IP(Index index, WeekNumber weekNumber,
               Description description, OfficialDeadline officialDeadline,
-              CustomizedDeadline customizedDeadline, Remark remark, boolean isCustomized) {
-        super(index, weekNumber, description, officialDeadline, customizedDeadline, remark, isCustomized);
+              CustomizedDeadline customizedDeadline, Remark remark, boolean isCustomized, boolean doneStatus) {
+        super(index, weekNumber, description, officialDeadline, customizedDeadline, remark, isCustomized, doneStatus);
     }
 
     @Override

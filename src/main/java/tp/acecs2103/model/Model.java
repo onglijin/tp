@@ -8,6 +8,10 @@ import javafx.collections.ObservableList;
 import tp.acecs2103.commons.core.GuiSettings;
 import tp.acecs2103.model.exceptions.ModelException;
 import tp.acecs2103.model.task.Task;
+import tp.acecs2103.model.task.Index;
+import tp.acecs2103.model.task.WeekNumber;
+import tp.acecs2103.model.task.Deadline;
+import tp.acecs2103.model.task.CustomizedDeadline;
 
 /**
  * The API of the Model component.
@@ -74,12 +78,22 @@ public interface Model {
     /**
      * Checks whether the task is customized.
      */
-    boolean isTaskCustomized(String index);
+    boolean isCustomizedTask(Index index);
 
     /**
      * Deletes one task out of task list with given index.
      */
-    void deleteTask(String index) throws ModelException;
+    void deleteTask(Index index) throws ModelException;
+
+    /**
+     * Mark one task out of task list with given index as done.
+     */
+    void markTaskAsDone(Index index) throws ModelException;
+
+    /**
+     * Mark one task out of task list with given index as pending.
+     */
+    void markTaskAsPending(Index index) throws ModelException;
 
     /**
      * Finds tasks based on given keyword.
@@ -89,7 +103,12 @@ public interface Model {
     /**
      * Lists tasks in certain week.
      */
-    void listTasks(int weekNumber);
+    void listTasks(WeekNumber weekNumber);
+
+    /**
+     * Lists tasks in certain week.
+     */
+    void filterTasks(boolean isDone, boolean byOfficialDeadline, WeekNumber weekNumber);
 
 
     /**
@@ -97,7 +116,7 @@ public interface Model {
      * @param index is the index of task we want to set a deadline to.
      * @param deadline is a customized deadline.
      */
-    void deadlineTask(String index, LocalDate deadline);
+    void deadlineTask(Index index, CustomizedDeadline deadline);
 
     /**
      * Gets  a ui task list for displaying.

@@ -84,11 +84,13 @@ public class MainWindow extends UiPart<Stage> {
         categoryPanel = new CategoryPanel(logic.getUiTaskList().getTpList(), logic.getUiTaskList().getTpWeekRange(), "Tp");
         categoryPanelPlaceholder.getChildren().add(categoryPanel.getRoot());
 
+
         int currentWeekNumber = AppUtil.getCurrentWeekNumber().getWeekValueInt();
         Double a = (double) currentWeekNumber / (double) 13;
         progressBar.setProgress(a);
 
         weekDisplay = new WeekDisplay(currentWeekNumber);
+
         weekDisplayPlaceholder.getChildren().add(weekDisplay.getRoot());
 
         feedbackBox = new FeedbackBox();

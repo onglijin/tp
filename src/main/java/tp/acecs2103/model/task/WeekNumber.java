@@ -59,6 +59,4 @@ public class WeekNumber {
                 || (other instanceof WeekNumber
                 && value.equals(((WeekNumber) other).value));
     }
-
-    // TODO: check if hashCode needed
 }

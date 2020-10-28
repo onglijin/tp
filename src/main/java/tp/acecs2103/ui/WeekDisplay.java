@@ -26,6 +26,7 @@ public class WeekDisplay extends UiPart<Region> {
     // TODO: Connect method to weekToDisplay
     public WeekDisplay(int weekToDisplay) {
         super(FXML);
+
         projectName.setText("Welcome to Ace CS2103/T!");
         int remainWeek = 13 - weekToDisplay;
         if (remainWeek < 0) {
@@ -37,5 +38,6 @@ public class WeekDisplay extends UiPart<Region> {
         } else {
             weekNumber.setText("Now is Week " + weekToDisplay + ". There are " + remainWeek + " weeks left.");
         }
+
     }
 }
