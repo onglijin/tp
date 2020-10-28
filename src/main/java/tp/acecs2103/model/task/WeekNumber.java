@@ -28,6 +28,12 @@ public class WeekNumber {
         value = weekNumber;
     }
 
+    /**
+     * Check if week number is valid.
+     *
+     * @param test WeekNumber in String form. 
+     * @return boolean true if within 1 and 13, false otherwise.
+     */
     public static boolean isValidWeekNumber(String test) {
         int weekNumberInteger = Integer.parseInt(test);
         return weekNumberInteger >= 1 && weekNumberInteger <= 13;
