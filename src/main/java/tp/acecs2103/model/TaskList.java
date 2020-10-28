@@ -150,7 +150,7 @@ public class TaskList {
      */
     public ArrayList<Task> filter(boolean isDone, boolean byOfficialDeadline, WeekNumber weekNumber) {
         ArrayList<Task> newList = new ArrayList<>();
-        if (Integer.parseInt(weekNumber.value) > 0) {
+        if (weekNumber != null) {
             newList = list(weekNumber);
         }
 

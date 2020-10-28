@@ -29,12 +29,12 @@ public class FilterCommand extends Command {
      */
     public FilterCommand(String keyword) throws CommandException{
         requireNonNull(keyword);
-        if (keyword != "done") {
+        if (keyword.equals("done")) {
             throw new CommandException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
         }
         this.keyword = keyword;
         this.ddlType = null;
-        this.weekNumber = new WeekNumber("-1"); // set the default week number to -1
+        this.weekNumber = null;
     }
 
     /**
@@ -43,7 +43,7 @@ public class FilterCommand extends Command {
      */
     public FilterCommand(String keyword, WeekNumber weekNumber) throws CommandException{
         requireNonNull(keyword);
-        if (keyword != "done") {
+        if (keyword.equals("done")) {
             throw new CommandException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
         }
         this.keyword = keyword;
@@ -57,12 +57,12 @@ public class FilterCommand extends Command {
      */
     public FilterCommand(String keyword, String ddlType) throws CommandException{
         requireNonNull(keyword);
-        if (keyword != "pending" || (ddlType != "official" && ddlType != "customised")) {
+        if (keyword.equals("pending") || (!ddlType.equals("official") && !ddlType.equals("customised"))) {
             throw new CommandException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
         }
         this.keyword = keyword;
         this.ddlType = ddlType;
-        this.weekNumber = new WeekNumber("-1"); // set the default week number to -1
+        this.weekNumber = null;
     }
 
     /**
@@ -71,7 +71,7 @@ public class FilterCommand extends Command {
      */
     public FilterCommand(String keyword, String ddlType, WeekNumber weekNumber) throws CommandException{
         requireNonNull(keyword);
-        if (keyword != "pending" || (ddlType != "official" && ddlType != "customised")) {
+        if (keyword.equals("pending") || (!ddlType.equals("official") && !ddlType.equals("customised"))) {
             throw new CommandException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
         }
         this.keyword = keyword;
@@ -82,8 +82,8 @@ public class FilterCommand extends Command {
     @Override
     public CommandResult execute(Model model)  {
         requireNonNull(model);
-        boolean isDone = (keyword == "done");
-        boolean byOfficialDdl = (ddlType == "official");
+        boolean isDone = (keyword.equals("done"));
+        boolean byOfficialDdl = (ddlType.equals("official"));
 
         model.filterTasks(isDone, byOfficialDdl, weekNumber);
         model.getUiTaskList();
