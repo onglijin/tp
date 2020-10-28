@@ -1,7 +1,6 @@
 package tp.acecs2103.model.task;
 
 import static tp.acecs2103.commons.util.AppUtil.checkArgument;
-import static tp.acecs2103.model.task.OfficialDeadline.isValidOfficialDeadline;
 
 /**
  * Represents a Task's official deadline in the task manager.
@@ -10,8 +9,8 @@ import static tp.acecs2103.model.task.OfficialDeadline.isValidOfficialDeadline;
 public class CustomizedDeadline {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Deadlines should be of the format of 'YYYY-MM-DD' and be consists of only numbers and '-'s. " +
-                    "Range of dates is allowed from '2000-01-01' to '2099-12-31'";
+            "Deadlines should be of the format of 'YYYY-MM-DD' and be consists of only numbers and '-'s. "
+                    + "Range of dates is allowed from '2000-01-01' to '2099-12-31'";
 
     public static final String VALIDATION_REGEX = "^19|20\\d\\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$";
 

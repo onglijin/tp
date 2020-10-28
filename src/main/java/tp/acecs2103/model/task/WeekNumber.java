@@ -3,10 +3,6 @@ package tp.acecs2103.model.task;
 import static java.util.Objects.requireNonNull;
 import static tp.acecs2103.commons.util.AppUtil.checkArgument;
 
-import javax.xml.validation.Validator;
-
-import tp.acecs2103.ui.WeekDisplay;
-
 /**
  * Represents which week a Task falls under in the task manager.
  * Guarantees: immutable; is valid as declaredi n {@link #isValidWeekNumber(String)}
@@ -37,6 +33,11 @@ public class WeekNumber {
         return weekNumberInteger >= 1 && weekNumberInteger <= 13;
     }
 
+    /**
+     * Get the int value from the WeekNumber String.
+     * 
+     * @return int value of String.
+     */
     public int getWeekValueInt() {
         return Integer.parseInt(value);
     }
