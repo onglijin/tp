@@ -50,7 +50,6 @@ public class CategoryPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 setGraphic(new TaskBox(task).getRoot());
-
             }
         }
     }

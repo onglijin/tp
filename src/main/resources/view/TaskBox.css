@@ -20,11 +20,20 @@
     -fx-background-radius: 10;
 }
 
-
 .VBox {
-    -fx-background-color:  #87CEFA;
     -fx-border-radius: 10;
     -fx-background-radius: 10;
+}
+.pending-task {
+    -fx-background-color:  #dcdcdc;
+}
+
+.done-task {
+    -fx-background-color:  #32cd32;
+}
+
+.overdue-task {
+    -fx-background-color:  #ff4500;
 }
 
 .Label {
