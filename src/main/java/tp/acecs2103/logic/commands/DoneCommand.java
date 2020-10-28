@@ -6,12 +6,12 @@ import java.util.logging.Logger;
 
 import tp.acecs2103.commons.core.LogsCenter;
 import tp.acecs2103.commons.core.Messages;
-import tp.acecs2103.commons.core.index.Index;
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.TaskList;
 import tp.acecs2103.model.exceptions.ModelException;
 import tp.acecs2103.model.task.Task;
+import tp.acecs2103.model.task.Index;
 
 /**
  * Mark a task as done as identified by the index number.
@@ -34,14 +34,17 @@ public class DoneCommand extends Command {
         this.targetIndex = targetIndex;
     }
 
+    public Index getTargetIndex() {
+        return this.targetIndex;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         TaskList lastShownList = model.getTaskList();
-        String strIndex = targetIndex.getStrIndex();
-        Task taskToMarkAsDone = lastShownList.getTask(strIndex);
+        Task taskToMarkAsDone = lastShownList.getTask(targetIndex);
         try {
-            model.markTaskAsDone(strIndex);
+            model.markTaskAsDone(targetIndex);
         } catch (Exception e) {
             throw new CommandException(e.getMessage());
         }

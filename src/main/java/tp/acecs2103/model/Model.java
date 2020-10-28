@@ -91,6 +91,11 @@ public interface Model {
     void markTaskAsDone(Index index) throws ModelException;
 
     /**
+     * Mark one task out of task list with given index as pending.
+     */
+    void markTaskAsPending(Index index) throws ModelException;
+
+    /**
      * Finds tasks based on given keyword.
      */
     void findTasks(String keyword);

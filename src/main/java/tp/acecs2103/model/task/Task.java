@@ -127,6 +127,14 @@ public class Task implements Comparable<Task> {
     }
 
     /**
+     * Mark the task as pending (i.e. not done yet).
+     */
+    public void markAsPending() {
+        assert doneStatus;
+        doneStatus = false;
+    }
+
+    /**
      * Sets a deadline to the task.
      * @param deadline A valid LocalDate.
      */

@@ -270,6 +270,29 @@ public class TaskList {
     }
 
     /**
+     * Mark a task as pending.
+     *
+     * @param taskIndex A valid task index.
+     * @return a new array list after find().
+     */
+    public ArrayList<Task> undone(Index taskIndex) throws InvalidTaskListOperationException {
+        int i = 0;
+        for (Task task : taskList) {
+            if (task.hasIndex(taskIndex)) {
+                break;
+            }
+            i++;
+        }
+        Task task = taskList.get(i);
+        if (task.isDone()) {
+            task.markAsPending();
+            return find();
+        }
+        throw new InvalidTaskListOperationException("The task is already marked as done.");
+    }
+
+
+    /**
      * Sets a deadline to a certain task.
      *
      * @param taskIndex A valid task index.

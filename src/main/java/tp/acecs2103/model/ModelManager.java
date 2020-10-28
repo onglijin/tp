@@ -134,6 +134,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void markTaskAsPending(Index index) throws ModelException {
+        uiTaskList.addAll(taskList.undone(index));
+    }
+
+    @Override
     public void filterTasks(boolean isDone, boolean byOfficialDeadline, WeekNumber weekNumber) {
         uiTaskList.addAll(taskList.filter(isDone,byOfficialDeadline,weekNumber));
     }
