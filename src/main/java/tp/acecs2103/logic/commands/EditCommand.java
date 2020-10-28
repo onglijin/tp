@@ -65,30 +65,18 @@ public class EditCommand extends Command {
     /**
      * edited with {@code editPersonDescriptor}.
      */
-    private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) throws CommandException{
+    private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) throws CommandException {
         assert taskToEdit != null;
-
-<<<<<<< HEAD
         if (!taskToEdit.isCustomized()) {
             if (editTaskDescriptor.getWeekNumber() != null || editTaskDescriptor.getDescription() != null)
-            throw new CommandException(MESSAGE_INVALID_EDITION);
+                throw new CommandException(MESSAGE_INVALID_EDITION);
         }
-        int updatedWeekNumber = editTaskDescriptor
-=======
+
         WeekNumber updatedWeekNumber = editTaskDescriptor
->>>>>>> upstream/master
                 .getWeekNumber().orElse(taskToEdit.getWeekNumber());
         Description updatedDescription = editTaskDescriptor
                 .getDescription().orElse(taskToEdit.getDescription());
-<<<<<<< HEAD
-        LocalDate updatedCustomizedDeadline = editTaskDescriptor
-                .getCustomizedDeadline().orElse(taskToEdit.getOfficialDeadline());
-        String remark = editTaskDescriptor.getRemark().orElse(taskToEdit.getRemark());
 
-        return new Task(taskToEdit.getIndex(), updatedWeekNumber, updatedDescription,
-                taskToEdit.getOfficialDeadline(), updatedCustomizedDeadline, remark,
-                taskToEdit.getCategory(), taskToEdit.isCustomized(), taskToEdit.isDone());
-=======
         OfficialDeadline updatedOfficialDeadline = editTaskDescriptor
                 .getOfficialDeadline().orElse(taskToEdit.getOfficialDeadline());
         // TODO: check
@@ -96,9 +84,19 @@ public class EditCommand extends Command {
                 .getCustomizedDeadline().orElse(taskToEdit.getCustomizedDeadline());
         Remark remark = editTaskDescriptor.getRemark().orElse(taskToEdit.getRemark());
 
-        return new Task(taskToEdit.getIndex(), updatedWeekNumber, updatedDescription,
-                updatedOfficialDeadline, updatedCustomizedDeadline, remark, taskToEdit.getCategory(), false);
->>>>>>> upstream/master
+        if (taskToEdit instanceof Topic) {
+            return new Topic(taskToEdit.getIndex(), updatedWeekNumber, updatedDescription,
+                    updatedOfficialDeadline, updatedCustomizedDeadline, remark, taskToEdit.isCustomized(), false);
+        } else if (taskToEdit instanceof Admin) {
+            return new Admin(taskToEdit.getIndex(), updatedWeekNumber, updatedDescription,
+                    updatedOfficialDeadline, updatedCustomizedDeadline, remark, taskToEdit.isCustomized(), false);
+        } else if (taskToEdit instanceof TP) {
+            return new TP(taskToEdit.getIndex(), updatedWeekNumber, updatedDescription,
+                    updatedOfficialDeadline, updatedCustomizedDeadline, remark, taskToEdit.isCustomized(), false);
+        } else {
+            return new IP(taskToEdit.getIndex(), updatedWeekNumber, updatedDescription,
+                    updatedOfficialDeadline, updatedCustomizedDeadline, remark, taskToEdit.isCustomized(), false);
+        }
     }
 
 
@@ -125,19 +123,11 @@ public class EditCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditTaskDescriptor {
-<<<<<<< HEAD
-        private int weekNumber;
-        private String description;
-        private LocalDate customizedDeadline;
-        private String remark;
-=======
-        //private String index;
         private WeekNumber weekNumber;
         private Description description;
         private OfficialDeadline officialDeadline;
         private CustomizedDeadline customizedDeadline;
         private Remark remark;
->>>>>>> upstream/master
 
         public EditTaskDescriptor() {}
 
@@ -160,17 +150,9 @@ public class EditCommand extends Command {
                     weekNumber, description, customizedDeadline, remark);
         }
 
-<<<<<<< HEAD
-        public void setWeekNumber(int weekNumber) {
-=======
-        //public void setIndex(String index) {this.index = index;}
 
-        //public Optional<String> getIndex() {
-        //    return Optional.ofNullable(index);
-        //}
 
         public void setWeekNumber(WeekNumber weekNumber) {
->>>>>>> upstream/master
             this.weekNumber = weekNumber;
         }
 
@@ -186,12 +168,7 @@ public class EditCommand extends Command {
             return Optional.ofNullable(description);
         }
 
-<<<<<<< HEAD
-        public void setCustomizedDeadline(LocalDate customizedDeadline) {
-            this.customizedDeadline = customizedDeadline;
-        }
-        public Optional<LocalDate> getCustomizedDeadline() {
-=======
+
         public void setOfficialDeadline(OfficialDeadline officialDeadline) {
             this.officialDeadline = officialDeadline;
         }
@@ -205,7 +182,7 @@ public class EditCommand extends Command {
         }
 
         public Optional<CustomizedDeadline> getCustomizedDeadline() {
->>>>>>> upstream/master
+
             return Optional.ofNullable(customizedDeadline);
         }
 
