@@ -51,8 +51,13 @@ public class AppUtil {
      */
     public static WeekNumber getCurrentWeekNumber() {
         LocalDate currentTime = LocalDate.now();
-        LocalDate weekOne = LocalDate.of(2020, 8, 10);
+        LocalDate weekOne = LocalDate.of(2020, 8, 7);
         int difference = (int) weekOne.until(currentTime, ChronoUnit.DAYS);
-        return new WeekNumber(Integer.toString(difference / 7 + 1));
+        if (difference / 7 <= 6) {
+            return new WeekNumber(Integer.toString(difference / 7 + 1));
+        } else {
+            return new WeekNumber(Integer.toString(difference / 7));
+        }
+
     }
 }

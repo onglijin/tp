@@ -9,6 +9,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Label?>
 <fx:root minHeight="600" minWidth="650.0" onCloseRequest="#handleExit" title="Ace CS2103/T" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/ace_cs2103.png" />
@@ -25,11 +28,21 @@
       <VBox prefHeight="498.0" prefWidth="520.0">
 >>>>>>> upstream/master
 
-        <StackPane fx:id="weekDisplayPlaceholder" maxHeight="100" minHeight="29.0" prefHeight="40.0" prefWidth="550.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <StackPane fx:id="weekDisplayPlaceholder" maxHeight="60.0" minHeight="60.0" prefHeight="60.0" prefWidth="550.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
+
+        <HBox fx:id="progressBarContainer" minWidth="340" minHeight="29.0" prefHeight="40.0" prefWidth="550.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
+          <padding>
+            <Insets bottom="5" left="10" right="10" top="5" />
+          </padding>
+          <children>
+            <Label fx:id="weekDisplay"></Label>
+            <ProgressBar fx:id="progressBar" styleClass="progress-bar"></ProgressBar>
+          </children>
+        </HBox>
 
         <HBox fx:id="categoryPanelPlaceholder" minWidth="340" prefHeight="385.0" prefWidth="520.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
           <padding>
