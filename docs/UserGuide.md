@@ -46,7 +46,7 @@ Ace CS2103/T is a **desktop app for managing task requirements of CS2103/T, opti
 
 </div>
 
-### Viewing help: `help`
+### Viewing help: `help` *(Coming soon)*
 
 Lists all available commands or format and usage for a specified command.
 
@@ -63,7 +63,7 @@ List of PARAMETERs :
 * delete: `delete TASK_NUMBER`. Deletes a customized task in the task manager.
 * exit: `exit`. Exits the task manager.
 
-### Viewing administrative information: `get`
+### Viewing administrative information: `get` *(Coming soon)*
 
 Gets specified administrative information by parameters.
 
@@ -84,7 +84,7 @@ Lists all tasks that contain the keyword.
 
 Format: `find KEYWORD`
 
-* The KEYWORD is a letter string in the description of tasks to be returned.
+* The KEYWORD is a letter string in the description and remark of tasks to be returned.
 * Operates rough search in the task list.
 
 Example:
@@ -105,20 +105,21 @@ Example:
 
 Deletes a customized task in the task manager.
 
-Format: `delete TASK_NUMBER`
+Format: `delete TASK_INDEX`
 
-* The task indexed at TASK_NUMBER will be deleted.
+* The task indexed at TASK_INDEX will be deleted.
 
 Example:
 * `delete 0601`: Task indexed at 0601 will be deleted.
 
-### Adding a deadline: `deadline`
+### Adding a customized deadline: `deadline`
 
 Adds a customized deadline to a preloaded task.
 
-Format: `deadline i/TASK_NUMBER c/DEADLINE`
+Format: `deadline i/TASK_INDEX c/DEADLINE`
 
-* The task indexed at TASK_NUMBER will be given a DEADLINE.
+* The task indexed at TASK_INDEX will be given a DEADLINE.
+* The deadline should be given in the format: "YYYY-MM-DD"
 
 Example:
 * `deadline i/0601 c/2020-09-29`: Adds a customized deadline on 29th September 2020 to the first task of teaching week 6 which is indexed at TASK_NUMBER 0601.
@@ -130,10 +131,38 @@ Adds a customized task in the task manager.
 Format: `add i/INDEX w/WEEKNUMBER d/DESCRIPTION c/DEADLINE r/REMARK a/CATEGORY`
 
 * The task with INDEX as index, WEEKNUMBER as week number, DESCRIPTION as description, DEADLINE as customised deadline, REMARK as remark, CATEGORY as the category will be added into task list.
+* The INDEX, WEEKNUMBER, DESCRIPTION, DEADLINE and CATEGORY are compulsory, the REMARK is optional.
 
 Example:
 * `add i/0109 w/1 d/update documentation c/2020-10-02 r/check tp dashboard a/Tp`:
 Task to update documentation with deadline set on 2020-10-02 of category tp with a remark to check tp dashboard is added to the task list.
+
+### Mark a task as done/undone: `done` and `undone`
+
+Marks a task in the task manager as done or undone.
+
+Format of `done`: `done TASK_INDEX`
+
+* The task at TASK_INDEX will be marked as done.
+
+Format of `undone`: `undone TASK_INDEX`
+
+* The task at TASK_INDEX will be marked as undone.
+
+### Rank selected tasks base on deadline: `filter`
+
+Filters the tasks based on selected condition and rank them by deadline.
+
+Format 1: `filter k/KEYWORD w/WEEKNUMBER l/DEADLINETYPE`
+Format 2: `filter k/KEYWORD l/DEADLINETYPE`
+Format 3: `filter k/KEYWORD w/WEEKNUMBER`
+Format 4: `filter k/KEYWORD`
+
+* The `KEYWORD` can be "pending" or "done". The task manager will filter tasks based on the done status of tasks.
+* The `WEEKNUMBER` can be used to specify which week the user select.
+* The `DEADLINETYPE` can be "official" or "customized", which specify which deadline type the selected taskes should be ranked by.
+* In Format 4, the KEYWORD can only be "done"
+* In Format 1,2,3, the KEYWORD can only be "pending"
 
 ### Exiting the program : `exit`
 

@@ -1,17 +1,16 @@
 package tp.acecs2103.model;
 
 import java.nio.file.Path;
-import java.time.LocalDate;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import tp.acecs2103.commons.core.GuiSettings;
 import tp.acecs2103.model.exceptions.ModelException;
-import tp.acecs2103.model.task.Task;
-import tp.acecs2103.model.task.Index;
-import tp.acecs2103.model.task.WeekNumber;
-import tp.acecs2103.model.task.Deadline;
 import tp.acecs2103.model.task.CustomizedDeadline;
+import tp.acecs2103.model.task.Index;
+import tp.acecs2103.model.task.Task;
+import tp.acecs2103.model.task.WeekNumber;
+
 
 /**
  * The API of the Model component.

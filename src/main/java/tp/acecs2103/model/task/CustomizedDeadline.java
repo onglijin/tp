@@ -7,7 +7,7 @@ import java.time.LocalDate;
  * Guarantees: is valid as declared in {@link #isValidDeadline(String)}
  */
 
-public class CustomizedDeadline extends Deadline{
+public class CustomizedDeadline extends Deadline {
     /**
      * Constructs an {@code OfficialDeadline}.
      *

@@ -4,7 +4,19 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import tp.acecs2103.commons.core.Messages;
-import tp.acecs2103.logic.commands.*;
+import tp.acecs2103.logic.commands.AddCommand;
+import tp.acecs2103.logic.commands.Command;
+import tp.acecs2103.logic.commands.DeadlineCommand;
+import tp.acecs2103.logic.commands.DeleteCommand;
+import tp.acecs2103.logic.commands.DoneCommand;
+import tp.acecs2103.logic.commands.EditCommand;
+import tp.acecs2103.logic.commands.ExitCommand;
+import tp.acecs2103.logic.commands.FilterCommand;
+import tp.acecs2103.logic.commands.FindCommand;
+import tp.acecs2103.logic.commands.GetCommand;
+import tp.acecs2103.logic.commands.HelpCommand;
+import tp.acecs2103.logic.commands.ListCommand;
+import tp.acecs2103.logic.commands.UndoneCommand;
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
 
@@ -67,10 +79,10 @@ public class TaskListParser {
             return new DoneCommandParser().parse(arguments);
 
         case UndoneCommand.COMMAND_WORD:
-                return new UndoneCommandParser().parse(arguments);
+            return new UndoneCommandParser().parse(arguments);
 
         case FilterCommand.COMMAND_WORD:
-                return new FilterCommandParser().parse(arguments);
+            return new FilterCommandParser().parse(arguments);
 
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);

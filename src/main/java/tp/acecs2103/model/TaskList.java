@@ -149,7 +149,8 @@ public class TaskList {
      * Filter the task list based on criteria given.
      *
      * @param isDone is the boolean value to describe if filter criteria is to display done tasks only
-     * @param byOfficialDeadline is the boolean value to describe if filter criteria is to display pending tasks by official deadline
+     * @param byOfficialDeadline is the boolean value to describe
+     *                           if filter criteria is to display pending tasks by official deadline
      * @param weekNumber is the int value to describe the week number of the tasks to be displayed(optional)
      * @return a new ArrayList to display.
      */
