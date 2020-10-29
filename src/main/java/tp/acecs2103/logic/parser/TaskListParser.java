@@ -67,11 +67,14 @@ public class TaskListParser {
             return new DoneCommandParser().parse(arguments);
 
         case UndoneCommand.COMMAND_WORD:
-                return new UndoneCommandParser().parse(arguments);
+            return new UndoneCommandParser().parse(arguments);
 
         case FilterCommand.COMMAND_WORD:
-                return new FilterCommandParser().parse(arguments);
+            return new FilterCommandParser().parse(arguments);
 
+        case HomeCommand.COMMAND_WORD:
+            return new HomeCommand();
+            
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
         }
