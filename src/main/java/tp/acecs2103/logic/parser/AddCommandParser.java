@@ -38,6 +38,9 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException, CommandException {
+        if (args.equals("")) {
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        }
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_INDEX, PREFIX_WEEK_NUMBER, PREFIX_DESCRIPTION,
                         PREFIX_CUSTOMIZED_DEADLINE, PREFIX_REMARK, PREFIX_CATEGORY);
