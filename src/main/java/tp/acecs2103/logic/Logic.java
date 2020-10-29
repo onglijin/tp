@@ -31,13 +31,11 @@ public interface Logic {
      */
     TaskList getTaskList();
 
-    /*
-    /** Returns an unmodifiable view of the filtered list of persons
-    ObservableList<Task> getFilteredPersonList();
+    /**
+    /* Returns the task list to be displayed in UI
     */
-
-
     UiTaskList getUiTaskList();
+
     /**
      * Returns the user prefs' task list file path.
      */
