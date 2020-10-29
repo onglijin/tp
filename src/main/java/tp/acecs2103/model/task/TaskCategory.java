@@ -9,13 +9,13 @@ public enum TaskCategory {
     public static String categoryToString(TaskCategory category) {
         switch (category) {
         case ADMIN:
-            return "admin";
+            return "Admin";
         case TOPIC:
-            return "topic";
+            return "Topic";
         case IP:
-            return "ip";
+            return "Ip";
         case TP:
-            return "tp";
+            return "Tp";
         default:
             return "";
         }

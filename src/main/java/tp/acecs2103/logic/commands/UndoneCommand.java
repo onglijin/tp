@@ -25,7 +25,7 @@ public class UndoneCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DONE_TASK_SUCCESS = "Undone Task: %1$s";
+    public static final String MESSAGE_DONE_TASK_SUCCESS = "Undone Task: \n%1$s";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 

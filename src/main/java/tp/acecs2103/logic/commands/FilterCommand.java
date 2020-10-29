@@ -96,6 +96,7 @@ public class FilterCommand extends Command {
         if (weekNumber != null) {
             returnMessage += "\nDuration: week " + weekNumber.value;
         }
+        returnMessage += String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getUiTaskList().size());
 
         return new CommandResult(returnMessage);
     }

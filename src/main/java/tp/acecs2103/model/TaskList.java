@@ -91,7 +91,12 @@ public class TaskList {
      * @return true if it is already inside task and false if not.
      */
     public boolean hasTask(Task task) {
-        return taskList.contains(task);
+        for (Task i : taskList) {
+            if (i.equals(task)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -166,12 +171,7 @@ public class TaskList {
             if (byOfficialDeadline) {
                 Collections.sort(additionalList);
             } else {
-                Collections.sort(additionalList, new Comparator<Task>() {
-                    @Override
-                    public int compare(Task o1, Task o2) {
-                        return o1.getCustomizedDeadline().compareTo(o2.getCustomizedDeadline());
-                    }
-                });
+                Collections.sort(additionalList, (o1, o2) -> o1.getCustomizedDeadline().compareTo(o2.getCustomizedDeadline()));
             }
         }
         return additionalList;
