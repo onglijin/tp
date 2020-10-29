@@ -3,11 +3,13 @@ package tp.acecs2103.ui;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import tp.acecs2103.commons.core.GuiSettings;
 import tp.acecs2103.commons.core.LogsCenter;
+import tp.acecs2103.commons.util.AppUtil;
 import tp.acecs2103.logic.Logic;
 import tp.acecs2103.logic.commands.CommandResult;
 import tp.acecs2103.logic.commands.exceptions.CommandException;
@@ -34,6 +36,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane weekDisplayPlaceholder;
+
+    @FXML
+    private HBox progressBarContainer;
+
+    @FXML
+    private ProgressBar progressBar;
 
     @FXML
     private HBox categoryPanelPlaceholder;
@@ -67,16 +75,24 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         // TODO: change the method to get each category panel
-        categoryPanel = new CategoryPanel(logic.getUiTaskList().getAdminList(), "Admin");
+        categoryPanel = new CategoryPanel(logic.getUiTaskList().getAdminList(), logic.getUiTaskList().getAdminWeekRange(), "Admin");
         categoryPanelPlaceholder.getChildren().add(categoryPanel.getRoot());
-        categoryPanel = new CategoryPanel(logic.getUiTaskList().getTopicList(), "Topic");
+        categoryPanel = new CategoryPanel(logic.getUiTaskList().getTopicList(), logic.getUiTaskList().getTopicWeekRange(), "Topic");
         categoryPanelPlaceholder.getChildren().add(categoryPanel.getRoot());
-        categoryPanel = new CategoryPanel(logic.getUiTaskList().getIpList(), "Ip");
+        categoryPanel = new CategoryPanel(logic.getUiTaskList().getIpList(), logic.getUiTaskList().getIpWeekRange(), "Ip");
         categoryPanelPlaceholder.getChildren().add(categoryPanel.getRoot());
-        categoryPanel = new CategoryPanel(logic.getUiTaskList().getTpList(), "Tp");
+        categoryPanel = new CategoryPanel(logic.getUiTaskList().getTpList(), logic.getUiTaskList().getTpWeekRange(), "Tp");
         categoryPanelPlaceholder.getChildren().add(categoryPanel.getRoot());
-        weekDisplay = new WeekDisplay("Ace CS2103/T");
+
+
+        int currentWeekNumber = AppUtil.getCurrentWeekNumber().getWeekValueInt();
+        Double a = (double) currentWeekNumber / (double) 13;
+        progressBar.setProgress(a);
+
+        weekDisplay = new WeekDisplay(currentWeekNumber);
+
         weekDisplayPlaceholder.getChildren().add(weekDisplay.getRoot());
+
         feedbackBox = new FeedbackBox();
         feedbackBoxPlaceholder.getChildren().add(feedbackBox.getRoot());
         CommandBox commandBox = new CommandBox(this::executeCommand); // bottom of Ace CS2103/T
@@ -125,6 +141,7 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+
 
             return commandResult;
         } catch (CommandException | ParseException e) {

@@ -1,7 +1,11 @@
 package tp.acecs2103.ui;
 
 import javafx.fxml.FXML;
+import javafx.scene.Group;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
 /**
@@ -11,15 +15,29 @@ public class WeekDisplay extends UiPart<Region> {
     private static final String FXML = "WeekDisplay.fxml";
 
     @FXML
-    private Label weekNumberAndDate;
+    private Label projectName;
+
+    @FXML
+    private Label weekNumber;
 
     /**
      * Creates a {@code WeekDisplay} with the given {@code Path}.
      */
     // TODO: Connect method to weekToDisplay
-    public WeekDisplay(String weekToDisplay) {
+    public WeekDisplay(int weekToDisplay) {
         super(FXML);
-        System.out.println(weekToDisplay);
-        weekNumberAndDate.setText(weekToDisplay);
+
+        projectName.setText("Welcome to Ace CS2103/T!");
+        int remainWeek = 13 - weekToDisplay;
+        if (remainWeek < 0) {
+            weekNumber.setText("The final is closing!");
+        } else if (remainWeek == 0) {
+            weekNumber.setText("Now is Week " + weekToDisplay + ". The final is closing.");
+        } else if (remainWeek == 1) {
+            weekNumber.setText("Now is Week " + weekToDisplay + ". There are " + remainWeek + " week left.");
+        } else {
+            weekNumber.setText("Now is Week " + weekToDisplay + ". There are " + remainWeek + " weeks left.");
+        }
+
     }
 }

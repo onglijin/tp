@@ -1,5 +1,6 @@
 package tp.acecs2103.ui;
 
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -26,12 +27,17 @@ public class CategoryPanel extends UiPart<Region> {
     /**
      * Creates a {@code CategoryPanel} with the given {@code ObservableList} and {@code categoryString}.
      */
-    public CategoryPanel(ObservableList<Task> taskList, String categoryString) {
+    public CategoryPanel(ObservableList<Task> taskList, ArrayList<Integer> weekRange, String categoryString) {
         super(FXML);
+//        String startWeek = "Week " + Integer.toString(weekRange.get(0));
+//        String endWeek = "Week " + Integer.toString(weekRange.get(1));
+
+//        categoryLabel.setText(categoryString + " (" + startWeek + ", " + endWeek+ ")");
         categoryLabel.setText(categoryString);
         categoryView.setItems(taskList);
         categoryView.setCellFactory(listView -> new CategoryCell());
     }
+
 
     /**
      * Custom {@code CategoryCell} that displays the graphics of a {@code Task} using a {@code TaskBox}.
@@ -46,7 +52,6 @@ public class CategoryPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 setGraphic(new TaskBox(task).getRoot());
-
             }
         }
     }

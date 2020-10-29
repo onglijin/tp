@@ -2,14 +2,14 @@ package tp.acecs2103.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import tp.acecs2103.commons.util.AppUtil;
+import tp.acecs2103.model.exceptions.InvalidTaskListOperationException;
 import tp.acecs2103.model.task.CustomizedDeadline;
 import tp.acecs2103.model.task.Index;
-import tp.acecs2103.model.task.OfficialDeadline;
-import tp.acecs2103.model.exceptions.InvalidTaskListOperationException;
 import tp.acecs2103.model.task.Task;
 import tp.acecs2103.model.task.WeekNumber;
 
@@ -141,14 +141,49 @@ public class TaskList {
     }
 
     /**
+     * Filter the task list based on criteria given.
+     *
+     * @param isDone is the boolean value to describe if filter criteria is to display done tasks only
+     * @param byOfficialDeadline is the boolean value to describe if filter criteria is to display pending tasks by official deadline
+     * @param weekNumber is the int value to describe the week number of the tasks to be displayed(optional)
+     * @return a new ArrayList to display.
+     */
+    public ArrayList<Task> filter(boolean isDone, boolean byOfficialDeadline, WeekNumber weekNumber) {
+        ArrayList<Task> newList = new ArrayList<>(taskList);
+        ArrayList<Task> additionalList = new ArrayList<>();
+
+        if (weekNumber != null) {
+            newList = list(weekNumber);
+        }
+
+        for (Task task : newList) {
+            if (task.isDone() == isDone) {
+                additionalList.add(task);
+            }
+        }
+
+        if (!isDone) {
+            if (byOfficialDeadline) {
+                Collections.sort(additionalList);
+            } else {
+                Collections.sort(additionalList, new Comparator<Task>() {
+                    @Override
+                    public int compare(Task o1, Task o2) {
+                        return o1.getCustomizedDeadline().compareTo(o2.getCustomizedDeadline());
+                    }
+                });
+            }
+        }
+        return additionalList;
+    }
+
+    /**
      * Finds all of tasks in certain week.
      *
      * @param weekNumber A valid week number.
      * @return a array list consisting of all satisfied tasks.
      */
     public ArrayList<Task> list(WeekNumber weekNumber) {
-        // TODO: include assertion?
-//        assert weekNumber.value <= 13;
         timeRange = weekNumber;
         ArrayList<Task> newList = new ArrayList<Task>();
         for (Task task: taskList) {
@@ -175,7 +210,8 @@ public class TaskList {
      *
      * @param taskIndex A valid task index,
      */
-    public boolean isTaskCustomized(Index taskIndex) {
+
+    public boolean isCustomizedTask(Index taskIndex) {
         int i = 0;
         for (Task task : taskList) {
             if (task.hasIndex(taskIndex)) {
@@ -208,6 +244,51 @@ public class TaskList {
         }
         throw new InvalidTaskListOperationException("The task is default task which can not be deleted.");
     }
+
+    /**
+     * Mark a task as done.
+     *
+     * @param taskIndex A valid task index.
+     * @return a new array list after find().
+     */
+    public ArrayList<Task> done(Index taskIndex) throws InvalidTaskListOperationException {
+        int i = 0;
+        for (Task task : taskList) {
+            if (task.hasIndex(taskIndex)) {
+                break;
+            }
+            i++;
+        }
+        Task task = taskList.get(i);
+        if (!task.isDone()) {
+            task.markAsDone();
+            return find();
+        }
+        throw new InvalidTaskListOperationException("The task is already marked as done.");
+    }
+
+    /**
+     * Mark a task as pending.
+     *
+     * @param taskIndex A valid task index.
+     * @return a new array list after find().
+     */
+    public ArrayList<Task> undone(Index taskIndex) throws InvalidTaskListOperationException {
+        int i = 0;
+        for (Task task : taskList) {
+            if (task.hasIndex(taskIndex)) {
+                break;
+            }
+            i++;
+        }
+        Task task = taskList.get(i);
+        if (task.isDone()) {
+            task.markAsPending();
+            return find();
+        }
+        throw new InvalidTaskListOperationException("The task is already marked as done.");
+    }
+
 
     /**
      * Sets a deadline to a certain task.

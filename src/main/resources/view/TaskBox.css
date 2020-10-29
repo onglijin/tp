@@ -2,14 +2,38 @@
     -fx-background-radius: 10;
 }
 
+.progress-bar .bar {
+    -fx-accent: #87CEFA;
+    -fx-border-radius: 10;
+    -fx-background-radius: 100;
+    -fx-pref-width: 300px;
+    -fx-pref-height: 50px;
+}
+.progress-bar .track {
+    -fx-background-radius: 100;
+}
+.bar {
+    fx-background-radius: 10;
+}
+
 .GridPane {
     -fx-background-radius: 10;
 }
 
 .VBox {
-    -fx-background-color:  #87CEFA;
     -fx-border-radius: 10;
     -fx-background-radius: 10;
+}
+.pending-task {
+    -fx-background-color:  grey;
+}
+
+.done-task {
+    -fx-background-color:  #32cd32;
+}
+
+.overdue-task {
+    -fx-background-color:  #ff4500;
 }
 
 .Label {

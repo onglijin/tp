@@ -1,14 +1,10 @@
 package tp.acecs2103.model.task;
 
-import static java.util.Objects.requireNonNull;
-
 /**
  * Represents a Task's description in the task manager.
  * Guarantees: immutable; is valid as declared in {@link #isValidRemark(String)}
  */
 public class Remark {
-
-    // TODO: Message Constraints?
 
     public final String value;
 
@@ -29,6 +25,4 @@ public class Remark {
     public boolean contains(String keyword) {
         return value.contains(keyword);
     }
-
-    // TODO: check if hashCode needed
 }
