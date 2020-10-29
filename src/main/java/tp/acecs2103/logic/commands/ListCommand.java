@@ -2,6 +2,7 @@ package tp.acecs2103.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import tp.acecs2103.commons.core.Messages;
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.task.WeekNumber;
 
@@ -12,7 +13,7 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_SUCCESS = "Listed all tasks for week";
+    public static final String MESSAGE_SUCCESS = "Listed all tasks for week ";
 
     private final WeekNumber weekNumber;
 
@@ -29,6 +30,7 @@ public class ListCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.listTasks(weekNumber);
-        return new CommandResult(MESSAGE_SUCCESS + this.weekNumber.value);
+        return new CommandResult(MESSAGE_SUCCESS + this.weekNumber.value + "\n"
+        + String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getUiTaskList().size()));
     }
 }

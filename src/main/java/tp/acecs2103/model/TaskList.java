@@ -8,9 +8,11 @@ import java.util.Collections;
 import tp.acecs2103.commons.util.AppUtil;
 import tp.acecs2103.model.exceptions.InvalidTaskListOperationException;
 import tp.acecs2103.model.task.CustomizedDeadline;
+import tp.acecs2103.model.task.Deadline;
 import tp.acecs2103.model.task.Index;
 import tp.acecs2103.model.task.Task;
 import tp.acecs2103.model.task.WeekNumber;
+
 
 
 public class TaskList {
@@ -171,8 +173,15 @@ public class TaskList {
             if (byOfficialDeadline) {
                 Collections.sort(additionalList);
             } else {
-                Collections.sort(additionalList, (o1, o2) ->
-                        o1.getCustomizedDeadline().compareTo(o2.getCustomizedDeadline()));
+
+                Collections.sort(additionalList, (o1, o2) -> {
+                    Deadline ddl1 = (o1.getCustomizedDeadline() != null)
+                            ? o1.getCustomizedDeadline() : o1.getOfficialDeadline();
+                    Deadline ddl2 = (o2.getCustomizedDeadline() != null)
+                            ? o2.getCustomizedDeadline() : o2.getOfficialDeadline();
+                    int result = ddl1.compareTo(ddl2);
+                    return result;
+                });
             }
         }
         return additionalList;

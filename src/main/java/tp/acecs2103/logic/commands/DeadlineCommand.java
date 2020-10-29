@@ -10,7 +10,7 @@ import tp.acecs2103.model.task.Index;
 public class DeadlineCommand extends Command {
     public static final String COMMAND_WORD = "deadline";
 
-    public static final String MESSAGE_SUCCESS = "Modified deadline for the required task.\nCustomized deadline :";
+    public static final String MESSAGE_SUCCESS = "Modified deadline for the task %1$s.\n Customized deadline set to:";
 
     private final Index targetIndex;
     private final CustomizedDeadline newDeadline;
@@ -37,6 +37,6 @@ public class DeadlineCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.deadlineTask(targetIndex, newDeadline);
-        return new CommandResult(MESSAGE_SUCCESS + newDeadline.value);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, targetIndex.value) + newDeadline.value);
     }
 }
