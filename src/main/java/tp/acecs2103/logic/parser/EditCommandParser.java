@@ -1,18 +1,19 @@
 package tp.acecs2103.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static tp.acecs2103.logic.parser.ParserUtil.parseWeekNumber;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
+import java.time.LocalDate;
 
 import tp.acecs2103.commons.core.Messages;
-import tp.acecs2103.commons.core.index.Index;
 import tp.acecs2103.logic.commands.EditCommand;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
-import tp.acecs2103.model.tag.Tag;
-
+import tp.acecs2103.model.task.CustomizedDeadline;
+import tp.acecs2103.model.task.Description;
+import tp.acecs2103.model.task.Index;
+import tp.acecs2103.model.task.OfficialDeadline;
+import tp.acecs2103.model.task.Remark;
+import tp.acecs2103.model.task.WeekNumber;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -27,47 +28,44 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_WEEKNO, CliSyntax.PREFIX_INDEX,
-                        CliSyntax.PREFIX_DESCRIPTION, CliSyntax.PREFIX_OFFICIALDDL,
-                        CliSyntax.PREFIX_CUSTOMIZEDDDL, CliSyntax.PREFIX_REMARK);
+                ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_WEEK_NUMBER, CliSyntax.PREFIX_INDEX,
+                        CliSyntax.PREFIX_DESCRIPTION,
+                        CliSyntax.PREFIX_CUSTOMIZED_DEADLINE, CliSyntax.PREFIX_REMARK);
 
         Index index;
 
         try {
-            index = ParserUtil.parseIndexObj(argMultimap.getPreamble());
+            String indexParsed = ParserUtil.parseIndex(argMultimap.getValue(CliSyntax.PREFIX_INDEX).get());
+            index = new Index(indexParsed);
         } catch (ParseException pe) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     EditCommand.MESSAGE_USAGE), pe);
         }
 
         EditCommand.EditTaskDescriptor editTaskDescriptor = new EditCommand.EditTaskDescriptor();
-        /*
-        if (argMultimap.getValue(CliSyntax.PREFIX_INDEX).isPresent()) {
-            editTaskDescriptor.setIndex(
-                    ParserUtil.parseIndex(argMultimap.getValue(CliSyntax.PREFIX_INDEX).get()));
-        }
-        */
 
-
-        if (argMultimap.getValue(CliSyntax.PREFIX_WEEKNO).isPresent()) {
-            editTaskDescriptor.setWeekNumber(
-                    ParserUtil.parseWeekNumber(argMultimap.getValue(CliSyntax.PREFIX_WEEKNO).get()));
+        if (!argMultimap.getValue(CliSyntax.PREFIX_WEEK_NUMBER).get().equals("")) {
+            int weekNumberParsed = parseWeekNumber(argMultimap.getValue(CliSyntax.PREFIX_WEEK_NUMBER).get());
+            editTaskDescriptor.setWeekNumber(new WeekNumber(Integer.toString(weekNumberParsed)));
         }
-        if (argMultimap.getValue(CliSyntax.PREFIX_DESCRIPTION).isPresent()) {
-            editTaskDescriptor.setDescription(
-                    ParserUtil.parseDescription(argMultimap.getValue(CliSyntax.PREFIX_DESCRIPTION).get()));
+        if (!argMultimap.getValue(CliSyntax.PREFIX_DESCRIPTION).get().equals("")) {
+            String descriptionParsed = ParserUtil.parseDescription(
+                    argMultimap.getValue(CliSyntax.PREFIX_DESCRIPTION).get());
+            editTaskDescriptor.setDescription(new Description(descriptionParsed));
         }
-        if (argMultimap.getValue(CliSyntax.PREFIX_OFFICIALDDL).isPresent()) {
-            editTaskDescriptor.setOfficialDeadline(
-                    ParserUtil.parseOfficialDeadline(argMultimap.getValue(CliSyntax.PREFIX_OFFICIALDDL).get()));
+        if (!argMultimap.getValue(CliSyntax.PREFIX_OFFICIAL_DEADLINE).get().equals("")) {
+            LocalDate officialDeadlineParsed = ParserUtil.parseOfficialDeadline(
+                    argMultimap.getValue(CliSyntax.PREFIX_OFFICIAL_DEADLINE).get());
+            editTaskDescriptor.setOfficialDeadline(new OfficialDeadline(officialDeadlineParsed.toString(), officialDeadlineParsed));
         }
-        if (argMultimap.getValue(CliSyntax.PREFIX_CUSTOMIZEDDDL).isPresent()) {
-            editTaskDescriptor.setCustomizedDeadline(
-                    ParserUtil.parseCustomizedDeadline(argMultimap.getValue(CliSyntax.PREFIX_CUSTOMIZEDDDL).get()));
+        if (!argMultimap.getValue(CliSyntax.PREFIX_CUSTOMIZED_DEADLINE).get().equals("")) {
+            LocalDate customizedDeadlineParsed = ParserUtil.parseCustomizedDeadline(
+                    argMultimap.getValue(CliSyntax.PREFIX_CUSTOMIZED_DEADLINE).get());
+            editTaskDescriptor.setCustomizedDeadline(new CustomizedDeadline(customizedDeadlineParsed.toString(), customizedDeadlineParsed));
         }
-        if (argMultimap.getValue(CliSyntax.PREFIX_REMARK).isPresent()) {
-            editTaskDescriptor.setRemark(
-                    ParserUtil.parseRemark(argMultimap.getValue(CliSyntax.PREFIX_REMARK).get()));
+        if (!argMultimap.getValue(CliSyntax.PREFIX_REMARK).get().equals("")) {
+            String remarkParsed = ParserUtil.parseRemark(argMultimap.getValue(CliSyntax.PREFIX_REMARK).get());
+            editTaskDescriptor.setRemark(new Remark(remarkParsed));
         }
 
         if (!editTaskDescriptor.isAnyFieldEdited()) {
@@ -76,20 +74,4 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         return new EditCommand(index, editTaskDescriptor);
     }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
-     */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
-
-        if (tags.isEmpty()) {
-            return Optional.empty();
-        }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
-    }
-
 }

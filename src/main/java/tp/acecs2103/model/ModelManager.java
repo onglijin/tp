@@ -10,9 +10,19 @@ import javafx.collections.ObservableList;
 import tp.acecs2103.commons.core.GuiSettings;
 import tp.acecs2103.commons.core.LogsCenter;
 import tp.acecs2103.commons.util.CollectionUtil;
+
+import tp.acecs2103.model.task.Deadline;
+import tp.acecs2103.model.task.CustomizedDeadline;
+import tp.acecs2103.model.task.OfficialDeadline;
 import tp.acecs2103.model.exceptions.InvalidTaskListOperationException;
 import tp.acecs2103.model.exceptions.ModelException;
+import tp.acecs2103.model.task.CustomizedDeadline;
+import tp.acecs2103.model.task.Index;
 import tp.acecs2103.model.task.Task;
+import tp.acecs2103.model.task.WeekNumber;
+
+import tp.acecs2103.model.exceptions.InvalidTaskListOperationException;
+import tp.acecs2103.model.exceptions.ModelException;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -43,6 +53,7 @@ public class ModelManager implements Model {
      */
     public ModelManager() {
         this.taskList = new TaskList();
+        logger.info("The size of tasklist is: " + taskList.size());
         this.userPrefs = new UserPrefs();
         this.uiTaskList = new UiTaskList(taskList.getUiTaskList());
     }
@@ -106,12 +117,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean isTaskCustomized(String index) {
-        return taskList.isTaskCustomized(index);
+
+    public boolean isCustomizedTask(Index index) {
+        return taskList.isCustomizedTask(index);
     }
 
     @Override
-    public void deleteTask(String index) throws ModelException {
+    public void deleteTask(Index index) throws ModelException {
         try {
             uiTaskList.addAll(taskList.delete(index));
         } catch (InvalidTaskListOperationException e) {
@@ -120,17 +132,32 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void markTaskAsDone(Index index) throws ModelException {
+        uiTaskList.addAll(taskList.done(index));
+    }
+
+    @Override
+    public void markTaskAsPending(Index index) throws ModelException {
+        uiTaskList.addAll(taskList.undone(index));
+    }
+
+    @Override
+    public void filterTasks(boolean isDone, boolean byOfficialDeadline, WeekNumber weekNumber) {
+        uiTaskList.addAll(taskList.filter(isDone,byOfficialDeadline,weekNumber));
+    }
+
+    @Override
     public void findTasks(String keyword) {
         uiTaskList.addAll(taskList.find(keyword));
     };
 
     @Override
-    public void listTasks(int weekNumber) {
+    public void listTasks(WeekNumber weekNumber) {
         uiTaskList.addAll(taskList.list(weekNumber));
     };
 
     @Override
-    public void deadlineTask(String index, LocalDate deadline) {
+    public void deadlineTask(Index index, CustomizedDeadline deadline) {
         uiTaskList.addAll(taskList.deadline(index, deadline));
     }
 
@@ -145,7 +172,6 @@ public class ModelManager implements Model {
     public UiTaskList getUiTaskList() {
         return uiTaskList;
     }
-
 
     @Override
     public ObservableList<Task> getAdminList() {

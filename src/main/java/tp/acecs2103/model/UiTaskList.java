@@ -85,14 +85,53 @@ public class UiTaskList {
         return adminList.size() + ipList.size() + tpList.size() + topicList.size();
     }
 
+    public ArrayList<Integer> getAdminWeekRange() {
+        if (adminList.size() == 0) {
+            return null;
+        }
+        ArrayList<Integer> res = new ArrayList<>();
+        res.add(getMaxWeekRange(adminList));
+        res.add(getMinWeekNumber(adminList));
+        return res;
+    }
+
+    public ArrayList<Integer> getTopicWeekRange() {
+        if (topicList.size() == 0) {
+            return null;
+        }
+        ArrayList<Integer> res = new ArrayList<>();
+        res.add(getMaxWeekRange(topicList));
+        res.add(getMinWeekNumber(topicList));
+        return res;
+    }
+
+    public ArrayList<Integer> getTpWeekRange() {
+        if (tpList.size() == 0) {
+            return null;
+        }
+        ArrayList<Integer> res = new ArrayList<>();
+        res.add(getMaxWeekRange(tpList));
+        res.add(getMinWeekNumber(tpList));
+        return res;
+    }
+
+    public ArrayList<Integer> getIpWeekRange() {
+        if (ipList.size() == 0) {
+            return null;
+        }
+        ArrayList<Integer> res = new ArrayList<>();
+        res.add(getMaxWeekRange(ipList));
+        res.add(getMinWeekNumber(ipList));
+        return res;
+    }
     /**
      * Gets the largest week number of all tasks to be displayed.
      */
-    public int getMaxWeekNumber() {
+    public int getMaxWeekRange(ObservableList<Task> taskList) {
         int weekNumber = -1;
-        for (Task task: combinedTaskList) {
-            if (task.getWeekNumber() > weekNumber) {
-                weekNumber = task.getWeekNumber();
+        for (Task task: taskList) {
+            if (task.getWeekNumber().getWeekValueInt() > weekNumber) {
+                weekNumber = task.getWeekNumber().getWeekValueInt();
             }
         }
         assert weekNumber != -1;
@@ -102,11 +141,11 @@ public class UiTaskList {
     /**
      * Gets the smallest week number of all tasks to be displayed.
      */
-    public int getMinWeekNumber() {
+    public int getMinWeekNumber(ObservableList<Task> taskList) {
         int weekNumber = 10000;
-        for (Task task: combinedTaskList) {
-            if (task.getWeekNumber() < weekNumber) {
-                weekNumber = task.getWeekNumber();
+        for (Task task: taskList) {
+            if (task.getWeekNumber().getWeekValueInt() < weekNumber) {
+                weekNumber = task.getWeekNumber().getWeekValueInt();
             }
         }
         assert weekNumber != 10000;

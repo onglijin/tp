@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import tp.acecs2103.commons.core.LogsCenter;
 import tp.acecs2103.model.task.Task;
 
@@ -19,6 +20,8 @@ public class TaskBox extends UiPart<Region> {
     public final Task task;
     private final Logger logger = LogsCenter.getLogger(TaskBox.class);
 
+    @FXML
+    private VBox box;
     @FXML
     private HBox cardPane;
     @FXML
@@ -45,7 +48,7 @@ public class TaskBox extends UiPart<Region> {
             index.setText("Index: " + task.getIndex());
         }
         if (!Objects.isNull(task.getWeekNumber())) {
-            weekNumber.setText("Week number: " + Integer.toString(task.getWeekNumber()));
+            weekNumber.setText("Week number: " + task.getWeekNumber().toString());
         }
         if (!Objects.isNull(task.getDescription())) {
             description.setText("Description: " + task.getDescription());
@@ -59,5 +62,19 @@ public class TaskBox extends UiPart<Region> {
         if (!Objects.isNull(task.getRemark())) {
             remark.setText("Remark: " + task.getRemark());
         }
+
+        if (task.isDone()) {
+            logger.info("done");
+            box.getStyleClass().add("done-task");
+        } else {
+            if (task.isOverdue()) {
+                logger.info("overdue");
+                box.getStyleClass().add("overdue-task");
+            } else {
+                logger.info("pending");
+                 box.getStyleClass().add("pending-task");
+            }
+        }
+
     }
 }

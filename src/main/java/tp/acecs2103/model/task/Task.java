@@ -9,25 +9,26 @@ import tp.acecs2103.commons.util.CollectionUtil;
 /**
  * Represents a general task in Ace CS2103/T.
  */
-public class Task {
+public class Task implements Comparable<Task> {
     private static final Logger logger = LogsCenter.getLogger(Task.class);
 
-    private String index;
-    private int weekNumber;
-    private String description;
-    private LocalDate officialDeadline;
-    private LocalDate customizedDeadline;
-    private String remark;
+    private Index index;
+    private WeekNumber weekNumber;
+    private Description description;
+    private OfficialDeadline officialDeadline;
+    private CustomizedDeadline customizedDeadline;
+    private Remark remark;
     private TaskCategory category;
     private boolean customized;
+    private boolean doneStatus;
 
     /**
      * Creates a {@code Task} with given details.
      */
-    public Task(String index, int weekNumber,
-                String description, LocalDate officialDeadline,
-                LocalDate customizedDeadline, String remark,
-                boolean customized) {
+    public Task(Index index, WeekNumber weekNumber,
+                Description description, OfficialDeadline officialDeadline,
+                CustomizedDeadline customizedDeadline, Remark remark, boolean customized,
+                boolean doneStatus) {
         CollectionUtil.requireAllNonNull(index, weekNumber, description);
         this.index = index;
         this.weekNumber = weekNumber;
@@ -37,64 +38,48 @@ public class Task {
         this.remark = remark;
         this.category = TaskCategory.TASK;
         this.customized = customized;
-    }
-
-    /**
-     * Creates a {@code Task} with given details.
-     */
-    public Task(String index, int weekNumber, String description,
-                LocalDate officialDeadline, LocalDate customizedDeadline, String remark,
-                TaskCategory taskCategory, boolean customized) {
-        CollectionUtil.requireAllNonNull(index, weekNumber, description);
-        this.index = index;
-        this.weekNumber = weekNumber;
-        this.description = description;
-        this.officialDeadline = officialDeadline;
-        this.customizedDeadline = customizedDeadline;
-        this.remark = remark;
-        this.category = taskCategory;
-        this.customized = customized;
+        this.doneStatus = doneStatus;
     }
 
     /**
      * Gets the task index.
      */
-    public String getIndex() {
+    public Index getIndex() {
         return index;
     }
 
     /**
      * Gets the week number.
      */
-    public int getWeekNumber() {
+    public WeekNumber getWeekNumber() {
         return weekNumber;
     }
 
     /**
      * Gets the task description.
      */
-    public String getDescription() {
+    public Description getDescription() {
         return description;
     }
 
     /**
      * Gets the official deadline of task.
      */
-    public LocalDate getOfficialDeadline() {
+    public OfficialDeadline getOfficialDeadline() {
         return officialDeadline;
     }
 
     /**
      * Gets the customized deadline of task.
      */
-    public LocalDate getCustomizedDeadline() {
+    public CustomizedDeadline getCustomizedDeadline() {
         return customizedDeadline;
     }
 
     /**
      * Gets the remark of the task.
      */
-    public String getRemark() {
+    public Remark getRemark() {
         return remark;
     }
 
@@ -113,9 +98,16 @@ public class Task {
     }
 
     /**
+     * Checks whether the task is done
+     */
+    public boolean isDone() {
+        return this.doneStatus;
+    }
+
+    /**
      * Checks whether the task has index {@code taskIndex}
      */
-    public boolean hasIndex(String taskIndex) {
+    public boolean hasIndex(Index taskIndex) {
         return this.index.equals(taskIndex);
     }
 
@@ -127,19 +119,42 @@ public class Task {
     }
 
     /**
+     * Mark the task as done.
+     */
+    public void markAsDone() {
+        assert !doneStatus;
+        doneStatus = true;
+    }
+
+    /**
+     * Mark the task as pending (i.e. not done yet).
+     */
+    public void markAsPending() {
+        assert doneStatus;
+        doneStatus = false;
+    }
+
+    /**
      * Sets a deadline to the task.
      * @param deadline A valid LocalDate.
      */
-    public void setDeadline(LocalDate deadline) {
+    public void setDeadline(CustomizedDeadline deadline) {
         assert deadline != null;
         customizedDeadline = deadline;
     }
 
     /**
+     * Check whether the task a valid task, aka if the official deadline is correctly set to null for a customised task.
+     */
+    public boolean isValid() {
+        return isCustomized() == (officialDeadline == null);
+    }
+
+    /**
      * Check whether the task is in week {@code weekIndex}.
      */
-    public boolean isWeekX(int weekIndex) {
-        return weekIndex == weekNumber;
+    public boolean isWeekX(WeekNumber weekIndex) {
+        return weekNumber.equals(weekIndex);
     }
 
     /**
@@ -154,5 +169,18 @@ public class Task {
      */
     public boolean isSameTask(Task task) {
         return index.equals(task.getIndex());
+    }
+
+    /**
+     * Checks is a task if overdue (i.e. passed ddl but have not done yet )
+     */
+    public boolean isOverdue() {
+        return getOfficialDeadline().getTimeInfo().compareTo(LocalDate.now()) < 0;
+    }
+
+
+    @Override
+    public int compareTo(Task o) {
+        return getOfficialDeadline().compareTo(o.getOfficialDeadline());
     }
 }

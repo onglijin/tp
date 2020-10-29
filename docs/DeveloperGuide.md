@@ -17,17 +17,12 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="450" />
+![Architecture Diagram](images/ArchitectureDiagram.png)
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
-<div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-
-</div>
-
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103-T14-4/tp/blob/master/src/main/java/tp/acecs2103/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103-T14-4/tp/blob/master/src/main/java/tp/acecs2103/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -47,13 +42,14 @@ Each of the four components,
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
-![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
+![Class Diagram of the Logic Component](images/Ace2103LogicClassDiagram.jpg)
 
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+![Sequence Diagram for Delete 1 command](images/Ace2103DeleteSequenceDiagram.jpg)
+
 
 The sections below give more details of each component.
 
@@ -64,7 +60,7 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103-T14-4/tp/blob/master/src/main/java/tp/acecs2103/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `CategoryPanel`, `WeekDisplay` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `CategoryPanel`, `WeekDisplay`, `HelpWindow` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -75,23 +71,20 @@ The `UI` component,
 
 ### Logic component
 
-![Structure of the Logic Component](images/LogicClassDiagram.png)
+![Structure of the Logic Component](images/Ace2103LogicClassDiagram.jpg)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103-T14-4/tp/blob/master/src/main/java/tp/acecs2103/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `TaskListParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding a customised task).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 0101")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
+![Interactions Inside the Logic Component for the `delete 1` Command](images/Ace2103DeleteSequenceDiagram.jpg)
 
 ### Model component
 
@@ -107,10 +100,7 @@ The `Model`,
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
-</div>
 
 
 ### Storage component
@@ -127,136 +117,158 @@ The `Storage` component,
 
 Classes used by multiple components are in the `tp.acecs2103.commons` package.
 
-## **UI Enhancements**  
+## **UI Enhancements**
 
-### Task Box  
-**Description:**  
-Task Box is used to encapsulates a pre-defined or a customized task, which will be displayed in the category panel.  
+### Task Box
+**Description:**
+Task Box is used to encapsulates a pre-defined or a customized task, which will be displayed in the category panel.
 <br/>
-**Implementation:**  
-A task box contains the following fields:   
-+ index  
-+ week number  
-+ description  
-+ official deadline  
-+ customized deadline (if any)  
-+ remark (if any)  
+<br/>
+**Implementation:**
+A task box contains the following fields:
++ index
++ week number
++ description
++ official deadline
++ customized deadline (if any)
++ remark (if any)
 
-The constructor is called by Category panel and the data is obtained by passing in a task object from an observable task list.  
+The constructor is called by Category panel and the data is obtained by passing in a task object from an observable task list.
 <br/>
-**Why:**  
-Since there will be multiple tasks under a category panel, task box constructor should be called in category panel and use a default method in JavaFX to generate all the task boxes in one step.   
 <br/>
-**Other Considerations:**  
-Since the data in task box may change depending on the user input, therefore it should be able to check if need to update the content whenever data change happens. Therefore, it is necessary to implement update item method such that it can automatically check the update.  
+**Why:**
+Since there will be multiple tasks under a category panel, task box constructor should be called in category panel and use a default method in JavaFX to generate all the task boxes in one step.
+<br/>
+<br/>
+**Other Considerations:**
+Since the data in task box may change depending on the user input, therefore it should be able to check if need to update the content whenever data change happens. Therefore, it is necessary to implement update item method such that it can automatically check the update.
 
 ### Category Panel
-**Description:**  
-Category panel is used to encapsulates a list of tasks which are of the same category as the header of the category panel.   
+**Description:**
+Category panel is used to encapsulates a list of tasks which are of the same category as the header of the category panel.
 <br/>
-**Implementation:**  
-Category panel contains the following fields:  
-+ category label  
-+ category view  
+<br/>
+**Implementation:**
+Category panel contains the following fields:
++ category label
++ category view
 
-Category panel will read in a category label and an observable task list from Ui Task List class. The category label will be passed into the constructor of category box which will generate the header of the panel. Every task object in the task list will be used to create to a corresponding task box.  
+Category panel will read in a category label and an observable task list from Ui Task List class. The category label will be passed into the constructor of category box which will generate the header of the panel. Every task object in the task list will be used to create to a corresponding task box.
 <br/>
-**Why:**   
-Since a category panel should contains multiple tasks and a category box which indicate the category name, it is necessary to call the constructor of task box and pass in every task object to a corresponding task box. Besides, category label will be passed into the constructor of category box which will generate the header of the panel.  
 <br/>
-**Other Considerations:**  
-Since all the tasks are divided into four categories, and the structure for each panel is the same (header and tasks), there is only one category panel component needed. For styling, different colour and style will be implemented for different category panel.  
+**Why:**
+Since a category panel should contains multiple tasks and a category box which indicate the category name, it is necessary to call the constructor of task box and pass in every task object to a corresponding task box. Besides, category label will be passed into the constructor of category box which will generate the header of the panel.
+<br/>
+<br/>
+**Other Considerations:**
+Since all the tasks are divided into four categories, and the structure for each panel is the same (header and tasks), there is only one category panel component needed. For styling, different colour and style will be implemented for different category panel.
 
 ### Category Box
-**Description:**  
-A category box is a header box to indicate the category of the tasks below.  
+**Description:**
+A category box is a header box to indicate the category of the tasks below.
 <br/>
-**Implementation:**  
-Category box contains the following field:  
-+ category label  
+<br/>
+**Implementation:**
+Category box contains the following field:
++ category label
 
-Category box will just simply read in a string of category then create a corresponding category box.  
+Category box will just simply read in a string of category then create a corresponding category box.
 <br/>
-**Why:**  
-Since there are four different categories, it is necessary to have header box to indicate the different categories.  
 <br/>
-**Other Considerations:**  
-The category field in the task box is not needed because category box can clearly show the category already.  
+**Why:**
+Since there are four different categories, it is necessary to have header box to indicate the different categories.
+<br/>
+<br/>
+**Other Considerations:**
+The category field in the task box is not needed because category box can clearly show the category already.
 
 ### Command Box
-**Description:**  
-User can enter commands in the command box.  
+**Description:**
+User can enter commands in the command box.
 <br/>
-**Implementation:**  
-Command box contains the following field:  
-+ input command  
+<br/>
+**Implementation:**
+Command box contains the following field:
++ input command
 
-User command will be passed into input command filed and it will then pass to parser to finish subsequent procedures.  
+User command will be passed into input command filed and it will then pass to parser to finish subsequent procedures.
 <br/>
-**Why:**  
-It is necessary to implement user command box such that the application will know what functionalities should be processed.  
-<br/> 
-**Other Considerations:**  
-Since users are supposed to use keyboard only, submit button is replaced by click “Enter”.  
+<br/>
+**Why:**
+It is necessary to implement user command box such that the application will know what functionalities should be processed.
+<br/>
+<br/>
+**Other Considerations:**
+Since users are supposed to use keyboard only, submit button is replaced by click “Enter”.
 
 ### Week Display
-**Description:**  
-Week display component will display the number of the week among all the filtered tasks if they are in the same week.  
+**Description:**
+Week display component will display the number of the week among all the filtered tasks if they are in the same week.
 <br/>
-**Implementation:**  
-Week display contains the following field:  
-+ week number and date  
+<br/>
+**Implementation:**
+Week display contains the following field:
++ week number and date
 
-Week display will receive the maximum and minimum week number among all the filtered tasks, and it will display the week and the corresponding date. Whenever the filtered tasks change, the component will do auto check and the week number should be changed correspondingly.  
+Week display will receive the maximum and minimum week number among all the filtered tasks, and it will display the week and the corresponding date. Whenever the filtered tasks change, the component will do auto check and the week number should be changed correspondingly.
 <br/>
-**Why:**  
-Although it is not essential, having this week display box can facilitate users to know the week that tasks belong to.  
 <br/>
-**Other Considerations:**  
-The text style should be different from others and it should be obvious.  
+**Why:**
+Although it is not essential, having this week display box can facilitate users to know the week that tasks belong to.
+<br/>
+<br/>
+**Other Considerations:**
+The text style should be different from others and it should be obvious.
 
 ### Message Window
-**Description:**  
-After entering a command, the message window will tell users whether the command is executed successfully or not.  
+**Description:**
+After entering a command, the message window will tell users whether the command is executed successfully or not.
 <br/>
-**Implementation:**  
-Message window contains the following field:  
-+ message text  
+<br/>
+**Implementation:**
+Message window contains the following field:
++ message text
 
-Message window will accept a string of message from the parser which indicates the status of the command, and then display it at the bottom of the application. Besides, the displayed message should be refreshed and updated whenever a new command is entered.  
+Message window will accept a string of message from the parser which indicates the status of the command, and then display it at the bottom of the application. Besides, the displayed message should be refreshed and updated whenever a new command is entered.
 <br/>
-**Why:**  
-In order to make sure the application is responsive for every command; it is necessary to add such a functionality so that users can clearly know weather the command is executed successfully or not instead of being unaware of a failed command.  
 <br/>
-**Other Considerations:**  
-The message should be clear and succinct that not occupy a large area. 
+**Why:**
+In order to make sure the application is responsive for every command; it is necessary to add such a functionality so that users can clearly know weather the command is executed successfully or not instead of being unaware of a failed command.
+<br/>
+<br/>
+**Other Considerations:**
+The message should be clear and succinct that not occupy a large area.
 
-## **Model Enhancements**  
+## **Model Enhancements**
 
 ### UiTaskList
-**Description:**  
-UiTaskList is a task list used for Ui display. 
+**Description:**
+UiTaskList is a task list used for Ui display.
 <br/>
-**Implementation:**  
+<br/>
+**Implementation:**
 UiTaskList includes four sub task lists for `Admin`, `Topic`, `TP` and `IP`:
 + adminList
 + topicList
 + ipList
-+ tpList 
++ tpList
 
-After running a command, UiTaskList will be refreshed to contain all the tasks satisfying current key condition. 
+After running a command, UiTaskList will be refreshed to contain all the tasks satisfying current key condition.
 <br/>
-**Why:**  
+<br/>
+**Why:**
 It is to separate tasks which should be used for Ui display from TaskList used in command operation. This makes TaskList safer to avoid conflicts between Ui and Model.
 <br/>
-**Other Considerations:**  
+<br/>
+**Other Considerations:**
 The UiTaskList must be refreshed every time after the command is run in case there is any change for it.
+<<<<<<< HEAD
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
-
-This section describes some noteworthy details on how certain features are implemented.
+### List feature
+#### Implementation
 
 ### \[Proposed\] Undo/redo feature
 
@@ -343,6 +355,8 @@ _{more aspects and alternatives to be added}_
 _{Explain here how the data archiving feature will be implemented}_
 
 
+=======
+>>>>>>> upstream/master
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -365,9 +379,9 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps due to prior experience with CLI apps 
+* is reasonably comfortable using CLI apps due to prior experience with CLI apps
 
-**Value proposition**: 
+**Value proposition**:
 Provide CS2103 and CS2103/T students with integrated timeline and checklists for weekly tasks in categories, and enable their customised managements of these tasks.
 
 
@@ -375,21 +389,22 @@ Provide CS2103 and CS2103/T students with integrated timeline and checklists for
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| Priority | As a …​                                    | I want to …​                   | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | understand how to use the features of the app                 |
+| `* * *`  | new user                                   | learn about the commands       | understand how to use the features of the app                 |
 | `* * *`  | user                                       | get the tP GitHub link         | check the GitHub updates easily                                                                       |
 | `* * *`  | user                                       | get the module overview        | have a general idea about the course                                  |
-| `* * *`  | user                                       | get MicroSoft Team links       | get updates from the teaching team
-| `* * *`  | user                                       | get progress dashboard links   | keep track of the progress for iP and tP    
-| `* * *`  | user                                       | add a task with description, deadline and remarks | track additional tasks besides preloaded ones from the CS2103/T website
-| `* * *`  | user                                       | edit a customised task set up wrongly 
-| `* * *`  | user                                       | delete a customised task set up wrongly
+| `* * *`  | user                                       | get Microsoft Team links       | get updates from the teaching team
+| `* * *`  | user                                       | get progress dashboard links   | keep track of the progress for iP and tP
+| `* * *`  | user                                       | add a customized task          | track additional tasks beside the preloaded ones from the CS2103/T website
+| `* * *`  | user                                       | edit a customized task         | include an update or correct a mistake
+| `* * *`  | user                                       | delete a customized task       | remove a task that I do not want anymore
 | `* * *`  | user                                       | search for tasks using a keyword | find a specific task without reading through the whole task list
 | `* * *`  | user                                       | add a customised deadline to a task | record when a task needs to be done according to my own schedule
-| `* * *`  | user                                       | read instructions on how to initialize IntelliJ and other essential tools        | 
+| `* * *`  | user                                       | read instructions on how to initialize IntelliJ and other essential tools        |
 | `* *`    | user                                       | get Prof and TA emails         | ask them questions to clear doubts      |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `*`      | user with many tasks in the task manager   | find task by keyword           | locate a task easily
+                                                |
 
 *{More to be added}*
 
@@ -403,13 +418,13 @@ Actor: User
 
 1.  User asks for help information of a specified command name
 2.  Task manager shows information about the asking command name
-    
+
     Use case ends
 
 **Extensions**
 
 1a. User does not provide specified command name
-    
+
     1a1. Task manager lists all the commands used in this software.
         Use case ends
 
@@ -435,7 +450,7 @@ Actor: User
 **Extensions**
 
 1a. Parameter provided by user is invalid
-    
+
     1a1.  Task manager informs user the parameter is invalid and lists all the valid parameters.
         Use case ends
 
@@ -443,9 +458,7 @@ Actor: User
 
     1b1. Task manager lists all the valid parameters.
         Use case ends
-        
-        
-        
+
 **Use case: UC03 - Search for tasks**
 
 Actor: User
@@ -460,7 +473,7 @@ Actor: User
 **Extensions**
 
 1a. User does not provide a keyword
-    
+
     1a1. Task manager informs user to add a parameter
         Use case ends
 
@@ -486,12 +499,12 @@ Actor: User
 **Extensions**
 
 1a. User provides an invalid week number
-    
+
     1a1.  Task manager informs the user the week number is incorrect
         Use case ends
 
 1b. User does not provide week number
-    
+
     1b1. Task manager informs the user to provide valid week number
         Use case ends
 
@@ -540,13 +553,13 @@ Actor: User
 **MSS**
 1.  User requests for adding customized task and provides the necessary information
 2.  Task manager adds the task and shows user an overview of task added
-    
+
     Use case ends.
 
 **Extensions**
 
 1a.  Information provided by user is not complete
-    
+
     1a1.  Task manager informs user the correct format and asks for a new order
         Use case ends
 
@@ -572,7 +585,7 @@ Actor: User
 **Extensions**
 
 1a.  User provides an invalid task index
-    
+
     1a1. Task manager informs the user to provide a valid task index
         Use case ends
 
@@ -591,7 +604,7 @@ Actor: User
 **MSS**
 1.  User requests to exit from task manager
 2.  Task manager shows goodbye words and stops program
- 
+
     Use case ends.
 
 **Extensions**
@@ -600,7 +613,7 @@ Actor: User
 
     *a1. Task manager shows goodbye words and exits
          Use case ends.
-    
+
 
 
 
