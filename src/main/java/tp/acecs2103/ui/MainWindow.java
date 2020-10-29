@@ -86,8 +86,8 @@ public class MainWindow extends UiPart<Stage> {
 
 
         int currentWeekNumber = AppUtil.getCurrentWeekNumber().getWeekValueInt();
-        Double a = (double) currentWeekNumber / (double) 13;
-        progressBar.setProgress(a);
+        Double num = (double) currentWeekNumber / (double) 13;
+        progressBar.setProgress(num);
 
         weekDisplay = new WeekDisplay(currentWeekNumber);
 
@@ -137,6 +137,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             feedbackBox.setFeedbackToUser(commandResult.getFeedbackToUser());
+
             // categoryPanel.setFeedbackToUser(commandResult.getFeedbackToUser());
             if (commandResult.isExit()) {
                 handleExit();
