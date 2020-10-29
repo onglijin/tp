@@ -13,9 +13,13 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD;
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Adds the task identified by the index number used in the displayed task list.\n"
+            + "Parameters: i/INDEX (must be a positive integer) "
+            + "w/WEEK_NUMBER d/DESCRIPTION c/CUSTOMISED_DEADLINE r/REMARK a/CATEGORY\n "
+            + "Example: " + COMMAND_WORD + " i/0109 w/1 d/update documentation c/2020-08-15 r/check dashboard a/Ip";
 
-    public static final String MESSAGE_SUCCESS = "New task added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New task added: \n%1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list";
     public static final String MESSAGE_INVALID_TASK = "A customised task should not have an official deadline";
 

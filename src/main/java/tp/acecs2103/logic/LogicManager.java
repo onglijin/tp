@@ -63,12 +63,6 @@ public class LogicManager implements Logic {
         return model.getUiTaskList();
     }
 
-    /*
-    @Override
-    public ObservableList<Task> getFilteredPersonList() {
-        return model.getFilteredPersonList();
-    }
-    */
 
     @Override
     public Path getTaskListFilePath() {

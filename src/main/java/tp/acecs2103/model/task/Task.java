@@ -87,7 +87,15 @@ public class Task implements Comparable<Task> {
      * Gets the category of the task.
      */
     public TaskCategory getCategory() {
-        return this.category;
+        if (this instanceof IP) {
+            return TaskCategory.IP;
+        } else if (this instanceof TP) {
+            return TaskCategory.TP;
+        } else if (this instanceof Topic) {
+            return TaskCategory.TOPIC;
+        } else {
+            return TaskCategory.ADMIN;
+        }
     }
 
     /**
@@ -189,9 +197,23 @@ public class Task implements Comparable<Task> {
         return getOfficialDeadline().compareTo(o.getOfficialDeadline());
     }
 
+    public boolean equals(Task o) {
+        return this.getIndex().equals(o.getIndex());
+    }
+
     @Override
     public String toString() {
-        return "[Week " + this.getWeekNumber().value + "] Task " + this.getIndex().value
-                + " with description: " + this.getDescription().value;
+        String returnString = "[Week " + this.getWeekNumber().value + "] " + this.getCategory() + " Task "
+                              + this.getIndex().value + " with description: " + this.getDescription().value;
+        if (officialDeadline != null) {
+            returnString += "\nOfficial deadline: " + officialDeadline.value;
+        }
+        if (customizedDeadline != null) {
+            returnString += "\nCustomized deadline: " + customizedDeadline.value;
+        }
+        if (remark != null) {
+            returnString += "\nRemark: " + remark.value;
+        }
+        return returnString;
     }
 }
