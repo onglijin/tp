@@ -15,20 +15,20 @@ import tp.acecs2103.model.task.TaskCategory;
  */
 public class ParserUtil {
 
-        public static final String MESSAGE_INVALID_INDEX = "Invalid index format. Index cannot be empty, " +
-                "and can only take integer value in range [1,13].\n" +
-                "Please try again!";
+    public static final String MESSAGE_INVALID_INDEX = "Invalid index format. Index cannot be empty, "
+            + "and can only take integer value in range [1,13].\n"
+            + "Please try again!";
 
-        public static final String MESSAGE_INVALID_DEADLINE = "Invalid deadline format. A deadline should be in " +
-            "the form of YYYY-MM-DD.\nNote boundary for year, month and days.\n" +
-            "E.g. 2020-15-0 is an invalid deadline. \nPlease try again!";
+    public static final String MESSAGE_INVALID_DEADLINE = "Invalid deadline format. A deadline should be in "
+            + "the form of YYYY-MM-DD.\nNote boundary for year, month and days.\n"
+            + "E.g. 2020-15-0 is an invalid deadline. \nPlease try again!";
 
-        public static final String MESSAGE_INVALID_CATEGORY = "Invalid category format. " +
-            "There are only 4 categories for CS2103/T tasks: \n Ip / Tp / Topic / Admin\n" +
-            "Note the capitalisation. \nPlease try again!";
+    public static final String MESSAGE_INVALID_CATEGORY = "Invalid category format. "
+            + "There are only 4 categories for CS2103/T tasks: \n Ip / Tp / Topic / Admin\n"
+            + "Note the capitalisation. \nPlease try again!";
 
-        public static final String MESSAGE_INVALID_TYPE = "Invalid type. " +
-            "\nPlease try again!";
+    public static final String MESSAGE_INVALID_TYPE = "Invalid type. "
+            + "\nPlease try again!";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be

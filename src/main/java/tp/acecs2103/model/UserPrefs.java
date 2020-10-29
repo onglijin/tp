@@ -11,8 +11,7 @@ import tp.acecs2103.commons.core.GuiSettings;
 /**
  * Represents User's preferences.
  */
-public class
-UserPrefs implements ReadOnlyUserPrefs {
+public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path taskListFilePath = Paths.get("data" , "tasklist.json");

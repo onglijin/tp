@@ -15,8 +15,8 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds the task identified by the index number used in the displayed task list.\n"
-            + "Parameters: i/INDEX (must be a positive integer) " +
-            "w/WEEK_NUMBER d/DESCRIPTION c/CUSTOMISED_DEADLINE r/REMARK a/CATEGORY\n "
+            + "Parameters: i/INDEX (must be a positive integer) "
+            + "w/WEEK_NUMBER d/DESCRIPTION c/CUSTOMISED_DEADLINE r/REMARK a/CATEGORY\n "
             + "Example: " + COMMAND_WORD + " i/0109 w/1 d/update documentation c/2020-08-15 r/check dashboard a/Ip";
 
     public static final String MESSAGE_SUCCESS = "New task added: \n%1$s";
