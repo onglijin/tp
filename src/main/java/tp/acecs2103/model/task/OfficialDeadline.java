@@ -1,54 +1,26 @@
 package tp.acecs2103.model.task;
 
-import static tp.acecs2103.commons.util.AppUtil.checkArgument;
 
-import java.util.logging.Logger;
+import java.time.LocalDate;
 
-import tp.acecs2103.AppParameters;
-import tp.acecs2103.commons.core.LogsCenter;
 
 /**
  * Represents a Task's official deadline in the task manager.
- * Guarantees: is valid as declared in {@link #isValidOfficialDeadline(String)}
+ * Guarantees: is valid as declared in {@link #isValidDeadline(String)}
  */
-public class OfficialDeadline {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Deadlines should be of the format of 'YYYY-MM-DD' and be consists of only numbers and '-'s. "
-                    + "Range of dates is allowed from '2000-01-01' to '2099-12-31'";
+public class OfficialDeadline extends Deadline {
 
-    private static final Logger logger = LogsCenter.getLogger(AppParameters.class);
-
-    public static final String VALIDATION_REGEX = "^19|20\\d\\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$";
-
-    public final String value;
 
     /**
      * Constructs an {@code OfficialDeadline}.
      *
-     * @param officialDeadline A valid official deadline.
+     * @param officialDeadline A valid official deadline in String form.
+     * @param timeInfo A valid official deadline in LocalTime form.
      */
-    public OfficialDeadline(String officialDeadline) {
-        if (officialDeadline != null) {
-            checkArgument(isValidOfficialDeadline(officialDeadline), MESSAGE_CONSTRAINTS);
-        }
-        value = officialDeadline;
+    public OfficialDeadline(String officialDeadline, LocalDate timeInfo) {
+        super(officialDeadline, timeInfo);
+
     }
 
-    /**
-     * Returns true if a given string is a valid official deadline.
-     */
-    public static boolean isValidOfficialDeadline(String test) {
-        return test.matches(VALIDATION_REGEX);
-    }
-
-    @Override
-    public String toString() {
-        return value;
-    }
-
-    public boolean contains(String keyword) {
-        return value.contains(keyword);
-    }
-    // TODO: Check whether need hashcode
 }

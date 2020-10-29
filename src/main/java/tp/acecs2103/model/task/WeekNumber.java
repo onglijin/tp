@@ -21,8 +21,10 @@ public class WeekNumber {
      * @param weekNumber A valid week number.
      */
     public WeekNumber(String weekNumber) {
+        /**
         assert Integer.parseInt(weekNumber) <= 13;
         assert Integer.parseInt(weekNumber) >= 1;
+        */
         requireNonNull(weekNumber);
         checkArgument(isValidWeekNumber(weekNumber), MESSAGE_CONSTRAINTS);
         value = weekNumber;
@@ -59,6 +61,4 @@ public class WeekNumber {
                 || (other instanceof WeekNumber
                 && value.equals(((WeekNumber) other).value));
     }
-
-    // TODO: check if hashCode needed
 }

@@ -7,6 +7,7 @@ import java.time.LocalDate;
 
 import tp.acecs2103.logic.commands.DeadlineCommand;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
+import tp.acecs2103.model.task.CustomizedDeadline;
 import tp.acecs2103.model.task.Index;
 
 public class DeadlineCommandParser implements Parser<DeadlineCommand> {
@@ -18,6 +19,6 @@ public class DeadlineCommandParser implements Parser<DeadlineCommand> {
         Index index = new Index(indexParsed);
         LocalDate customizedDeadline =
                 ParserUtil.parseCustomizedDeadline(argMultimap.getValue(PREFIX_CUSTOMIZED_DEADLINE).get());
-        return new DeadlineCommand(index, customizedDeadline);
+        return new DeadlineCommand(index, new CustomizedDeadline(customizedDeadline.toString(), customizedDeadline));
     }
 }

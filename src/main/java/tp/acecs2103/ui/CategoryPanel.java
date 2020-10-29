@@ -29,13 +29,17 @@ public class CategoryPanel extends UiPart<Region> {
      */
     public CategoryPanel(ObservableList<Task> taskList, ArrayList<Integer> weekRange, String categoryString) {
         super(FXML);
-        String startWeek = "Week " + Integer.toString(weekRange.get(0));
-        String endWeek = "Week " + Integer.toString(weekRange.get(1));
+//        String startWeek = "Week " + Integer.toString(weekRange.get(0));
+//        String endWeek = "Week " + Integer.toString(weekRange.get(1));
 
-        categoryLabel.setText(categoryString + " (" + startWeek + ", " + endWeek+ ")");
+//        categoryLabel.setText(categoryString + " (" + startWeek + ", " + endWeek+ ")");
+        categoryLabel.setText(categoryString);
+        categoryLabel.textAlignmentProperty();
+        setStyle(categoryString);
         categoryView.setItems(taskList);
         categoryView.setCellFactory(listView -> new CategoryCell());
     }
+
 
     /**
      * Custom {@code CategoryCell} that displays the graphics of a {@code Task} using a {@code TaskBox}.
@@ -44,7 +48,25 @@ public class CategoryPanel extends UiPart<Region> {
         @Override
         protected void updateItem(Task task, boolean empty) {
             super.updateItem(task, empty);
-
+            if(task != null) {
+                switch (task.getCategory().toString()) {
+                    case "ADMIN":
+                        setStyle("-fx-background-color: #FFF0F5");
+                        break;
+                    case "TOPIC":
+                        setStyle("-fx-background-color: #E1FFFF");
+                        break;
+                    case "IP":
+                        setStyle("-fx-background-color: #FFFFE0");
+                        break;
+                    case "TP":
+                        setStyle("-fx-background-color: #F0FFF0");
+                        break;
+                    default:
+                        assert(false);
+                        break;
+                }
+            }
             if (empty || task == null) {
                 setGraphic(null);
                 setText(null);
@@ -54,4 +76,25 @@ public class CategoryPanel extends UiPart<Region> {
         }
     }
 
+    /**
+     * Set different background color for different category panel.
+     * @param categoryString a string represents the category.
+     */
+    public void setStyle(String categoryString) {
+        switch (categoryString) {
+        case "Admin":
+            categoryView.getStyleClass().add("color1");
+            break;
+        case "Topic":
+            categoryView.getStyleClass().add("color2");
+            break;
+        case "Ip":
+            categoryView.getStyleClass().add("color3");
+            break;
+        case "Tp":
+            categoryView.getStyleClass().add("color4");
+            break;
+        }
+
+    }
 }

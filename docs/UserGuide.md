@@ -127,12 +127,12 @@ Example:
 
 Adds a customized task in the task manager.
 
-Format: `add d/DESCRIPTION c/DEADLINE r/REMARK a/CATEGORY`
+Format: `add i/INDEX w/WEEKNUMBER d/DESCRIPTION c/DEADLINE r/REMARK a/CATEGORY`
 
-* The task with DESCRIPTION as description, DEADLINE as customised deadline, REMARK as remark, CATEGORY as the category will be added into task list.
+* The task with INDEX as index, WEEKNUMBER as week number, DESCRIPTION as description, DEADLINE as customised deadline, REMARK as remark, CATEGORY as the category will be added into task list.
 
 Example:
-* `add d/update c/documentation c/2020-10-02 r/check tp dashboard a/Tp`:
+* `add i/0109 w/1 d/update documentation c/2020-10-02 r/check tp dashboard a/Tp`:
 Task to update documentation with deadline set on 2020-10-02 of category tp with a remark to check tp dashboard is added to the task list.
 
 ### Exiting the program : `exit`

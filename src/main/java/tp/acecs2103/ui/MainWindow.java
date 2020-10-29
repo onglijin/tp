@@ -84,11 +84,13 @@ public class MainWindow extends UiPart<Stage> {
         categoryPanel = new CategoryPanel(logic.getUiTaskList().getTpList(), logic.getUiTaskList().getTpWeekRange(), "Tp");
         categoryPanelPlaceholder.getChildren().add(categoryPanel.getRoot());
 
+
         int currentWeekNumber = AppUtil.getCurrentWeekNumber().getWeekValueInt();
-        Double a = (double) currentWeekNumber / (double) 13;
-        progressBar.setProgress(a);
+        Double num = (double) currentWeekNumber / (double) 13;
+        progressBar.setProgress(num);
 
         weekDisplay = new WeekDisplay(currentWeekNumber);
+
         weekDisplayPlaceholder.getChildren().add(weekDisplay.getRoot());
 
         feedbackBox = new FeedbackBox();
@@ -135,10 +137,12 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             feedbackBox.setFeedbackToUser(commandResult.getFeedbackToUser());
+
             // categoryPanel.setFeedbackToUser(commandResult.getFeedbackToUser());
             if (commandResult.isExit()) {
                 handleExit();
             }
+
 
             return commandResult;
         } catch (CommandException | ParseException e) {

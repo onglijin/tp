@@ -38,6 +38,7 @@ class JsonAdaptedTask {
     private String remark;
     private String category;
     private String customized;
+    private String doneStatus;
 
     /**
      * Constructs a {@code JsonAdaptedTask} with the given person details.
@@ -50,7 +51,8 @@ class JsonAdaptedTask {
                            @JsonProperty("customizedDeadline") String customizedDeadline,
                            @JsonProperty("remark") String remark,
                            @JsonProperty("category") String category,
-                           @JsonProperty("customized") String customized) {
+                           @JsonProperty("customized") String customized,
+                           @JsonProperty("doneStatus") String doneStatus) {
         this.index = index;
         this.weekNumber = weekNumber;
         this.description = description;
@@ -59,6 +61,7 @@ class JsonAdaptedTask {
         this.remark = remark;
         this.category = category;
         this.customized = customized;
+        this.doneStatus = doneStatus;
     }
 
     /**
@@ -88,6 +91,11 @@ class JsonAdaptedTask {
         } else {
             customized = "false";
         }
+        if (task.isDone()) {
+            doneStatus = "true";
+        } else {
+            doneStatus = "false";
+        }
     }
 
     /**
@@ -114,33 +122,54 @@ class JsonAdaptedTask {
             isCustomized = false;
         }
 
+        boolean isDone;
+        if (doneStatus.equals("true")){
+            isDone = true;
+        } else {
+            isDone = false;
+        }
+
+        OfficialDeadline officialddl ;
+        if (officialDeadline == null){
+            officialddl = null;
+        } else {
+            officialddl = new OfficialDeadline(officialDeadline, LocalDate.parse(officialDeadline));
+        }
+
+        CustomizedDeadline customizedddl;
+        if (customizedDeadline == null) {
+            customizedddl = null;
+        } else {
+            customizedddl = new CustomizedDeadline(customizedDeadline, LocalDate.parse(customizedDeadline));
+        }
+
         if (TaskCategory.isStringAdmin(category)) {
             return new Admin(new Index(index), new WeekNumber(weekNumber), new Description(description),
-                    new OfficialDeadline(officialDeadline), new CustomizedDeadline(customizedDeadline),
-                    new Remark(remark), isCustomized);
+                    officialddl, customizedddl,
+                    new Remark(remark), isCustomized, isDone);
         }
 
         if (TaskCategory.isStringTopic(category)) {
             return new Topic(new Index(index), new WeekNumber(weekNumber), new Description(description),
-                    new OfficialDeadline(officialDeadline), new CustomizedDeadline(customizedDeadline),
-                    new Remark(remark), isCustomized);
+                    officialddl, customizedddl,
+                    new Remark(remark), isCustomized, isDone);
         }
 
         if (TaskCategory.isStringIP(category)) {
             return new IP(new Index(index), new WeekNumber(weekNumber), new Description(description),
-                    new OfficialDeadline(officialDeadline), new CustomizedDeadline(customizedDeadline),
-                    new Remark(remark), isCustomized);
+                    officialddl, customizedddl,
+                    new Remark(remark), isCustomized, isDone);
         }
 
         if (TaskCategory.isStringTP(category)) {
             return new TP(new Index(index), new WeekNumber(weekNumber), new Description(description),
-                    new OfficialDeadline(officialDeadline), new CustomizedDeadline(customizedDeadline),
-                    new Remark(remark), isCustomized);
+                    officialddl, customizedddl,
+                    new Remark(remark), isCustomized, isDone);
         }
 
         return new Task(new Index(index), new WeekNumber(weekNumber), new Description(description),
-                new OfficialDeadline(officialDeadline), new CustomizedDeadline(customizedDeadline),
-                new Remark(remark), true);
+                officialddl, customizedddl,
+                new Remark(remark), true, isDone);
     }
 
     public LocalDate parseDeadline(String deadline) {
