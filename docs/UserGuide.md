@@ -84,7 +84,7 @@ Lists all tasks that contain the keyword.
 
 Format: `find KEYWORD`
 
-* The KEYWORD is a letter string in the description of tasks to be returned.
+* The KEYWORD is a letter string in the description and remark of tasks to be returned.
 * Operates rough search in the task list.
 
 Example:
@@ -119,7 +119,7 @@ Adds a customized deadline to a preloaded task.
 Format: `deadline i/TASK_INDEX c/DEADLINE`
 
 * The task indexed at TASK_INDEX will be given a DEADLINE.
-* The deadline should be given in format: "YYYY-MM-DD"
+* The deadline should be given in the format: "YYYY-MM-DD"
 
 Example:
 * `deadline i/0601 c/2020-09-29`: Adds a customized deadline on 29th September 2020 to the first task of teaching week 6 which is indexed at TASK_NUMBER 0601.
@@ -139,7 +139,7 @@ Task to update documentation with deadline set on 2020-10-02 of category tp with
 
 ### Mark a task as done/undone: `done` and `undone`
 
-Mark a task in the task manager as done or undone.
+Marks a task in the task manager as done or undone.
 
 Format of `done`: `done TASK_INDEX`
 
@@ -151,7 +151,7 @@ Format of `undone`: `undone TASK_INDEX`
 
 ### Rank selected tasks base on deadline: `filter`
 
-Filter the tasks based on selected condition and rank them by deadline.
+Filters the tasks based on selected condition and rank them by deadline.
 
 Format 1: `filter k/KEYWORD w/WEEKNUMBER l/DEADLINETYPE`
 Format 2: `filter k/KEYWORD l/DEADLINETYPE`
