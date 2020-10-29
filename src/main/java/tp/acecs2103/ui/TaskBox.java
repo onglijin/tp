@@ -72,7 +72,7 @@ public class TaskBox extends UiPart<Region> {
                 box.getStyleClass().add("overdue-task");
             } else {
                 logger.info("pending");
-                 box.getStyleClass().add("pending-task");
+                box.getStyleClass().add("pending-task");
             }
         }
 

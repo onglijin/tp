@@ -6,8 +6,8 @@ package tp.acecs2103.model.task;
 public class TP extends Task {
     public TP(Index index, WeekNumber weekNumber,
               Description description, OfficialDeadline officialDeadline,
-              CustomizedDeadline customizedDeadline, Remark remark, boolean isCustomized,boolean doneStatus) {
-        super(index, weekNumber, description, officialDeadline, customizedDeadline, remark, isCustomized,doneStatus);
+              CustomizedDeadline customizedDeadline, Remark remark, boolean isCustomized, boolean doneStatus) {
+        super(index, weekNumber, description, officialDeadline, customizedDeadline, remark, isCustomized, doneStatus);
     }
 
     @Override

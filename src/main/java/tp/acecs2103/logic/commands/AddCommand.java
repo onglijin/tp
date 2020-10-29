@@ -24,7 +24,7 @@ public class AddCommand extends Command {
     /**
      * Creates an AddCommand to add the specified {@code Task}
      */
-    public AddCommand(Task task) throws CommandException{
+    public AddCommand(Task task) throws CommandException {
         requireNonNull(task);
         if (!task.isValid()) {
             throw new CommandException(MESSAGE_INVALID_TASK);
