@@ -46,7 +46,7 @@ Ace CS2103/T is a **desktop app for managing task requirements of CS2103/T, opti
 
 </div>
 
-### Viewing help: `help`
+### Viewing help: `help` *(Coming soon)*
 
 Lists all available commands or format and usage for a specified command.
 
@@ -63,7 +63,7 @@ List of PARAMETERs :
 * delete: `delete TASK_NUMBER`. Deletes a customized task in the task manager.
 * exit: `exit`. Exits the task manager.
 
-### Viewing administrative information: `get`
+### Viewing administrative information: `get` *(Coming soon)*
 
 Gets specified administrative information by parameters.
 
