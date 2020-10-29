@@ -89,7 +89,7 @@ Format: `find KEYWORD`
 * Operates rough search in the task list.
 
 Example:
-* `find book`: Returns all tasks containing keyword “book” in their descriptions or remark.
+* `find book`: Returns all tasks containing keyword “book” in their descriptions or remarks.
 
 ### List tasks: `list`
 
@@ -97,7 +97,7 @@ Lists all tasks in a specific week.
 
 Format: `list WEEK_NUMBER`
 
-* The WEEK_NUMBER is a integer in range [1,13] representing a teaching week.
+* The WEEK_NUMBER is a integer in the range [1,13] representing a teaching week.
 
 Example:
 * `list 6`: Returns all tasks in teaching week 6.
