@@ -123,14 +123,14 @@ class JsonAdaptedTask {
         }
 
         boolean isDone;
-        if (doneStatus.equals("true")){
+        if (doneStatus.equals("true")) {
             isDone = true;
         } else {
             isDone = false;
         }
 
-        OfficialDeadline officialddl ;
-        if (officialDeadline == null){
+        OfficialDeadline officialddl;
+        if (officialDeadline == null) {
             officialddl = null;
         } else {
             officialddl = new OfficialDeadline(officialDeadline, LocalDate.parse(officialDeadline));

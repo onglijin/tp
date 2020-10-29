@@ -42,7 +42,8 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_INDEX, PREFIX_WEEK_NUMBER, PREFIX_DESCRIPTION,
                         PREFIX_CUSTOMIZED_DEADLINE, PREFIX_REMARK, PREFIX_CATEGORY);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_INDEX, PREFIX_WEEK_NUMBER, PREFIX_DESCRIPTION, PREFIX_CUSTOMIZED_DEADLINE, PREFIX_CATEGORY)
+        if (!arePrefixesPresent(argMultimap, PREFIX_INDEX,
+                PREFIX_WEEK_NUMBER, PREFIX_DESCRIPTION, PREFIX_CUSTOMIZED_DEADLINE, PREFIX_CATEGORY)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -61,7 +62,8 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         LocalDate customizedDeadline =
                 ParserUtil.parseCustomizedDeadline(argMultimap.getValue(PREFIX_CUSTOMIZED_DEADLINE).get());
-        CustomizedDeadline customizedDeadlineObject = new CustomizedDeadline(customizedDeadline.toString(), customizedDeadline);
+        CustomizedDeadline customizedDeadlineObject =
+                new CustomizedDeadline(customizedDeadline.toString(), customizedDeadline);
 
         String remark =
                 ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get());

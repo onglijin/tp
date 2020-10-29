@@ -20,12 +20,12 @@
 
             <VBox fx:id="box" prefHeight="115.0" prefWidth="184.0" styleClass="VBox">
                <children>
-                  <Label fx:id="index" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="19.0" prefWidth="140.0" styleClass="Label" text="Index: None" wrapText="true" />
-                  <Label fx:id="weekNumber" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="150.0" styleClass="Label" text="Week Number: None" wrapText="true" />
-                  <Label fx:id="description" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="169.0" styleClass="Label" text="Description: None" wrapText="true" />
-                  <Label fx:id="officialDeadline" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="177.0" styleClass="Label" text="Official Deadline: None" wrapText="true" />
-                  <Label fx:id="customizedDeadline" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="191.0" styleClass="Label" text="Customized Deadline: None" wrapText="true" />
-                  <Label fx:id="remark" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="202.0" styleClass="Label" text="Remark: None" wrapText="true" />
+                  <Label fx:id="index" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="19.0" prefWidth="300.0" styleClass="Label" text="Index: None" wrapText="true" />
+                  <Label fx:id="weekNumber" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="300.0" styleClass="Label" text="Week Number: None" wrapText="true" />
+                  <Label fx:id="description" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="300.0" styleClass="Label" text="Description: None" wrapText="true" />
+                  <Label fx:id="officialDeadline" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="300.0" styleClass="Label" text="Official Deadline: None" wrapText="true" />
+                  <Label fx:id="customizedDeadline" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="300.0" styleClass="Label" text="Customized Deadline: None" wrapText="true" />
+                  <Label fx:id="remark" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="300.0" styleClass="Label" text="Remark: None" wrapText="true" />
 
                </children>
             </VBox>

@@ -7,6 +7,10 @@ import tp.acecs2103.logic.parser.exceptions.ParseException;
 import tp.acecs2103.model.task.Index;
 
 public class DoneCommandParser implements Parser<DoneCommand> {
+
+    /**
+     * Parses args to the input of {@code DoneCommand}.
+     */
     public DoneCommand parse(String args) throws ParseException {
         try {
             String indexParsed = ParserUtil.parseIndex(args);

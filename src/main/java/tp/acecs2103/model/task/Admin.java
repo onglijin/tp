@@ -11,7 +11,7 @@ public class Admin extends Task {
     public Admin(Index index, WeekNumber weekNumber, Description description,
                  OfficialDeadline officialDeadline,
                  CustomizedDeadline customizedDeadline, Remark remark, boolean isCustomized, boolean doneStatus) {
-        super(index, weekNumber, description, officialDeadline, customizedDeadline, remark, isCustomized,doneStatus);
+        super(index, weekNumber, description, officialDeadline, customizedDeadline, remark, isCustomized, doneStatus);
     }
 
     @Override

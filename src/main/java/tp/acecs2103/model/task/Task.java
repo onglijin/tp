@@ -175,12 +175,23 @@ public class Task implements Comparable<Task> {
      * Checks is a task if overdue (i.e. passed ddl but have not done yet )
      */
     public boolean isOverdue() {
-        return getOfficialDeadline().getTimeInfo().compareTo(LocalDate.now()) < 0;
+        if (getOfficialDeadline() != null && getOfficialDeadline().getTimeInfo() != null) {
+            return getOfficialDeadline().getTimeInfo().compareTo(LocalDate.now()) < 0;
+        } else if (getCustomizedDeadline() != null && getCustomizedDeadline().getTimeInfo() != null) {
+            return getCustomizedDeadline().getTimeInfo().compareTo(LocalDate.now()) < 0;
+        } else {
+            return false;
+        }
     }
-
 
     @Override
     public int compareTo(Task o) {
         return getOfficialDeadline().compareTo(o.getOfficialDeadline());
+    }
+
+    @Override
+    public String toString() {
+        return "[Week " + this.getWeekNumber().value + "] Task " + this.getIndex().value
+                + " with description: " + this.getDescription().value;
     }
 }
