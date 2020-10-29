@@ -9,7 +9,17 @@ import tp.acecs2103.commons.util.CollectionUtil;
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.TaskList;
-import tp.acecs2103.model.task.*;
+import tp.acecs2103.model.task.Admin;
+import tp.acecs2103.model.task.CustomizedDeadline;
+import tp.acecs2103.model.task.Description;
+import tp.acecs2103.model.task.IP;
+import tp.acecs2103.model.task.Index;
+import tp.acecs2103.model.task.OfficialDeadline;
+import tp.acecs2103.model.task.Remark;
+import tp.acecs2103.model.task.TP;
+import tp.acecs2103.model.task.Task;
+import tp.acecs2103.model.task.Topic;
+import tp.acecs2103.model.task.WeekNumber;
 
 
 /**
@@ -24,7 +34,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list.";
-    public static final String MESSAGE_INVALID_EDITION = "Only customised deadline and remark can be changed for a default task.";
+    public static final String MESSAGE_INVALID_EDITION =
+        "Only customised deadline and remark can be changed for a default task.";
 
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
@@ -64,11 +75,14 @@ public class EditCommand extends Command {
     /**
      * edited with {@code editPersonDescriptor}.
      */
-    private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) throws CommandException {
+    private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor)
+        throws CommandException {
         assert taskToEdit != null;
         if (!taskToEdit.isCustomized()) {
-            if (editTaskDescriptor.getWeekNumber() != null || editTaskDescriptor.getDescription() != null)
+            if (editTaskDescriptor.getWeekNumber() != null || editTaskDescriptor.getDescription() != null) {
                 throw new CommandException(MESSAGE_INVALID_EDITION);
+            }
+
         }
 
         WeekNumber updatedWeekNumber = editTaskDescriptor
