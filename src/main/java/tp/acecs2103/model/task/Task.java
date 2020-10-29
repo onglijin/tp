@@ -203,8 +203,9 @@ public class Task implements Comparable<Task> {
 
     @Override
     public String toString() {
-        String returnString = "[Week " + this.getWeekNumber().value + "] " + this.getCategory() + " Task " + this.getIndex().value + " with description: " + this.getDescription().value;
-        if (officialDeadline != null){
+        String returnString = "[Week " + this.getWeekNumber().value + "] " + this.getCategory() + " Task "
+                              + this.getIndex().value + " with description: " + this.getDescription().value;
+        if (officialDeadline != null) {
             returnString += "\nOfficial deadline: " + officialDeadline.value;
         }
         if (customizedDeadline != null) {

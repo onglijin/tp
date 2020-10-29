@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 import tp.acecs2103.commons.util.AppUtil;
 import tp.acecs2103.model.exceptions.InvalidTaskListOperationException;
@@ -172,7 +171,8 @@ public class TaskList {
             if (byOfficialDeadline) {
                 Collections.sort(additionalList);
             } else {
-                Collections.sort(additionalList, (o1, o2) -> o1.getCustomizedDeadline().compareTo(o2.getCustomizedDeadline()));
+                Collections.sort(additionalList, (o1, o2) ->
+                        o1.getCustomizedDeadline().compareTo(o2.getCustomizedDeadline()));
             }
         }
         return additionalList;
