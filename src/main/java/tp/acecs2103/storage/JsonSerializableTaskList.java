@@ -2,12 +2,14 @@ package tp.acecs2103.storage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
+import tp.acecs2103.commons.core.LogsCenter;
 import tp.acecs2103.commons.exceptions.IllegalValueException;
 import tp.acecs2103.model.TaskList;
 import tp.acecs2103.model.task.Task;
@@ -17,6 +19,7 @@ import tp.acecs2103.model.task.Task;
  */
 @JsonRootName(value = "tasklist")
 class JsonSerializableTaskList {
+    private static final Logger logger = LogsCenter.getLogger(JsonSerializableTaskList.class);
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Tasks list contains duplicate task(s).";
 
@@ -49,6 +52,7 @@ class JsonSerializableTaskList {
         for (JsonAdaptedTask jsonAdaptedTask : tasks) {
             Task task = jsonAdaptedTask.toModelType();
             if (taskList.hasTask(task)) {
+                logger.info("The index of duplicate task is: " + task.getIndex().toString());
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             taskList.add(task);
