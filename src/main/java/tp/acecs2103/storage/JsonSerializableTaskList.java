@@ -19,9 +19,10 @@ import tp.acecs2103.model.task.Task;
  */
 @JsonRootName(value = "tasklist")
 class JsonSerializableTaskList {
-    private static final Logger logger = LogsCenter.getLogger(JsonSerializableTaskList.class);
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Tasks list contains duplicate task(s).";
+
+    private static final Logger logger = LogsCenter.getLogger(JsonSerializableTaskList.class);
 
     private final List<JsonAdaptedTask> tasks = new ArrayList<>();
 
