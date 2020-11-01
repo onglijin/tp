@@ -169,7 +169,9 @@ public class Task implements Comparable<Task> {
      * Checks whether the description and remark of task contains certain key word.
      */
     public boolean contains(String keyword) {
-        return description.contains(keyword) || remark.contains(keyword);
+        keyword = keyword.toLowerCase();
+        return description.value.toLowerCase().contains(keyword)
+                || remark.value.toLowerCase().contains(keyword);
     }
 
     /**

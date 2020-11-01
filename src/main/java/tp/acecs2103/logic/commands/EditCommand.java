@@ -82,7 +82,6 @@ public class EditCommand extends Command {
             if (editTaskDescriptor.getWeekNumber() != null || editTaskDescriptor.getDescription() != null) {
                 throw new CommandException(MESSAGE_INVALID_EDITION);
             }
-
         }
 
         WeekNumber updatedWeekNumber = editTaskDescriptor

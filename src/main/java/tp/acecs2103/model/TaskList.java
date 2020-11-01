@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import tp.acecs2103.commons.util.AppUtil;
+import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.model.exceptions.InvalidTaskListOperationException;
 import tp.acecs2103.model.task.CustomizedDeadline;
 import tp.acecs2103.model.task.Deadline;
@@ -246,6 +247,9 @@ public class TaskList {
                 break;
             }
             i++;
+        }
+        if (i == taskList.size()) {
+            throw new InvalidTaskListOperationException("The task that you want to delete does not exist in the task list.");
         }
         Task task = taskList.get(i);
         if (task.isCustomized()) {
