@@ -311,11 +311,19 @@ public class TaskList {
      * @param deadline A valid deadline.
      * @return a new array list after find().
      */
-    public ArrayList<Task> deadline(Index taskIndex, CustomizedDeadline deadline) {
+    public ArrayList<Task> deadline(Index taskIndex, CustomizedDeadline deadline)
+            throws InvalidTaskListOperationException{
+        boolean foundTask = false;
         for (Task task: taskList) {
             if (task.hasIndex(taskIndex)) {
                 task.setDeadline(deadline);
+                foundTask = true;
             }
+        }
+
+        if (!foundTask) {
+            throw new InvalidTaskListOperationException(
+                    "The task that you want to set deadline to is not found in the task list.");
         }
         return find();
     }
