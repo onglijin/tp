@@ -34,7 +34,7 @@ public enum TaskCategory {
      * @param category A valid {@code String}.
      */
     public static boolean isStringAdmin(String category) {
-        return category.equals("admin");
+        return category.equals("Admin");
     }
 
     /**
@@ -50,7 +50,7 @@ public enum TaskCategory {
      * @param category A valid {@code String}.
      */
     public static boolean isStringTopic(String category) {
-        return category.equals("topic");
+        return category.equals("Topic");
     }
 
     /**
@@ -66,7 +66,7 @@ public enum TaskCategory {
      * @param category A valid {@code String}.
      */
     public static boolean isStringIP(String category) {
-        return category.equals("ip");
+        return category.equals("Ip");
     }
 
     /**
@@ -82,6 +82,6 @@ public enum TaskCategory {
      * @param category A valid {@code String}.
      */
     public static boolean isStringTP(String category) {
-        return category.equals("tp");
+        return category.equals("Tp");
     }
 }
