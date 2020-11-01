@@ -87,7 +87,15 @@ public class Task implements Comparable<Task> {
      * Gets the category of the task.
      */
     public TaskCategory getCategory() {
-        return this.category;
+        if (this instanceof IP) {
+            return TaskCategory.IP;
+        } else if (this instanceof TP) {
+            return TaskCategory.TP;
+        } else if (this instanceof Topic) {
+            return TaskCategory.TOPIC;
+        } else {
+            return TaskCategory.ADMIN;
+        }
     }
 
     /**
@@ -161,6 +169,13 @@ public class Task implements Comparable<Task> {
      * Checks whether the description and remark of task contains certain key word.
      */
     public boolean contains(String keyword) {
+        if (description == null && remark != null) {
+            return remark.contains(keyword);
+        } else if (description != null && remark == null) {
+            return description.contains(keyword);
+        } else if (description == null && remark == null) {
+            return false;
+        }
         return description.contains(keyword) || remark.contains(keyword);
     }
 
@@ -175,12 +190,37 @@ public class Task implements Comparable<Task> {
      * Checks is a task if overdue (i.e. passed ddl but have not done yet )
      */
     public boolean isOverdue() {
-        return getOfficialDeadline().getTimeInfo().compareTo(LocalDate.now()) < 0;
+        if (getOfficialDeadline() != null && getOfficialDeadline().getTimeInfo() != null) {
+            return getOfficialDeadline().getTimeInfo().compareTo(LocalDate.now()) < 0;
+        } else if (getCustomizedDeadline() != null && getCustomizedDeadline().getTimeInfo() != null) {
+            return getCustomizedDeadline().getTimeInfo().compareTo(LocalDate.now()) < 0;
+        } else {
+            return false;
+        }
     }
-
 
     @Override
     public int compareTo(Task o) {
         return getOfficialDeadline().compareTo(o.getOfficialDeadline());
+    }
+
+    public boolean equals(Task o) {
+        return this.getIndex().equals(o.getIndex());
+    }
+
+    @Override
+    public String toString() {
+        String returnString = "[Week " + this.getWeekNumber().value + "] " + this.getCategory() + " Task "
+                              + this.getIndex().value + " with description: " + this.getDescription().value;
+        if (officialDeadline != null) {
+            returnString += "\nOfficial deadline: " + officialDeadline.value;
+        }
+        if (customizedDeadline != null) {
+            returnString += "\nCustomized deadline: " + customizedDeadline.value;
+        }
+        if (remark != null) {
+            returnString += "\nRemark: " + remark.value;
+        }
+        return returnString;
     }
 }

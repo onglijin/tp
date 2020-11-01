@@ -29,8 +29,10 @@ public class FindCommand extends Command {
         requireNonNull(model);
         model.findTasks(keyword);
 
-        return new CommandResult(
-                String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getUiTaskList().size()));
+        String feedbackMessage = "Search for tasks with keyword: " + keyword + " in description / remark.\n"
+                + String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getUiTaskList().size());
+
+        return new CommandResult(feedbackMessage);
     }
 
     @Override

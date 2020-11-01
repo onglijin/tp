@@ -4,14 +4,15 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 import tp.acecs2103.commons.util.AppUtil;
 import tp.acecs2103.model.exceptions.InvalidTaskListOperationException;
 import tp.acecs2103.model.task.CustomizedDeadline;
+import tp.acecs2103.model.task.Deadline;
 import tp.acecs2103.model.task.Index;
 import tp.acecs2103.model.task.Task;
 import tp.acecs2103.model.task.WeekNumber;
+
 
 
 public class TaskList {
@@ -91,7 +92,12 @@ public class TaskList {
      * @return true if it is already inside task and false if not.
      */
     public boolean hasTask(Task task) {
-        return taskList.contains(task);
+        for (Task i : taskList) {
+            if (i.equals(task)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -144,7 +150,8 @@ public class TaskList {
      * Filter the task list based on criteria given.
      *
      * @param isDone is the boolean value to describe if filter criteria is to display done tasks only
-     * @param byOfficialDeadline is the boolean value to describe if filter criteria is to display pending tasks by official deadline
+     * @param byOfficialDeadline is the boolean value to describe
+     *                           if filter criteria is to display pending tasks by official deadline
      * @param weekNumber is the int value to describe the week number of the tasks to be displayed(optional)
      * @return a new ArrayList to display.
      */
@@ -166,11 +173,14 @@ public class TaskList {
             if (byOfficialDeadline) {
                 Collections.sort(additionalList);
             } else {
-                Collections.sort(additionalList, new Comparator<Task>() {
-                    @Override
-                    public int compare(Task o1, Task o2) {
-                        return o1.getCustomizedDeadline().compareTo(o2.getCustomizedDeadline());
-                    }
+
+                Collections.sort(additionalList, (o1, o2) -> {
+                    Deadline ddl1 = (o1.getCustomizedDeadline() != null)
+                            ? o1.getCustomizedDeadline() : o1.getOfficialDeadline();
+                    Deadline ddl2 = (o2.getCustomizedDeadline() != null)
+                            ? o2.getCustomizedDeadline() : o2.getOfficialDeadline();
+                    int result = ddl1.compareTo(ddl2);
+                    return result;
                 });
             }
         }

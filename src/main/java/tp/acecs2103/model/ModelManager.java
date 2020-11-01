@@ -3,26 +3,18 @@ package tp.acecs2103.model;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
-import java.time.LocalDate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import tp.acecs2103.commons.core.GuiSettings;
 import tp.acecs2103.commons.core.LogsCenter;
 import tp.acecs2103.commons.util.CollectionUtil;
-
-import tp.acecs2103.model.task.Deadline;
-import tp.acecs2103.model.task.CustomizedDeadline;
-import tp.acecs2103.model.task.OfficialDeadline;
 import tp.acecs2103.model.exceptions.InvalidTaskListOperationException;
 import tp.acecs2103.model.exceptions.ModelException;
 import tp.acecs2103.model.task.CustomizedDeadline;
 import tp.acecs2103.model.task.Index;
 import tp.acecs2103.model.task.Task;
 import tp.acecs2103.model.task.WeekNumber;
-
-import tp.acecs2103.model.exceptions.InvalidTaskListOperationException;
-import tp.acecs2103.model.exceptions.ModelException;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -143,7 +135,7 @@ public class ModelManager implements Model {
 
     @Override
     public void filterTasks(boolean isDone, boolean byOfficialDeadline, WeekNumber weekNumber) {
-        uiTaskList.addAll(taskList.filter(isDone,byOfficialDeadline,weekNumber));
+        uiTaskList.addAll(taskList.filter(isDone, byOfficialDeadline, weekNumber));
     }
 
     @Override

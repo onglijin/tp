@@ -75,13 +75,17 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         // TODO: change the method to get each category panel
-        categoryPanel = new CategoryPanel(logic.getUiTaskList().getAdminList(), logic.getUiTaskList().getAdminWeekRange(), "Admin");
+        categoryPanel = new CategoryPanel(logic.getUiTaskList().getAdminList(),
+                logic.getUiTaskList().getAdminWeekRange(), "Admin");
         categoryPanelPlaceholder.getChildren().add(categoryPanel.getRoot());
-        categoryPanel = new CategoryPanel(logic.getUiTaskList().getTopicList(), logic.getUiTaskList().getTopicWeekRange(), "Topic");
+        categoryPanel = new CategoryPanel(logic.getUiTaskList().getTopicList(),
+                logic.getUiTaskList().getTopicWeekRange(), "Topic");
         categoryPanelPlaceholder.getChildren().add(categoryPanel.getRoot());
-        categoryPanel = new CategoryPanel(logic.getUiTaskList().getIpList(), logic.getUiTaskList().getIpWeekRange(), "Ip");
+        categoryPanel = new CategoryPanel(logic.getUiTaskList().getIpList(),
+                logic.getUiTaskList().getIpWeekRange(), "Ip");
         categoryPanelPlaceholder.getChildren().add(categoryPanel.getRoot());
-        categoryPanel = new CategoryPanel(logic.getUiTaskList().getTpList(), logic.getUiTaskList().getTpWeekRange(), "Tp");
+        categoryPanel = new CategoryPanel(logic.getUiTaskList().getTpList(),
+                logic.getUiTaskList().getTpWeekRange(), "Tp");
         categoryPanelPlaceholder.getChildren().add(categoryPanel.getRoot());
 
 
@@ -147,8 +151,7 @@ public class MainWindow extends UiPart<Stage> {
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
-            feedbackBox.setFeedbackToUser("Invalid command: " + commandText);
-            // categoryPanel.setFeedbackToUser(e.getMessage());
+            feedbackBox.setFeedbackToUser(e.getMessage());
             throw e;
         }
     }

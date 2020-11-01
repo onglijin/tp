@@ -5,13 +5,12 @@ import static java.util.Objects.requireNonNull;
 import java.util.logging.Logger;
 
 import tp.acecs2103.commons.core.LogsCenter;
-import tp.acecs2103.commons.core.Messages;
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.TaskList;
-import tp.acecs2103.model.exceptions.ModelException;
-import tp.acecs2103.model.task.Task;
 import tp.acecs2103.model.task.Index;
+import tp.acecs2103.model.task.Task;
+
 
 /**
  * Mark a task as pending as identified by the index number.
@@ -25,7 +24,7 @@ public class UndoneCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DONE_TASK_SUCCESS = "Undone Task: %1$s";
+    public static final String MESSAGE_DONE_TASK_SUCCESS = "Undone Task: \n%1$s";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 

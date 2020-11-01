@@ -29,10 +29,6 @@ public class CategoryPanel extends UiPart<Region> {
      */
     public CategoryPanel(ObservableList<Task> taskList, ArrayList<Integer> weekRange, String categoryString) {
         super(FXML);
-//        String startWeek = "Week " + Integer.toString(weekRange.get(0));
-//        String endWeek = "Week " + Integer.toString(weekRange.get(1));
-
-//        categoryLabel.setText(categoryString + " (" + startWeek + ", " + endWeek+ ")");
         categoryLabel.setText(categoryString);
         categoryLabel.textAlignmentProperty();
         setStyle(categoryString);
@@ -48,23 +44,23 @@ public class CategoryPanel extends UiPart<Region> {
         @Override
         protected void updateItem(Task task, boolean empty) {
             super.updateItem(task, empty);
-            if(task != null) {
+            if (task != null) {
                 switch (task.getCategory().toString()) {
-                    case "ADMIN":
-                        setStyle("-fx-background-color: #FFF0F5");
-                        break;
-                    case "TOPIC":
-                        setStyle("-fx-background-color: #E1FFFF");
-                        break;
-                    case "IP":
-                        setStyle("-fx-background-color: #FFFFE0");
-                        break;
-                    case "TP":
-                        setStyle("-fx-background-color: #F0FFF0");
-                        break;
-                    default:
-                        assert(false);
-                        break;
+                case "ADMIN":
+                    setStyle("-fx-background-color: #FFF0F5");
+                    break;
+                case "TOPIC":
+                    setStyle("-fx-background-color: #E1FFFF");
+                    break;
+                case "IP":
+                    setStyle("-fx-background-color: #FFFFE0");
+                    break;
+                case "TP":
+                    setStyle("-fx-background-color: #F0FFF0");
+                    break;
+                default:
+                    assert(false);
+                    break;
                 }
             }
             if (empty || task == null) {
@@ -94,6 +90,9 @@ public class CategoryPanel extends UiPart<Region> {
         case "Tp":
             categoryView.getStyleClass().add("color4");
             break;
+        default:
+            categoryView.getStyleClass().add("");
+
         }
 
     }

@@ -2,13 +2,9 @@ package tp.acecs2103.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDate;
-
 import tp.acecs2103.commons.core.Messages;
-import tp.acecs2103.commons.core.index.Index;
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.model.Model;
-import tp.acecs2103.model.task.Task;
 import tp.acecs2103.model.task.WeekNumber;
 
 
@@ -17,7 +13,7 @@ public class FilterCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD;
 
-    public static final String MESSAGE_SUCCESS = "Filtered task list displayed according to given criteria.";
+    public static final String MESSAGE_SUCCESS = "Filtered task list displayed according to given criteria: ";
 
     private final String keyword;
     private final String ddlType; // optional, only for pending tasks
@@ -27,7 +23,7 @@ public class FilterCommand extends Command {
      * Creates an FilterCommand to display tasks that fulfill given criteria.
      * Only for display of completed tasks
      */
-    public FilterCommand(String keyword) throws CommandException{
+    public FilterCommand(String keyword) throws CommandException {
         requireNonNull(keyword);
         if (!keyword.equals("done")) {
             throw new CommandException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
@@ -41,7 +37,7 @@ public class FilterCommand extends Command {
      * Creates an FilterCommand to display tasks that fulfill given criteria.
      * For display of completed tasks when week number is given
      */
-    public FilterCommand(String keyword, WeekNumber weekNumber) throws CommandException{
+    public FilterCommand(String keyword, WeekNumber weekNumber) throws CommandException {
         requireNonNull(keyword);
         if (!keyword.equals("done")) {
             throw new CommandException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
@@ -55,7 +51,7 @@ public class FilterCommand extends Command {
      * Creates an FilterCommand to display tasks that fulfill given criteria.
      * For pending tasks with ddl type specified.
      */
-    public FilterCommand(String keyword, String ddlType) throws CommandException{
+    public FilterCommand(String keyword, String ddlType) throws CommandException {
         requireNonNull(keyword);
         if (!keyword.equals("pending") || (!ddlType.equals("official") && !ddlType.equals("customised"))) {
             throw new CommandException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
@@ -69,7 +65,7 @@ public class FilterCommand extends Command {
      * Creates an FilterCommand to display tasks that fulfill given criteria.
      * For pending tasks with ddl type specified and week number given.
      */
-    public FilterCommand(String keyword, String ddlType, WeekNumber weekNumber) throws CommandException{
+    public FilterCommand(String keyword, String ddlType, WeekNumber weekNumber) throws CommandException {
         requireNonNull(keyword);
         if (!keyword.equals("pending") || (!ddlType.equals("official") && !ddlType.equals("customised"))) {
             throw new CommandException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
@@ -80,7 +76,7 @@ public class FilterCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model)  {
+    public CommandResult execute(Model model) {
         requireNonNull(model);
         boolean isDone = (keyword.equals("done"));
         boolean byOfficialDdl = (ddlType == null) ? false : ddlType.equals("official");
@@ -88,7 +84,17 @@ public class FilterCommand extends Command {
 
         model.filterTasks(isDone, byOfficialDdl, weekNumber);
         model.getUiTaskList();
-        return new CommandResult(String.format(MESSAGE_SUCCESS));
+        String returnMessage = MESSAGE_SUCCESS + "\nStatus: " + keyword;
+        if (ddlType != null) {
+            returnMessage += ("\nBy: " + ddlType + " deadline");
+        }
+
+        if (weekNumber != null) {
+            returnMessage += "\nDuration: week " + weekNumber.value;
+        }
+        returnMessage += "\n-->" + String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getUiTaskList().size());
+
+        return new CommandResult(returnMessage);
     }
 
     @Override
