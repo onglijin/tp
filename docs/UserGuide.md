@@ -118,7 +118,7 @@ Example:
 
 Adds a customized task in the task manager.
 
-Format: `add i/INDEX w/WEEKNUMBER d/DESCRIPTION c/DEADLINE r/REMARK a/CATEGORY`
+Format: `add i/INDEX w/WEEKNUMBER d/DESCRIPTION c/DEADLINE [r/REMARK] a/CATEGORY`
 
 * The task with INDEX as index, WEEKNUMBER as week number, DESCRIPTION as description, DEADLINE as customised deadline, REMARK as remark, CATEGORY as the category will be added into task list.
 * The INDEX, WEEKNUMBER, DESCRIPTION, DEADLINE and CATEGORY are compulsory, the REMARK is optional.
