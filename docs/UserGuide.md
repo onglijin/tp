@@ -25,7 +25,7 @@ Ace CS2103/T is a **desktop app for managing task requirements of CS2103/T, opti
 
    * **`list`**`6` : Lists all tasks for week 6.
 
-   * **`deadline`**`i/0601 c/15-09-2020` : Adds a deadline 15-09-2020 to task indexed at 0601.
+   * **`deadline`**`i/0601 c/2020-09-16` : Adds a deadline 2020-09-16 to task indexed at 0601.
 
    * **`exit`** : Exits the app.
 
