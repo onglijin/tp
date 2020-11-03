@@ -20,7 +20,8 @@ public class AddCommand extends Command {
             + "Example: " + COMMAND_WORD + " i/0109 w/1 d/update documentation c/2020-08-15 r/check dashboard a/Ip";
 
     public static final String MESSAGE_SUCCESS = "New task added: \n%1$s";
-    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list";
+    public static final String MESSAGE_DUPLICATE_TASK = "Task with this index already exists in the task list. "
+                                                          + "Try another index please.";
     public static final String MESSAGE_INVALID_TASK = "A customised task should not have an official deadline";
 
     private final Task toAdd;
