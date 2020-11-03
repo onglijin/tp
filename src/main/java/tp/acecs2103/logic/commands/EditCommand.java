@@ -36,6 +36,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list.";
     public static final String MESSAGE_INVALID_EDITION =
         "Only customised deadline and remark can be changed for a default task.";
+    public static final String MESSAGE_INVALID_INDEX = "\nTask with the input index does not exist in the task list." +
+            " Please try again.";
 
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
@@ -58,7 +60,8 @@ public class EditCommand extends Command {
         TaskList lastShownList = model.getTaskList();
 
         if (lastShownList.getTask(index) == null) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX
+                    + MESSAGE_INVALID_INDEX);
         }
 
         Task taskToEdit = lastShownList.getTask(index);
@@ -79,7 +82,7 @@ public class EditCommand extends Command {
         throws CommandException {
         assert taskToEdit != null;
         if (!taskToEdit.isCustomized()) {
-            if (editTaskDescriptor.getWeekNumber() != null || editTaskDescriptor.getDescription() != null) {
+            if (!(editTaskDescriptor.weekNumber == null && editTaskDescriptor.description == null)) {
                 throw new CommandException(MESSAGE_INVALID_EDITION);
             }
         }
@@ -235,6 +238,14 @@ public class EditCommand extends Command {
                     && getDescription().equals(e.getDescription())
                     && getCustomizedDeadline().equals(e.getCustomizedDeadline())
                     && getRemark().equals(e.getRemark());
+        }
+
+        @Override
+        public String toString() {
+            return "Week Number :" + weekNumber.value
+                    + "\nDescription :" + description.value
+                    + "\nCustomized deadline :" + customizedDeadline.value
+                    + "\nRemark :" + remark.value;
         }
     }
 }
