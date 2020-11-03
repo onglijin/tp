@@ -1,16 +1,17 @@
 package tp.acecs2103.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static tp.acecs2103.logic.parser.CliSyntax.*;
+import static tp.acecs2103.logic.parser.CliSyntax.PREFIX_DDLTYPE;
+import static tp.acecs2103.logic.parser.CliSyntax.PREFIX_KEYWORD;
+import static tp.acecs2103.logic.parser.CliSyntax.PREFIX_WEEK_NUMBER;
+
+import java.util.stream.Stream;
 
 import tp.acecs2103.commons.core.Messages;
-import tp.acecs2103.logic.commands.AddCommand;
 import tp.acecs2103.logic.commands.FilterCommand;
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
 import tp.acecs2103.model.task.WeekNumber;
-
-import java.util.stream.Stream;
 
 public class FilterCommandParser implements Parser<FilterCommand> {
 
@@ -24,7 +25,8 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         if (!anyPrefixPresent(argMultimap,
                 PREFIX_WEEK_NUMBER, PREFIX_KEYWORD, PREFIX_DDLTYPE)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+            throw new ParseException(
+                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
 
         if (!argMultimap.getValue(CliSyntax.PREFIX_KEYWORD).get().equals("")

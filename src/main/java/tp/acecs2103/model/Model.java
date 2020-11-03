@@ -117,7 +117,8 @@ public interface Model {
      * @param index is the index of task we want to set a deadline to.
      * @param deadline is a customized deadline.
      */
-    void deadlineTask(Index index, CustomizedDeadline deadline) throws InvalidTaskListOperationException, CommandException;
+    void deadlineTask(Index index, CustomizedDeadline deadline)
+            throws InvalidTaskListOperationException, CommandException;
 
     /**
      * Gets  a ui task list for displaying.

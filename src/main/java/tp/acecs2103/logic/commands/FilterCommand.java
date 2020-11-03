@@ -36,7 +36,8 @@ public class FilterCommand extends Command {
         requireNonNull(keyword);
 
         if (!keyword.equals("done")) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    FilterCommand.MESSAGE_USAGE));
         }
         this.keyword = keyword;
         this.ddlType = null;
@@ -50,7 +51,8 @@ public class FilterCommand extends Command {
     public FilterCommand(String keyword, WeekNumber weekNumber) throws CommandException, ParseException {
         requireNonNull(keyword);
         if (!keyword.equals("done")) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    FilterCommand.MESSAGE_USAGE));
         }
         this.keyword = keyword;
         this.ddlType = null;
@@ -63,8 +65,10 @@ public class FilterCommand extends Command {
      */
     public FilterCommand(String keyword, String ddlType) throws CommandException, ParseException {
         requireNonNull(keyword);
-        if (!keyword.equals("pending") || (!ddlType.equals("official") && !ddlType.equals("customised"))) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+        if (!keyword.equals("pending") || (!ddlType.equals("official")
+                && !ddlType.equals("customised"))) {
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    FilterCommand.MESSAGE_USAGE));
         }
         this.keyword = keyword;
         this.ddlType = ddlType;
@@ -75,10 +79,12 @@ public class FilterCommand extends Command {
      * Creates an FilterCommand to display tasks that fulfill given criteria.
      * For pending tasks with ddl type specified and week number given.
      */
-    public FilterCommand(String keyword, String ddlType, WeekNumber weekNumber) throws CommandException, ParseException {
+    public FilterCommand(String keyword, String ddlType, WeekNumber weekNumber) throws ParseException {
         requireNonNull(keyword);
-        if (!keyword.equals("pending") || (!ddlType.equals("official") && !ddlType.equals("customised"))) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+        if (!keyword.equals("pending") || (!ddlType.equals("official")
+                && !ddlType.equals("customised"))) {
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    FilterCommand.MESSAGE_USAGE));
         }
         this.keyword = keyword;
         this.ddlType = ddlType;

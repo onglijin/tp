@@ -1,17 +1,18 @@
 package tp.acecs2103.logic.parser;
 
+import static tp.acecs2103.logic.parser.CliSyntax.PREFIX_CUSTOMIZED_DEADLINE;
+import static tp.acecs2103.logic.parser.CliSyntax.PREFIX_INDEX;
+
 import java.time.LocalDate;
-import java.util.Optional;
 import java.util.stream.Stream;
 
 import tp.acecs2103.commons.core.Messages;
-import tp.acecs2103.logic.commands.AddCommand;
 import tp.acecs2103.logic.commands.DeadlineCommand;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
 import tp.acecs2103.model.task.CustomizedDeadline;
 import tp.acecs2103.model.task.Index;
 
-import static tp.acecs2103.logic.parser.CliSyntax.*;
+
 
 public class DeadlineCommandParser implements Parser<DeadlineCommand> {
     @Override
@@ -21,7 +22,8 @@ public class DeadlineCommandParser implements Parser<DeadlineCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_INDEX, PREFIX_CUSTOMIZED_DEADLINE)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeadlineCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    DeadlineCommand.MESSAGE_USAGE));
         }
 
         String indexParsed = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());

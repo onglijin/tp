@@ -11,7 +11,6 @@ import tp.acecs2103.logic.parser.exceptions.ParseException;
 import tp.acecs2103.model.task.CustomizedDeadline;
 import tp.acecs2103.model.task.Description;
 import tp.acecs2103.model.task.Index;
-import tp.acecs2103.model.task.OfficialDeadline;
 import tp.acecs2103.model.task.Remark;
 import tp.acecs2103.model.task.WeekNumber;
 

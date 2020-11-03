@@ -14,7 +14,6 @@ import tp.acecs2103.model.task.CustomizedDeadline;
 import tp.acecs2103.model.task.Description;
 import tp.acecs2103.model.task.IP;
 import tp.acecs2103.model.task.Index;
-import tp.acecs2103.model.task.OfficialDeadline;
 import tp.acecs2103.model.task.Remark;
 import tp.acecs2103.model.task.TP;
 import tp.acecs2103.model.task.Task;
@@ -45,8 +44,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list.";
     public static final String MESSAGE_INVALID_EDITION =
         "Only customised deadline and remark can be changed for a default task.";
-    public static final String MESSAGE_INVALID_INDEX = "\nTask with the input index does not exist in the task list." +
-            " Please try again.";
+    public static final String MESSAGE_INVALID_INDEX = "\nTask with the input index does not exist in the task list."
+            + " Please try again.";
 
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
@@ -107,16 +106,20 @@ public class EditCommand extends Command {
 
         if (taskToEdit instanceof Topic) {
             return new Topic(taskToEdit.getIndex(), updatedWeekNumber, updatedDescription,
-                    taskToEdit.getOfficialDeadline(), updatedCustomizedDeadline, remark, taskToEdit.isCustomized(), taskToEdit.isDone());
+                    taskToEdit.getOfficialDeadline(), updatedCustomizedDeadline, remark,
+                    taskToEdit.isCustomized(), taskToEdit.isDone());
         } else if (taskToEdit instanceof Admin) {
             return new Admin(taskToEdit.getIndex(), updatedWeekNumber, updatedDescription,
-                    taskToEdit.getOfficialDeadline(), updatedCustomizedDeadline, remark, taskToEdit.isCustomized(), taskToEdit.isDone());
+                    taskToEdit.getOfficialDeadline(), updatedCustomizedDeadline, remark,
+                    taskToEdit.isCustomized(), taskToEdit.isDone());
         } else if (taskToEdit instanceof TP) {
             return new TP(taskToEdit.getIndex(), updatedWeekNumber, updatedDescription,
-                    taskToEdit.getOfficialDeadline(), updatedCustomizedDeadline, remark, taskToEdit.isCustomized(), taskToEdit.isDone());
+                    taskToEdit.getOfficialDeadline(), updatedCustomizedDeadline, remark,
+                    taskToEdit.isCustomized(), taskToEdit.isDone());
         } else {
             return new IP(taskToEdit.getIndex(), updatedWeekNumber, updatedDescription,
-                    taskToEdit.getOfficialDeadline(), updatedCustomizedDeadline, remark, taskToEdit.isCustomized(), taskToEdit.isDone());
+                    taskToEdit.getOfficialDeadline(), updatedCustomizedDeadline, remark,
+                    taskToEdit.isCustomized(), taskToEdit.isDone());
         }
     }
 

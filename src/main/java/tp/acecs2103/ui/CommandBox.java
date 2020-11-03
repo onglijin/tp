@@ -76,7 +76,8 @@ public class CommandBox extends UiPart<Region> {
          *
          * @see Logic#execute(String)
          */
-        CommandResult execute(String commandText) throws CommandException, ParseException, InvalidTaskListOperationException;
+        CommandResult execute(String commandText) throws
+                CommandException, ParseException, InvalidTaskListOperationException;
     }
 
 }

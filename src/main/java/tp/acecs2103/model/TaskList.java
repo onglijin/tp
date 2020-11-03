@@ -249,7 +249,8 @@ public class TaskList {
             i++;
         }
         if (i == taskList.size()) {
-            throw new InvalidTaskListOperationException("The task that you want to delete does not exist in the task list.");
+            throw new InvalidTaskListOperationException(
+                    "The task that you want to delete does not exist in the task list.");
         }
         Task task = taskList.get(i);
         if (task.isCustomized()) {

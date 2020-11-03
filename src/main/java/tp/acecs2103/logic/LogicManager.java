@@ -38,7 +38,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException, InvalidTaskListOperationException {
+    public CommandResult execute(String commandText) throws CommandException,
+            ParseException, InvalidTaskListOperationException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
