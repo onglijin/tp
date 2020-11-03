@@ -53,12 +53,7 @@ public class EditCommandParser implements Parser<EditCommand> {
                     argMultimap.getValue(CliSyntax.PREFIX_DESCRIPTION).get());
             editTaskDescriptor.setDescription(new Description(descriptionParsed));
         }
-        if (!argMultimap.getValue(CliSyntax.PREFIX_OFFICIAL_DEADLINE).get().equals("")) {
-            LocalDate officialDeadlineParsed = ParserUtil.parseOfficialDeadline(
-                    argMultimap.getValue(CliSyntax.PREFIX_OFFICIAL_DEADLINE).get());
-            editTaskDescriptor.setOfficialDeadline(
-                    new OfficialDeadline(officialDeadlineParsed.toString(), officialDeadlineParsed));
-        }
+
         if (!argMultimap.getValue(CliSyntax.PREFIX_CUSTOMIZED_DEADLINE).get().equals("")) {
             LocalDate customizedDeadlineParsed = ParserUtil.parseCustomizedDeadline(
                     argMultimap.getValue(CliSyntax.PREFIX_CUSTOMIZED_DEADLINE).get());

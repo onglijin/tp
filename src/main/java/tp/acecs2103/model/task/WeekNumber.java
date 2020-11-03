@@ -1,5 +1,8 @@
 package tp.acecs2103.model.task;
 
+import tp.acecs2103.logic.parser.ParserUtil;
+import tp.acecs2103.logic.parser.exceptions.ParseException;
+
 import static java.util.Objects.requireNonNull;
 import static tp.acecs2103.commons.util.AppUtil.checkArgument;
 

@@ -31,6 +31,9 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_TYPE = "Invalid type. "
             + "\nPlease try again!";
 
+    public static final String MESSAGE_MISSING_WEEKNUMBER = "Week number is missing in your command. "
+            + "\nPlease try again!";
+
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -68,10 +71,20 @@ public class ParserUtil {
     public static int parseWeekNumber(String weekNumber) throws ParseException {
         requireNonNull(weekNumber);
         String trimmedWN = weekNumber.trim();
+        if (trimmedWN.equals("")) {
+            throw new ParseException(MESSAGE_MISSING_WEEKNUMBER);
+        }
+        try {
+            Integer.parseInt(trimmedWN);
+        } catch (Exception e) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+
         if (!WeekNumber.isValidWeekNumber(trimmedWN)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Integer.parseInt(trimmedWN);
+
     }
 
     /**

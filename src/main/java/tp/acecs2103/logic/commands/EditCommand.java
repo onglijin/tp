@@ -29,7 +29,16 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD;
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Edit the task identified by the index number with provided information.\n"
+            + "Parameters: (only INDEX is compulsory)\n"
+            + "i/INDEX (in the form of 0 + two-digit week number + two-digit task number e.g. 01205)\n"
+            + "w/WEEK_NUMBER (an integer in range [1,13], only for edition of customized task)\n"
+            + "d/DESCRIPTION (only for edition of customized task)\n"
+            + "c/CUSTOMISED_DEADLINE (in the form of YYYY-MM-DD)\n"
+            + "r/REMARK\n"
+            + "Example: \n" + COMMAND_WORD + " i/0101 c/2020-10-12 r/new remark (for default task)\n "
+            + "edit i/0109 d/new description (for customized task)";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: \n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -92,25 +101,22 @@ public class EditCommand extends Command {
         Description updatedDescription = editTaskDescriptor
                 .getDescription().orElse(taskToEdit.getDescription());
 
-        OfficialDeadline updatedOfficialDeadline = editTaskDescriptor
-                .getOfficialDeadline().orElse(taskToEdit.getOfficialDeadline());
-        // TODO: check
         CustomizedDeadline updatedCustomizedDeadline = editTaskDescriptor
                 .getCustomizedDeadline().orElse(taskToEdit.getCustomizedDeadline());
         Remark remark = editTaskDescriptor.getRemark().orElse(taskToEdit.getRemark());
 
         if (taskToEdit instanceof Topic) {
             return new Topic(taskToEdit.getIndex(), updatedWeekNumber, updatedDescription,
-                    updatedOfficialDeadline, updatedCustomizedDeadline, remark, taskToEdit.isCustomized(), false);
+                    taskToEdit.getOfficialDeadline(), updatedCustomizedDeadline, remark, taskToEdit.isCustomized(), taskToEdit.isDone());
         } else if (taskToEdit instanceof Admin) {
             return new Admin(taskToEdit.getIndex(), updatedWeekNumber, updatedDescription,
-                    updatedOfficialDeadline, updatedCustomizedDeadline, remark, taskToEdit.isCustomized(), false);
+                    taskToEdit.getOfficialDeadline(), updatedCustomizedDeadline, remark, taskToEdit.isCustomized(), taskToEdit.isDone());
         } else if (taskToEdit instanceof TP) {
             return new TP(taskToEdit.getIndex(), updatedWeekNumber, updatedDescription,
-                    updatedOfficialDeadline, updatedCustomizedDeadline, remark, taskToEdit.isCustomized(), false);
+                    taskToEdit.getOfficialDeadline(), updatedCustomizedDeadline, remark, taskToEdit.isCustomized(), taskToEdit.isDone());
         } else {
             return new IP(taskToEdit.getIndex(), updatedWeekNumber, updatedDescription,
-                    updatedOfficialDeadline, updatedCustomizedDeadline, remark, taskToEdit.isCustomized(), false);
+                    taskToEdit.getOfficialDeadline(), updatedCustomizedDeadline, remark, taskToEdit.isCustomized(), taskToEdit.isDone());
         }
     }
 
@@ -140,7 +146,6 @@ public class EditCommand extends Command {
     public static class EditTaskDescriptor {
         private WeekNumber weekNumber;
         private Description description;
-        private OfficialDeadline officialDeadline;
         private CustomizedDeadline customizedDeadline;
         private Remark remark;
 
@@ -183,14 +188,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(description);
         }
 
-
-        public void setOfficialDeadline(OfficialDeadline officialDeadline) {
-            this.officialDeadline = officialDeadline;
-        }
-
-        public Optional<OfficialDeadline> getOfficialDeadline() {
-            return Optional.ofNullable(officialDeadline);
-        }
 
         public void setCustomizedDeadline(CustomizedDeadline customizedDeadline) {
             this.customizedDeadline = customizedDeadline;

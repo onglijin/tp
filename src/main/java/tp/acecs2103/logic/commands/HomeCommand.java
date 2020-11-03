@@ -20,7 +20,8 @@ public class HomeCommand extends Command {
         model.listTasks(currentWeek);
 
         return new CommandResult(
-                String.format(Messages.MESSAGE_WEEKLY_TASKS_LISTED, currentWeek.value));
+                String.format(Messages.MESSAGE_WEEKLY_TASKS_LISTED, currentWeek.value)+  "\n -->"
+                        + String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getUiTaskList().size()));
     }
 
     @Override
