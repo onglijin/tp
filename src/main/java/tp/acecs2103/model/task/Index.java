@@ -10,8 +10,9 @@ import static tp.acecs2103.commons.util.AppUtil.checkArgument;
 public class Index {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Indexes should always start with 0, "
-                    + "only contain numbers, be at least 4 digits long and should not be blank";
+            "Your index is wrong. Indexes should always start with 0, "
+                    + "only contain numbers, be at least 4 digits long and should not be blank.\n"
+                    + "E.g. 0101 / 01206 / 01024 / ... ";
 
     /**
      *  The first character of the index must be a '0',
