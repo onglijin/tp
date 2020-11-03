@@ -5,6 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import tp.acecs2103.commons.core.GuiSettings;
+import tp.acecs2103.logic.commands.exceptions.CommandException;
+import tp.acecs2103.model.exceptions.InvalidTaskListOperationException;
 import tp.acecs2103.model.exceptions.ModelException;
 import tp.acecs2103.model.task.CustomizedDeadline;
 import tp.acecs2103.model.task.Index;
@@ -115,7 +117,8 @@ public interface Model {
      * @param index is the index of task we want to set a deadline to.
      * @param deadline is a customized deadline.
      */
-    void deadlineTask(Index index, CustomizedDeadline deadline);
+    void deadlineTask(Index index, CustomizedDeadline deadline)
+            throws InvalidTaskListOperationException, CommandException;
 
     /**
      * Gets  a ui task list for displaying.

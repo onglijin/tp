@@ -8,6 +8,7 @@ import tp.acecs2103.commons.core.index.Index;
 import tp.acecs2103.commons.util.StringUtil;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
 import tp.acecs2103.model.task.TaskCategory;
+import tp.acecs2103.model.task.WeekNumber;
 
 
 /**
@@ -28,6 +29,9 @@ public class ParserUtil {
             + "Note the capitalisation. \nPlease try again!";
 
     public static final String MESSAGE_INVALID_TYPE = "Invalid type. "
+            + "\nPlease try again!";
+
+    public static final String MESSAGE_MISSING_WEEKNUMBER = "Week number is missing in your command. "
             + "\nPlease try again!";
 
     /**
@@ -67,10 +71,20 @@ public class ParserUtil {
     public static int parseWeekNumber(String weekNumber) throws ParseException {
         requireNonNull(weekNumber);
         String trimmedWN = weekNumber.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedWN)) {
+        if (trimmedWN.equals("")) {
+            throw new ParseException(MESSAGE_MISSING_WEEKNUMBER);
+        }
+        try {
+            Integer.parseInt(trimmedWN);
+        } catch (Exception e) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+
+        if (!WeekNumber.isValidWeekNumber(trimmedWN)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Integer.parseInt(trimmedWN);
+
     }
 
     /**
