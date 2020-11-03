@@ -16,7 +16,7 @@ import tp.acecs2103.model.task.WeekNumber;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Invalid index format. Index cannot be empty, "
+    public static final String MESSAGE_INVALID_WEEKNUMBER = "Invalid week number. Week number cannot be empty, "
             + "and can only take integer value in range [1,13].\n"
             + "Please try again!";
 
@@ -43,7 +43,7 @@ public class ParserUtil {
         requireNonNull(oneBasedIndex);
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new ParseException(MESSAGE_INVALID_WEEKNUMBER);
         }
         return trimmedIndex;
     }
@@ -59,7 +59,7 @@ public class ParserUtil {
         try {
             Index test = new Index(trimmedIndex);
         } catch (IndexOutOfBoundsException i) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new ParseException(MESSAGE_INVALID_WEEKNUMBER);
         }
         return new Index(trimmedIndex);
     }
@@ -77,11 +77,11 @@ public class ParserUtil {
         try {
             Integer.parseInt(trimmedWN);
         } catch (Exception e) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new ParseException(MESSAGE_INVALID_WEEKNUMBER);
         }
 
         if (!WeekNumber.isValidWeekNumber(trimmedWN)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new ParseException(MESSAGE_INVALID_WEEKNUMBER);
         }
         return Integer.parseInt(trimmedWN);
 
