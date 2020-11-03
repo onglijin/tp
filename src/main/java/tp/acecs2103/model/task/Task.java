@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 
 import tp.acecs2103.commons.core.LogsCenter;
 import tp.acecs2103.commons.util.CollectionUtil;
+import tp.acecs2103.logic.commands.exceptions.CommandException;
 
 /**
  * Represents a general task in Ace CS2103/T.
@@ -146,8 +147,13 @@ public class Task implements Comparable<Task> {
      * Sets a deadline to the task.
      * @param deadline A valid LocalDate.
      */
-    public void setDeadline(CustomizedDeadline deadline) {
+    public void setDeadline(CustomizedDeadline deadline) throws CommandException {
         assert deadline != null;
+        if (deadline.compareTo(this.officialDeadline) > 0) {
+            throw new CommandException("Customised deadline should not be later than official deadline. " +
+                    "Please set the customised deadline to a date before or on: " +
+                    this.officialDeadline);
+        }
         customizedDeadline = deadline;
     }
 

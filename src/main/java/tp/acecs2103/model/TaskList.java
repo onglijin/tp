@@ -312,7 +312,7 @@ public class TaskList {
      * @return a new array list after find().
      */
     public ArrayList<Task> deadline(Index taskIndex, CustomizedDeadline deadline)
-            throws InvalidTaskListOperationException{
+            throws InvalidTaskListOperationException, CommandException {
         boolean foundTask = false;
         for (Task task: taskList) {
             if (task.hasIndex(taskIndex)) {

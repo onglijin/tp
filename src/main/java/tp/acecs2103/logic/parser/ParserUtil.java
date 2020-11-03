@@ -8,6 +8,7 @@ import tp.acecs2103.commons.core.index.Index;
 import tp.acecs2103.commons.util.StringUtil;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
 import tp.acecs2103.model.task.TaskCategory;
+import tp.acecs2103.model.task.WeekNumber;
 
 
 /**
@@ -67,7 +68,7 @@ public class ParserUtil {
     public static int parseWeekNumber(String weekNumber) throws ParseException {
         requireNonNull(weekNumber);
         String trimmedWN = weekNumber.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedWN)) {
+        if (!WeekNumber.isValidWeekNumber(trimmedWN)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Integer.parseInt(trimmedWN);

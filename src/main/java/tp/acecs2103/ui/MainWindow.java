@@ -137,7 +137,8 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException, InvalidTaskListOperationException {
+    private CommandResult executeCommand(String commandText) throws CommandException,
+            ParseException, InvalidTaskListOperationException, IllegalArgumentException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
@@ -150,7 +151,7 @@ public class MainWindow extends UiPart<Stage> {
 
 
             return commandResult;
-        } catch (CommandException | ParseException | InvalidTaskListOperationException e) {
+        } catch (CommandException | ParseException | InvalidTaskListOperationException | IllegalArgumentException e) {
             logger.info("Invalid command: " + commandText);
             feedbackBox.setFeedbackToUser(e.getMessage());
             throw e;

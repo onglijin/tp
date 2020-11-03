@@ -41,9 +41,9 @@ public class AppUtil {
      *
      * @throws IllegalArgumentException with {@code errorMessage} if {@code condition} is false.
      */
-    public static void checkArgument(Boolean condition, String errorMessage) throws ParseException {
+    public static void checkArgument(Boolean condition, String errorMessage){
         if (!condition) {
-            throw new ParseException(errorMessage);
+            throw new IllegalArgumentException(errorMessage);
         }
     }
 
