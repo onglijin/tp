@@ -14,6 +14,7 @@ import tp.acecs2103.logic.parser.exceptions.ParseException;
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.TaskList;
 import tp.acecs2103.model.UiTaskList;
+import tp.acecs2103.model.exceptions.InvalidTaskListOperationException;
 import tp.acecs2103.storage.Storage;
 
 /**
@@ -37,7 +38,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
+    public CommandResult execute(String commandText) throws CommandException, ParseException, InvalidTaskListOperationException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;

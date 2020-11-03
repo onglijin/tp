@@ -14,6 +14,7 @@ import tp.acecs2103.logic.Logic;
 import tp.acecs2103.logic.commands.CommandResult;
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
+import tp.acecs2103.model.exceptions.InvalidTaskListOperationException;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -136,7 +137,7 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeCommand(String commandText) throws CommandException, ParseException, InvalidTaskListOperationException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
@@ -149,7 +150,7 @@ public class MainWindow extends UiPart<Stage> {
 
 
             return commandResult;
-        } catch (CommandException | ParseException e) {
+        } catch (CommandException | ParseException | InvalidTaskListOperationException e) {
             logger.info("Invalid command: " + commandText);
             feedbackBox.setFeedbackToUser(e.getMessage());
             throw e;

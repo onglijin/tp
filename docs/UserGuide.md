@@ -25,7 +25,7 @@ Ace CS2103/T is a **desktop app for managing task requirements of CS2103/T, opti
 
    * **`list`**`6` : Lists all tasks for week 6.
 
-   * **`deadline`**`i/0601 c/15-09-2020` : Adds a deadline 15-09-2020 to task indexed at 0601.
+   * **`deadline`**`i/0601 c/2020-09-16` : Adds a deadline 2020-09-16 to task indexed at 0601.
 
    * **`exit`** : Exits the app.
 
@@ -118,7 +118,7 @@ Example:
 
 Adds a customized task in the task manager.
 
-Format: `add i/INDEX w/WEEKNUMBER d/DESCRIPTION c/DEADLINE r/REMARK a/CATEGORY`
+Format: `add i/INDEX w/WEEKNUMBER d/DESCRIPTION c/DEADLINE [r/REMARK] a/CATEGORY`
 
 * The task with INDEX as index, WEEKNUMBER as week number, DESCRIPTION as description, DEADLINE as customised deadline, REMARK as remark, CATEGORY as the category will be added into task list.
 * The INDEX, WEEKNUMBER, DESCRIPTION, DEADLINE and CATEGORY are compulsory, the REMARK is optional.
@@ -220,7 +220,7 @@ Format: `exit`
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add d/DESCRIPTION c/DEADLINE r/REMARK a/CATEGORY` <br> e.g. 'add d/meeting c/2020-10-20 r/urgent a/Tp'
+**Add** | `add i/INDEX w/WEEKNUMBER d/DESCRIPTION c/DEADLINE r/REMARK a/CATEGORY` <br> e.g. 'add i/0109 w/1 d/update documentation c/2020-10-02 r/check tp dashboard a/Tp'
 **Deadline** | `deadline i/TASK_NUMBER c/DEADLINE` <br> e.g., `deadline i/0601 c/2020-09-20`
 **Edit** | `edit i/INDEX [w/WEEK_NUMBER] [d/DESCRIPTION] [c/DEADLINE] [r/REMARK]` <br> e.g. 'edit i/0109 d/updated description r/updated remark'
 **Delete** | `delete TASK_NUMBER`<br> e.g., `delete 0601`

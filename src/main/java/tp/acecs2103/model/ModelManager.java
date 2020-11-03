@@ -149,8 +149,13 @@ public class ModelManager implements Model {
     };
 
     @Override
-    public void deadlineTask(Index index, CustomizedDeadline deadline) {
-        uiTaskList.addAll(taskList.deadline(index, deadline));
+    public void deadlineTask(Index index, CustomizedDeadline deadline) throws InvalidTaskListOperationException {
+        try {
+            uiTaskList.addAll(taskList.deadline(index, deadline));
+        } catch (InvalidTaskListOperationException e) {
+            throw e;
+        }
+
     }
 
     @Override

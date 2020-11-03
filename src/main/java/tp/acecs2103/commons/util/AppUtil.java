@@ -9,6 +9,8 @@ import javafx.scene.image.Image;
 import tp.acecs2103.MainApp;
 import tp.acecs2103.model.task.WeekNumber;
 
+import tp.acecs2103.logic.parser.exceptions.ParseException;
+
 
 /**
  * A container for App specific utility functions
@@ -39,9 +41,9 @@ public class AppUtil {
      *
      * @throws IllegalArgumentException with {@code errorMessage} if {@code condition} is false.
      */
-    public static void checkArgument(Boolean condition, String errorMessage) {
+    public static void checkArgument(Boolean condition, String errorMessage) throws ParseException {
         if (!condition) {
-            throw new IllegalArgumentException(errorMessage);
+            throw new ParseException(errorMessage);
         }
     }
 

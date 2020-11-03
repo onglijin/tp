@@ -170,8 +170,17 @@ public class Task implements Comparable<Task> {
      */
     public boolean contains(String keyword) {
         keyword = keyword.toLowerCase();
+
+        if (description == null && remark != null) {
+            return remark.value.toLowerCase().contains(keyword);
+        } else if (description != null && remark == null) {
+            return description.value.toLowerCase().contains(keyword);
+        } else if (description == null && remark == null) {
+            return false;
+        }
         return description.value.toLowerCase().contains(keyword)
                 || remark.value.toLowerCase().contains(keyword);
+
     }
 
     /**
