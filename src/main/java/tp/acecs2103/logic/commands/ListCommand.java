@@ -29,6 +29,10 @@ public class ListCommand extends Command {
         this.weekNumber = weekNumber;
     }
 
+    public int getWeekNumber() {
+        return weekNumber.getWeekValueInt();
+    }
+
 
     @Override
     public CommandResult execute(Model model) {
