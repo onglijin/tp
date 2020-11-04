@@ -25,17 +25,17 @@ Given below are my contributions to the project.
     * Updated quick start of the documentation [\#5](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/5)
     * Added documentation for the features `add`, `delete` and `exit` [\#5](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/5)
     * Updated FAQ section of the documentation and the command summary [\#5](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/5)
-    * Update user guide to fix inconsistencies and errors [\#213](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/213), [\#214](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/214), [\#215](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/215) 
-    
+    * Update user guide to fix inconsistencies and errors [\#213](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/213), [\#214](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/214), [\#215](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/215)
+
   * Developer Guide:
     * Updated the UML diagram for UI component and the description under UI.java [\#127](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/127)
     * Updated the user stories [\#153](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/153)
-    
+
 * **Contributions to team-based tasks**:
   * Necessary general code enhancement:
     * Renaming the product [\#5](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/5), [\#6](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/6)
     * Changing the product icon [\#84](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/86)
   * Enabled assertions in team repo [\#118](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/118)
-  
+
 * **Community**:
   * PRs reviewed : [\#7](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/7), [\#013](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/103), [\#131](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/131)
