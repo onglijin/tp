@@ -117,3 +117,8 @@
 .list-cell .label {
     -fx-text-fill: black
 }
+
+.list-cell:empty {
+    /* Empty cells will not have alternating colours */
+    -fx-background: transparent;
+}

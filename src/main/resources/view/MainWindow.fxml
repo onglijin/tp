@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<?import javafx.scene.Group?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.Label?>
 <fx:root minHeight="600" minWidth="650.0" onCloseRequest="#handleExit" title="Ace CS2103/T" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
