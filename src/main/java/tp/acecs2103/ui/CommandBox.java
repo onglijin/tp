@@ -8,6 +8,7 @@ import tp.acecs2103.logic.Logic;
 import tp.acecs2103.logic.commands.CommandResult;
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
+import tp.acecs2103.model.exceptions.InvalidTaskListOperationException;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
@@ -40,7 +41,7 @@ public class CommandBox extends UiPart<Region> {
         try {
             commandExecutor.execute(commandTextField.getText());
             commandTextField.setText("");
-        } catch (CommandException | ParseException e) {
+        } catch (CommandException | ParseException | InvalidTaskListOperationException e) {
             setStyleToIndicateCommandFailure();
         }
     }
@@ -75,7 +76,8 @@ public class CommandBox extends UiPart<Region> {
          *
          * @see Logic#execute(String)
          */
-        CommandResult execute(String commandText) throws CommandException, ParseException;
+        CommandResult execute(String commandText) throws
+                CommandException, ParseException, InvalidTaskListOperationException;
     }
 
 }

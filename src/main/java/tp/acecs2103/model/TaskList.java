@@ -4,14 +4,17 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 import tp.acecs2103.commons.util.AppUtil;
+import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.model.exceptions.InvalidTaskListOperationException;
+import tp.acecs2103.model.exceptions.InvalidTaskOperationException;
 import tp.acecs2103.model.task.CustomizedDeadline;
+import tp.acecs2103.model.task.Deadline;
 import tp.acecs2103.model.task.Index;
 import tp.acecs2103.model.task.Task;
 import tp.acecs2103.model.task.WeekNumber;
+
 
 
 public class TaskList {
@@ -91,7 +94,12 @@ public class TaskList {
      * @return true if it is already inside task and false if not.
      */
     public boolean hasTask(Task task) {
-        return taskList.contains(task);
+        for (Task i : taskList) {
+            if (i.isSameTask(task)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -167,11 +175,14 @@ public class TaskList {
             if (byOfficialDeadline) {
                 Collections.sort(additionalList);
             } else {
-                Collections.sort(additionalList, new Comparator<Task>() {
-                    @Override
-                    public int compare(Task o1, Task o2) {
-                        return o1.getCustomizedDeadline().compareTo(o2.getCustomizedDeadline());
-                    }
+
+                Collections.sort(additionalList, (o1, o2) -> {
+                    Deadline ddl1 = (o1.getCustomizedDeadline() != null)
+                            ? o1.getCustomizedDeadline() : o1.getOfficialDeadline();
+                    Deadline ddl2 = (o2.getCustomizedDeadline() != null)
+                            ? o2.getCustomizedDeadline() : o2.getOfficialDeadline();
+                    int result = ddl1.compareTo(ddl2);
+                    return result;
                 });
             }
         }
@@ -196,12 +207,22 @@ public class TaskList {
     }
 
     /**
-     * Adds a task.
+     * Initializes a task list by adding a task.
      *
      * @param task A valid task.
      * @return a new array list after find().
      */
+    public ArrayList<Task> initialize(Task task) {
+        taskList.add(task);
+        return find();
+    }
+
+    /**
+     * Adds a task to task list.
+     */
     public ArrayList<Task> add(Task task) {
+        timeRange = task.getWeekNumber();
+
         taskList.add(task);
         return find();
     }
@@ -237,6 +258,10 @@ public class TaskList {
                 break;
             }
             i++;
+        }
+        if (i == taskList.size()) {
+            throw new InvalidTaskListOperationException(
+                    "The task that you want to delete does not exist in the task list.");
         }
         Task task = taskList.get(i);
         if (task.isCustomized()) {
@@ -298,11 +323,24 @@ public class TaskList {
      * @param deadline A valid deadline.
      * @return a new array list after find().
      */
-    public ArrayList<Task> deadline(Index taskIndex, CustomizedDeadline deadline) {
-        for (Task task: taskList) {
-            if (task.hasIndex(taskIndex)) {
-                task.setDeadline(deadline);
+    public ArrayList<Task> deadline(Index taskIndex, CustomizedDeadline deadline)
+            throws InvalidTaskListOperationException {
+        boolean foundTask = false;
+        try {
+            for (Task task: taskList) {
+                if (task.hasIndex(taskIndex)) {
+                    task.setDeadline(deadline);
+                    foundTask = true;
+                }
             }
+        } catch (InvalidTaskOperationException e) {
+            throw new InvalidTaskListOperationException(e.getMessage());
+        }
+
+
+        if (!foundTask) {
+            throw new InvalidTaskListOperationException(
+                    "The task that you want to set deadline to is not found in the task list.");
         }
         return find();
     }
@@ -317,6 +355,8 @@ public class TaskList {
     public ArrayList<Task> resetTask(Task target, Task newTask) {
         requireNonNull(target);
         requireNonNull(newTask);
+
+        timeRange = newTask.getWeekNumber();
 
         int index = taskList.indexOf(target);
         taskList.set(index, newTask);

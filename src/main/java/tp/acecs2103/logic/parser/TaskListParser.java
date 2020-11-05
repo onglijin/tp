@@ -15,6 +15,7 @@ import tp.acecs2103.logic.commands.FilterCommand;
 import tp.acecs2103.logic.commands.FindCommand;
 import tp.acecs2103.logic.commands.GetCommand;
 import tp.acecs2103.logic.commands.HelpCommand;
+import tp.acecs2103.logic.commands.HomeCommand;
 import tp.acecs2103.logic.commands.ListCommand;
 import tp.acecs2103.logic.commands.UndoneCommand;
 import tp.acecs2103.logic.commands.exceptions.CommandException;
@@ -84,6 +85,8 @@ public class TaskListParser {
         case FilterCommand.COMMAND_WORD:
             return new FilterCommandParser().parse(arguments);
 
+        case HomeCommand.COMMAND_WORD:
+            return new HomeCommand();
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
         }

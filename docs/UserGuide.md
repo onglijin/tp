@@ -16,19 +16,22 @@ Ace CS2103/T is a **desktop app for managing task requirements of CS2103/T, opti
 
 2. Copy the file to the folder you want to use as the _home folder_ for your Ace CS2103/T.
 
-3. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+3. The default size of GUI is 1920 × 1080, so make sure your computer screen resolution reaches the minimum requirement. 
 
-4. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   ![Ui](images/UI_updated2.png)
+   ![Ui](images/UI_updated.png)
+   
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will get you the link for user guide.<br>
    Some example commands you can try:
 
    * **`list`**`6` : Lists all tasks for week 6.
 
-   * **`deadline`**`i/0601 c/15-09-2020` : Adds a deadline 15-09-2020 to task indexed at 0601.
+   * **`deadline`**`i/0601 c/2020-09-16` : Adds a deadline 2020-09-16 to task indexed at 0601.
 
    * **`exit`** : Exits the app.
 
-5. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -84,11 +87,11 @@ Lists all tasks that contain the keyword.
 
 Format: `find KEYWORD`
 
-* The KEYWORD is a letter string in the description of tasks to be returned.
+* The KEYWORD is a letter string in the description and remark of tasks to be returned.
 * Operates rough search in the task list.
 
 Example:
-* `find book`: Returns all tasks containing “book” in their descriptions.
+* `find book`: Returns all tasks containing keyword “book” in their descriptions or remarks.
 
 ### List tasks: `list`
 
@@ -96,21 +99,10 @@ Lists all tasks in a specific week.
 
 Format: `list WEEK_NUMBER`
 
-* The WEEK_NUMBER is a digit representing a teaching week.
+* The WEEK_NUMBER is a integer in the range [1,13] representing a teaching week.
 
 Example:
 * `list 6`: Returns all tasks in teaching week 6.
-
-### Deleting a customized task: `delete`
-
-Deletes a customized task in the task manager.
-
-Format: `delete TASK_INDEX`
-
-* The task indexed at TASK_INDEX will be deleted.
-
-Example:
-* `delete 0601`: Task indexed at 0601 will be deleted.
 
 ### Adding a customized deadline: `deadline`
 
@@ -119,7 +111,7 @@ Adds a customized deadline to a preloaded task.
 Format: `deadline i/TASK_INDEX c/DEADLINE`
 
 * The task indexed at TASK_INDEX will be given a DEADLINE.
-* The deadline should be given in format: "YYYY-MM-DD"
+* The deadline should be given in the format: "YYYY-MM-DD"
 
 Example:
 * `deadline i/0601 c/2020-09-29`: Adds a customized deadline on 29th September 2020 to the first task of teaching week 6 which is indexed at TASK_NUMBER 0601.
@@ -128,41 +120,88 @@ Example:
 
 Adds a customized task in the task manager.
 
-Format: `add i/INDEX w/WEEKNUMBER d/DESCRIPTION c/DEADLINE r/REMARK a/CATEGORY`
+Format: `add i/INDEX w/WEEKNUMBER d/DESCRIPTION c/DEADLINE [r/REMARK] a/CATEGORY`
 
 * The task with INDEX as index, WEEKNUMBER as week number, DESCRIPTION as description, DEADLINE as customised deadline, REMARK as remark, CATEGORY as the category will be added into task list.
 * The INDEX, WEEKNUMBER, DESCRIPTION, DEADLINE and CATEGORY are compulsory, the REMARK is optional.
 
 Example:
-* `add i/0109 w/1 d/update documentation c/2020-10-02 r/check tp dashboard a/Tp`:
-Task to update documentation with deadline set on 2020-10-02 of category tp with a remark to check tp dashboard is added to the task list.
+* `add i/0109 w/1 d/update documentation c/2020-08-14 r/check tp dashboard a/Tp`:
+Task to update documentation with deadline set on 2020-08-14 of category tp with a remark to check tp dashboard is added to the task list.
+
+### Deleting a customized task: `delete`
+
+Deletes a customized task in the task manager. An exception will occur if task indicated by index is a default task.
+
+Format: `delete TASK_INDEX`
+
+* The task indexed at TASK_INDEX will be deleted.
+
+Example:
+* `delete 0601`: Task indexed at 0601 will be deleted.
+
+### Editing a customized task: `edit`
+
+Edits a customized task in the task manager.
+
+Format: `edit i/INDEX [w/WEEK_NUMBER][d/DESCRIPTION] [c/DEADLINE] [r/REMARK]`
+
+* The task with INDEX as index will be updated with WEEK_NUMBER as the new weeknumber, DESCRIPTION as the new description, DEADLINE as the new customised deadline, REMARK as the new remark, CATEGORY as the category will be added into task list.
+* The INDEX is compulsory, all other parameters are optional.
+
+Example:
+* `edit i/0109 d/updated description r/updated remark`:
+Customised task indexed at 0109 is to be updated with "updated description" as its new description,
+
 
 ### Mark a task as done/undone: `done` and `undone`
 
-Mark a task in the task manager as done or undone.
+Marks a task in the task manager as done or undone.
 
 Format of `done`: `done TASK_INDEX`
 
 * The task at TASK_INDEX will be marked as done.
 
+Example:
+* `done 0109`:
+Mark task with index 0109 as done.
+
 Format of `undone`: `undone TASK_INDEX`
 
-* The task at TASK_INDEX will be marked as undone.
+* The task at TASK_INDEX will be marked as pending.
+
+Example:
+* `undone 0109`:
+Mark task with index 0109 as pending.
 
 ### Rank selected tasks base on deadline: `filter`
 
-Filter the tasks based on selected condition and rank them by deadline.
+Filters the tasks based on selected condition and rank them by deadline.
 
-Format 1: `filter k/KEYWORD w/WEEKNUMBER l/DEADLINETYPE`
+Format 1: `filter w/WEEKNUMBER k/KEYWORD l/DEADLINETYPE`
 Format 2: `filter k/KEYWORD l/DEADLINETYPE`
-Format 3: `filter k/KEYWORD w/WEEKNUMBER`
+Format 3: `filter w/WEEKNUMBER k/KEYWORD`
 Format 4: `filter k/KEYWORD`
 
 * The `KEYWORD` can be "pending" or "done". The task manager will filter tasks based on the done status of tasks.
 * The `WEEKNUMBER` can be used to specify which week the user select.
-* The `DEADLINETYPE` can be "official" or "customized", which specify which deadline type the selected taskes should be ranked by.
-* In Format 4, the KEYWORD can only be "done"
-* In Format 1,2,3, the KEYWORD can only be "pending"
+* The `DEADLINETYPE` can be "official" or "customised", which specify which deadline type the selected task should be ranked by in ascending order.
+* In Format 2,4, the KEYWORD can only be "done"
+* In Format 1,3, the KEYWORD can only be "pending"
+
+Example:
+* `filter k/done`: Display all the completed tasks.
+* `filter w/4 k/done`: Display all the completed tasks in week 4.
+* `filter k/pending l/official`: Display all the pending tasks ranked in ascending order of their official deadline (i.e. task with nearest deadline will be displayed at top).
+* `filter k/pending l/customised`: Display all the pending tasks ranked in ascending order of their customised deadline (i.e. task with nearest deadline will be displayed at top).
+* `filter w/4 k/pending l/official`: Display all the pending tasks ranked in ascending order of their customised deadline (i.e. task with nearest deadline will be displayed at top) in week 4.
+
+### Back to home page of current week : `home`
+
+Back to the home page that display all tasks of the current week.
+
+Format: `home`
+
 
 ### Exiting the program : `exit`
 
@@ -183,12 +222,14 @@ Format: `exit`
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add d/DESCRIPTION c/DEADLINE r/REMARK a/CATEGORY` <br> e.g. 'add d/meeting c/2020-10-20 r/urgent a/Tp'
+**Add** | `add i/INDEX w/WEEKNUMBER d/DESCRIPTION c/DEADLINE r/REMARK a/CATEGORY` <br> e.g. 'add i/0109 w/1 d/update documentation c/2020-10-02 r/check tp dashboard a/Tp'
 **Deadline** | `deadline i/TASK_NUMBER c/DEADLINE` <br> e.g., `deadline i/0601 c/2020-09-20`
+**Edit** | `edit i/INDEX [w/WEEK_NUMBER] [d/DESCRIPTION] [c/DEADLINE] [r/REMARK]` <br> e.g. 'edit i/0109 d/updated description r/updated remark'
 **Delete** | `delete TASK_NUMBER`<br> e.g., `delete 0601`
-**Edit** | `add d/DESCRIPTION c/DEADLINE r/REMARK a/CATEGORY` <br> e.g. 'add d/meeting c/2020-10-20 r/urgent a/Tp'
-**Exit** | `exit`
 **Find** | `find KEYWORD` e.g., `find book` <br>
+**List** | `list WEEK_NUMBER`  e.g., `list 6` <br>
+**Filter** | `filter [w/WEEKNUMBER] k/KEYWORD [l/DEADLINETYPE]` e.g., `filter w/4 k/pending l/official` <br>
+**Home** | `home`<br>
 **Help** | `help PARAMETER`<br>
 **Get**  | `get PARAMETER` <br>
-**List** | `list WEEK_NUMBER`  e.g., `list 6` <br>
+**Exit** | `exit`

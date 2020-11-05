@@ -13,10 +13,15 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD;
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Adds the task identified by the index number used in the displayed task list.\n"
+            + "Parameters: i/INDEX (in the form of 0 + two-digit week number + two-digit task number e.g. 01205) "
+            + "w/WEEK_NUMBER d/DESCRIPTION c/CUSTOMISED_DEADLINE r/REMARK a/CATEGORY\n"
+            + "Example: " + COMMAND_WORD + " i/0109 w/1 d/update documentation c/2020-08-15 r/check dashboard a/Ip";
 
-    public static final String MESSAGE_SUCCESS = "New task added: %1$s";
-    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list";
+    public static final String MESSAGE_SUCCESS = "New task added: \n%1$s";
+    public static final String MESSAGE_DUPLICATE_TASK = "Task with this index already exists in the task list. "
+                                                          + "Try another index please.";
     public static final String MESSAGE_INVALID_TASK = "A customised task should not have an official deadline";
 
     private final Task toAdd;
@@ -49,6 +54,6 @@ public class AddCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+                && toAdd.isSameTask(((AddCommand) other).toAdd));
     }
 }

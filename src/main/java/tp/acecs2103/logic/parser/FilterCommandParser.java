@@ -1,7 +1,13 @@
 package tp.acecs2103.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static tp.acecs2103.logic.parser.CliSyntax.PREFIX_DDLTYPE;
+import static tp.acecs2103.logic.parser.CliSyntax.PREFIX_KEYWORD;
+import static tp.acecs2103.logic.parser.CliSyntax.PREFIX_WEEK_NUMBER;
 
+import java.util.stream.Stream;
+
+import tp.acecs2103.commons.core.Messages;
 import tp.acecs2103.logic.commands.FilterCommand;
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
@@ -15,6 +21,13 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(
                         args, CliSyntax.PREFIX_WEEK_NUMBER, CliSyntax.PREFIX_KEYWORD, CliSyntax.PREFIX_DDLTYPE);
+
+        if (!anyPrefixPresent(argMultimap,
+                PREFIX_WEEK_NUMBER, PREFIX_KEYWORD, PREFIX_DDLTYPE)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(
+                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+        }
 
         if (!argMultimap.getValue(CliSyntax.PREFIX_KEYWORD).get().equals("")
                 && argMultimap.getValue(CliSyntax.PREFIX_WEEK_NUMBER).get().equals("")
@@ -44,5 +57,13 @@ public class FilterCommandParser implements Parser<FilterCommand> {
                     new WeekNumber(argMultimap.getValue(CliSyntax.PREFIX_WEEK_NUMBER).get()));
         }
         return new FilterCommand(argMultimap.getValue(CliSyntax.PREFIX_KEYWORD).get());
+    }
+
+    /**
+     * Returns true if any of the prefixes does not contain empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean anyPrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).anyMatch(prefix -> !argumentMultimap.getValue(prefix).get().equals(""));
     }
 }

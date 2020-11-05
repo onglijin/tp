@@ -60,7 +60,7 @@ public class Deadline {
                 && timeInfo.equals(((Deadline) other).getTimeInfo()));
     }
 
-    public int compareTo(Deadline Deadline) {
-        return this.timeInfo.compareTo(Deadline.getTimeInfo());
+    public int compareTo(Deadline deadline) {
+        return this.timeInfo.compareTo(deadline.getTimeInfo());
     }
 }
