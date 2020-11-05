@@ -66,4 +66,15 @@ public class ListCommandParserTest {
             assert true;
         }
     }
+
+    @Test
+    public void parse_invalidListCommand_noArgument_fail() {
+        ListCommandParser listCommandParser = new ListCommandParser();
+        String parametersStub = "";
+        try {
+            listCommandParser.parse(parametersStub);
+        } catch (ParseException e) {
+            assert true;
+        }
+    }
 }
