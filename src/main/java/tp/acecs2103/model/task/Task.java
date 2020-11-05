@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import tp.acecs2103.commons.core.LogsCenter;
 import tp.acecs2103.commons.util.CollectionUtil;
 import tp.acecs2103.logic.commands.exceptions.CommandException;
+import tp.acecs2103.model.exceptions.InvalidTaskOperationException;
 
 /**
  * Represents a general task in Ace CS2103/T.
@@ -103,14 +104,14 @@ public class Task implements Comparable<Task> {
      * Checks whether the task is customized.
      */
     public boolean isCustomized() {
-        return this.customized;
+        return customized;
     }
 
     /**
      * Checks whether the task is done
      */
     public boolean isDone() {
-        return this.doneStatus;
+        return doneStatus;
     }
 
     /**
@@ -147,10 +148,10 @@ public class Task implements Comparable<Task> {
      * Sets a deadline to the task.
      * @param deadline A valid LocalDate.
      */
-    public void setDeadline(CustomizedDeadline deadline) throws CommandException {
+    public void setDeadline(CustomizedDeadline deadline) throws InvalidTaskOperationException {
         assert deadline != null;
         if (!this.isOverdue() && deadline.compareTo(this.officialDeadline) > 0) {
-            throw new CommandException("Customised deadline should not be later than official deadline. "
+            throw new InvalidTaskOperationException("Customised deadline should not be later than official deadline. "
                     + "Please set the customised deadline to a date before or on: "
                     + this.officialDeadline);
         }
@@ -212,10 +213,6 @@ public class Task implements Comparable<Task> {
     @Override
     public int compareTo(Task o) {
         return getOfficialDeadline().compareTo(o.getOfficialDeadline());
-    }
-
-    public boolean equals(Task o) {
-        return this.getIndex().equals(o.getIndex());
     }
 
     @Override
