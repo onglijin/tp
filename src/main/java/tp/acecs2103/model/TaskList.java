@@ -207,12 +207,22 @@ public class TaskList {
     }
 
     /**
-     * Adds a task.
+     * Initializes a task list by adding a task.
      *
      * @param task A valid task.
      * @return a new array list after find().
      */
+    public ArrayList<Task> initialize(Task task) {
+        taskList.add(task);
+        return find();
+    }
+
+    /**
+     * Adds a task to task list.
+     */
     public ArrayList<Task> add(Task task) {
+        timeRange = task.getWeekNumber();
+
         taskList.add(task);
         return find();
     }
@@ -345,6 +355,8 @@ public class TaskList {
     public ArrayList<Task> resetTask(Task target, Task newTask) {
         requireNonNull(target);
         requireNonNull(newTask);
+
+        timeRange = newTask.getWeekNumber();
 
         int index = taskList.indexOf(target);
         taskList.set(index, newTask);

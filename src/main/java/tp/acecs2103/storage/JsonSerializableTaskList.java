@@ -56,7 +56,7 @@ class JsonSerializableTaskList {
                 logger.info("The index of duplicate task is: " + task.getIndex().toString());
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            taskList.add(task);
+            taskList.initialize(task);
         }
         return taskList;
     }
