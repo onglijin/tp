@@ -3,6 +3,7 @@ package tp.acecs2103.ui;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
+import javafx.scene.Group;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -107,6 +108,7 @@ public class MainWindow extends UiPart<Stage> {
      * Sets the default size based on {@code guiSettings}.
      */
     private void setWindowDefaultSize(GuiSettings guiSettings) {
+        System.out.println(guiSettings.toString());
         primaryStage.setHeight(guiSettings.getWindowHeight());
         primaryStage.setWidth(guiSettings.getWindowWidth());
         if (guiSettings.getWindowCoordinates() != null) {
