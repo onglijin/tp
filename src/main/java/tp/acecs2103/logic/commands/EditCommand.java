@@ -14,7 +14,6 @@ import tp.acecs2103.model.task.CustomizedDeadline;
 import tp.acecs2103.model.task.Description;
 import tp.acecs2103.model.task.IP;
 import tp.acecs2103.model.task.Index;
-import tp.acecs2103.model.task.OfficialDeadline;
 import tp.acecs2103.model.task.Remark;
 import tp.acecs2103.model.task.TP;
 import tp.acecs2103.model.task.Task;
@@ -29,13 +28,24 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD;
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Edit the task identified by the index number with provided information.\n"
+            + "Parameters: (only INDEX is compulsory)\n"
+            + "i/INDEX (in the form of 0 + two-digit week number + two-digit task number e.g. 01205)\n"
+            + "w/WEEK_NUMBER (an integer in range [1,13], only for edition of customized task)\n"
+            + "d/DESCRIPTION (only for edition of customized task)\n"
+            + "c/CUSTOMISED_DEADLINE (in the form of YYYY-MM-DD)\n"
+            + "r/REMARK\n"
+            + "Example: \n" + COMMAND_WORD + " i/0101 c/2020-10-12 r/new remark (for default task)\n "
+            + "edit i/0109 d/new description (for customized task)";
 
-    public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
+    public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: \n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list.";
     public static final String MESSAGE_INVALID_EDITION =
         "Only customised deadline and remark can be changed for a default task.";
+    public static final String MESSAGE_INVALID_INDEX = "\nTask with the input index does not exist in the task list."
+            + " Please try again.";
 
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
@@ -58,7 +68,8 @@ public class EditCommand extends Command {
         TaskList lastShownList = model.getTaskList();
 
         if (lastShownList.getTask(index) == null) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX
+                    + MESSAGE_INVALID_INDEX);
         }
 
         Task taskToEdit = lastShownList.getTask(index);
@@ -79,10 +90,9 @@ public class EditCommand extends Command {
         throws CommandException {
         assert taskToEdit != null;
         if (!taskToEdit.isCustomized()) {
-            if (editTaskDescriptor.getWeekNumber() != null || editTaskDescriptor.getDescription() != null) {
+            if (!(editTaskDescriptor.weekNumber == null && editTaskDescriptor.description == null)) {
                 throw new CommandException(MESSAGE_INVALID_EDITION);
             }
-
         }
 
         WeekNumber updatedWeekNumber = editTaskDescriptor
@@ -90,25 +100,26 @@ public class EditCommand extends Command {
         Description updatedDescription = editTaskDescriptor
                 .getDescription().orElse(taskToEdit.getDescription());
 
-        OfficialDeadline updatedOfficialDeadline = editTaskDescriptor
-                .getOfficialDeadline().orElse(taskToEdit.getOfficialDeadline());
-        // TODO: check
         CustomizedDeadline updatedCustomizedDeadline = editTaskDescriptor
                 .getCustomizedDeadline().orElse(taskToEdit.getCustomizedDeadline());
         Remark remark = editTaskDescriptor.getRemark().orElse(taskToEdit.getRemark());
 
         if (taskToEdit instanceof Topic) {
             return new Topic(taskToEdit.getIndex(), updatedWeekNumber, updatedDescription,
-                    updatedOfficialDeadline, updatedCustomizedDeadline, remark, taskToEdit.isCustomized(), false);
+                    taskToEdit.getOfficialDeadline(), updatedCustomizedDeadline, remark,
+                    taskToEdit.isCustomized(), taskToEdit.isDone());
         } else if (taskToEdit instanceof Admin) {
             return new Admin(taskToEdit.getIndex(), updatedWeekNumber, updatedDescription,
-                    updatedOfficialDeadline, updatedCustomizedDeadline, remark, taskToEdit.isCustomized(), false);
+                    taskToEdit.getOfficialDeadline(), updatedCustomizedDeadline, remark,
+                    taskToEdit.isCustomized(), taskToEdit.isDone());
         } else if (taskToEdit instanceof TP) {
             return new TP(taskToEdit.getIndex(), updatedWeekNumber, updatedDescription,
-                    updatedOfficialDeadline, updatedCustomizedDeadline, remark, taskToEdit.isCustomized(), false);
+                    taskToEdit.getOfficialDeadline(), updatedCustomizedDeadline, remark,
+                    taskToEdit.isCustomized(), taskToEdit.isDone());
         } else {
             return new IP(taskToEdit.getIndex(), updatedWeekNumber, updatedDescription,
-                    updatedOfficialDeadline, updatedCustomizedDeadline, remark, taskToEdit.isCustomized(), false);
+                    taskToEdit.getOfficialDeadline(), updatedCustomizedDeadline, remark,
+                    taskToEdit.isCustomized(), taskToEdit.isDone());
         }
     }
 
@@ -138,7 +149,6 @@ public class EditCommand extends Command {
     public static class EditTaskDescriptor {
         private WeekNumber weekNumber;
         private Description description;
-        private OfficialDeadline officialDeadline;
         private CustomizedDeadline customizedDeadline;
         private Remark remark;
 
@@ -181,14 +191,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(description);
         }
 
-
-        public void setOfficialDeadline(OfficialDeadline officialDeadline) {
-            this.officialDeadline = officialDeadline;
-        }
-
-        public Optional<OfficialDeadline> getOfficialDeadline() {
-            return Optional.ofNullable(officialDeadline);
-        }
 
         public void setCustomizedDeadline(CustomizedDeadline customizedDeadline) {
             this.customizedDeadline = customizedDeadline;
@@ -236,6 +238,14 @@ public class EditCommand extends Command {
                     && getDescription().equals(e.getDescription())
                     && getCustomizedDeadline().equals(e.getCustomizedDeadline())
                     && getRemark().equals(e.getRemark());
+        }
+
+        @Override
+        public String toString() {
+            return "Week Number :" + weekNumber.value
+                    + "\nDescription :" + description.value
+                    + "\nCustomized deadline :" + customizedDeadline.value
+                    + "\nRemark :" + remark.value;
         }
     }
 }

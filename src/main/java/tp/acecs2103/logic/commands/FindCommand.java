@@ -13,10 +13,10 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks with "
+            + "the specified keywords (case-insensitive) in description or remark.\n"
+            + "Parameters: KEYWORD\n"
+            + "Example: " + COMMAND_WORD + " submit";
 
     private final String keyword;
 
@@ -29,8 +29,10 @@ public class FindCommand extends Command {
         requireNonNull(model);
         model.findTasks(keyword);
 
-        return new CommandResult(
-                String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getUiTaskList().size()));
+        String feedbackMessage = "Search for tasks with keyword: " + keyword + " in description / remark.\n"
+                + String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getUiTaskList().size());
+
+        return new CommandResult(feedbackMessage);
     }
 
     @Override

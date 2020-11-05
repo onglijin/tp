@@ -20,10 +20,10 @@ public class DoneCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Mark the task identified by the index number used in the displayed task list as done.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Parameters: INDEX (in the form of 0 + two-digit week number + two-digit task number e.g. 01205)\n"
+            + "Example: " + COMMAND_WORD + "0101";
 
-    public static final String MESSAGE_DONE_TASK_SUCCESS = "Done Task: %1$s";
+    public static final String MESSAGE_DONE_TASK_SUCCESS = "Done Task: \n%1$s";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 

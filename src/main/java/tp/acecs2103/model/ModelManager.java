@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import tp.acecs2103.commons.core.GuiSettings;
 import tp.acecs2103.commons.core.LogsCenter;
 import tp.acecs2103.commons.util.CollectionUtil;
+import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.model.exceptions.InvalidTaskListOperationException;
 import tp.acecs2103.model.exceptions.ModelException;
 import tp.acecs2103.model.task.CustomizedDeadline;
@@ -149,8 +150,14 @@ public class ModelManager implements Model {
     };
 
     @Override
-    public void deadlineTask(Index index, CustomizedDeadline deadline) {
-        uiTaskList.addAll(taskList.deadline(index, deadline));
+    public void deadlineTask(Index index, CustomizedDeadline deadline) throws
+            ModelException {
+        try {
+            uiTaskList.addAll(taskList.deadline(index, deadline));
+        } catch (InvalidTaskListOperationException e) {
+            throw new ModelException(e.getMessage());
+        }
+
     }
 
     @Override

@@ -3,6 +3,8 @@ package tp.acecs2103.model.task;
 import static java.util.Objects.requireNonNull;
 import static tp.acecs2103.commons.util.AppUtil.checkArgument;
 
+
+
 /**
  * Represents which week a Task falls under in the task manager.
  * Guarantees: immutable; is valid as declaredi n {@link #isValidWeekNumber(String)}
@@ -11,7 +13,7 @@ import static tp.acecs2103.commons.util.AppUtil.checkArgument;
 public class WeekNumber {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Week numbers should only contain numbers, and be between 1 to 13.";
+            "Week number can only be integer in range [1,13].";
 
     public final String value;
 

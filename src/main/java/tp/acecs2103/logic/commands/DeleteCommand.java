@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.logging.Logger;
 
 import tp.acecs2103.commons.core.LogsCenter;
-import tp.acecs2103.commons.core.Messages;
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.TaskList;
@@ -21,10 +20,10 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the task identified by the index number used in the displayed task list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Parameters: INDEX (in the form of 0 + two-digit week number + two-digit task number e.g. 01205)\n"
+            + "Example: " + COMMAND_WORD + " 0101";
 
-    public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Task: %1$s";
+    public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Task: \n%1$s";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -43,7 +42,7 @@ public class DeleteCommand extends Command {
         try {
             model.deleteTask(index);
         } catch (Exception e) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+            throw new CommandException(e.getMessage());
         }
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
     }

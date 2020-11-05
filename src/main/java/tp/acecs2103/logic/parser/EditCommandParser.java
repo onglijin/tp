@@ -11,7 +11,6 @@ import tp.acecs2103.logic.parser.exceptions.ParseException;
 import tp.acecs2103.model.task.CustomizedDeadline;
 import tp.acecs2103.model.task.Description;
 import tp.acecs2103.model.task.Index;
-import tp.acecs2103.model.task.OfficialDeadline;
 import tp.acecs2103.model.task.Remark;
 import tp.acecs2103.model.task.WeekNumber;
 
@@ -53,12 +52,7 @@ public class EditCommandParser implements Parser<EditCommand> {
                     argMultimap.getValue(CliSyntax.PREFIX_DESCRIPTION).get());
             editTaskDescriptor.setDescription(new Description(descriptionParsed));
         }
-        if (!argMultimap.getValue(CliSyntax.PREFIX_OFFICIAL_DEADLINE).get().equals("")) {
-            LocalDate officialDeadlineParsed = ParserUtil.parseOfficialDeadline(
-                    argMultimap.getValue(CliSyntax.PREFIX_OFFICIAL_DEADLINE).get());
-            editTaskDescriptor.setOfficialDeadline(
-                    new OfficialDeadline(officialDeadlineParsed.toString(), officialDeadlineParsed));
-        }
+
         if (!argMultimap.getValue(CliSyntax.PREFIX_CUSTOMIZED_DEADLINE).get().equals("")) {
             LocalDate customizedDeadlineParsed = ParserUtil.parseCustomizedDeadline(
                     argMultimap.getValue(CliSyntax.PREFIX_CUSTOMIZED_DEADLINE).get());

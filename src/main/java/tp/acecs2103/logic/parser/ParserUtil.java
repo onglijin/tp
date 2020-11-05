@@ -8,6 +8,7 @@ import tp.acecs2103.commons.core.index.Index;
 import tp.acecs2103.commons.util.StringUtil;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
 import tp.acecs2103.model.task.TaskCategory;
+import tp.acecs2103.model.task.WeekNumber;
 
 
 /**
@@ -15,7 +16,23 @@ import tp.acecs2103.model.task.TaskCategory;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_WEEKNUMBER = "Invalid week number. Week number cannot be empty, "
+            + "and can only take integer value in range [1,13].\n"
+            + "Please try again!";
+
+    public static final String MESSAGE_INVALID_DEADLINE = "Invalid deadline format. A deadline should be in "
+            + "the form of YYYY-MM-DD.\nNote boundary for year, month and days.\n"
+            + "E.g. 2020-15-0 is an invalid deadline. \nPlease try again!";
+
+    public static final String MESSAGE_INVALID_CATEGORY = "Invalid category format. "
+            + "There are only 4 categories for CS2103/T tasks: \n Ip / Tp / Topic / Admin\n"
+            + "Note the capitalisation. \nPlease try again!";
+
+    public static final String MESSAGE_INVALID_TYPE = "Invalid type. "
+            + "\nPlease try again!";
+
+    public static final String MESSAGE_MISSING_WEEKNUMBER = "Week number is missing in your command. "
+            + "\nPlease try again!";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -26,7 +43,7 @@ public class ParserUtil {
         requireNonNull(oneBasedIndex);
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new ParseException(MESSAGE_INVALID_WEEKNUMBER);
         }
         return trimmedIndex;
     }
@@ -42,7 +59,7 @@ public class ParserUtil {
         try {
             Index test = new Index(trimmedIndex);
         } catch (IndexOutOfBoundsException i) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new ParseException(MESSAGE_INVALID_WEEKNUMBER);
         }
         return new Index(trimmedIndex);
     }
@@ -54,10 +71,20 @@ public class ParserUtil {
     public static int parseWeekNumber(String weekNumber) throws ParseException {
         requireNonNull(weekNumber);
         String trimmedWN = weekNumber.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedWN)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+        if (trimmedWN.equals("")) {
+            throw new ParseException(MESSAGE_MISSING_WEEKNUMBER);
+        }
+        try {
+            Integer.parseInt(trimmedWN);
+        } catch (Exception e) {
+            throw new ParseException(MESSAGE_INVALID_WEEKNUMBER);
+        }
+
+        if (!WeekNumber.isValidWeekNumber(trimmedWN)) {
+            throw new ParseException(MESSAGE_INVALID_WEEKNUMBER);
         }
         return Integer.parseInt(trimmedWN);
+
     }
 
     /**
@@ -83,7 +110,7 @@ public class ParserUtil {
         try {
             result = LocalDate.parse(trimmedDeadline);
         } catch (Exception e) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new ParseException(MESSAGE_INVALID_DEADLINE);
         }
         return result;
     }
@@ -100,7 +127,7 @@ public class ParserUtil {
         try {
             result = LocalDate.parse(trimmedDeadline);
         } catch (Exception e) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new ParseException(MESSAGE_INVALID_DEADLINE);
         }
         return result;
     }
@@ -125,7 +152,7 @@ public class ParserUtil {
         requireNonNull(type);
         String trimmedType = type.trim();
         if (trimmedType.isEmpty()) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new ParseException(MESSAGE_INVALID_TYPE);
         }
         return trimmedType;
     }
@@ -144,7 +171,7 @@ public class ParserUtil {
         case "Tp":
             return TaskCategory.TP;
         default:
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new ParseException(MESSAGE_INVALID_CATEGORY);
         }
     }
 }
