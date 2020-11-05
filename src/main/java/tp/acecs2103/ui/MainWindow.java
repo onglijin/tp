@@ -30,7 +30,10 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private CategoryPanel categoryPanel;
+    private CategoryPanel adminPanel;
+    private CategoryPanel topicPanel;
+    private CategoryPanel ipPanel;
+    private CategoryPanel tpPanel;
     private WeekDisplay weekDisplay;
     private CommandBox commandBox;
     private FeedbackBox feedbackBox;
@@ -76,19 +79,15 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         // TODO: change the method to get each category panel
-        categoryPanel = new CategoryPanel(logic.getUiTaskList().getAdminList(),
-                logic.getUiTaskList().getAdminWeekRange(), "Admin");
-        categoryPanelPlaceholder.getChildren().add(categoryPanel.getRoot());
-        categoryPanel = new CategoryPanel(logic.getUiTaskList().getTopicList(),
-                logic.getUiTaskList().getTopicWeekRange(), "Topic");
-        categoryPanelPlaceholder.getChildren().add(categoryPanel.getRoot());
-        categoryPanel = new CategoryPanel(logic.getUiTaskList().getIpList(),
-                logic.getUiTaskList().getIpWeekRange(), "Ip");
-        categoryPanelPlaceholder.getChildren().add(categoryPanel.getRoot());
-        categoryPanel = new CategoryPanel(logic.getUiTaskList().getTpList(),
-                logic.getUiTaskList().getTpWeekRange(), "Tp");
-        categoryPanelPlaceholder.getChildren().add(categoryPanel.getRoot());
-
+        adminPanel = new CategoryPanel(logic.getUiTaskList().getAdminList(), "Admin");
+        categoryPanelPlaceholder.getChildren().add(adminPanel.getRoot());
+        topicPanel = new CategoryPanel(logic.getUiTaskList().getTopicList(), "Topic");
+        categoryPanelPlaceholder.getChildren().add(topicPanel.getRoot());
+        ipPanel = new CategoryPanel(logic.getUiTaskList().getIpList(), "Ip");
+        categoryPanelPlaceholder.getChildren().add(ipPanel.getRoot());
+        tpPanel = new CategoryPanel(logic.getUiTaskList().getTpList(), "Tp");
+        categoryPanelPlaceholder.getChildren().add(tpPanel.getRoot());
+        refreshTitle();
 
         int currentWeekNumber = AppUtil.getCurrentWeekNumber().getWeekValueInt();
         Double num = (double) currentWeekNumber / (double) 13;
@@ -131,6 +130,15 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Refreshes the title of category panel.
+     */
+    public void refreshTitle() {
+        adminPanel.setText(logic.getUiTaskList().getAdminWeekRange());
+        topicPanel.setText(logic.getUiTaskList().getTopicWeekRange());
+        ipPanel.setText(logic.getUiTaskList().getIpWeekRange());
+        tpPanel.setText(logic.getUiTaskList().getTpWeekRange());
+    }
 
     /**
      * Executes the command and returns the result.
@@ -143,12 +151,12 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             feedbackBox.setFeedbackToUser(commandResult.getFeedbackToUser());
+            refreshTitle();
 
             // categoryPanel.setFeedbackToUser(commandResult.getFeedbackToUser());
             if (commandResult.isExit()) {
                 handleExit();
             }
-
 
             return commandResult;
         } catch (CommandException | ParseException | InvalidTaskListOperationException | IllegalArgumentException e) {

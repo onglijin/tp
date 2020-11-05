@@ -8,6 +8,7 @@ import java.util.Collections;
 import tp.acecs2103.commons.util.AppUtil;
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.model.exceptions.InvalidTaskListOperationException;
+import tp.acecs2103.model.exceptions.InvalidTaskOperationException;
 import tp.acecs2103.model.task.CustomizedDeadline;
 import tp.acecs2103.model.task.Deadline;
 import tp.acecs2103.model.task.Index;
@@ -94,7 +95,7 @@ public class TaskList {
      */
     public boolean hasTask(Task task) {
         for (Task i : taskList) {
-            if (i.equals(task)) {
+            if (i.isSameTask(task)) {
                 return true;
             }
         }
@@ -313,14 +314,19 @@ public class TaskList {
      * @return a new array list after find().
      */
     public ArrayList<Task> deadline(Index taskIndex, CustomizedDeadline deadline)
-            throws InvalidTaskListOperationException, CommandException {
+            throws InvalidTaskListOperationException {
         boolean foundTask = false;
-        for (Task task: taskList) {
-            if (task.hasIndex(taskIndex)) {
-                task.setDeadline(deadline);
-                foundTask = true;
+        try {
+            for (Task task: taskList) {
+                if (task.hasIndex(taskIndex)) {
+                    task.setDeadline(deadline);
+                    foundTask = true;
+                }
             }
+        } catch (InvalidTaskOperationException e) {
+            throw new InvalidTaskListOperationException(e.getMessage());
         }
+
 
         if (!foundTask) {
             throw new InvalidTaskListOperationException(

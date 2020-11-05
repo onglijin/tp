@@ -151,11 +151,11 @@ public class ModelManager implements Model {
 
     @Override
     public void deadlineTask(Index index, CustomizedDeadline deadline) throws
-            InvalidTaskListOperationException, CommandException {
+            ModelException {
         try {
             uiTaskList.addAll(taskList.deadline(index, deadline));
-        } catch (InvalidTaskListOperationException | CommandException e) {
-            throw e;
+        } catch (InvalidTaskListOperationException e) {
+            throw new ModelException(e.getMessage());
         }
 
     }
