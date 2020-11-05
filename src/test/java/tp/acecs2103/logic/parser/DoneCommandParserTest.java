@@ -30,4 +30,27 @@ public class DoneCommandParserTest {
             assert true;
         }
     }
+
+    //WARNING!!!SHOULD BE FAILED
+    @Test
+    public void parse_invalidDoneCommand_invalidIndex1_fail() {
+        DoneCommandParser doneCommandParser = new DoneCommandParser();
+        String parametersStub = "01401";
+        try {
+            doneCommandParser.parse(parametersStub);
+        } catch (ParseException e) {
+            assert true;
+        }
+    }
+
+    @Test
+    public void parse_invalidDoneCommand_invalidIndex2_fail() {
+        DoneCommandParser doneCommandParser = new DoneCommandParser();
+        String parametersStub = "ABC";
+        try {
+            doneCommandParser.parse(parametersStub);
+        } catch (ParseException e) {
+            assert true;
+        }
+    }
 }
