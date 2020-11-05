@@ -82,13 +82,13 @@
 
 
 .category-box {
-      -fx-alignment="CENTER";
+      -fx-alignment: "CENTER";
       -fx-background-radius: 10;
       -fx-label-padding: 10, 10, 10, 10;
       -fx-background-color: #AFEEEE;
       -fx-border-radius: 10;
-      -fx-text-alignment="CENTER";
-      -fx-text-fill= #3cc4a9
+      -fx-text-alignment: "CENTER";
+      -fx-text-fill: #3cc4a9
 }
 
 .list-cell {
