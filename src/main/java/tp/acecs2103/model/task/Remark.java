@@ -25,4 +25,13 @@ public class Remark {
     public boolean contains(String keyword) {
         return value.contains(keyword);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == null || !(other instanceof Remark)) {
+            return false;
+        } else {
+            return this.value.equals(((Remark) other).value);
+        }
+    }
 }
