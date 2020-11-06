@@ -2,7 +2,11 @@ package tp.acecs2103.testutil;
 
 
 import tp.acecs2103.model.TaskList;
-import tp.acecs2103.model.task.*;
+import tp.acecs2103.model.task.Admin;
+import tp.acecs2103.model.task.IP;
+import tp.acecs2103.model.task.TP;
+import tp.acecs2103.model.task.Task;
+import tp.acecs2103.model.task.Topic;
 
 import java.util.ArrayList;
 import java.util.Arrays;
