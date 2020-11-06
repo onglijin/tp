@@ -3,7 +3,9 @@ package tp.acecs2103.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static tp.acecs2103.testutil.Assert.assertThrows;
-import static tp.acecs2103.testutil.TypicalTasks.*;
+import static tp.acecs2103.testutil.TypicalTasks.ADMIN_EXTRA_ONE;
+import static tp.acecs2103.testutil.TypicalTasks.ADMIN_EXTRA_TWO;
+import static tp.acecs2103.testutil.TypicalTasks.getTypicalTaskList;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -14,8 +16,6 @@ import org.junit.jupiter.api.io.TempDir;
 
 import tp.acecs2103.commons.exceptions.DataConversionException;
 import tp.acecs2103.model.TaskList;
-import tp.acecs2103.model.task.Index;
-import tp.acecs2103.model.task.Task;
 
 public class JsonTaskListStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonTaskListStorageTest");
@@ -70,13 +70,13 @@ public class JsonTaskListStorageTest {
         assertEquals(original, new TaskList(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.add(AdminExtraOne);
+        original.add(ADMIN_EXTRA_ONE);
         jsonAddressBookStorage.saveTaskList(original, filePath);
         readBack = jsonAddressBookStorage.readTaskList(filePath).get();
         assertEquals(original, new TaskList(readBack));
 
         // Save and read without specifying file path
-        original.add(AdminExtraTwo);
+        original.add(ADMIN_EXTRA_TWO);
         jsonAddressBookStorage.saveTaskList(original); // file path not specified
         readBack = jsonAddressBookStorage.readTaskList().get(); // file path not specified
         assertEquals(original, new TaskList(readBack));
