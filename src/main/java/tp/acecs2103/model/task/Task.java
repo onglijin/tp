@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import tp.acecs2103.commons.core.LogsCenter;
 import tp.acecs2103.commons.util.CollectionUtil;
 import tp.acecs2103.logic.commands.exceptions.CommandException;
+import tp.acecs2103.model.TaskList;
 import tp.acecs2103.model.exceptions.InvalidTaskOperationException;
 
 /**
@@ -229,5 +230,14 @@ public class Task implements Comparable<Task> {
             returnString += "\nRemark: " + remark.value;
         }
         return returnString;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Task // instanceof handles nulls
+                && index.equals(((Task) other).index)
+                && weekNumber.equals(((Task) other).weekNumber)
+                && description.equals(((Task) other).description));
     }
 }

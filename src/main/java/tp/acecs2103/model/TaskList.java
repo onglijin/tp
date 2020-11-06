@@ -378,5 +378,12 @@ public class TaskList {
     public int size() {
         return taskList.size();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof TaskList // instanceof handles nulls
+                && taskList.equals(((TaskList) other).taskList));
+    }
 }
 

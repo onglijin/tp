@@ -29,8 +29,8 @@ public class JsonAdaptedTaskTest {
 
     private static final String DESCRIPTION = "Test Task";
     private static final String REMARK = "no remark";
-    private static final String ISCUSTOMIZED = "true";
-    private static final String ISDONE = "false";
+    private static final boolean ISCUSTOMIZED = true;
+    private static final boolean ISDONE = false;
     private static final String CATEGORY = "Admin";
 
     @Test
