@@ -90,8 +90,8 @@ public class UiTaskList {
             return null;
         }
         ArrayList<Integer> res = new ArrayList<>();
-        res.add(getMaxWeekRange(adminList));
         res.add(getMinWeekNumber(adminList));
+        res.add(getMaxWeekNumber(adminList));
         return res;
     }
 
@@ -100,8 +100,8 @@ public class UiTaskList {
             return null;
         }
         ArrayList<Integer> res = new ArrayList<>();
-        res.add(getMaxWeekRange(topicList));
         res.add(getMinWeekNumber(topicList));
+        res.add(getMaxWeekNumber(topicList));
         return res;
     }
 
@@ -110,8 +110,8 @@ public class UiTaskList {
             return null;
         }
         ArrayList<Integer> res = new ArrayList<>();
-        res.add(getMaxWeekRange(tpList));
         res.add(getMinWeekNumber(tpList));
+        res.add(getMaxWeekNumber(tpList));
         return res;
     }
 
@@ -120,14 +120,14 @@ public class UiTaskList {
             return null;
         }
         ArrayList<Integer> res = new ArrayList<>();
-        res.add(getMaxWeekRange(ipList));
         res.add(getMinWeekNumber(ipList));
+        res.add(getMaxWeekNumber(ipList));
         return res;
     }
     /**
      * Gets the largest week number of all tasks to be displayed.
      */
-    public int getMaxWeekRange(ObservableList<Task> taskList) {
+    public int getMaxWeekNumber(ObservableList<Task> taskList) {
         int weekNumber = -1;
         for (Task task: taskList) {
             if (task.getWeekNumber().getWeekValueInt() > weekNumber) {

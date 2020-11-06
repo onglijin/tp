@@ -10,7 +10,10 @@ import static tp.acecs2103.commons.util.AppUtil.checkArgument;
 public class Index {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Indexes should only contain numbers, be at least 4 digits long and should not be blank";
+            "Your index format is wrong. Indexes should always start with 0, "
+                    + "only contain numbers, be at least 4 digits long and should not be blank.\n"
+                    + "E.g. 0101: first task of week 1\n"
+                    + "01314: 14th task fo week 13";
 
     /**
      *  The first character of the index must be a '0',

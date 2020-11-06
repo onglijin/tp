@@ -8,18 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import tp.acecs2103.commons.core.LogsCenter;
 import tp.acecs2103.commons.exceptions.IllegalValueException;
-import tp.acecs2103.model.task.Admin;
-import tp.acecs2103.model.task.CustomizedDeadline;
-import tp.acecs2103.model.task.Description;
-import tp.acecs2103.model.task.IP;
-import tp.acecs2103.model.task.Index;
-import tp.acecs2103.model.task.OfficialDeadline;
-import tp.acecs2103.model.task.Remark;
-import tp.acecs2103.model.task.TP;
-import tp.acecs2103.model.task.Task;
-import tp.acecs2103.model.task.TaskCategory;
-import tp.acecs2103.model.task.Topic;
-import tp.acecs2103.model.task.WeekNumber;
+import tp.acecs2103.model.task.*;
 
 
 /**
@@ -37,8 +26,8 @@ class JsonAdaptedTask {
     private String customizedDeadline;
     private String remark;
     private String category;
-    private String customized;
-    private String doneStatus;
+    private boolean isCustomized;
+    private boolean isDone;
 
     /**
      * Constructs a {@code JsonAdaptedTask} with the given person details.
@@ -51,8 +40,8 @@ class JsonAdaptedTask {
                            @JsonProperty("customizedDeadline") String customizedDeadline,
                            @JsonProperty("remark") String remark,
                            @JsonProperty("category") String category,
-                           @JsonProperty("customized") String customized,
-                           @JsonProperty("doneStatus") String doneStatus) {
+                           @JsonProperty("customized") boolean isCustomized,
+                           @JsonProperty("doneStatus") boolean isDone) {
         this.index = index;
         this.weekNumber = weekNumber;
         this.description = description;
@@ -60,8 +49,8 @@ class JsonAdaptedTask {
         this.customizedDeadline = customizedDeadline;
         this.remark = remark;
         this.category = category;
-        this.customized = customized;
-        this.doneStatus = doneStatus;
+        this.isCustomized = isCustomized;
+        this.isDone = isDone;
     }
 
     /**
@@ -78,6 +67,7 @@ class JsonAdaptedTask {
         }
         if (task.getCustomizedDeadline() != null) {
             customizedDeadline = task.getCustomizedDeadline().value;
+        } else {
             customizedDeadline = null;
         }
         if (task.getRemark() != null) {
@@ -85,17 +75,12 @@ class JsonAdaptedTask {
         } else {
             remark = null;
         }
+
         category = TaskCategory.categoryToString(task.getCategory());
-        if (task.isCustomized()) {
-            customized = "true";
-        } else {
-            customized = "false";
-        }
-        if (task.isDone()) {
-            doneStatus = "true";
-        } else {
-            doneStatus = "false";
-        }
+
+        isCustomized = task.isCustomized();
+
+        isDone = task.isDone();
     }
 
     /**
@@ -108,77 +93,74 @@ class JsonAdaptedTask {
         if (index == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "index"));
         }
+        if (!Index.isValidIndex(index)) {
+            throw new IllegalValueException(Index.MESSAGE_CONSTRAINTS);
+        }
+        Index modelIndex = new Index(index);
+
         if (weekNumber == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "weekNumber"));
         }
+        if (!WeekNumber.isValidWeekNumber(weekNumber)) {
+            throw new IllegalValueException(WeekNumber.MESSAGE_CONSTRAINTS);
+        }
+        WeekNumber modelWeekNumber = new WeekNumber(weekNumber);
+
         if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "description"));
         }
+        Description modelDescription = new Description(description);
 
-        boolean isCustomized;
-        if (customized.equals("true")) {
-            isCustomized = true;
-        } else {
-            isCustomized = false;
-        }
 
-        boolean isDone;
-        if (doneStatus.equals("true")) {
-            isDone = true;
-        } else {
-            isDone = false;
-        }
-
-        OfficialDeadline officialddl;
+        OfficialDeadline modelOfficialDeadline;
         if (officialDeadline == null) {
-            officialddl = null;
+            modelOfficialDeadline = null;
         } else {
-            officialddl = new OfficialDeadline(officialDeadline, LocalDate.parse(officialDeadline));
+            if (!Deadline.isValidDeadline(officialDeadline)) {
+                throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
+            }
+            modelOfficialDeadline = new OfficialDeadline(officialDeadline, LocalDate.parse(officialDeadline));
         }
 
-        CustomizedDeadline customizedddl;
+        CustomizedDeadline modelCustomizedDeadline;
         if (customizedDeadline == null) {
-            customizedddl = null;
+            modelCustomizedDeadline = null;
         } else {
-            customizedddl = new CustomizedDeadline(customizedDeadline, LocalDate.parse(customizedDeadline));
+            if (!Deadline.isValidDeadline(customizedDeadline)) {
+                throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
+            }
+            modelCustomizedDeadline = new CustomizedDeadline(customizedDeadline, LocalDate.parse(customizedDeadline));
         }
+
+        Remark modelRemark = new Remark(remark);
 
         if (TaskCategory.isStringAdmin(category)) {
-            return new Admin(new Index(index), new WeekNumber(weekNumber), new Description(description),
-                    officialddl, customizedddl,
-                    new Remark(remark), isCustomized, isDone);
+            return new Admin(modelIndex, modelWeekNumber, modelDescription,
+                    modelOfficialDeadline, modelCustomizedDeadline,
+                    modelRemark, isCustomized, isDone);
         }
 
         if (TaskCategory.isStringTopic(category)) {
-            return new Topic(new Index(index), new WeekNumber(weekNumber), new Description(description),
-                    officialddl, customizedddl,
-                    new Remark(remark), isCustomized, isDone);
+            return new Topic(modelIndex, modelWeekNumber, modelDescription,
+                    modelOfficialDeadline, modelCustomizedDeadline,
+                    modelRemark, isCustomized, isDone);
         }
 
         if (TaskCategory.isStringIP(category)) {
-            return new IP(new Index(index), new WeekNumber(weekNumber), new Description(description),
-                    officialddl, customizedddl,
-                    new Remark(remark), isCustomized, isDone);
+            return new IP(modelIndex, modelWeekNumber, modelDescription,
+                    modelOfficialDeadline, modelCustomizedDeadline,
+                    modelRemark, isCustomized, isDone);
         }
 
         if (TaskCategory.isStringTP(category)) {
-            return new TP(new Index(index), new WeekNumber(weekNumber), new Description(description),
-                    officialddl, customizedddl,
-                    new Remark(remark), isCustomized, isDone);
+            return new TP(modelIndex, modelWeekNumber, modelDescription,
+                    modelOfficialDeadline, modelCustomizedDeadline,
+                    modelRemark, isCustomized, isDone);
         }
 
-        return new Task(new Index(index), new WeekNumber(weekNumber), new Description(description),
-                officialddl, customizedddl,
-                new Remark(remark), true, isDone);
+        return new Task(modelIndex, modelWeekNumber, modelDescription,
+                modelOfficialDeadline, modelCustomizedDeadline,
+                modelRemark, isCustomized, isDone);
     }
-
-    public LocalDate parseDeadline(String deadline) {
-        if (deadline == null) {
-            return null;
-        } else {
-            return LocalDate.parse(deadline);
-        }
-    }
-
 }
 

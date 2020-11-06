@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<?import javafx.scene.Group?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.Label?>
 <fx:root minHeight="600" minWidth="650.0" onCloseRequest="#handleExit" title="Ace CS2103/T" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
@@ -39,13 +38,14 @@
           </children>
         </HBox>
 
-        <HBox fx:id="categoryPanelPlaceholder" minWidth="340" prefHeight="385.0" prefWidth="520.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+
+        <HBox fx:id="categoryPanel" minWidth="340" prefHeight="385.0" prefWidth="520.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS" alignment="CENTER">
           <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
           </padding>
-               <children>
-                  <HBox prefHeight="363.0" prefWidth="501.0" />
-               </children>
+               <StackPane>
+                  <HBox fx:id="categoryPanelPlaceholder" prefHeight="363.0" prefWidth="501.0" HBox.hgrow="ALWAYS" alignment="CENTER"/>
+               </StackPane>
         </HBox>
 
         <StackPane fx:id="commandBoxPlaceholder" prefHeight="33.0" prefWidth="520.0" styleClass="pane-with-border" VBox.vgrow="NEVER">

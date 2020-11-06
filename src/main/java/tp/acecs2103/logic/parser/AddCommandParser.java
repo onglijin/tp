@@ -46,8 +46,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                         PREFIX_CUSTOMIZED_DEADLINE, PREFIX_REMARK, PREFIX_CATEGORY);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_INDEX,
-                PREFIX_WEEK_NUMBER, PREFIX_DESCRIPTION, PREFIX_CUSTOMIZED_DEADLINE, PREFIX_CATEGORY)
-                || !argMultimap.getPreamble().isEmpty()) {
+                PREFIX_WEEK_NUMBER, PREFIX_DESCRIPTION, PREFIX_CUSTOMIZED_DEADLINE, PREFIX_CATEGORY)) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
@@ -103,7 +102,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      * {@code ArgumentMultimap}.
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+        return Stream.of(prefixes).allMatch(prefix -> !argumentMultimap.getValue(prefix).get().equals(""));
     }
 
 }
