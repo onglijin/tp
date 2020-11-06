@@ -8,7 +8,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import tp.acecs2103.commons.core.LogsCenter;
 import tp.acecs2103.commons.exceptions.IllegalValueException;
-import tp.acecs2103.model.task.*;
+import tp.acecs2103.model.task.Admin;
+import tp.acecs2103.model.task.CustomizedDeadline;
+import tp.acecs2103.model.task.Deadline;
+import tp.acecs2103.model.task.Description;
+import tp.acecs2103.model.task.IP;
+import tp.acecs2103.model.task.Index;
+import tp.acecs2103.model.task.OfficialDeadline;
+import tp.acecs2103.model.task.Remark;
+import tp.acecs2103.model.task.TP;
+import tp.acecs2103.model.task.Task;
+import tp.acecs2103.model.task.TaskCategory;
+import tp.acecs2103.model.task.Topic;
+import tp.acecs2103.model.task.WeekNumber;
 
 
 /**
@@ -26,8 +38,8 @@ class JsonAdaptedTask {
     private String customizedDeadline;
     private String remark;
     private String category;
-    private String customized;
-    private String doneStatus;
+    private boolean isCustomized;
+    private boolean isDone;
 
     /**
      * Constructs a {@code JsonAdaptedTask} with the given person details.
@@ -40,8 +52,8 @@ class JsonAdaptedTask {
                            @JsonProperty("customizedDeadline") String customizedDeadline,
                            @JsonProperty("remark") String remark,
                            @JsonProperty("category") String category,
-                           @JsonProperty("customized") String customized,
-                           @JsonProperty("doneStatus") String doneStatus) {
+                           @JsonProperty("customized") boolean isCustomized,
+                           @JsonProperty("doneStatus") boolean isDone) {
         this.index = index;
         this.weekNumber = weekNumber;
         this.description = description;
@@ -49,8 +61,8 @@ class JsonAdaptedTask {
         this.customizedDeadline = customizedDeadline;
         this.remark = remark;
         this.category = category;
-        this.customized = customized;
-        this.doneStatus = doneStatus;
+        this.isCustomized = isCustomized;
+        this.isDone = isDone;
     }
 
     /**
@@ -67,6 +79,7 @@ class JsonAdaptedTask {
         }
         if (task.getCustomizedDeadline() != null) {
             customizedDeadline = task.getCustomizedDeadline().value;
+        } else {
             customizedDeadline = null;
         }
         if (task.getRemark() != null) {
@@ -74,17 +87,12 @@ class JsonAdaptedTask {
         } else {
             remark = null;
         }
+
         category = TaskCategory.categoryToString(task.getCategory());
-        if (task.isCustomized()) {
-            customized = "true";
-        } else {
-            customized = "false";
-        }
-        if (task.isDone()) {
-            doneStatus = "true";
-        } else {
-            doneStatus = "false";
-        }
+
+        isCustomized = task.isCustomized();
+
+        isDone = task.isDone();
     }
 
     /**
@@ -115,19 +123,6 @@ class JsonAdaptedTask {
         }
         Description modelDescription = new Description(description);
 
-        boolean isCustomized;
-        if (customized.equals("true")) {
-            isCustomized = true;
-        } else {
-            isCustomized = false;
-        }
-
-        boolean isDone;
-        if (doneStatus.equals("true")) {
-            isDone = true;
-        } else {
-            isDone = false;
-        }
 
         OfficialDeadline modelOfficialDeadline;
         if (officialDeadline == null) {
@@ -179,14 +174,5 @@ class JsonAdaptedTask {
                 modelOfficialDeadline, modelCustomizedDeadline,
                 modelRemark, isCustomized, isDone);
     }
-
-    public LocalDate parseDeadline(String deadline) {
-        if (deadline == null) {
-            return null;
-        } else {
-            return LocalDate.parse(deadline);
-        }
-    }
-
 }
 

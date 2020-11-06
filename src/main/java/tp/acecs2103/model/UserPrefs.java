@@ -51,8 +51,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return taskListFilePath;
     }
 
-    public void setTaskListFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
+    public void setTaskListFilePath(Path taskListFilePath) {
+        requireNonNull(taskListFilePath);
         this.taskListFilePath = taskListFilePath;
     }
 
