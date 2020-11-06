@@ -3,8 +3,7 @@ package tp.acecs2103.testutil;
 import tp.acecs2103.model.task.*;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+
 
 /**
  * A utility class to help with building Task objects.
@@ -133,23 +132,33 @@ public class TaskBuilder {
         return this;
     }
 
-
-
+    /**
+     * Builds a {@code Admin} task.
+     */
     public Admin buildAdmin() {
         return new Admin(index, weekNumber, description,
                 officialDeadline, customizedDeadline, remark, isCustomized, isDone);
     }
 
+    /**
+     * Builds a {@code Topic} task.
+     */
     public Topic buildTopic() {
         return new Topic(index, weekNumber, description,
                 officialDeadline, customizedDeadline, remark, isCustomized, isDone);
     }
 
+    /**
+     * Builds a {@code Ip} task.
+     */
     public IP buildIp() {
         return new IP(index, weekNumber, description,
                 officialDeadline, customizedDeadline, remark, isCustomized, isDone);
     }
 
+    /**
+     * Builds a {@code Tp} task.
+     */
     public TP buildTp() {
         return new TP(index, weekNumber, description,
                 officialDeadline, customizedDeadline, remark, isCustomized, isDone);
