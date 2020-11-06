@@ -67,6 +67,7 @@ class JsonAdaptedTask {
         }
         if (task.getCustomizedDeadline() != null) {
             customizedDeadline = task.getCustomizedDeadline().value;
+        } else {
             customizedDeadline = null;
         }
         if (task.getRemark() != null) {
