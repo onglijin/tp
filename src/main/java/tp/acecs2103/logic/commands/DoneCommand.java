@@ -52,8 +52,10 @@ public class DoneCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DoneCommand) other).targetIndex)); // state check
+        if (other == null || !(other instanceof DoneCommand)) {
+            return false;
+        } else {
+            return this.targetIndex.equals(((DoneCommand) other).targetIndex);
+        }
     }
 }

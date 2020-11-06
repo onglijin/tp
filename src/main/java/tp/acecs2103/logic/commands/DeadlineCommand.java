@@ -52,4 +52,15 @@ public class DeadlineCommand extends Command {
             throw new CommandException(e.getMessage());
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == null || !(other instanceof DeadlineCommand)) {
+            return false;
+        } else {
+            DeadlineCommand otherCommand = (DeadlineCommand) other;
+            return this.newDeadline.equals(otherCommand.newDeadline)
+                    && this.targetIndex.equals(otherCommand.targetIndex);
+        }
+    }
 }

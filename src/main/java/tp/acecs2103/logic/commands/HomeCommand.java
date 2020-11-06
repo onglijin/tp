@@ -26,6 +26,10 @@ public class HomeCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this; // short circuit if same object
+        if (other == null || !(other instanceof HomeCommand)) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

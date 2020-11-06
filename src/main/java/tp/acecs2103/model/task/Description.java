@@ -29,12 +29,12 @@ public class Description {
     public boolean contains(String keyword) {
         return value.contains(keyword);
     }
-
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Description // instanceof handles nulls
-                && value.equals(((Description) other).value));
+        if (other == null || other instanceof Description) {
+            return false;
+        } else {
+            return this.value.equals(other.toString());
+        }
     }
-
 }

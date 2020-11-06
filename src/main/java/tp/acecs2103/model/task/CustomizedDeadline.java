@@ -17,4 +17,14 @@ public class CustomizedDeadline extends Deadline {
     public CustomizedDeadline(String customizedDeadline, LocalDate timeInfo) {
         super(customizedDeadline, timeInfo);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == null || !(other instanceof CustomizedDeadline)) {
+            return false;
+        } else {
+            return this.value.equals(((CustomizedDeadline) other).value)
+                    && this.timeInfo.equals(((CustomizedDeadline) other).timeInfo);
+        }
+    }
 }

@@ -53,13 +53,6 @@ public class Deadline {
         return value;
     }
 
-    @Override
-    public boolean equals(Object other) {
-        return other == this
-                || (other instanceof Deadline
-                && timeInfo.equals(((Deadline) other).getTimeInfo()));
-    }
-
     public int compareTo(Deadline deadline) {
         return this.timeInfo.compareTo(deadline.getTimeInfo());
     }
