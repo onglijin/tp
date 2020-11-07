@@ -12,6 +12,7 @@ public class ListCommandParser implements Parser<ListCommand> {
         if (trimmedArgs.equals("")) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
         }
+        assert !trimmedArgs.equals("");
         int weekNumber = ParserUtil.parseWeekNumber(trimmedArgs);
         if (!WeekNumber.isValidWeekNumber(Integer.toString(weekNumber))) {
             throw new ParseException(ParserUtil.MESSAGE_INVALID_WEEKNUMBER);
