@@ -6,6 +6,12 @@ import tp.acecs2103.logic.parser.exceptions.ParseException;
 import tp.acecs2103.model.task.WeekNumber;
 
 public class ListCommandParser implements Parser<ListCommand> {
+
+    /**
+     * Parses the given {@code String} of arguments in the context of the ListCommand
+     * and returns an ListCommand object for execution.
+     * @throws ParseException if the user input is not in correct format
+     */
     @Override
     public ListCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
