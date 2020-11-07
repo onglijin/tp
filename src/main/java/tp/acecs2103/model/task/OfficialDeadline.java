@@ -20,7 +20,13 @@ public class OfficialDeadline extends Deadline {
      */
     public OfficialDeadline(String officialDeadline, LocalDate timeInfo) {
         super(officialDeadline, timeInfo);
+    }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof Deadline
+                && timeInfo.equals(((Deadline) other).getTimeInfo()));
     }
 
 }

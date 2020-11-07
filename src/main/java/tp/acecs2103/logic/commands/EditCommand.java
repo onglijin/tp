@@ -174,7 +174,6 @@ public class EditCommand extends Command {
         }
 
 
-
         public void setWeekNumber(WeekNumber weekNumber) {
             this.weekNumber = weekNumber;
         }
@@ -233,8 +232,7 @@ public class EditCommand extends Command {
             // state check
             EditTaskDescriptor e = (EditTaskDescriptor) other;
 
-            return //getIndex().equals(e.getIndex())
-                    getWeekNumber().equals(e.getWeekNumber())
+            return  getWeekNumber().equals(e.getWeekNumber())
                     && getDescription().equals(e.getDescription())
                     && getCustomizedDeadline().equals(e.getCustomizedDeadline())
                     && getRemark().equals(e.getRemark());
