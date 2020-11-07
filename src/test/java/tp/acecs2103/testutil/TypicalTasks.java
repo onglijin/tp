@@ -36,16 +36,16 @@ public class TypicalTasks {
             .withDescription("Ip Two").withOfficialDeadline(null).withCustomizedDeadline("2020-10-20")
             .withRemark("No remark").withIsCustomized(true).withIsDone(false).buildIp();
     public static final TP TP_ONE = new TaskBuilder().withIndex("0401").withWeekNumber("4")
-            .withDescription("Tp One").withOfficialDeadline("2020-10-10").withCustomizedDeadline(null)
+            .withDescription("Tp One").withOfficialDeadline("2021-10-10").withCustomizedDeadline(null)
             .withRemark("No remark").withIsCustomized(false).withIsDone(false).buildTp();
     public static final TP TP_TWO = new TaskBuilder().withIndex("0402").withWeekNumber("4")
             .withDescription("Tp Two").withOfficialDeadline(null).withCustomizedDeadline("2020-10-20")
             .withRemark("No remark").withIsCustomized(true).withIsDone(false).buildTp();
     public static final Admin ADMIN_EXTRA_ONE = new TaskBuilder().withIndex("0103").withWeekNumber("1")
-            .withDescription("Admin Extra One").withOfficialDeadline("2020-10-10").withCustomizedDeadline(null)
+            .withDescription("Admin Extra One").withOfficialDeadline("2021-10-10").withCustomizedDeadline(null)
             .withRemark("No remark").withIsCustomized(false).withIsDone(false).buildAdmin();
     public static final Admin ADMIN_EXTRA_TWO = new TaskBuilder().withIndex("0104").withWeekNumber("1")
-            .withDescription("Admin Extra Two").withOfficialDeadline("2020-10-10").withCustomizedDeadline(null)
+            .withDescription("Admin Extra Two").withOfficialDeadline("2021-10-10").withCustomizedDeadline(null)
             .withRemark("No remark").withIsCustomized(false).withIsDone(false).buildAdmin();
 
 
