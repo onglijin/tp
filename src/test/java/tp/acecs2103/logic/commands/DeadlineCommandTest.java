@@ -11,11 +11,9 @@ import tp.acecs2103.model.ModelManager;
 import tp.acecs2103.model.UserPrefs;
 import tp.acecs2103.model.exceptions.InvalidTaskOperationException;
 import tp.acecs2103.model.task.CustomizedDeadline;
-import tp.acecs2103.model.task.IP;
 import tp.acecs2103.model.task.Index;
 import tp.acecs2103.model.task.Task;
-import tp.acecs2103.testutil.EditTaskDescriptorBuilder;
-import tp.acecs2103.testutil.TaskBuilder;
+
 import tp.acecs2103.testutil.TypicalTasks;
 
 import java.time.LocalDate;
@@ -25,9 +23,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static tp.acecs2103.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static tp.acecs2103.testutil.Assert.assertThrows;
 
-
-//import tp.acecs2103.commons.core.index.Index;
-//import tp.acecs2103.model.task.Task;
 
 public class DeadlineCommandTest {
     @Test

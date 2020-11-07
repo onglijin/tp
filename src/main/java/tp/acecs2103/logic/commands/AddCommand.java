@@ -22,7 +22,9 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New task added: \n%1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "Task with this index already exists in the task list. "
                                                           + "Try another index please.";
-    public static final String MESSAGE_INVALID_TASK = "A customised task should not have an official deadline";
+    public static final String MESSAGE_INVALID_TASK = "Invalid task added. Consider following rules:\n"
+            + "1. A customised task should not have an official deadline.\n"
+            + "2. Index should be consistent with week number. E.g. 01201 for week 12";
 
     private final Task toAdd;
 

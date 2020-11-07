@@ -102,7 +102,8 @@ public class ModelManager implements Model {
     @Override
     public boolean hasTask(Task task) {
         requireNonNull(task);
-        return taskList.hasTask(task);
+        boolean result = taskList.hasTask(task);
+        return result;
     }
 
     @Override
