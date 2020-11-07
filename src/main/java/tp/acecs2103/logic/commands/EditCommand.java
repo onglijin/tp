@@ -290,15 +290,5 @@ public class EditCommand extends Command {
             return flagCustomizedDeadline && flagDescription && flagRemark && flagWeekNumber;
 
         }
-
-        @Override
-        public String toString() {
-            return "Week Number :" + (weekNumber.value == null ? "null" : weekNumber.value)
-                    + "\nDescription :" + description.value == null ? "null" : description.value
-                    + "\nCustomized deadline :" + customizedDeadline.value == null ? "null" : customizedDeadline.value
-                    + "\nRemark :" + remark.value == null ? "null" : remark.value;
-        }
-
-
     }
 }
