@@ -126,6 +126,10 @@ public class EditCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
+        if (other == null) {
+            return false;
+        }
+
         // short circuit if same object
         if (other == this) {
             return true;
@@ -219,6 +223,10 @@ public class EditCommand extends Command {
 
         @Override
         public boolean equals(Object other) {
+            if (other == null) {
+                return false;
+            }
+
             // short circuit if same object
             if (other == this) {
                 return true;
@@ -231,11 +239,45 @@ public class EditCommand extends Command {
 
             // state check
             EditTaskDescriptor e = (EditTaskDescriptor) other;
+            boolean flagWeekNumber;
+            boolean flagDescription;
+            boolean flagCustomizedDeadline;
+            boolean flagRemark;
+            if ((this.weekNumber == null && e.weekNumber != null) || (this.weekNumber != null && e.weekNumber == null)) {
+                flagWeekNumber = false;
+            } else if (this.weekNumber == null) {
+                flagWeekNumber = true;
+            } else {
+                flagWeekNumber = this.weekNumber.equals(e.weekNumber);
+            }
 
-            return  getWeekNumber().equals(e.getWeekNumber())
-                    && getDescription().equals(e.getDescription())
-                    && getCustomizedDeadline().equals(e.getCustomizedDeadline())
-                    && getRemark().equals(e.getRemark());
+            if ((this.customizedDeadline == null && e.customizedDeadline != null) || (this.customizedDeadline != null && e.customizedDeadline == null)) {
+                flagCustomizedDeadline = false;
+            } else if (this.customizedDeadline == null) {
+                flagCustomizedDeadline = true;
+            } else {
+                flagCustomizedDeadline = this.customizedDeadline.equals(e.customizedDeadline);
+            }
+
+            if ((this.description == null && e.description != null) || (this.description != null && e.description == null)) {
+                flagDescription = false;
+            } else if (this.description == null) {
+                flagDescription = true;
+            } else {
+                flagDescription = this.description.equals(e.description);
+            }
+
+            if ((this.remark == null && e.remark != null) || (this.remark != null && e.remark == null)) {
+                flagRemark = false;
+            } else if (this.remark == null) {
+                flagRemark = true;
+            } else {
+                flagRemark = this.remark.equals(e.remark);
+            }
+
+
+            return flagCustomizedDeadline && flagDescription && flagRemark && flagWeekNumber;
+
         }
 
         @Override

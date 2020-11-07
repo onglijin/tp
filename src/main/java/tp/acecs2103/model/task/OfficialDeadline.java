@@ -29,4 +29,14 @@ public class OfficialDeadline extends Deadline {
                 && timeInfo.equals(((Deadline) other).getTimeInfo()));
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == null || !(other instanceof OfficialDeadline)) {
+            return false;
+        } else {
+            return this.value.equals(((OfficialDeadline) other).value)
+                    && this.timeInfo.equals(((OfficialDeadline) other).timeInfo);
+        }
+    }
+
 }

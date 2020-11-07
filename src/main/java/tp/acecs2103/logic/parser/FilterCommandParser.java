@@ -23,8 +23,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
                         args, CliSyntax.PREFIX_WEEK_NUMBER, CliSyntax.PREFIX_KEYWORD, CliSyntax.PREFIX_DDLTYPE);
 
         if (!anyPrefixPresent(argMultimap,
-                PREFIX_WEEK_NUMBER, PREFIX_KEYWORD, PREFIX_DDLTYPE)
-                || !argMultimap.getPreamble().isEmpty()) {
+                PREFIX_WEEK_NUMBER, PREFIX_KEYWORD, PREFIX_DDLTYPE)) {
             throw new ParseException(
                     String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }

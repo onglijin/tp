@@ -36,7 +36,6 @@ public class TaskBox extends UiPart<Region> {
     private Label customizedDeadline;
     @FXML
     private Label remark;
-
     /**
      * Creates a TaskBox object.
      * @param task is a task object.
@@ -44,6 +43,7 @@ public class TaskBox extends UiPart<Region> {
     public TaskBox(Task task) {
         super(FXML);
         this.task = task;
+
         if (!Objects.isNull(task.getIndex())) {
             index.setText("Index: " + task.getIndex());
         }

@@ -82,19 +82,19 @@
 
 
 .category-box {
-      -fx-alignment="CENTER";
+      -fx-alignment: "CENTER";
       -fx-background-radius: 10;
       -fx-label-padding: 10, 10, 10, 10;
       -fx-background-color: #AFEEEE;
       -fx-border-radius: 10;
-      -fx-text-alignment="CENTER";
-      -fx-text-fill= #3cc4a9
+      -fx-text-alignment: "CENTER";
+      -fx-text-fill: #3cc4a9
 }
 
 .list-cell {
     -fx-label-padding: 10 0 10 10;
     -fx-graphic-text-gap : 0;
-    -fx-padding: 10 0 10 10
+    -fx-padding: 10 0 10 10;
 }
 
 .list-cell:filled:even {
@@ -116,4 +116,9 @@
 
 .list-cell .label {
     -fx-text-fill: black
+}
+
+.list-cell:empty {
+    /* Empty cells will not have alternating colours */
+    -fx-background: transparent;
 }

@@ -24,18 +24,33 @@ public class CategoryPanel extends UiPart<Region> {
     @FXML
     private Label categoryLabel;
 
+    private String category;
+
     /**
      * Creates a {@code CategoryPanel} with the given {@code ObservableList} and {@code categoryString}.
      */
-    public CategoryPanel(ObservableList<Task> taskList, ArrayList<Integer> weekRange, String categoryString) {
+    public CategoryPanel(ObservableList<Task> taskList, String categoryString) {
         super(FXML);
+        category = categoryString;
+
         categoryLabel.setText(categoryString);
         categoryLabel.textAlignmentProperty();
         setStyle(categoryString);
+
         categoryView.setItems(taskList);
         categoryView.setCellFactory(listView -> new CategoryCell());
     }
 
+    public void setText(ArrayList<Integer> weekRange) {
+        if (weekRange != null) {
+            String startWeek = String.valueOf(weekRange.get(0));
+            String endWeek = String.valueOf(weekRange.get(1));
+            String res = category + " (Week " + startWeek + " to Week " + endWeek + ")";
+            categoryLabel.setText(res);
+        } else {
+            categoryLabel.setText(category);
+        }
+    }
 
     /**
      * Custom {@code CategoryCell} that displays the graphics of a {@code Task} using a {@code TaskBox}.

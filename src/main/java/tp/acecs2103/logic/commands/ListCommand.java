@@ -6,6 +6,8 @@ import tp.acecs2103.commons.core.Messages;
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.task.WeekNumber;
 
+import javax.swing.text.html.ListView;
+
 /**
  * Lists all persons in the address book to the user.
  */
@@ -29,6 +31,10 @@ public class ListCommand extends Command {
         this.weekNumber = weekNumber;
     }
 
+    public int getWeekNumber() {
+        return weekNumber.getWeekValueInt();
+    }
+
 
     @Override
     public CommandResult execute(Model model) {
@@ -36,5 +42,14 @@ public class ListCommand extends Command {
         model.listTasks(weekNumber);
         return new CommandResult(MESSAGE_SUCCESS + this.weekNumber.value + "\n"
         + String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getUiTaskList().size()));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == null || !(other instanceof ListCommand)) {
+            return false;
+        } else {
+            return this.weekNumber.equals(((ListCommand) other).weekNumber);
+        }
     }
 }

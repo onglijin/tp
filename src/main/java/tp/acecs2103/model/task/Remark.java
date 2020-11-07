@@ -26,10 +26,13 @@ public class Remark {
         return value;
     }
 
+
     @Override
     public boolean equals(Object other) {
-        return other == this
-                || (other instanceof Remark
-                && value.equals(((Remark) other).value));
+        if (other == null || !(other instanceof Remark)) {
+            return false;
+        } else {
+            return this.value.equals(((Remark) other).value);
+        }
     }
 }

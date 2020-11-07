@@ -29,6 +29,12 @@ public class Description {
     public boolean contains(String keyword) {
         return value.contains(keyword);
     }
-
-    // TODO: check if hashCode needed
+    @Override
+    public boolean equals(Object other) {
+        if (other == null || other instanceof Description) {
+            return false;
+        } else {
+            return this.value.equals(other.toString());
+        }
+    }
 }

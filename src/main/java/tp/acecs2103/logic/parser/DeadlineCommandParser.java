@@ -20,8 +20,7 @@ public class DeadlineCommandParser implements Parser<DeadlineCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_INDEX, PREFIX_CUSTOMIZED_DEADLINE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_INDEX, PREFIX_CUSTOMIZED_DEADLINE)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_INDEX, PREFIX_CUSTOMIZED_DEADLINE)) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     DeadlineCommand.MESSAGE_USAGE));
         }

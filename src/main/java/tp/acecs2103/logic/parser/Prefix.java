@@ -34,6 +34,15 @@ public class Prefix {
         }
 
         Prefix otherPrefix = (Prefix) obj;
-        return otherPrefix.getPrefix().equals(getPrefix());
+        if (otherPrefix.getPrefix() == null) {
+            if (getPrefix() == null) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return otherPrefix.getPrefix().equals(getPrefix());
+        }
+
     }
 }
