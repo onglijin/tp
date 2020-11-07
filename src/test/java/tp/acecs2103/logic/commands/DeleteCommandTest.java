@@ -11,6 +11,8 @@ import tp.acecs2103.testutil.TypicalTasks;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static tp.acecs2103.testutil.Assert.assertThrows;
 
 class DeleteCommandTest {
@@ -63,5 +65,27 @@ class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(index);
 
         assertThrows(CommandException.class, () -> deleteCommand.execute(model));
+    }
+    @Test
+    public void equal_null_returnTrue() {
+        Index index = new Index("0101");
+
+        DeleteCommand deleteCommand = new DeleteCommand(index);
+        DeleteCommand deleteCommand1 = new DeleteCommand(index);
+
+        assertTrue(deleteCommand.equals(deleteCommand1));
+    }
+
+    @Test
+    public void equal_null_returnFalse() {
+        Index index = new Index("0101");
+        Index index1 = new Index("0102");
+
+        DeleteCommand deleteCommand = new DeleteCommand(index);
+        DeleteCommand deleteCommand1 = new DeleteCommand(index1);
+
+        assertFalse(deleteCommand.equals(deleteCommand1));
+        assertFalse(deleteCommand.equals(null));
+        assertFalse(deleteCommand.equals("0101"));
     }
 }
