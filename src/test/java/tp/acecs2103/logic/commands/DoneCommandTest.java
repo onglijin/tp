@@ -56,4 +56,26 @@ class DoneCommandTest {
         assertThrows(CommandException.class, () -> doneCommand.execute(model));
     }
 
+    public void equal_null_returnTrue() {
+        Index index = new Index("0101");
+
+        DoneCommand doneCommand = new DoneCommand(index);
+        DoneCommand doneCommand1 = new DoneCommand(index);
+
+        assertTrue(doneCommand.equals(doneCommand1));
+    }
+
+    @Test
+    public void equal_null_returnFalse() {
+        Index index = new Index("0101");
+        Index index1 = new Index("0102");
+
+        DoneCommand doneCommand = new DoneCommand(index);
+        DoneCommand doneCommand1 = new DoneCommand(index1);
+
+        assertFalse(doneCommand.equals(doneCommand1));
+        assertFalse(doneCommand.equals(null));
+        assertFalse(doneCommand.equals("0101"));
+    }
+
 }
