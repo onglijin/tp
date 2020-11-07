@@ -86,7 +86,7 @@ public class EditCommand extends Command {
     /**
      * edited with {@code editPersonDescriptor}.
      */
-    private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor)
+    public static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor)
         throws CommandException {
         assert taskToEdit != null;
         if (!taskToEdit.isCustomized()) {
@@ -147,8 +147,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the task with. Each non-empty field value will replace the
+     * corresponding field value of the task.
      */
     public static class EditTaskDescriptor {
         private WeekNumber weekNumber;
@@ -157,6 +157,17 @@ public class EditCommand extends Command {
         private Remark remark;
 
         public EditTaskDescriptor() {}
+
+        /**
+         * Constructor for EditTaskDescriptor.
+         */
+        public EditTaskDescriptor(WeekNumber weekNumber, Description description,
+                                  CustomizedDeadline customizedDeadline, Remark remark) {
+            this.weekNumber = weekNumber;
+            this.description = description;
+            this.customizedDeadline = customizedDeadline;
+            this.remark = remark;
+        }
 
         /**
          * Copy constructor.
@@ -282,10 +293,12 @@ public class EditCommand extends Command {
 
         @Override
         public String toString() {
-            return "Week Number :" + weekNumber.value
-                    + "\nDescription :" + description.value
-                    + "\nCustomized deadline :" + customizedDeadline.value
-                    + "\nRemark :" + remark.value;
+            return "Week Number :" + (weekNumber.value == null ? "null" : weekNumber.value)
+                    + "\nDescription :" + description.value == null ? "null" : description.value
+                    + "\nCustomized deadline :" + customizedDeadline.value == null ? "null" : customizedDeadline.value
+                    + "\nRemark :" + remark.value == null ? "null" : remark.value;
         }
+
+
     }
 }

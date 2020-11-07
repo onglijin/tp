@@ -174,5 +174,13 @@ public class TaskBuilder {
                 officialDeadline, customizedDeadline, remark, isCustomized, isDone);
     }
 
+    /**
+     * Builds a {@code Default IP} task.
+     */
+    public IP build() {
+        return new IP(index, weekNumber, description,
+                officialDeadline, customizedDeadline, remark, !isCustomized, isDone);
+    }
+
 
 }

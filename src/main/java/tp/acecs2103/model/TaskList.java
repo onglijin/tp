@@ -117,7 +117,7 @@ public class TaskList {
     }
 
     /**
-     * Finds tasks based on existing keyWord and timeRange.
+     * Finds tasks based on existing timeRange.
      *
      * @return a ArrayList consisting of all satisfied tasks.
      */
@@ -132,7 +132,7 @@ public class TaskList {
     }
 
     /**
-     * Finds tasks based on new keyWord and timeRange.
+     * Finds tasks based on new keyWord.
      *
      * @param keyWord is new keyword given by user.
      * @return a new ArrayList to display.
