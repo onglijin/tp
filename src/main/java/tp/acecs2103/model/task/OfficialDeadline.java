@@ -22,12 +22,6 @@ public class OfficialDeadline extends Deadline {
         super(officialDeadline, timeInfo);
     }
 
-    @Override
-    public boolean equals(Object other) {
-        return other == this
-                || (other instanceof Deadline
-                && timeInfo.equals(((Deadline) other).getTimeInfo()));
-    }
 
     @Override
     public boolean equals(Object other) {
