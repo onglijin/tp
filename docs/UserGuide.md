@@ -16,11 +16,13 @@ Ace CS2103/T is a **desktop app for managing task requirements of CS2103/T, opti
 
 2. Copy the file to the folder you want to use as the _home folder_ for your Ace CS2103/T.
 
-3. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+3. The default size of GUI is 1920 × 1080, so make sure your computer screen resolution reaches the minimum requirement. 
+
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/UI_updated2.png)
    ![Ui](images/UI_updated.png)
    
-4. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will get you the link for user guide.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will get you the link for user guide.<br>
    Some example commands you can try:
 
    * **`list`**`6` : Lists all tasks for week 6.
@@ -29,7 +31,7 @@ Ace CS2103/T is a **desktop app for managing task requirements of CS2103/T, opti
 
    * **`exit`** : Exits the app.
 
-5. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -9,6 +9,7 @@ import tp.acecs2103.logic.parser.exceptions.ParseException;
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.TaskList;
 import tp.acecs2103.model.UiTaskList;
+import tp.acecs2103.model.exceptions.InvalidTaskListOperationException;
 
 
 /**
@@ -22,7 +23,8 @@ public interface Logic {
      * @throws CommandException If an error occurs during command execution.
      * @throws ParseException If an error occurs during parsing.
      */
-    CommandResult execute(String commandText) throws CommandException, ParseException;
+    CommandResult execute(String commandText) throws
+            CommandException, ParseException, InvalidTaskListOperationException;
 
     /**
      * Returns the TaskList.

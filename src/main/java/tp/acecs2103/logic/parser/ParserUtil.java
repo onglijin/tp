@@ -8,6 +8,7 @@ import tp.acecs2103.commons.core.index.Index;
 import tp.acecs2103.commons.util.StringUtil;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
 import tp.acecs2103.model.task.TaskCategory;
+import tp.acecs2103.model.task.WeekNumber;
 
 
 /**
@@ -15,7 +16,7 @@ import tp.acecs2103.model.task.TaskCategory;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Invalid index format. Index cannot be empty, "
+    public static final String MESSAGE_INVALID_WEEKNUMBER = "Invalid week number. Week number cannot be empty, "
             + "and can only take integer value in range [1,13].\n"
             + "Please try again!";
 
@@ -30,6 +31,9 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_TYPE = "Invalid type. "
             + "\nPlease try again!";
 
+    public static final String MESSAGE_MISSING_WEEKNUMBER = "Week number is missing in your command. "
+            + "\nPlease try again!";
+
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -39,7 +43,7 @@ public class ParserUtil {
         requireNonNull(oneBasedIndex);
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new ParseException(MESSAGE_INVALID_WEEKNUMBER);
         }
         return trimmedIndex;
     }
@@ -55,7 +59,7 @@ public class ParserUtil {
         try {
             Index test = new Index(trimmedIndex);
         } catch (IndexOutOfBoundsException i) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new ParseException(MESSAGE_INVALID_WEEKNUMBER);
         }
         return new Index(trimmedIndex);
     }
@@ -67,10 +71,20 @@ public class ParserUtil {
     public static int parseWeekNumber(String weekNumber) throws ParseException {
         requireNonNull(weekNumber);
         String trimmedWN = weekNumber.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedWN)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+        if (trimmedWN.equals("")) {
+            throw new ParseException(MESSAGE_MISSING_WEEKNUMBER);
+        }
+        try {
+            Integer.parseInt(trimmedWN);
+        } catch (Exception e) {
+            throw new ParseException(MESSAGE_INVALID_WEEKNUMBER);
+        }
+
+        if (!WeekNumber.isValidWeekNumber(trimmedWN)) {
+            throw new ParseException(MESSAGE_INVALID_WEEKNUMBER);
         }
         return Integer.parseInt(trimmedWN);
+
     }
 
     /**

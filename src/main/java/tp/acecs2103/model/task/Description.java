@@ -30,5 +30,11 @@ public class Description {
         return value.contains(keyword);
     }
 
-    // TODO: check if hashCode needed
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Description // instanceof handles nulls
+                && value.equals(((Description) other).value));
+    }
+
 }
