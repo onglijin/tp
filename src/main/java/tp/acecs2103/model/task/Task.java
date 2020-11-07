@@ -50,6 +50,15 @@ public class Task implements Comparable<Task> {
     }
 
     /**
+     * Gets the week number implied by the task index.
+     */
+    public WeekNumber getWeekNumberFromIndex() {
+        String i = index.value;
+        String weekNumber = i.length() == 4 ? i.substring(1,2) : i.substring(1,3);
+        return new WeekNumber(weekNumber);
+    }
+
+    /**
      * Gets the week number.
      */
     public WeekNumber getWeekNumber() {
@@ -161,7 +170,8 @@ public class Task implements Comparable<Task> {
      * Check whether the task a valid task, aka if the official deadline is correctly set to null for a customised task.
      */
     public boolean isValid() {
-        return isCustomized() == (officialDeadline == null);
+        return (isCustomized() == (officialDeadline == null))
+                && getWeekNumber().equals(getWeekNumberFromIndex());
     }
 
     /**

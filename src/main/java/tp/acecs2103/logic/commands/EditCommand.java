@@ -31,7 +31,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edit the task identified by the index number with provided information.\n"
             + "Parameters: (only INDEX is compulsory)\n"
-            + "i/INDEX (in the form of 0 + two-digit week number + two-digit task number e.g. 01205)\n"
+            + "i/INDEX (0 + week number in [1,13] + two-digit task number e.g. 01205)\n"
             + "w/WEEK_NUMBER (an integer in range [1,13], only for edition of customized task)\n"
             + "d/DESCRIPTION (only for edition of customized task)\n"
             + "c/CUSTOMISED_DEADLINE (in the form of YYYY-MM-DD)\n"

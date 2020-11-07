@@ -15,7 +15,7 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds the task identified by the index number used in the displayed task list.\n"
-            + "Parameters: i/INDEX (in the form of 0 + two-digit week number + two-digit task number e.g. 01205) "
+            + "Parameters: i/INDEX (0 + week number in [1,13] + two-digit task number e.g. 01205) "
             + "w/WEEK_NUMBER d/DESCRIPTION c/CUSTOMISED_DEADLINE r/REMARK a/CATEGORY\n"
             + "Example: " + COMMAND_WORD + " i/0109 w/1 d/update documentation c/2020-08-15 r/check dashboard a/Ip";
 
@@ -35,6 +35,10 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_TASK);
         }
         toAdd = task;
+    }
+
+    public Task getTaskToAdd() {
+        return this.toAdd;
     }
 
     @Override
