@@ -14,7 +14,10 @@ public class TaskTest {
     private Task defaultTaskOne = new Task(new Index("0101"), new WeekNumber("1"), new Description("Test Task One"),
             new OfficialDeadline("2020-09-10", LocalDate.of(2020, 9, 10)),
             null, new Remark("no remark"), false, false);
-    private Task defaultTaskTwo = new Task(new Index("0101"), new WeekNumber("1"), new Description("Test Task One"),
+    private Task defaultTaskTwo = new Task(new Index("0101"), new WeekNumber("1"), new Description("Test Task Two"),
+            new OfficialDeadline("2021-01-01", LocalDate.of(2021, 1, 1)),
+            null, new Remark("no remark"), false, false);
+    private Task defaultTaskThree = new Task(new Index("0102"), new WeekNumber("1"), new Description("Test Task Two"),
             new OfficialDeadline("2021-01-01", LocalDate.of(2021, 1, 1)),
             null, new Remark("no remark"), false, false);
     private Task customizedTaskOne = new Task(new Index("0302"), new WeekNumber("3"),
@@ -78,23 +81,36 @@ public class TaskTest {
     @Test
     public void isValidTest() {
         Assertions.assertTrue(defaultTaskOne.isValid());
+        Assertions.assertTrue(defaultTaskTwo.isValid());
+        Assertions.assertTrue(customizedTaskOne.isValid());
 
         Task invalidTask = new Task(new Index("0202"), new WeekNumber("2"), new Description("Test Task Two"),
                 new OfficialDeadline("2020-09-10", LocalDate.of(2020, 9, 10)),
                 null, new Remark("no remark"), true, false);
+        Task invalidTaskTwo = new Task(new Index("0202"), new WeekNumber("4"), new Description("Test Task Two"),
+                null, new CustomizedDeadline("2020-09-10", LocalDate.of(2020, 9, 10)),
+                 new Remark("no remark"), true, false);
+        Task invalidTaskThree = new Task(new Index("0202"), new WeekNumber("2"), new Description("Test Task Two"),
+                null, null,
+                new Remark("no remark"), true, false);
         Assertions.assertFalse(invalidTask.isValid());
+        Assertions.assertFalse(invalidTaskTwo.isValid());
+        Assertions.assertFalse(invalidTaskThree.isValid());
     }
 
     @Test
     public void isWeekXTest() {
         Assertions.assertTrue(defaultTaskOne.isWeekX(new WeekNumber("1")));
         Assertions.assertFalse(defaultTaskOne.isWeekX(new WeekNumber("2")));
+        Assertions.assertTrue(customizedTaskOne.isWeekX(new WeekNumber("3")));
+        Assertions.assertFalse(customizedTaskOne.isWeekX(new WeekNumber("2")));
     }
 
     @Test
     public void containsTest() {
         Assertions.assertTrue(defaultTaskOne.contains("Test"));
         Assertions.assertTrue(defaultTaskOne.contains("test"));
+        Assertions.assertTrue(defaultTaskOne.contains("remark"));
         Assertions.assertFalse(defaultTaskOne.contains("no meaning"));
     }
 
@@ -102,6 +118,7 @@ public class TaskTest {
     public void isSameTaskTest() {
         Assertions.assertTrue(defaultTaskOne.isSameTask(defaultTaskTwo));
         Assertions.assertFalse(defaultTaskOne.isSameTask(customizedTaskOne));
+        Assertions.assertFalse(defaultTaskTwo.isSameTask(defaultTaskThree));
     }
 
     @Test

@@ -167,10 +167,14 @@ public class Task implements Comparable<Task> {
     }
 
     /**
-     * Check whether the task a valid task, aka if the official deadline is correctly set to null for a customised task.
+     * Check whether the task a valid task, aka if all three requirements below are met:
+     * 1. the official deadline is correctly set to null for a customised task;
+     * 2. a customised deadline is set
+     * 3. index number format is consistent with the week number, eg. 01205 for a week 12 task
      */
     public boolean isValid() {
         return (isCustomized() == (officialDeadline == null))
+                && isCustomized() == (customizedDeadline != null)
                 && getWeekNumber().equals(getWeekNumberFromIndex());
     }
 
