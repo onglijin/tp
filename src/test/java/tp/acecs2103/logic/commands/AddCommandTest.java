@@ -4,32 +4,15 @@ import org.junit.jupiter.api.Test;
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.ModelManager;
-import tp.acecs2103.model.TaskList;
 import tp.acecs2103.model.UserPrefs;
-import tp.acecs2103.model.exceptions.InvalidTaskOperationException;
 import tp.acecs2103.model.task.*;
 import tp.acecs2103.testutil.TypicalTasks;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static tp.acecs2103.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 class AddCommandTest {
-
-    private Task defaultTaskOne = new IP(new Index("0101"), new WeekNumber("1"), new Description("Test Task One"),
-            new OfficialDeadline("2020-09-10", LocalDate.of(2020, 9, 10)),
-            null, new Remark("no remark"), false, false);
-
-    private Task defaultTaskTwo = new Task(new Index("0101"), new WeekNumber("1"), new Description("Test Task One"),
-            new OfficialDeadline("2021-01-01", LocalDate.of(2021, 1, 1)),
-            null, new Remark("no remark"), false, false);
-
-    private Task customizedTaskOne = new Task(new Index("0302"), new WeekNumber("3"),
-            new Description("Test Task Three"), null,
-            new CustomizedDeadline("2020-09-20", LocalDate.of(2020, 9, 20)),
-            new Remark("no remark"), true, false);
 
     @Test
     public void execute_NewIPTask_success() {
