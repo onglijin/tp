@@ -11,7 +11,7 @@ import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.ModelManager;
 import tp.acecs2103.model.UserPrefs;
-import tp.acecs2103.model.Index;
+import tp.acecs2103.model.task.Index;
 import tp.acecs2103.model.task.Task;
 import tp.acecs2103.testutil.TypicalTasks;
 
