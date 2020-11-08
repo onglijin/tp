@@ -15,6 +15,12 @@ import tp.acecs2103.model.task.Index;
 
 
 public class DeadlineCommandParser implements Parser<DeadlineCommand> {
+
+    /**
+     * Parses the given {@code String} of arguments in the context of the DeadlineCommand
+     * and returns an DeadlineCommand object for execution.
+     * @throws ParseException if the user input is not in correct format
+     */
     @Override
     public DeadlineCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =

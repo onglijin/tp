@@ -9,7 +9,6 @@ import javafx.collections.ObservableList;
 import tp.acecs2103.commons.core.GuiSettings;
 import tp.acecs2103.commons.core.LogsCenter;
 import tp.acecs2103.commons.util.CollectionUtil;
-import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.model.exceptions.InvalidTaskListOperationException;
 import tp.acecs2103.model.exceptions.ModelException;
 import tp.acecs2103.model.task.CustomizedDeadline;

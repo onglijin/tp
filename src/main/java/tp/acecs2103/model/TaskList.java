@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import tp.acecs2103.commons.util.AppUtil;
-import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.model.exceptions.InvalidTaskListOperationException;
 import tp.acecs2103.model.exceptions.InvalidTaskOperationException;
 import tp.acecs2103.model.task.CustomizedDeadline;
@@ -377,6 +376,13 @@ public class TaskList {
      */
     public int size() {
         return taskList.size();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof TaskList // instanceof handles nulls
+                && taskList.equals(((TaskList) other).taskList));
     }
 }
 
