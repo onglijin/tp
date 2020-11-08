@@ -42,4 +42,27 @@ public class DeleteCommandParserTest {
             assert true;
         }
     }
+
+    @Test
+    public void parse_validTwoDigitsWeekDeleteCommand_success() {
+        DeleteCommandParser deleteCommandParser = new DeleteCommandParser();
+        String parametersStub = "01301";
+        DeleteCommand expected = new DeleteCommand(new Index("01301"));
+        try {
+            assertEquals(expected, deleteCommandParser.parse(parametersStub));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void parse_invalidWeekDeleteCommandInvalidIndex_fail() {
+        DeleteCommandParser deleteCommandParser = new DeleteCommandParser();
+        String parametersStub = "01401";
+        try {
+            deleteCommandParser.parse(parametersStub);
+        } catch (ParseException e) {
+            assert true;
+        }
+    }
 }
