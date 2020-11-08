@@ -168,7 +168,7 @@ class AddCommandTest {
 
         assertThrows(CommandException.class, () -> new AddCommand(task).execute(model));
     }
-    
+
    @Test
    public void equals_null_returnTrue() {
         Task task = new Admin(new Index("0203"), new WeekNumber("2"), new Description("Test Task One"),

@@ -23,7 +23,7 @@ Given below are my contributions to the project.
       * Give command explanations.
       * Give command parameters
       * Give command examples.
- 
+
   * Developer Guide:
     * Updated the UML diagram for Logical component [\commit](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/138)
     * Updated the use cases [\commit](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/33)
