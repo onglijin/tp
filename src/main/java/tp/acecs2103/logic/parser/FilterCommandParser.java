@@ -15,6 +15,11 @@ import tp.acecs2103.model.task.WeekNumber;
 
 public class FilterCommandParser implements Parser<FilterCommand> {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the FilterCommand
+     * and returns an FilterCommand object for execution.
+     * @throws ParseException if the user input is not in correct format
+     */
     @Override
     public FilterCommand parse(String args) throws ParseException, CommandException {
         requireNonNull(args);
