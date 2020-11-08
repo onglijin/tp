@@ -93,7 +93,7 @@ public class FilterCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         boolean isDone = (keyword.equals("done"));
-        boolean byOfficialDdl = (ddlType != null) && ddlType.equals("official");
+        boolean byOfficialDdl = (ddlType == null) ? false : ddlType.equals("official");
 
 
         model.filterTasks(isDone, byOfficialDdl, weekNumber);
