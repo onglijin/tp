@@ -65,7 +65,7 @@ public class TypicalTasks<taskList> {
     /**
      * Returns an {@code TaskList} with all the extra tasks.
      */
-        public static TaskList getExtraTaskList() {
+    public static TaskList getExtraTaskList() {
         TaskList taskList = new TaskList();
         taskList.add(ADMIN_EXTRA_ONE);
         taskList.add(ADMIN_EXTRA_TWO);

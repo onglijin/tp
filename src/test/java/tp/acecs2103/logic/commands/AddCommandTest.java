@@ -1,21 +1,35 @@
 package tp.acecs2103.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.Test;
+
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.ModelManager;
 import tp.acecs2103.model.UserPrefs;
-import tp.acecs2103.model.task.*;
+import tp.acecs2103.model.task.Admin;
+import tp.acecs2103.model.task.CustomizedDeadline;
+import tp.acecs2103.model.task.Description;
+import tp.acecs2103.model.task.IP;
+import tp.acecs2103.model.task.Index;
+import tp.acecs2103.model.task.OfficialDeadline;
+import tp.acecs2103.model.task.Remark;
+import tp.acecs2103.model.task.TP;
+import tp.acecs2103.model.task.Task;
+import tp.acecs2103.model.task.Topic;
+import tp.acecs2103.model.task.WeekNumber;
 import tp.acecs2103.testutil.TypicalTasks;
-
-import java.time.LocalDate;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class AddCommandTest {
 
     @Test
-    public void execute_NewIPTask_success() {
+    public void execute_newIpTask_success() {
         Model model = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
         ModelManager expectedModel = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
 
@@ -40,7 +54,7 @@ class AddCommandTest {
     }
 
     @Test
-    public void execute_NewTPTask_success() {
+    public void execute_newTpTask_success() {
         Model model = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
         ModelManager expectedModel = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
 
@@ -65,7 +79,7 @@ class AddCommandTest {
     }
 
     @Test
-    public void execute_NewAdminTask_success() {
+    public void execute_newAdminTask_success() {
         Model model = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
         ModelManager expectedModel = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
 
@@ -90,7 +104,7 @@ class AddCommandTest {
     }
 
     @Test
-    public void execute_NewTopicTask_success() {
+    public void execute_newTopicTask_success() {
         Model model = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
         ModelManager expectedModel = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
 
@@ -139,7 +153,7 @@ class AddCommandTest {
     }
 
     @Test
-    public void execute_missingDDL_fail() {
+    public void execute_missingDeadline_fail() {
         Model model = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
         ModelManager expectedModel = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
 
@@ -156,7 +170,7 @@ class AddCommandTest {
     }
 
     @Test
-    public void execute_extraDDL_fail() {
+    public void execute_extraDeadline_fail() {
         Model model = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
         ModelManager expectedModel = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
 
@@ -170,7 +184,7 @@ class AddCommandTest {
     }
 
     @Test
-   public void equals_null_returnTrue() {
+    public void equals_null_returnTrue() {
         Task task = new Admin(new Index("0203"), new WeekNumber("2"), new Description("Test Task One"),
                 new OfficialDeadline("2020-09-10", LocalDate.of(2020, 9, 10)),
                 null, new Remark("no remark"), false, false);
@@ -212,7 +226,7 @@ class AddCommandTest {
     }
 
     @Test
-    public void get_null_Task() {
+    public void get_nullTask() {
         Task task = new IP(new Index("0203"), new WeekNumber("2"), new Description("Test Task One"),
                 new OfficialDeadline("2020-09-10", LocalDate.of(2020, 9, 10)),
                 null, new Remark("no remark"), false, false);

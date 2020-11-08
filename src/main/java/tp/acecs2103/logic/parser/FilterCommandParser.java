@@ -36,19 +36,11 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         if (!argMultimap.getValue(CliSyntax.PREFIX_KEYWORD).get().equals("")
                 && argMultimap.getValue(CliSyntax.PREFIX_WEEK_NUMBER).get().equals("")
                 && argMultimap.getValue(CliSyntax.PREFIX_DDLTYPE).get().equals("")) {
-            if (!argMultimap.getValue(CliSyntax.PREFIX_KEYWORD).get().equals("done")) {
-                throw new ParseException(
-                        String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
-            }
             return new FilterCommand(argMultimap.getValue(CliSyntax.PREFIX_KEYWORD).get());
         }
         if (!argMultimap.getValue(CliSyntax.PREFIX_KEYWORD).get().equals("")
                 && !argMultimap.getValue(CliSyntax.PREFIX_WEEK_NUMBER).get().equals("")
                 && argMultimap.getValue(CliSyntax.PREFIX_DDLTYPE).get().equals("")) {
-            if (!argMultimap.getValue(CliSyntax.PREFIX_KEYWORD).get().equals("pending")) {
-                throw new ParseException(
-                        String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
-            }
             return new FilterCommand(
                     argMultimap.getValue(CliSyntax.PREFIX_KEYWORD).get(),
                     new WeekNumber(argMultimap.getValue(CliSyntax.PREFIX_WEEK_NUMBER).get()));
@@ -56,10 +48,6 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         if (!argMultimap.getValue(CliSyntax.PREFIX_KEYWORD).get().equals("")
                 && argMultimap.getValue(CliSyntax.PREFIX_WEEK_NUMBER).get().equals("")
                 && !argMultimap.getValue(CliSyntax.PREFIX_DDLTYPE).get().equals("")) {
-            if (!argMultimap.getValue(CliSyntax.PREFIX_KEYWORD).get().equals("done")) {
-                throw new ParseException(
-                        String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
-            }
             return new FilterCommand(
                     argMultimap.getValue(CliSyntax.PREFIX_KEYWORD).get(),
                     argMultimap.getValue(CliSyntax.PREFIX_DDLTYPE).get());
@@ -67,10 +55,6 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         if (!argMultimap.getValue(CliSyntax.PREFIX_KEYWORD).get().equals("")
                 && !argMultimap.getValue(CliSyntax.PREFIX_WEEK_NUMBER).get().equals("")
                 && !argMultimap.getValue(CliSyntax.PREFIX_DDLTYPE).get().equals("")) {
-            if (!argMultimap.getValue(CliSyntax.PREFIX_KEYWORD).get().equals("pending")) {
-                throw new ParseException(
-                        String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
-            }
             return new FilterCommand(
                     argMultimap.getValue(CliSyntax.PREFIX_KEYWORD).get(),
                     argMultimap.getValue(CliSyntax.PREFIX_DDLTYPE).get(),
