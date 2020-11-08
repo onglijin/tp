@@ -236,7 +236,7 @@ public class TaskTest {
     @Test
     public void equals_objectToCompare_returnFalse() {
         Assertions.assertFalse(ip.equals(tp));
-        Task ip1 = new IP(new Index("0101"), new WeekNumber("1"), new Description("IP task"),
+        Task ip1 = new IP(new Index("0102"), new WeekNumber("1"), new Description("IP task"),
                 new OfficialDeadline("2020-09-10", LocalDate.of(2020, 9, 10)),
                 null, new Remark("no remark"), false, false);
         Assertions.assertFalse(ip.equals(ip1));

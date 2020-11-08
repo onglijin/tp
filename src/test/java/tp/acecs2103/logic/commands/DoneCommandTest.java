@@ -21,7 +21,7 @@ class DoneCommandTest {
     public void execute_validIndex_success() {
         Model model = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
 
-        Index index = new Index("0301");
+        Index index = new Index("0302");
         DoneCommand doneCommand = new DoneCommand(index);
         Task task = model.getTaskList().getTask(index);
 
