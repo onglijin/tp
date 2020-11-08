@@ -28,10 +28,10 @@ public class FilterCommandParserTest {
     @Test
     public void parse_validFilterCommand_kl_success() {
         FilterCommandParser filterCommandParser = new FilterCommandParser();
-        String parametersStub = " k/done l/official";
+        String parametersStub = " k/pending l/official";
         FilterCommand expected = null;
         try {
-            expected = new FilterCommand("done", "official");
+            expected = new FilterCommand("pending", "official");
             assert filterCommandParser.parse(parametersStub).equals(expected);
         } catch (ParseException | CommandException e) {
             e.printStackTrace();
@@ -77,9 +77,9 @@ public class FilterCommandParserTest {
     }
 
     @Test
-    public void parse_invalidFilterCommand_kl_pending_fail() {
+    public void parse_invalidFilterCommand_kl_done_fail() {
         FilterCommandParser filterCommandParser = new FilterCommandParser();
-        String parametersStub = " k/pending l/official";
+        String parametersStub = " k/done l/official";
         try {
             filterCommandParser.parse(parametersStub);
             assert false;
