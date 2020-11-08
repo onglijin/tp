@@ -13,7 +13,6 @@ import tp.acecs2103.logic.commands.EditCommand;
 import tp.acecs2103.logic.commands.ExitCommand;
 import tp.acecs2103.logic.commands.FilterCommand;
 import tp.acecs2103.logic.commands.FindCommand;
-import tp.acecs2103.logic.commands.GetCommand;
 import tp.acecs2103.logic.commands.HelpCommand;
 import tp.acecs2103.logic.commands.HomeCommand;
 import tp.acecs2103.logic.commands.ListCommand;
@@ -66,9 +65,6 @@ public class TaskListParser {
 
         case DeadlineCommand.COMMAND_WORD:
             return new DeadlineCommandParser().parse(arguments);
-
-        case GetCommand.COMMAND_WORD:
-            return new GetCommandParser().parse(arguments);
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommandParser().parse(arguments);

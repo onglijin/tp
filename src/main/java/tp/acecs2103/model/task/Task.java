@@ -54,7 +54,7 @@ public class Task implements Comparable<Task> {
      */
     public WeekNumber getWeekNumberFromIndex() {
         String i = index.value;
-        String weekNumber = i.length() == 4 ? i.substring(1,2) : i.substring(1,3);
+        String weekNumber = i.length() == 4 ? i.substring(1, 2) : i.substring(1, 3);
         return new WeekNumber(weekNumber);
     }
 
@@ -191,7 +191,7 @@ public class Task implements Comparable<Task> {
     public boolean contains(String keyword) {
         keyword = keyword.toLowerCase();
 
-        if  (description != null && remark == null) {
+        if (description != null && remark == null) {
             return description.value.toLowerCase().contains(keyword);
         }
         return description.value.toLowerCase().contains(keyword)
