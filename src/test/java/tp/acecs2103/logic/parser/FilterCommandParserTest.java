@@ -1,14 +1,15 @@
 package tp.acecs2103.logic.parser;
 
 import org.junit.jupiter.api.Test;
+
 import tp.acecs2103.logic.commands.FilterCommand;
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
-import tp.acecs2103.model.task.*;
+import tp.acecs2103.model.task.WeekNumber;
 
 public class FilterCommandParserTest {
     @Test
-    public void parse_validFilterCommand_wkl_success() {
+    public void parse_validFilterCommandWkl_success() {
         FilterCommandParser filterCommandParser = new FilterCommandParser();
         String parametersStub = " w/4 k/pending l/official";
         FilterCommand expected = null;
@@ -19,96 +20,56 @@ public class FilterCommandParserTest {
         }
         try {
             assert filterCommandParser.parse(parametersStub).equals(expected);
-        } catch (ParseException | CommandException e) {
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } catch (CommandException e) {
             e.printStackTrace();
         }
 
     }
 
     @Test
-    public void parse_validFilterCommand_kl_success() {
+    public void parse_validFilterCommandKl_success() {
         FilterCommandParser filterCommandParser = new FilterCommandParser();
-        String parametersStub = " k/done l/official";
+        String parametersStub = " k/pending l/official";
         FilterCommand expected = null;
         try {
-            expected = new FilterCommand("done", "official");
+            expected = new FilterCommand("pending", "official");
             assert filterCommandParser.parse(parametersStub).equals(expected);
-        } catch (ParseException | CommandException e) {
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } catch (CommandException e) {
             e.printStackTrace();
         }
     }
 
     @Test
-    public void parse_validFilterCommand_wk_success() {
+    public void parse_validFilterCommandWk_success() {
         FilterCommandParser filterCommandParser = new FilterCommandParser();
         String parametersStub = " w/4 k/done";
         FilterCommand expected = null;
         try {
             expected = new FilterCommand("done", new WeekNumber("4"));
             assert filterCommandParser.parse(parametersStub).equals(expected);
-        } catch (ParseException | CommandException e) {
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } catch (CommandException e) {
             e.printStackTrace();
         }
     }
 
     @Test
-    public void parse_validFilterCommand_k_success() {
+    public void parse_validFilterCommandK_success() {
         FilterCommandParser filterCommandParser = new FilterCommandParser();
         String parametersStub = " k/done";
         FilterCommand expected = null;
         try {
             expected = new FilterCommand("done");
             assert filterCommandParser.parse(parametersStub).equals(expected);
-        } catch (ParseException | CommandException e) {
+        } catch (ParseException e) {
             e.printStackTrace();
-        }
-    }
-
-    @Test
-    public void parse_invalidFilterCommand_k_pending_fail() {
-        FilterCommandParser filterCommandParser = new FilterCommandParser();
-        String parametersStub = " k/pending";
-        try {
-            filterCommandParser.parse(parametersStub);
-            assert false;
-        } catch (ParseException | CommandException e) {
-            assert true;
-        }
-    }
-
-    @Test
-    public void parse_invalidFilterCommand_kl_pending_fail() {
-        FilterCommandParser filterCommandParser = new FilterCommandParser();
-        String parametersStub = " k/pending l/official";
-        try {
-            filterCommandParser.parse(parametersStub);
-            assert false;
-        } catch (ParseException | CommandException e) {
-            assert true;
-        }
-    }
-
-    @Test
-    public void parse_invalidFilterCommand_wkl_done_fail() {
-        FilterCommandParser filterCommandParser = new FilterCommandParser();
-        String parametersStub = " w/4 k/done l/official";
-        try {
-            filterCommandParser.parse(parametersStub);
-            assert false;
-        } catch (ParseException | CommandException e) {
-            assert true;
-        }
-    }
-
-    @Test
-    public void parse_invalidFilterCommand_emptyArgument_fail() {
-        FilterCommandParser filterCommandParser = new FilterCommandParser();
-        String parametersStub = " ";
-        try {
-            filterCommandParser.parse(parametersStub);
-            assert false;
-        } catch (ParseException | CommandException e) {
-            assert true;
+        } catch (CommandException e) {
+            e.printStackTrace();
         }
     }
 }

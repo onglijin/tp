@@ -172,12 +172,12 @@ public class TaskTest {
     }
 
     @Test
-    public void isSameTaskTest_TaskToComapre_returnTrue() {
+    public void isSameTaskTest_taskToCompare_returnTrue() {
         Assertions.assertTrue(defaultTaskOne.isSameTask(defaultTaskTwo));
     }
 
     @Test
-    public void isSameTaskTest_TaskToComapre_returnFalse() {
+    public void isSameTaskTest_taskToCompare_returnFalse() {
         Assertions.assertFalse(defaultTaskOne.isSameTask(customizedTaskOne));
         Assertions.assertFalse(defaultTaskTwo.isSameTask(defaultTaskThree));
     }
@@ -216,11 +216,11 @@ public class TaskTest {
     }
 
     @Test
-    public void getCategory_null_Category() {
-        Assertions.assertEquals(TaskCategory.TOPIC,topic.getCategory());
-        Assertions.assertEquals(TaskCategory.IP,ip.getCategory());
-        Assertions.assertEquals(TaskCategory.TP,tp.getCategory());
-        Assertions.assertEquals(TaskCategory.ADMIN,admin.getCategory());
+    public void getCategory_null_category() {
+        Assertions.assertEquals(TaskCategory.TOPIC, topic.getCategory());
+        Assertions.assertEquals(TaskCategory.IP, ip.getCategory());
+        Assertions.assertEquals(TaskCategory.TP, tp.getCategory());
+        Assertions.assertEquals(TaskCategory.ADMIN, admin.getCategory());
     }
 
     @Test
@@ -229,17 +229,16 @@ public class TaskTest {
     }
 
     @Test
-    public void equals_ObjectToCompare_returnTrue() {
+    public void equals_objectToCompare_returnTrue() {
         Assertions.assertTrue(ip.equals(ip));
     }
 
     @Test
-    public void equals_ObjectToCompare_returnFalse() {
+    public void equals_objectToCompare_returnFalse() {
         Assertions.assertFalse(ip.equals(tp));
-        Task ip1 = new IP(new Index("0101"), new WeekNumber("1"), new Description("IP task"),
+        Task ip1 = new IP(new Index("0102"), new WeekNumber("1"), new Description("IP task"),
                 new OfficialDeadline("2020-09-10", LocalDate.of(2020, 9, 10)),
                 null, new Remark("no remark"), false, false);
         Assertions.assertFalse(ip.equals(ip1));
     }
-
 }

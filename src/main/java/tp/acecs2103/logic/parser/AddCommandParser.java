@@ -28,14 +28,14 @@ import tp.acecs2103.model.task.WeekNumber;
 
 
 /**
- * Parses input arguments and creates a new AddCommand object.
+ * Parses input arguments and creates a new AddCommand object
  */
 public class AddCommandParser implements Parser<AddCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the
-     * AddCommand and returns an AddCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format.
+     * Parses the given {@code String} of arguments in the context of the AddCommand
+     * and returns an AddCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException, CommandException {
         if (args.equals("")) {
@@ -52,10 +52,6 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         String index =
                 ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
-        if (!Index.isValidIndex(index)) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
-        }
-
         Index indexObject = new Index(index);
 
         int weekNumber =
@@ -76,10 +72,6 @@ public class AddCommandParser implements Parser<AddCommand> {
         Remark remarkObject = new Remark(remark);
 
         TaskCategory category = ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get());
-
-        if (!((index.length() == 4 ? index.substring(1,2) : index.substring(1,3)).equals(String.valueOf(weekNumber)))) {
-            throw new CommandException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_INVALID_TASK));
-        }
 
         if (category.equals(TaskCategory.ADMIN)) {
             Admin admin = new Admin(indexObject, weekNumberObject, descriptionObject, null,

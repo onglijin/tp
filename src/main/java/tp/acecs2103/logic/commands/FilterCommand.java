@@ -3,7 +3,6 @@ package tp.acecs2103.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import tp.acecs2103.commons.core.Messages;
-import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.task.WeekNumber;
@@ -94,7 +93,7 @@ public class FilterCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         boolean isDone = (keyword.equals("done"));
-        boolean byOfficialDdl = (ddlType != null) && ddlType.equals("official");
+        boolean byOfficialDdl = (ddlType == null) ? false : ddlType.equals("official");
 
 
         model.filterTasks(isDone, byOfficialDdl, weekNumber);
