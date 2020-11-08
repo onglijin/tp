@@ -1,13 +1,13 @@
 package tp.acecs2103.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
+
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.ModelManager;
 import tp.acecs2103.model.UserPrefs;
 import tp.acecs2103.testutil.TypicalTasks;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 
 class HelpCommandTest {
     @Test

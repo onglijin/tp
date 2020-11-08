@@ -1,13 +1,14 @@
 package tp.acecs2103.model.task;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class RemarkTest {
-    Remark remark1 =  new Remark("remark");
-    Remark remark2 =  new Remark("remark");
-    Remark remark3 =  new Remark("ABC");
+    private Remark remark1 = new Remark("remark");
+    private Remark remark2 = new Remark("remark");
+    private Remark remark3 = new Remark("ABC");
 
     @Test
     public void contains_keyword_returnTrue() {
@@ -30,7 +31,4 @@ class RemarkTest {
         assertFalse(remark1.equals(null));
         assertFalse(remark1.equals("remark"));
     }
-
-
-
 }

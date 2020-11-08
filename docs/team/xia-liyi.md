@@ -11,8 +11,8 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense_link]
 
-* **Model**: 
-* **Storage**: 
+* **Model**:
+* **Storage**:
 * **Architecture Design**:
 * **Documentation**:
   * User Guide:

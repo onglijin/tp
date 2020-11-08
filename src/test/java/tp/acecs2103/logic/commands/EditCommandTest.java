@@ -1,21 +1,27 @@
 package tp.acecs2103.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static tp.acecs2103.logic.commands.CommandTestUtil.VALID_REMARK_1;
+import static tp.acecs2103.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static tp.acecs2103.testutil.Assert.assertThrows;
+
 import org.junit.jupiter.api.Test;
+
 import tp.acecs2103.logic.commands.EditCommand.EditTaskDescriptor;
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.ModelManager;
 import tp.acecs2103.model.UserPrefs;
-import tp.acecs2103.model.task.*;
+import tp.acecs2103.model.task.Admin;
+import tp.acecs2103.model.task.IP;
+import tp.acecs2103.model.task.Index;
+import tp.acecs2103.model.task.Task;
+import tp.acecs2103.model.task.TP;
+import tp.acecs2103.model.task.Topic;
 import tp.acecs2103.testutil.EditTaskDescriptorBuilder;
 import tp.acecs2103.testutil.TaskBuilder;
 import tp.acecs2103.testutil.TypicalTasks;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static tp.acecs2103.testutil.Assert.assertThrows;
-
-import static tp.acecs2103.logic.commands.CommandTestUtil.*;
 
 public class EditCommandTest {
     @Test
@@ -37,7 +43,7 @@ public class EditCommandTest {
         Task taskToEdit = expectedModel.getTaskList().getTask(new Index("0102"));
         Task editedTask = null;
         try {
-            editedTask = EditCommand.createEditedTask(taskToEdit,descriptor);
+            editedTask = EditCommand.createEditedTask(taskToEdit, descriptor);
         } catch (CommandException e) {
             e.printStackTrace();
         }
@@ -66,7 +72,7 @@ public class EditCommandTest {
         Task taskToEdit = expectedModel.getTaskList().getTask(new Index("0202"));
         Task editedTask = null;
         try {
-            editedTask = EditCommand.createEditedTask(taskToEdit,descriptor);
+            editedTask = EditCommand.createEditedTask(taskToEdit, descriptor);
         } catch (CommandException e) {
             e.printStackTrace();
         }
@@ -77,7 +83,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_allFieldsSpecifiedCustomisedIPTask_success() {
+    public void execute_allFieldsSpecifiedCustomisedIpTask_success() {
         Model model = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
         ModelManager expectedModel = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
 
@@ -95,7 +101,7 @@ public class EditCommandTest {
         Task taskToEdit = expectedModel.getTaskList().getTask(new Index("0302"));
         Task editedTask = null;
         try {
-            editedTask = EditCommand.createEditedTask(taskToEdit,descriptor);
+            editedTask = EditCommand.createEditedTask(taskToEdit, descriptor);
         } catch (CommandException e) {
             e.printStackTrace();
         }
@@ -106,7 +112,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_allFieldsSpecifiedCustomisedTPTask_success() {
+    public void execute_allFieldsSpecifiedCustomisedTpTask_success() {
         Model model = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
         ModelManager expectedModel = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
 
@@ -124,7 +130,7 @@ public class EditCommandTest {
         Task taskToEdit = expectedModel.getTaskList().getTask(new Index("0402"));
         Task editedTask = null;
         try {
-            editedTask = EditCommand.createEditedTask(taskToEdit,descriptor);
+            editedTask = EditCommand.createEditedTask(taskToEdit, descriptor);
         } catch (CommandException e) {
             e.printStackTrace();
         }
@@ -153,7 +159,7 @@ public class EditCommandTest {
         Task taskToEdit = expectedModel.getTaskList().getTask(new Index("0101"));
         Task editedTask = null;
         try {
-            editedTask = EditCommand.createEditedTask(taskToEdit,descriptor);
+            editedTask = EditCommand.createEditedTask(taskToEdit, descriptor);
         } catch (CommandException e) {
             e.printStackTrace();
         }
@@ -193,7 +199,7 @@ public class EditCommandTest {
         Task taskToEdit = expectedModel.getTaskList().getTask(new Index("0101"));
         Task editedTask = null;
         try {
-            editedTask = EditCommand.createEditedTask(taskToEdit,descriptor);
+            editedTask = EditCommand.createEditedTask(taskToEdit, descriptor);
         } catch (CommandException e) {
             e.printStackTrace();
         }
@@ -276,11 +282,4 @@ public class EditCommandTest {
         EditTaskDescriptor descriptor = new EditTaskDescriptor();
         assertFalse(descriptor.isAnyFieldEdited());
     }
-
-
-
-
-
-
-
 }

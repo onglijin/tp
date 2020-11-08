@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import tp.acecs2103.logic.commands.CommandResult;
-import tp.acecs2103.logic.commands.ExitCommand;
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.ModelManager;
 

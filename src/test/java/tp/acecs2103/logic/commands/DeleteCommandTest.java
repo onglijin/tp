@@ -1,19 +1,26 @@
 package tp.acecs2103.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static tp.acecs2103.testutil.Assert.assertThrows;
+
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.Test;
+
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.ModelManager;
 import tp.acecs2103.model.UserPrefs;
-import tp.acecs2103.model.task.*;
+import tp.acecs2103.model.task.CustomizedDeadline;
+import tp.acecs2103.model.task.Description;
+import tp.acecs2103.model.task.IP;
+import tp.acecs2103.model.task.Index;
+import tp.acecs2103.model.task.Remark;
+import tp.acecs2103.model.task.Task;
+import tp.acecs2103.model.task.WeekNumber;
 import tp.acecs2103.testutil.TypicalTasks;
-
-import java.time.LocalDate;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static tp.acecs2103.testutil.Assert.assertThrows;
 
 class DeleteCommandTest {
     @Test
@@ -48,7 +55,7 @@ class DeleteCommandTest {
     }
 
     @Test
-    public void execute_invalidIndex_NonExistent_fail() {
+    public void execute_invalidIndexNonExistent_fail() {
         Model model = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
 
         Index index = new Index("0203");
@@ -58,7 +65,7 @@ class DeleteCommandTest {
     }
 
     @Test
-    public void execute_invalidIndex_DefaultTask_fail() {
+    public void execute_invalidIndexDefaultTask_fail() {
         Model model = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
 
         Index index = new Index("0101");
