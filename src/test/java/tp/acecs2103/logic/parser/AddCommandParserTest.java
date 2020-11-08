@@ -209,10 +209,12 @@ public class AddCommandParserTest {
         String parametersStub = "add i/01401 w/1 d/CyberPunk2077 c/2020-12-10 a/Ip";
         try {
             addCommandParser.parse(parametersStub);
+        } catch (IllegalArgumentException e) {
+            assert true;
         } catch (CommandException e) {
             e.printStackTrace();
         } catch (ParseException e) {
-            assert true;
+            e.printStackTrace();
         }
     }
 
