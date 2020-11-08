@@ -1,10 +1,14 @@
 package tp.acecs2103.logic.commands;
 
-//import static org.junit.jupiter.api.Assertions.assertTrue;
-//
-//import java.time.LocalDate;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static tp.acecs2103.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static tp.acecs2103.testutil.Assert.assertThrows;
+
+import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
+
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.ModelManager;
@@ -13,16 +17,7 @@ import tp.acecs2103.model.exceptions.InvalidTaskOperationException;
 import tp.acecs2103.model.task.CustomizedDeadline;
 import tp.acecs2103.model.task.Index;
 import tp.acecs2103.model.task.Task;
-
 import tp.acecs2103.testutil.TypicalTasks;
-
-import java.time.LocalDate;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static tp.acecs2103.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static tp.acecs2103.testutil.Assert.assertThrows;
-
 
 public class DeadlineCommandTest {
     @Test
@@ -31,9 +26,9 @@ public class DeadlineCommandTest {
         ModelManager expectedModel = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
 
         Index index = new Index("0101");
-        CustomizedDeadline customizedDeadline =  new CustomizedDeadline("2020-10-01",
+        CustomizedDeadline customizedDeadline = new CustomizedDeadline("2020-10-01",
                 LocalDate.parse("2020-10-01"));
-        DeadlineCommand deadlineCommand = new DeadlineCommand(index,customizedDeadline);
+        DeadlineCommand deadlineCommand = new DeadlineCommand(index, customizedDeadline);
 
         try {
             deadlineCommand.execute(model);
@@ -59,9 +54,9 @@ public class DeadlineCommandTest {
         ModelManager expectedModel = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
 
         Index index = new Index("0401");
-        CustomizedDeadline customizedDeadline =  new CustomizedDeadline("2021-10-01",
+        CustomizedDeadline customizedDeadline = new CustomizedDeadline("2021-10-01",
                 LocalDate.parse("2021-10-01"));
-        DeadlineCommand deadlineCommand = new DeadlineCommand(index,customizedDeadline);
+        DeadlineCommand deadlineCommand = new DeadlineCommand(index, customizedDeadline);
 
         try {
             deadlineCommand.execute(model);
@@ -87,9 +82,9 @@ public class DeadlineCommandTest {
         ModelManager expectedModel = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
 
         Index index = new Index("0101");
-        CustomizedDeadline customizedDeadline =  new CustomizedDeadline("2021-10-01",
+        CustomizedDeadline customizedDeadline = new CustomizedDeadline("2021-10-01",
                 LocalDate.parse("2021-10-01"));
-        DeadlineCommand deadlineCommand = new DeadlineCommand(index,customizedDeadline);
+        DeadlineCommand deadlineCommand = new DeadlineCommand(index, customizedDeadline);
 
         try {
             deadlineCommand.execute(model);

@@ -1,10 +1,7 @@
 package tp.acecs2103.logic.commands;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static tp.acecs2103.testutil.Assert.assertThrows;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static tp.acecs2103.testutil.Assert.assertThrows;
 
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.model.Model;

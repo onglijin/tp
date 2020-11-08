@@ -1,16 +1,28 @@
 package tp.acecs2103.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.*;
+import static tp.acecs2103.testutil.Assert.assertThrows;
+
 import org.junit.jupiter.api.Test;
+
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.ModelManager;
 import tp.acecs2103.model.UserPrefs;
-import tp.acecs2103.model.task.*;
+import tp.acecs2103.model.task.Admin;
+import tp.acecs2103.model.task.CustomizedDeadline;
+import tp.acecs2103.model.task.Deadline;
+import tp.acecs2103.model.task.Description;
+import tp.acecs2103.model.task.Index;
+import tp.acecs2103.model.task.IP;
+import tp.acecs2103.model.task.OfficialDeadline;
+import tp.acecs2103.model.task.Remark;
+import tp.acecs2103.model.task.Task;
+import tp.acecs2103.model.task.TaskCategory;
+import tp.acecs2103.model.task.Topic;
+import tp.acecs2103.model.task.TP;
+import tp.acecs2103.model.task.WeekNumber;
 import tp.acecs2103.testutil.TypicalTasks;
-
-
-import static org.junit.jupiter.api.Assertions.*;
-import static tp.acecs2103.testutil.Assert.assertThrows;
 
 class DoneCommandTest {
     @Test
@@ -23,7 +35,7 @@ class DoneCommandTest {
 
         CommandResult commandResult = null;
         try {
-            commandResult= doneCommand.execute(model);
+            commandResult = doneCommand.execute(model);
         } catch (CommandException e) {
             e.printStackTrace();
         }
@@ -34,7 +46,7 @@ class DoneCommandTest {
     }
 
     @Test
-    public void execute_invalidIndex_NonExistent_fail() {
+    public void execute_invalidIndexNonExistent_fail() {
         Model model = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
 
         Index index = new Index("0203");
@@ -44,7 +56,7 @@ class DoneCommandTest {
     }
 
     @Test
-    public void execute_invalidIndex_DoneTask_fail() {
+    public void execute_invalidIndexDoneTask_fail() {
         Model model = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
 
         Index index = new Index("0101");

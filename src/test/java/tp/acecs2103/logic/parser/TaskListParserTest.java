@@ -1,14 +1,28 @@
 package tp.acecs2103.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import tp.acecs2103.logic.commands.*;
-import tp.acecs2103.logic.commands.exceptions.CommandException;
-import tp.acecs2103.logic.parser.exceptions.ParseException;
-import tp.acecs2103.model.task.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+
+import tp.acecs2103.logic.commands.AddCommand;
+import tp.acecs2103.logic.commands.ClearCommand;
+import tp.acecs2103.logic.commands.CommandResult;
+import tp.acecs2103.logic.commands.DeadlineCommand;
+import tp.acecs2103.logic.commands.DeleteCommand;
+import tp.acecs2103.logic.commands.DoneCommand;
+import tp.acecs2103.logic.commands.EditCommand;
+import tp.acecs2103.logic.commands.ExitCommand;
+import tp.acecs2103.logic.commands.FilterCommand;
+import tp.acecs2103.logic.commands.FindCommand;
+import tp.acecs2103.logic.commands.HelpCommand;
+import tp.acecs2103.logic.commands.HomeCommand;
+import tp.acecs2103.logic.commands.ListCommand;
+import tp.acecs2103.logic.commands.UndoneCommand;
+import tp.acecs2103.logic.commands.exceptions.CommandException;
+import tp.acecs2103.logic.parser.exceptions.ParseException;
+import tp.acecs2103.model.task.*;
 
 public class TaskListParserTest {
     @Test
@@ -62,7 +76,8 @@ public class TaskListParserTest {
         editTaskDescriptor.setWeekNumber(new WeekNumber("1"));
         try {
             LocalDate customizedDeadlineParsed = ParserUtil.parseCustomizedDeadline("2020-12-10");
-            editTaskDescriptor.setCustomizedDeadline(new CustomizedDeadline(customizedDeadlineParsed.toString(), customizedDeadlineParsed));
+            editTaskDescriptor.setCustomizedDeadline(
+                    new CustomizedDeadline(customizedDeadlineParsed.toString(), customizedDeadlineParsed));
         } catch (ParseException e) {
             e.printStackTrace();
         }

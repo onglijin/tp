@@ -1,9 +1,9 @@
 package tp.acecs2103.model.task;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
 
 class RemarkTest {
     private Remark remark1 = new Remark("remark");

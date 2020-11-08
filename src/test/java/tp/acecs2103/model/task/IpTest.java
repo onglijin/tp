@@ -1,10 +1,10 @@
 package tp.acecs2103.model.task;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 class IpTest {
     private IP task1 = new IP(new Index("0101"), new WeekNumber("1"), new Description("Test Task One"),
@@ -13,6 +13,6 @@ class IpTest {
 
     @Test
     void getCategory_null_correctTaskCategory() {
-        assertEquals(TaskCategory.IP,task1.getCategory());
+        assertEquals(TaskCategory.IP, task1.getCategory());
     }
 }

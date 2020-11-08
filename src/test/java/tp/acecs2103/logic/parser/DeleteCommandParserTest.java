@@ -1,15 +1,23 @@
 package tp.acecs2103.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import tp.acecs2103.logic.commands.AddCommand;
-import tp.acecs2103.logic.commands.DeleteCommand;
-import tp.acecs2103.logic.commands.exceptions.CommandException;
-import tp.acecs2103.logic.parser.exceptions.ParseException;
-import tp.acecs2103.model.task.*;
-
-import java.time.LocalDate;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+import tp.acecs2103.logic.commands.DeleteCommand;
+import tp.acecs2103.logic.parser.exceptions.ParseException;
+import tp.acecs2103.model.task.Admin;
+import tp.acecs2103.model.task.CustomizedDeadline;
+import tp.acecs2103.model.task.Deadline;
+import tp.acecs2103.model.task.Description;
+import tp.acecs2103.model.task.Index;
+import tp.acecs2103.model.task.IP;
+import tp.acecs2103.model.task.OfficialDeadline;
+import tp.acecs2103.model.task.Remark;
+import tp.acecs2103.model.task.Task;
+import tp.acecs2103.model.task.TaskCategory;
+import tp.acecs2103.model.task.Topic;
+import tp.acecs2103.model.task.TP;
+import tp.acecs2103.model.task.WeekNumber;
 
 public class DeleteCommandParserTest {
     @Test
@@ -25,7 +33,7 @@ public class DeleteCommandParserTest {
     }
 
     @Test
-    public void parse_invalidDeleteCommand_emptyArgs_fail() {
+    public void parse_invalidDeleteCommandEmptyArguments_fail() {
         DeleteCommandParser deleteCommandParser = new DeleteCommandParser();
         String parametersStub = "";
         try {
@@ -36,7 +44,7 @@ public class DeleteCommandParserTest {
     }
 
     @Test
-    public void parse_invalidDeleteCommand_invalidIndex_fail() {
+    public void parse_invalidDeleteCommandInvalidIndex_fail() {
         DeleteCommandParser deleteCommandParser = new DeleteCommandParser();
         String parametersStub = "010101";
         try {

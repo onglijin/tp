@@ -1,25 +1,38 @@
 package tp.acecs2103.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import tp.acecs2103.commons.core.Messages;
-import tp.acecs2103.model.Model;
-import tp.acecs2103.model.ModelManager;
-import tp.acecs2103.model.UserPrefs;
-import tp.acecs2103.model.task.*;
-import tp.acecs2103.testutil.TypicalTasks;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tp.acecs2103.logic.commands.CommandTestUtil.assertCommandSuccess;
 
+import org.junit.jupiter.api.Test;
+
+import tp.acecs2103.commons.core.Messages;
+import tp.acecs2103.model.Model;
+import tp.acecs2103.model.ModelManager;
+import tp.acecs2103.model.UserPrefs;
+import tp.acecs2103.model.task.Admin;
+import tp.acecs2103.model.task.CustomizedDeadline;
+import tp.acecs2103.model.task.Deadline;
+import tp.acecs2103.model.task.Description;
+import tp.acecs2103.model.task.Index;
+import tp.acecs2103.model.task.IP;
+import tp.acecs2103.model.task.OfficialDeadline;
+import tp.acecs2103.model.task.Remark;
+import tp.acecs2103.model.task.Task;
+import tp.acecs2103.model.task.TaskCategory;
+import tp.acecs2103.model.task.Topic;
+import tp.acecs2103.model.task.TP;
+import tp.acecs2103.model.task.WeekNumber;
+import tp.acecs2103.testutil.TypicalTasks;
+
 class ListCommandTest {
     @Test
-    public void execute_validWeek_Lower_success() {
+    public void execute_validWeekLower_success() {
         Model model = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
         ModelManager expectedModel = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
 
         WeekNumber weekNumber = new WeekNumber("1");
-        ListCommand listCommand =  new ListCommand(weekNumber);
+        ListCommand listCommand = new ListCommand(weekNumber);
         listCommand.execute(model);
 
         expectedModel.listTasks(weekNumber);
@@ -31,12 +44,12 @@ class ListCommandTest {
     }
 
     @Test
-    public void execute_validWeek_middle_success() {
+    public void execute_validWeekMiddle_success() {
         Model model = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
         ModelManager expectedModel = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
 
         WeekNumber weekNumber = new WeekNumber("7");
-        ListCommand listCommand =  new ListCommand(weekNumber);
+        ListCommand listCommand = new ListCommand(weekNumber);
         listCommand.execute(model);
 
         expectedModel.listTasks(weekNumber);
@@ -48,12 +61,12 @@ class ListCommandTest {
     }
 
     @Test
-    public void execute_validWeek_upper_success() {
+    public void execute_validWeekUpper_success() {
         Model model = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
         ModelManager expectedModel = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
 
         WeekNumber weekNumber = new WeekNumber("13");
-        ListCommand listCommand =  new ListCommand(weekNumber);
+        ListCommand listCommand = new ListCommand(weekNumber);
         listCommand.execute(model);
 
         expectedModel.listTasks(weekNumber);
@@ -68,8 +81,8 @@ class ListCommandTest {
     public void equal_null_returnFalse() {
         WeekNumber weekNumber = new WeekNumber("13");
         WeekNumber weekNumber1 = new WeekNumber("11");
-        ListCommand listCommand =  new ListCommand(weekNumber);
-        ListCommand listCommand1 =  new ListCommand(weekNumber1);
+        ListCommand listCommand = new ListCommand(weekNumber);
+        ListCommand listCommand1 = new ListCommand(weekNumber1);
         assertFalse(listCommand.equals(null));
         assertFalse(listCommand.equals("1"));
         assertFalse(listCommand1.equals(listCommand));
@@ -78,8 +91,8 @@ class ListCommandTest {
     @Test
     public void equal_null_returnTrue() {
         WeekNumber weekNumber = new WeekNumber("13");
-        ListCommand listCommand =  new ListCommand(weekNumber);
-        ListCommand listCommand1 =  new ListCommand(weekNumber);
+        ListCommand listCommand = new ListCommand(weekNumber);
+        ListCommand listCommand1 = new ListCommand(weekNumber);
         assertTrue(listCommand.equals(listCommand1));
     }
 }

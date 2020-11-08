@@ -1,6 +1,12 @@
 package tp.acecs2103.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import static tp.acecs2103.logic.commands.CommandTestUtil.*;
+
 import org.junit.jupiter.api.Test;
+
 import tp.acecs2103.commons.core.Messages;
 import tp.acecs2103.logic.commands.EditCommand.EditTaskDescriptor;
 import tp.acecs2103.logic.commands.exceptions.CommandException;
@@ -8,16 +14,20 @@ import tp.acecs2103.logic.parser.exceptions.ParseException;
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.ModelManager;
 import tp.acecs2103.model.UserPrefs;
-import tp.acecs2103.model.task.*;
-import tp.acecs2103.testutil.EditTaskDescriptorBuilder;
-import tp.acecs2103.testutil.TaskBuilder;
+import tp.acecs2103.model.task.Admin;
+import tp.acecs2103.model.task.CustomizedDeadline;
+import tp.acecs2103.model.task.Deadline;
+import tp.acecs2103.model.task.Description;
+import tp.acecs2103.model.task.Index;
+import tp.acecs2103.model.task.IP;
+import tp.acecs2103.model.task.OfficialDeadline;
+import tp.acecs2103.model.task.Remark;
+import tp.acecs2103.model.task.Task;
+import tp.acecs2103.model.task.TaskCategory;
+import tp.acecs2103.model.task.Topic;
+import tp.acecs2103.model.task.TP;
+import tp.acecs2103.model.task.WeekNumber;
 import tp.acecs2103.testutil.TypicalTasks;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static tp.acecs2103.testutil.Assert.assertThrows;
-
-import static tp.acecs2103.logic.commands.CommandTestUtil.*;
 
 class FilterCommandTest {
     @Test
@@ -31,14 +41,14 @@ class FilterCommandTest {
             e.printStackTrace();
         }
         filterCommand.execute(model);
-        expectedModel.filterTasks(true,false,null);
+        expectedModel.filterTasks(true, false, null);
         String expectedMessage = FilterCommand.MESSAGE_SUCCESS + "\nStatus: done"
-        + "\n-->" + String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getUiTaskList().size());;
+            + "\n-->" + String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getUiTaskList().size());;
         assertCommandSuccess(filterCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_pending_byOfficial_success() {
+    public void execute_pendingByOfficial_success() {
         Model model = new ModelManager(TypicalTasks.getExtraTaskList(), new UserPrefs());
         ModelManager expectedModel = new ModelManager(TypicalTasks.getExtraTaskList(), new UserPrefs());
         FilterCommand filterCommand = null;
@@ -48,7 +58,7 @@ class FilterCommandTest {
             e.printStackTrace();
         }
         filterCommand.execute(model);
-        expectedModel.filterTasks(false,true,null);
+        expectedModel.filterTasks(false, true, null);
         String expectedMessage = FilterCommand.MESSAGE_SUCCESS + "\nStatus: pending"
                 + ("\nBy: official deadline")
                 + "\n-->" + String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getUiTaskList().size());;
@@ -56,7 +66,7 @@ class FilterCommandTest {
     }
 
     @Test
-    public void execute_pending_byCustomized_success() {
+    public void execute_pendingByCustomized_success() {
         Model model = new ModelManager(TypicalTasks.getExtraTaskList(), new UserPrefs());
         ModelManager expectedModel = new ModelManager(TypicalTasks.getExtraTaskList(), new UserPrefs());
         FilterCommand filterCommand = null;
@@ -66,7 +76,7 @@ class FilterCommandTest {
             e.printStackTrace();
         }
         filterCommand.execute(model);
-        expectedModel.filterTasks(false,false,null);
+        expectedModel.filterTasks(false, false, null);
         String expectedMessage = FilterCommand.MESSAGE_SUCCESS + "\nStatus: pending"
                 + ("\nBy: customised deadline")
                 + "\n-->" + String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getUiTaskList().size());;
@@ -74,7 +84,7 @@ class FilterCommandTest {
     }
 
     @Test
-    public void execute_pending_byCustomized_Week1_success() {
+    public void execute_pendingByCustomizedWeek1_success() {
         Model model = new ModelManager(TypicalTasks.getExtraTaskList(), new UserPrefs());
         ModelManager expectedModel = new ModelManager(TypicalTasks.getExtraTaskList(), new UserPrefs());
         FilterCommand filterCommand = null;
@@ -86,7 +96,7 @@ class FilterCommandTest {
             e.printStackTrace();
         }
         filterCommand.execute(model);
-        expectedModel.filterTasks(false,false,weekNumber);
+        expectedModel.filterTasks(false, false, weekNumber);
         String expectedMessage = FilterCommand.MESSAGE_SUCCESS + "\nStatus: pending"
                 + ("\nBy: customised deadline")
                 + "\nDuration: week 1"
@@ -95,7 +105,7 @@ class FilterCommandTest {
     }
 
     @Test
-    public void execute_pending_byCustomized_Week5_success() {
+    public void execute_pendingByCustomizedWeek5_success() {
         Model model = new ModelManager(TypicalTasks.getExtraTaskList(), new UserPrefs());
         ModelManager expectedModel = new ModelManager(TypicalTasks.getExtraTaskList(), new UserPrefs());
         FilterCommand filterCommand = null;
@@ -107,7 +117,7 @@ class FilterCommandTest {
             e.printStackTrace();
         }
         filterCommand.execute(model);
-        expectedModel.filterTasks(false,false,weekNumber);
+        expectedModel.filterTasks(false, false, weekNumber);
         String expectedMessage = FilterCommand.MESSAGE_SUCCESS + "\nStatus: pending"
                 + ("\nBy: customised deadline")
                 + "\nDuration: week 5"
@@ -116,7 +126,7 @@ class FilterCommandTest {
     }
 
     @Test
-    public void execute_pending_byCustomized_Week13_success() {
+    public void execute_pendingByCustomizedWeek13_success() {
         Model model = new ModelManager(TypicalTasks.getExtraTaskList(), new UserPrefs());
         ModelManager expectedModel = new ModelManager(TypicalTasks.getExtraTaskList(), new UserPrefs());
         FilterCommand filterCommand = null;
@@ -128,7 +138,7 @@ class FilterCommandTest {
             e.printStackTrace();
         }
         filterCommand.execute(model);
-        expectedModel.filterTasks(false,false,weekNumber);
+        expectedModel.filterTasks(false, false, weekNumber);
         String expectedMessage = FilterCommand.MESSAGE_SUCCESS + "\nStatus: pending"
                 + ("\nBy: customised deadline")
                 + "\nDuration: week 13"

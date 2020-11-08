@@ -1,21 +1,31 @@
 package tp.acecs2103.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.Test;
-import tp.acecs2103.AppParameters;
-import tp.acecs2103.AppParametersTest;
+
 import tp.acecs2103.logic.commands.AddCommand;
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
-import tp.acecs2103.model.task.*;
-
-import java.nio.file.Paths;
-import java.time.LocalDate;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import tp.acecs2103.model.task.Admin;
+import tp.acecs2103.model.task.CustomizedDeadline;
+import tp.acecs2103.model.task.Deadline;
+import tp.acecs2103.model.task.Description;
+import tp.acecs2103.model.task.Index;
+import tp.acecs2103.model.task.IP;
+import tp.acecs2103.model.task.OfficialDeadline;
+import tp.acecs2103.model.task.Remark;
+import tp.acecs2103.model.task.Task;
+import tp.acecs2103.model.task.TaskCategory;
+import tp.acecs2103.model.task.Topic;
+import tp.acecs2103.model.task.TP;
+import tp.acecs2103.model.task.WeekNumber;
 
 public class AddCommandParserTest {
     @Test
-    public void parse_validAddCommand_withRemark_success() {
+    public void parse_validAddCommandWithRemark_success() {
         AddCommandParser addCommandParser = new AddCommandParser();
         String parametersStub = "add i/0101 w/1 d/CyberPunk2077 c/2020-12-10 r/release a/Ip";
         Task task = new IP(new Index("0101"), new WeekNumber("1"), new Description("CyberPunk2077"), null,
@@ -37,7 +47,7 @@ public class AddCommandParserTest {
     }
 
     @Test
-    public void parse_validAddCommand_withoutRemark_success() {
+    public void parse_validAddCommandWithoutRemark_success() {
         AddCommandParser addCommandParser = new AddCommandParser();
         String parametersStub = "add i/0101 w/1 d/CyberPunk2077 c/2020-12-10 a/Ip";
         Task task = new IP(new Index("0101"), new WeekNumber("1"), new Description("CyberPunk2077"), null,
@@ -59,9 +69,9 @@ public class AddCommandParserTest {
     }
 
     @Test
-    public void parse_invalidAddCommand_argumentNotEnough2_fail() {
+    public void parse_invalidAddCommandArgumentInsufficient2_fail() {
         AddCommandParser addCommandParser = new AddCommandParser();
-        String parametersStub = "add i/0101 d/CyberPunk2077 c/2020-12-10 a/Ip";//no WeekNumber
+        String parametersStub = "add i/0101 d/CyberPunk2077 c/2020-12-10 a/Ip"; //no WeekNumber
         try {
             addCommandParser.parse(parametersStub);
         } catch (CommandException e) {
@@ -72,7 +82,7 @@ public class AddCommandParserTest {
     }
 
     @Test
-    public void parse_invalidAddCommand_emptyCommand_fail() {
+    public void parse_invalidAddCommandEmptyCommand_fail() {
         AddCommandParser addCommandParser = new AddCommandParser();
         String parametersStub = "";
 
@@ -86,7 +96,7 @@ public class AddCommandParserTest {
     }
 
     @Test
-    public void parse_invalidAddCommand_ExtraArguments_fail() {
+    public void parse_invalidAddCommandExtraArguments_fail() {
         AddCommandParser addCommandParser = new AddCommandParser();
         String parametersStub = "add i/0101 w/1 d/CyberPunk2077 c/2020-12-10 a/Ip x/fail";
         try {
@@ -99,7 +109,7 @@ public class AddCommandParserTest {
     }
 
     @Test
-    public void parse_invalidAddCommand_argumentNotEnough1_fail() {
+    public void parse_invalidAddCommandArgumentInsufficient1_fail() {
         AddCommandParser addCommandParser = new AddCommandParser();
         String parametersStub = "add w/1 d/CyberPunk2077 c/2020-12-10 a/Ip";
         try {
@@ -112,7 +122,7 @@ public class AddCommandParserTest {
     }
 
     @Test
-    public void parse_invalidAddCommand_argumentNotEnough3_fail() {
+    public void parse_invalidAddCommandArgumentInsufficient3_fail() {
         AddCommandParser addCommandParser = new AddCommandParser();
         String parametersStub = "add i/0101 w/1 c/2020-12-10 a/Ip";
         try {
@@ -125,7 +135,7 @@ public class AddCommandParserTest {
     }
 
     @Test
-    public void parse_invalidAddCommand_argumentNotEnough4_fail() {
+    public void parse_invalidAddCommandArgumentInsufficient4_fail() {
         AddCommandParser addCommandParser = new AddCommandParser();
         String parametersStub = "add i/0101 w/1 d/CyberPunk2077 a/Ip";
         try {
@@ -138,7 +148,7 @@ public class AddCommandParserTest {
     }
 
     @Test
-    public void parse_invalidAddCommand_argumentNotEnough5_fail() {
+    public void parse_invalidAddCommandArgumentInsufficient5_fail() {
         AddCommandParser addCommandParser = new AddCommandParser();
         String parametersStub = "add i/0101 w/1 d/CyberPunk2077 c/2020-12-10";
         try {
@@ -151,7 +161,7 @@ public class AddCommandParserTest {
     }
 
     @Test
-    public void parse_validAddCommand_unorderedArguments_success() {
+    public void parse_validAddCommandUnorderedArguments_success() {
         AddCommandParser addCommandParser = new AddCommandParser();
         String parametersStub = "add a/Ip c/2020-12-10 w/1 i/0101 d/CyberPunk2077";
         Task task = new IP(new Index("0101"), new WeekNumber("1"), new Description("CyberPunk2077"), null,
@@ -173,7 +183,7 @@ public class AddCommandParserTest {
     }
 
     @Test
-    public void parse_invalidAddCommand_invalidDate_fail() {
+    public void parse_invalidAddCommandInvalidDate_fail() {
         AddCommandParser addCommandParser = new AddCommandParser();
         String parametersStub = "add i/0101 w/1 d/CyberPunk2077 c/2020-12-99 a/Ip";
         try {
@@ -186,7 +196,7 @@ public class AddCommandParserTest {
     }
 
     @Test
-    public void parse_invalidAddCommand_invalidWeek_fail() {
+    public void parse_invalidAddCommandInvalidWeek_fail() {
         AddCommandParser addCommandParser = new AddCommandParser();
         String parametersStub = "add i/0101 w/16 d/CyberPunk2077 c/2020-12-10 a/Ip";
         try {
@@ -198,9 +208,9 @@ public class AddCommandParserTest {
         }
     }
 
-    // WARNING!!! SHOULD BE FAILED
+    // TODO: WARNING!!! SHOULD BE FAILED
     @Test
-    public void parse_invalidAddCommand_invalidIndex_fail() {
+    public void parse_invalidAddCommandInvalidIndex_fail() {
         AddCommandParser addCommandParser = new AddCommandParser();
         String parametersStub = "add i/01401 w/1 d/CyberPunk2077 c/2020-12-10 a/Ip";
         try {
@@ -213,7 +223,7 @@ public class AddCommandParserTest {
     }
 
     @Test
-    public void parse_invalidAddCommand_invalidCategory_fail() {
+    public void parse_invalidAddCommandInvalidCategory_fail() {
         AddCommandParser addCommandParser = new AddCommandParser();
         String parametersStub = "add i/0101 w/1 d/CyberPunk2077 c/2020-12-10 a/Undefined";
         try {
@@ -226,7 +236,7 @@ public class AddCommandParserTest {
     }
 
     @Test
-    public void parse_invalidAddCommand_invalidDescription_fail() {
+    public void parse_invalidAddCommandInvalidDescription_fail() {
         AddCommandParser addCommandParser = new AddCommandParser();
         String parametersStub = "add i/0101 w/1 d/ c/2020-12-10 a/Ip";
         try {
@@ -237,5 +247,4 @@ public class AddCommandParserTest {
             assert true;
         }
     }
-
 }

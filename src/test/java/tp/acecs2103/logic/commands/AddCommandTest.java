@@ -26,7 +26,6 @@ import tp.acecs2103.model.task.Topic;
 import tp.acecs2103.model.task.WeekNumber;
 import tp.acecs2103.testutil.TypicalTasks;
 
-
 class AddCommandTest {
 
     @Test

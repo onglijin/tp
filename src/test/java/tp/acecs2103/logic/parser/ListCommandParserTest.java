@@ -1,13 +1,12 @@
 package tp.acecs2103.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
-import tp.acecs2103.logic.commands.DoneCommand;
+
 import tp.acecs2103.logic.commands.ListCommand;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
-import tp.acecs2103.model.task.Index;
 import tp.acecs2103.model.task.WeekNumber;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ListCommandParserTest {
     @Test
