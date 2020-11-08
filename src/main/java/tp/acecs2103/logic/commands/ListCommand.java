@@ -6,8 +6,6 @@ import tp.acecs2103.commons.core.Messages;
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.task.WeekNumber;
 
-import javax.swing.text.html.ListView;
-
 /**
  * Lists all persons in the address book to the user.
  */
