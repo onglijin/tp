@@ -7,9 +7,6 @@ import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.TaskList;
 import tp.acecs2103.model.UiTaskList;
-import tp.acecs2103.model.exceptions.InvalidTaskListOperationException;
-import tp.acecs2103.model.task.Task;
-import tp.acecs2103.model.task.Index;
 import tp.acecs2103.testutil.EditTaskDescriptorBuilder;
 
 /**
@@ -73,7 +70,7 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         TaskList expectedTaskList = new TaskList(actualModel.getTaskList());
-        UiTaskList expectedUiTaskList= new UiTaskList(actualModel.getUiTaskList().getCombinedTaskList());
+        UiTaskList expectedUiTaskList = new UiTaskList(actualModel.getUiTaskList().getCombinedTaskList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedTaskList, actualModel.getTaskList());

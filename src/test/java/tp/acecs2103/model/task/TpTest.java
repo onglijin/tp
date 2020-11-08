@@ -1,10 +1,10 @@
 package tp.acecs2103.model.task;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 class TpTest {
     private TP task1 = new TP(new Index("0101"), new WeekNumber("1"), new Description("Test Task One"),

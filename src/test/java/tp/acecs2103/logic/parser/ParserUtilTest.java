@@ -168,7 +168,7 @@ public class ParserUtilTest {
     @Test
     public void parserUtil_parseTypeValid_success() {
         try {
-            assert "a" .equals(ParserUtil.parseType("a"));
+            assert "a".equals(ParserUtil.parseType("a"));
         } catch (ParseException e) {
             e.printStackTrace();
         }
