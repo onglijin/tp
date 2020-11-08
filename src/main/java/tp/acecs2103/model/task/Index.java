@@ -39,6 +39,10 @@ public class Index {
      * Returns true if a given string is a valid index.
      */
     public static boolean isValidIndex(String test) {
+        int weekNumber = Integer.parseInt((test.length() == 4 ? test.substring(1,2) : test.substring(1,3)));
+        if (weekNumber <= 0 || weekNumber > 13) {
+            return false;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 

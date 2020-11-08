@@ -1,13 +1,10 @@
 package tp.acecs2103.logic.parser;
 
 import org.junit.jupiter.api.Test;
-import tp.acecs2103.logic.commands.AddCommand;
 import tp.acecs2103.logic.commands.DeleteCommand;
-import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
 import tp.acecs2103.model.task.*;
 
-import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -36,9 +33,20 @@ public class DeleteCommandParserTest {
     }
 
     @Test
-    public void parse_invalidDeleteCommand_invalidIndex_fail() {
+    public void parse_invalidDeleteCommand_invalidIndex1_fail() {
         DeleteCommandParser deleteCommandParser = new DeleteCommandParser();
         String parametersStub = "010101";
+        try {
+            deleteCommandParser.parse(parametersStub);
+        } catch (ParseException e) {
+            assert true;
+        }
+    }
+
+    @Test
+    public void parse_invalidDeleteCommand_invalidIndex2_fail() {
+        DeleteCommandParser deleteCommandParser = new DeleteCommandParser();
+        String parametersStub = "01401";
         try {
             deleteCommandParser.parse(parametersStub);
         } catch (ParseException e) {
