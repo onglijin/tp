@@ -4,17 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tp.acecs2103.testutil.Assert.assertThrows;
-import static tp.acecs2103.testutil.TypicalTasks.AdminOne;
+import static tp.acecs2103.testutil.TypicalTasks.ADMIN_ONE;
 import static tp.acecs2103.testutil.TypicalTasks.getTypicalTaskList;
 
-import java.util.*;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import tp.acecs2103.model.task.Admin;
-import tp.acecs2103.model.task.Remark;
 import tp.acecs2103.model.task.Task;
 import tp.acecs2103.testutil.TaskBuilder;
 
@@ -41,19 +37,19 @@ public class TaskListTest {
 
     @Test
     public void hasTask_taskNotInTaskList_returnsFalse() {
-        assertFalse(taskList.hasTask(AdminOne));
+        assertFalse(taskList.hasTask(ADMIN_ONE));
     }
 
     @Test
     public void hasTask_taskInTaskList_returnsTrue() {
-        taskList.add(AdminOne);
-        assertTrue(taskList.hasTask(AdminOne));
+        taskList.add(ADMIN_ONE);
+        assertTrue(taskList.hasTask(ADMIN_ONE));
     }
 
     @Test
     public void hasTask_taskWithSameIdentityFieldsInTaskList_returnsTrue() {
-        taskList.add(AdminOne);
-        Task editedAdminOne = new TaskBuilder(AdminOne).buildAdmin();
+        taskList.add(ADMIN_ONE);
+        Task editedAdminOne = new TaskBuilder(ADMIN_ONE).buildAdmin();
         assertTrue(taskList.hasTask(editedAdminOne));
     }
 

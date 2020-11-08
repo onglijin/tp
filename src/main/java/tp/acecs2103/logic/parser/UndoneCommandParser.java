@@ -8,7 +8,9 @@ import tp.acecs2103.model.task.Index;
 public class UndoneCommandParser implements Parser<UndoneCommand> {
 
     /**
-     * Parses input for {@code UndoneCommand}.
+     * Parses the given {@code String} of arguments in the context of the UndoneCommand
+     * and returns an UndoneCommand object for execution.
+     * @throws ParseException if the user input is not in correct format
      */
     public UndoneCommand parse(String args) throws ParseException {
         try {

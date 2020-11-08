@@ -5,8 +5,6 @@ import java.util.logging.Logger;
 
 import tp.acecs2103.commons.core.LogsCenter;
 import tp.acecs2103.commons.util.CollectionUtil;
-import tp.acecs2103.logic.commands.exceptions.CommandException;
-import tp.acecs2103.model.TaskList;
 import tp.acecs2103.model.exceptions.InvalidTaskOperationException;
 
 /**
@@ -49,6 +47,15 @@ public class Task implements Comparable<Task> {
      */
     public Index getIndex() {
         return index;
+    }
+
+    /**
+     * Gets the week number implied by the task index.
+     */
+    public WeekNumber getWeekNumberFromIndex() {
+        String i = index.value;
+        String weekNumber = i.length() == 4 ? i.substring(1,2) : i.substring(1,3);
+        return new WeekNumber(weekNumber);
     }
 
     /**
@@ -160,10 +167,15 @@ public class Task implements Comparable<Task> {
     }
 
     /**
-     * Check whether the task a valid task, aka if the official deadline is correctly set to null for a customised task.
+     * Check whether the task a valid task, aka if all three requirements below are met:
+     * 1. the official deadline is correctly set to null for a customised task;
+     * 2. a customised deadline is set
+     * 3. index number format is consistent with the week number, eg. 01205 for a week 12 task
      */
     public boolean isValid() {
-        return isCustomized() == (officialDeadline == null);
+        return (isCustomized() == (officialDeadline == null))
+                && isCustomized() == (customizedDeadline != null)
+                && getWeekNumber().equals(getWeekNumberFromIndex());
     }
 
     /**
@@ -179,12 +191,8 @@ public class Task implements Comparable<Task> {
     public boolean contains(String keyword) {
         keyword = keyword.toLowerCase();
 
-        if (description == null && remark != null) {
-            return remark.value.toLowerCase().contains(keyword);
-        } else if (description != null && remark == null) {
+        if  (description != null && remark == null) {
             return description.value.toLowerCase().contains(keyword);
-        } else if (description == null && remark == null) {
-            return false;
         }
         return description.value.toLowerCase().contains(keyword)
                 || remark.value.toLowerCase().contains(keyword);
@@ -231,6 +239,7 @@ public class Task implements Comparable<Task> {
         }
         return returnString;
     }
+
 
     @Override
     public boolean equals(Object other) {

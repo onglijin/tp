@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import tp.acecs2103.commons.util.AppUtil;
-import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.model.exceptions.InvalidTaskListOperationException;
 import tp.acecs2103.model.exceptions.InvalidTaskOperationException;
 import tp.acecs2103.model.task.CustomizedDeadline;
@@ -118,7 +117,7 @@ public class TaskList {
     }
 
     /**
-     * Finds tasks based on existing keyWord and timeRange.
+     * Finds tasks based on existing timeRange.
      *
      * @return a ArrayList consisting of all satisfied tasks.
      */
@@ -133,7 +132,7 @@ public class TaskList {
     }
 
     /**
-     * Finds tasks based on new keyWord and timeRange.
+     * Finds tasks based on new keyWord.
      *
      * @param keyWord is new keyword given by user.
      * @return a new ArrayList to display.

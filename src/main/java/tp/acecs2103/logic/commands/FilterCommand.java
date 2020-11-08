@@ -8,7 +8,6 @@ import tp.acecs2103.logic.parser.exceptions.ParseException;
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.task.WeekNumber;
 
-
 public class FilterCommand extends Command {
     public static final String COMMAND_WORD = "filter";
 
@@ -32,7 +31,7 @@ public class FilterCommand extends Command {
      * Creates an FilterCommand to display tasks that fulfill given criteria.
      * Only for display of completed tasks
      */
-    public FilterCommand(String keyword) throws CommandException, ParseException {
+    public FilterCommand(String keyword) throws ParseException {
         requireNonNull(keyword);
 
         if (!keyword.equals("done")) {
@@ -48,7 +47,7 @@ public class FilterCommand extends Command {
      * Creates an FilterCommand to display tasks that fulfill given criteria.
      * For display of completed tasks when week number is given
      */
-    public FilterCommand(String keyword, WeekNumber weekNumber) throws CommandException, ParseException {
+    public FilterCommand(String keyword, WeekNumber weekNumber) throws ParseException {
         requireNonNull(keyword);
         if (!keyword.equals("done")) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
@@ -63,7 +62,7 @@ public class FilterCommand extends Command {
      * Creates an FilterCommand to display tasks that fulfill given criteria.
      * For pending tasks with ddl type specified.
      */
-    public FilterCommand(String keyword, String ddlType) throws CommandException, ParseException {
+    public FilterCommand(String keyword, String ddlType) throws ParseException {
         requireNonNull(keyword);
         if (!keyword.equals("pending") || (!ddlType.equals("official")
                 && !ddlType.equals("customised"))) {
@@ -115,10 +114,39 @@ public class FilterCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
-                && keyword.equals(((FilterCommand) other).keyword)
-                && ddlType.equals(((FilterCommand) other).ddlType)
-                && weekNumber == ((FilterCommand) other).weekNumber);
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof FilterCommand)) {
+            return false;
+        }
+        FilterCommand otherObj = (FilterCommand) other;
+        if (this.ddlType == null) {
+            if (otherObj.ddlType != null) {
+                return false;
+            } else {
+                if (this.weekNumber == null) {
+                    if (otherObj.weekNumber != null) {
+                        return false;
+                    } else {
+                        return keyword.equals(((FilterCommand) other).keyword);
+                    }
+                } else {
+                    return keyword.equals(((FilterCommand) other).keyword)
+                            && weekNumber.equals(((FilterCommand) other).weekNumber);
+                }
+            }
+        } else if (this.weekNumber == null) {
+            if (otherObj.weekNumber != null) {
+                return false;
+            } else {
+                return keyword.equals(((FilterCommand) other).keyword)
+                        && ddlType.equals(((FilterCommand) other).ddlType);
+            }
+        } else {
+            return keyword.equals(((FilterCommand) other).keyword)
+                    && ddlType.equals(((FilterCommand) other).ddlType)
+                    && weekNumber.equals(((FilterCommand) other).weekNumber);
+        }
     }
 }

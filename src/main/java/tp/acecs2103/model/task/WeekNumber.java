@@ -55,8 +55,10 @@ public class WeekNumber {
 
     @Override
     public boolean equals(Object other) {
-        return other == this
-                || (other instanceof WeekNumber
-                && value.equals(((WeekNumber) other).value));
+        if (other == null || ! (other instanceof WeekNumber)) {
+            return false;
+        } else {
+            return this.value.equals(other.toString());
+        }
     }
 }

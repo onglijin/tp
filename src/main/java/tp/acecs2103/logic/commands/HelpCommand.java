@@ -20,4 +20,13 @@ public class HelpCommand extends Command {
     public CommandResult execute(Model model) {
         return new CommandResult(SHOWING_HELP_MESSAGE, true, false);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == null || !(other instanceof HelpCommand)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

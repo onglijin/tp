@@ -42,10 +42,6 @@ public class Index {
         return test.matches(VALIDATION_REGEX);
     }
 
-    public int getIndexValue() {
-        return Integer.parseInt(value);
-    }
-
     @Override
     public String toString() {
         return value;
@@ -57,6 +53,4 @@ public class Index {
                 || (other instanceof Index
                 && value.equals(((Index) other).value));
     }
-
-    // TODO: check if hashCode needed
 }
