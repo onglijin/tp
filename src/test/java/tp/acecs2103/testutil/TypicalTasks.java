@@ -15,7 +15,7 @@ import tp.acecs2103.model.task.Topic;
 /**
  * A utility class containing a list of {@code Task} objects to be used in tests.
  */
-public class TypicalTasks {
+public class TypicalTasks<taskList> {
 
     public static final Admin ADMIN_ONE = new TaskBuilder().withIndex("0101").withWeekNumber("1")
             .withDescription("Admin One").withOfficialDeadline("2020-10-10").withCustomizedDeadline(null)
@@ -31,25 +31,23 @@ public class TypicalTasks {
             .withRemark("No remark").withIsCustomized(true).withIsDone(false).buildTopic();
     public static final IP IP_ONE = new TaskBuilder().withIndex("0301").withWeekNumber("3")
             .withDescription("Ip One").withOfficialDeadline("2020-10-10").withCustomizedDeadline(null)
-            .withRemark("No remark").withIsCustomized(false).withIsDone(false).buildIp();
+            .withRemark("No remark").withIsCustomized(false).withIsDone(true).buildIp();
     public static final IP IP_TWO = new TaskBuilder().withIndex("0302").withWeekNumber("3")
             .withDescription("Ip Two").withOfficialDeadline(null).withCustomizedDeadline("2020-10-20")
             .withRemark("No remark").withIsCustomized(true).withIsDone(false).buildIp();
     public static final TP TP_ONE = new TaskBuilder().withIndex("0401").withWeekNumber("4")
-            .withDescription("Tp One").withOfficialDeadline("2020-10-10").withCustomizedDeadline(null)
+            .withDescription("Tp One").withOfficialDeadline("2021-10-10").withCustomizedDeadline(null)
             .withRemark("No remark").withIsCustomized(false).withIsDone(false).buildTp();
     public static final TP TP_TWO = new TaskBuilder().withIndex("0402").withWeekNumber("4")
             .withDescription("Tp Two").withOfficialDeadline(null).withCustomizedDeadline("2020-10-20")
             .withRemark("No remark").withIsCustomized(true).withIsDone(false).buildTp();
-
     public static final Admin ADMIN_EXTRA_ONE = new TaskBuilder().withIndex("0103").withWeekNumber("1")
-            .withDescription("Admin Extra One").withOfficialDeadline("2020-10-10").withCustomizedDeadline(null)
-            .withRemark("No remark").withIsCustomized(false).withIsDone(false).buildAdmin();
+            .withDescription("Admin Extra One").withOfficialDeadline("2021-10-10").withCustomizedDeadline(null)
+            .withRemark("No remark").withIsCustomized(false).withIsDone(true).buildAdmin();
     public static final Admin ADMIN_EXTRA_TWO = new TaskBuilder().withIndex("0104").withWeekNumber("1")
-            .withDescription("Admin Extra Two").withOfficialDeadline("2020-10-10").withCustomizedDeadline(null)
+            .withDescription("Admin Extra Two").withOfficialDeadline("2021-10-10").withCustomizedDeadline(null)
             .withRemark("No remark").withIsCustomized(false).withIsDone(false).buildAdmin();
 
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalTasks() {} // prevents instantiation
 
@@ -64,8 +62,19 @@ public class TypicalTasks {
         return taskList;
     }
 
+    /**
+     * Returns an {@code TaskList} with all the extra tasks.
+     */
+        public static TaskList getExtraTaskList() {
+        TaskList taskList = new TaskList();
+        taskList.add(ADMIN_EXTRA_ONE);
+        taskList.add(ADMIN_EXTRA_TWO);
+        return taskList;
+    }
+
     public static List<Task> getTypicalTasks() {
         return new ArrayList<>(Arrays.asList(ADMIN_ONE, ADMIN_TWO, TOPIC_ONE, TOPIC_TWO,
                 IP_ONE, IP_TWO, TP_ONE, TP_TWO));
     }
+
 }

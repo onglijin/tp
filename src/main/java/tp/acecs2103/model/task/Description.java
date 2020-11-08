@@ -31,7 +31,7 @@ public class Description {
     }
     @Override
     public boolean equals(Object other) {
-        if (other == null || other instanceof Description) {
+        if (other == null || ! (other instanceof Description)) {
             return false;
         } else {
             return this.value.equals(other.toString());

@@ -39,11 +39,11 @@ public class Index {
      * Returns true if a given string is a valid index.
      */
     public static boolean isValidIndex(String test) {
+        int weekNumber = Integer.parseInt((test.length() == 4 ? test.substring(1,2) : test.substring(1,3)));
+        if (weekNumber <= 0 || weekNumber > 13) {
+            return false;
+        }
         return test.matches(VALIDATION_REGEX);
-    }
-
-    public int getIndexValue() {
-        return Integer.parseInt(value);
     }
 
     @Override
@@ -57,6 +57,4 @@ public class Index {
                 || (other instanceof Index
                 && value.equals(((Index) other).value));
     }
-
-    // TODO: check if hashCode needed
 }

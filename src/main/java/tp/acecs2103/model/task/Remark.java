@@ -2,7 +2,7 @@ package tp.acecs2103.model.task;
 
 /**
  * Represents a Task's description in the task manager.
- * Guarantees: immutable; is valid as declared in {@link #isValidRemark(String)}
+ * Guarantees: immutable;}
  */
 public class Remark {
 
@@ -17,14 +17,15 @@ public class Remark {
         value = remark;
     }
 
+    public boolean contains(String keyword) {
+        return value.contains(keyword);
+    }
+
     @Override
     public String toString() {
         return value;
     }
 
-    public boolean contains(String keyword) {
-        return value.contains(keyword);
-    }
 
     @Override
     public boolean equals(Object other) {

@@ -20,7 +20,7 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the task identified by the index number used in the displayed task list.\n"
-            + "Parameters: INDEX (in the form of 0 + two-digit week number + two-digit task number e.g. 01205)\n"
+            + "Parameters: INDEX (0 + week number in [1,13] + two-digit task number e.g. 01205)\n"
             + "Example: " + COMMAND_WORD + " 0101";
 
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Task: \n%1$s";
