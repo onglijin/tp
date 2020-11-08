@@ -32,7 +32,6 @@ public class DoneCommandParserTest {
         }
     }
 
-    //TODO: WARNING!!!SHOULD BE FAILED
     @Test
     public void parse_invalidDoneCommandInvalidIndex1_fail() {
         DoneCommandParser doneCommandParser = new DoneCommandParser();
@@ -48,6 +47,17 @@ public class DoneCommandParserTest {
     public void parse_invalidDoneCommandInvalidIndex2_fail() {
         DoneCommandParser doneCommandParser = new DoneCommandParser();
         String parametersStub = "ABC";
+        try {
+            doneCommandParser.parse(parametersStub);
+        } catch (ParseException e) {
+            assert true;
+        }
+    }
+
+    @Test
+    public void parse_invalidDoneCommandInvalidIndex3_fail() {
+        DoneCommandParser doneCommandParser = new DoneCommandParser();
+        String parametersStub = "0199";
         try {
             doneCommandParser.parse(parametersStub);
         } catch (ParseException e) {
