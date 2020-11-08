@@ -71,7 +71,6 @@ public class ModelManager implements Model {
 
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
-        System.out.println("set gui setting");
         requireNonNull(guiSettings);
         userPrefs.setGuiSettings(guiSettings);
     }
