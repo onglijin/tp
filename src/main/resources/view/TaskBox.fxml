@@ -22,7 +22,7 @@
                <children>
                   <Label fx:id="index" maxHeight="-Infinity" minHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" styleClass="Label" text="Index: None" wrapText="true" />
                   <Label fx:id="weekNumber" maxHeight="-Infinity" minHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" styleClass="Label" text="Week Number: None" wrapText="true" />
-                  <Label fx:id="description" maxHeight="-Infinity" minHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" styleClass="Label" text="Description: None" wrapText="true" textAlignment="JUSTIFY"/>
+                  <Label fx:id="description" maxHeight="-Infinity" minHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" styleClass="Label" text="Description: None" wrapText="true" />
                   <Label fx:id="officialDeadline" maxHeight="-Infinity" minHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" styleClass="Label" text="Official Deadline: None" wrapText="true" />
                   <Label fx:id="customizedDeadline" maxHeight="-Infinity" minHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" styleClass="Label" text="Customized Deadline: None" wrapText="true" />
                   <Label fx:id="remark" maxHeight="-Infinity" minHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" styleClass="Label" text="Remark: None" wrapText="true" />
