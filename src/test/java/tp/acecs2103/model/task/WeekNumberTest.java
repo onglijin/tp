@@ -11,7 +11,7 @@ class WeekNumberTest {
     private WeekNumber wk = new WeekNumber("1");
     private WeekNumber wk1 = new WeekNumber("1");
     private WeekNumber wk2 = new WeekNumber("2");
-    
+
     @Test
     public void constructor() {
         assertThrows(IllegalArgumentException.class, () -> new WeekNumber("0"));
