@@ -4,18 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tp.acecs2103.testutil.Assert.assertThrows;
-import static tp.acecs2103.testutil.TypicalTasks.AdminOne;
+import static tp.acecs2103.testutil.TypicalTasks.ADMIN_ONE;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import tp.acecs2103.commons.core.GuiSettings;
 import tp.acecs2103.model.exceptions.ModelException;
-import tp.acecs2103.model.task.Admin;
-import tp.acecs2103.testutil.TaskBuilder;
 
 public class ModelManagerTest {
 
@@ -74,22 +71,22 @@ public class ModelManagerTest {
 
     @Test
     public void hasTask_taskNotInTaskList_returnsFalse() {
-        assertFalse(modelManager.hasTask(AdminOne));
+        assertFalse(modelManager.hasTask(ADMIN_ONE));
     }
 
     @Test
     public void hasTask_taskInTaskList_returnsTrue() {
-        modelManager.addTask(AdminOne);
-        assertTrue(modelManager.hasTask(AdminOne));
+        modelManager.addTask(ADMIN_ONE);
+        assertTrue(modelManager.hasTask(ADMIN_ONE));
     }
 
     @Test
     public void deleteTask_taskInTaskList_success() {
         try {
-            modelManager.addTask(AdminOne);
-            assertTrue(modelManager.hasTask(AdminOne));
-            modelManager.deleteTask(AdminOne.getIndex());
-            assertFalse(modelManager.hasTask(AdminOne));
+            modelManager.addTask(ADMIN_ONE);
+            assertTrue(modelManager.hasTask(ADMIN_ONE));
+            modelManager.deleteTask(ADMIN_ONE.getIndex());
+            assertFalse(modelManager.hasTask(ADMIN_ONE));
         } catch (Exception e) {
             assertTrue(true);
         }
@@ -98,6 +95,6 @@ public class ModelManagerTest {
 
     @Test
     public void deleteTask_taskNotInTaskList_throwsModelException() {
-        assertThrows(ModelException.class, () -> modelManager.deleteTask(AdminOne.getIndex()));
+        assertThrows(ModelException.class, () -> modelManager.deleteTask(ADMIN_ONE.getIndex()));
     }
 }

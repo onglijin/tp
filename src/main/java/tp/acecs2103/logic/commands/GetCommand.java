@@ -25,4 +25,12 @@ public class GetCommand extends Command {
         return new CommandResult(MESSAGE_SUCCESS, true, false); // dummy code for now
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == null || !(other instanceof GetCommand)) {
+            return false;
+        } else {
+            return this.infoType.equals(((GetCommand) other).infoType);
+        }
+    }
 }

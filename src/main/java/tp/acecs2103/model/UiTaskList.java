@@ -49,6 +49,12 @@ public class UiTaskList {
             }
         }
     }
+    /**
+     * Gets a list consisting of all tasks.
+     */
+    public ArrayList<Task> getCombinedTaskList() {
+        return combinedTaskList;
+    }
 
     /**
      * Gets a list consisting of all admin tasks.

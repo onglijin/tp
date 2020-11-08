@@ -16,4 +16,14 @@ public class ExitCommand extends Command {
         return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == null) {
+            return false;
+        } else if (!(other instanceof ExitCommand)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

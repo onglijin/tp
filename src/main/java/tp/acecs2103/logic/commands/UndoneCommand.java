@@ -21,7 +21,7 @@ public class UndoneCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Mark the task identified by the index number used in the displayed task list as pending.\n"
-            + "Parameters: INDEX (in the form of 0 + two-digit week number + two-digit task number e.g. 01205)\n"
+            + "Parameters: INDEX (0 + week number in [1,13] + two-digit task number e.g. 01205)\n"
             + "Example: " + COMMAND_WORD + " 0101";
 
     public static final String MESSAGE_DONE_TASK_SUCCESS = "Undone Task: \n%1$s";
@@ -53,8 +53,10 @@ public class UndoneCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((UndoneCommand) other).getTargetIndex())); // state check
+        if (other == null || !(other instanceof UndoneCommand)) {
+            return false;
+        } else {
+            return this.targetIndex.equals(((UndoneCommand)other).targetIndex);
+        }
     }
 }

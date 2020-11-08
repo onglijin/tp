@@ -31,7 +31,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edit the task identified by the index number with provided information.\n"
             + "Parameters: (only INDEX is compulsory)\n"
-            + "i/INDEX (in the form of 0 + two-digit week number + two-digit task number e.g. 01205)\n"
+            + "i/INDEX (0 + week number in [1,13] + two-digit task number e.g. 01205)\n"
             + "w/WEEK_NUMBER (an integer in range [1,13], only for edition of customized task)\n"
             + "d/DESCRIPTION (only for edition of customized task)\n"
             + "c/CUSTOMISED_DEADLINE (in the form of YYYY-MM-DD)\n"
@@ -86,7 +86,7 @@ public class EditCommand extends Command {
     /**
      * edited with {@code editPersonDescriptor}.
      */
-    private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor)
+    public static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor)
         throws CommandException {
         assert taskToEdit != null;
         if (!taskToEdit.isCustomized()) {
@@ -126,6 +126,10 @@ public class EditCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
+        if (other == null) {
+            return false;
+        }
+
         // short circuit if same object
         if (other == this) {
             return true;
@@ -143,8 +147,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the task with. Each non-empty field value will replace the
+     * corresponding field value of the task.
      */
     public static class EditTaskDescriptor {
         private WeekNumber weekNumber;
@@ -153,6 +157,17 @@ public class EditCommand extends Command {
         private Remark remark;
 
         public EditTaskDescriptor() {}
+
+        /**
+         * Constructor for EditTaskDescriptor.
+         */
+        public EditTaskDescriptor(WeekNumber weekNumber, Description description,
+                                  CustomizedDeadline customizedDeadline, Remark remark) {
+            this.weekNumber = weekNumber;
+            this.description = description;
+            this.customizedDeadline = customizedDeadline;
+            this.remark = remark;
+        }
 
         /**
          * Copy constructor.
@@ -172,7 +187,6 @@ public class EditCommand extends Command {
             return CollectionUtil.isAnyNonNull(//index,
                     weekNumber, description, customizedDeadline, remark);
         }
-
 
 
         public void setWeekNumber(WeekNumber weekNumber) {
@@ -220,6 +234,10 @@ public class EditCommand extends Command {
 
         @Override
         public boolean equals(Object other) {
+            if (other == null) {
+                return false;
+            }
+
             // short circuit if same object
             if (other == this) {
                 return true;
@@ -232,20 +250,45 @@ public class EditCommand extends Command {
 
             // state check
             EditTaskDescriptor e = (EditTaskDescriptor) other;
+            boolean flagWeekNumber;
+            boolean flagDescription;
+            boolean flagCustomizedDeadline;
+            boolean flagRemark;
+            if ((this.weekNumber == null && e.weekNumber != null) || (this.weekNumber != null && e.weekNumber == null)) {
+                flagWeekNumber = false;
+            } else if (this.weekNumber == null) {
+                flagWeekNumber = true;
+            } else {
+                flagWeekNumber = this.weekNumber.equals(e.weekNumber);
+            }
 
-            return //getIndex().equals(e.getIndex())
-                    getWeekNumber().equals(e.getWeekNumber())
-                    && getDescription().equals(e.getDescription())
-                    && getCustomizedDeadline().equals(e.getCustomizedDeadline())
-                    && getRemark().equals(e.getRemark());
-        }
+            if ((this.customizedDeadline == null && e.customizedDeadline != null) || (this.customizedDeadline != null && e.customizedDeadline == null)) {
+                flagCustomizedDeadline = false;
+            } else if (this.customizedDeadline == null) {
+                flagCustomizedDeadline = true;
+            } else {
+                flagCustomizedDeadline = this.customizedDeadline.equals(e.customizedDeadline);
+            }
 
-        @Override
-        public String toString() {
-            return "Week Number :" + weekNumber.value
-                    + "\nDescription :" + description.value
-                    + "\nCustomized deadline :" + customizedDeadline.value
-                    + "\nRemark :" + remark.value;
+            if ((this.description == null && e.description != null) || (this.description != null && e.description == null)) {
+                flagDescription = false;
+            } else if (this.description == null) {
+                flagDescription = true;
+            } else {
+                flagDescription = this.description.equals(e.description);
+            }
+
+            if ((this.remark == null && e.remark != null) || (this.remark != null && e.remark == null)) {
+                flagRemark = false;
+            } else if (this.remark == null) {
+                flagRemark = true;
+            } else {
+                flagRemark = this.remark.equals(e.remark);
+            }
+
+
+            return flagCustomizedDeadline && flagDescription && flagRemark && flagWeekNumber;
+
         }
     }
 }

@@ -8,7 +8,9 @@ import tp.acecs2103.model.task.Index;
 public class DoneCommandParser implements Parser<DoneCommand> {
 
     /**
-     * Parses args to the input of {@code DoneCommand}.
+     * Parses the given {@code String} of arguments in the context of the DoneCommand
+     * and returns an DoneCommand object for execution.
+     * @throws ParseException if the user input is not in correct format
      */
     public DoneCommand parse(String args) throws ParseException {
         try {
