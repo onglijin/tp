@@ -20,8 +20,8 @@ public class OfficialDeadline extends Deadline {
      */
     public OfficialDeadline(String officialDeadline, LocalDate timeInfo) {
         super(officialDeadline, timeInfo);
-
     }
+
 
     @Override
     public boolean equals(Object other) {

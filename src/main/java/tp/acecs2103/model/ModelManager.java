@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import tp.acecs2103.commons.core.GuiSettings;
 import tp.acecs2103.commons.core.LogsCenter;
 import tp.acecs2103.commons.util.CollectionUtil;
+import tp.acecs2103.logic.commands.ExitCommand;
 import tp.acecs2103.model.exceptions.InvalidTaskListOperationException;
 import tp.acecs2103.model.exceptions.ModelException;
 import tp.acecs2103.model.task.CustomizedDeadline;
@@ -101,7 +102,8 @@ public class ModelManager implements Model {
     @Override
     public boolean hasTask(Task task) {
         requireNonNull(task);
-        return taskList.hasTask(task);
+        boolean result = taskList.hasTask(task);
+        return result;
     }
 
     @Override
@@ -192,5 +194,16 @@ public class ModelManager implements Model {
         return uiTaskList.getTpList();
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == null) {
+            return false;
+        } else if (!(other instanceof ModelManager)) {
+            return false;
+        } else {
+            return userPrefs.equals(((ModelManager) other).userPrefs)
+                    && taskList.equals(((ModelManager) other).taskList);
+        }
+    }
 }
 
