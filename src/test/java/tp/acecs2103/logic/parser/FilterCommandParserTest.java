@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import tp.acecs2103.logic.commands.FilterCommand;
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
-import tp.acecs2103.model.task.Topic;
 import tp.acecs2103.model.task.WeekNumber;
 
 public class FilterCommandParserTest {
