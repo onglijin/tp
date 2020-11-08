@@ -32,9 +32,17 @@ public class DeadlineCommandParser implements Parser<DeadlineCommand> {
         }
 
         String indexParsed = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
+
+        if (!Index.isValidIndex(indexParsed)) {
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    DeadlineCommand.MESSAGE_USAGE));
+        }
+
         Index index = new Index(indexParsed);
+
         LocalDate customizedDeadline =
                 ParserUtil.parseCustomizedDeadline(argMultimap.getValue(PREFIX_CUSTOMIZED_DEADLINE).get());
+
         return new DeadlineCommand(index, new CustomizedDeadline(customizedDeadline.toString(), customizedDeadline));
     }
 
