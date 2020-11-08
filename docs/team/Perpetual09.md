@@ -7,7 +7,7 @@ title: Gao Gui's Project Portfolio Page
 
 Ace CS2103/T is a desktop task manager application used for keeping track of tasks for CS2103/T Software Engineering. The user interacts with it using a CLI, and it has a GUI created with JavaFX.
 
-Given below are my contributions to the project.
+Given below are my contributions to the project:
 
 * **Code contributed**:  
 https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=Perpetual09&tabRepo=AY2021S1-CS2103-T14-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code
