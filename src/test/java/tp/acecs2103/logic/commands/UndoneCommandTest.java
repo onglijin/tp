@@ -22,7 +22,7 @@ class UndoneCommandTest {
     public void execute_validIndex_success() {
         Model model = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
 
-        Index index = new Index("0301");
+        Index index = new Index("0402");
         UndoneCommand undoneCommand = new UndoneCommand(index);
         Task task = model.getTaskList().getTask(index);
         task.markAsDone();
@@ -53,11 +53,11 @@ class UndoneCommandTest {
     public void execute_invalidIndexUndoneTask_fail() {
         Model model = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
 
-        Index index = new Index("0101");
+        Index index = new Index("0102");
         Task task = model.getTaskList().getTask(index);
-        UndoneCommand doneCommand = new UndoneCommand(index);
+        UndoneCommand undoneCommand = new UndoneCommand(index);
 
-        assertThrows(CommandException.class, () -> doneCommand.execute(model));
+        assertThrows(CommandException.class, () -> undoneCommand.execute(model));
     }
 
     @Test

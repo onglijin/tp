@@ -21,6 +21,5 @@ class ClearCommandTest {
         clearCommand.execute(model);
         String expectedMessage = String.format(ClearCommand.MESSAGE_SUCCESS);
         assertCommandSuccess(clearCommand, model, expectedMessage, expectedModel);
-
     }
 }
