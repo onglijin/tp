@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TaskListParserTest {
     @Test
-    public void taskListParser_parseCommand_add_valid1_success() {
+    public void taskListParser_parseCommandAddValid1_success() {
         TaskListParser parser = new TaskListParser();
         String parametersStub = "add i/0101 w/1 d/CyberPunk2077 c/2020-12-10 r/release a/Ip";
         Task task = new IP(new Index("0101"), new WeekNumber("1"), new Description("CyberPunk2077"), null,
@@ -33,7 +33,7 @@ public class TaskListParserTest {
         }
     }
     @Test
-    public void taskListParser_parseCommand_add_valid2_success() {
+    public void taskListParser_parseCommandAddValid2_success() {
         TaskListParser parser = new TaskListParser();
         String parametersStub = "add i/0101 w/1 d/CyberPunk2077 c/2020-12-10 a/Ip";
         Task task = new IP(new Index("0101"), new WeekNumber("1"), new Description("CyberPunk2077"), null,
@@ -54,7 +54,7 @@ public class TaskListParserTest {
         }
     }
     @Test
-    public void taskListParser_parseCommand_edit_valid_success() {
+    public void taskListParser_parseCommandEditValid_success() {
         TaskListParser parser = new TaskListParser();
         String parametersStub = "edit i/0101 w/1 d/CyberPunk2077 c/2020-12-10 r/release";
         Index index = new Index("0101");
@@ -78,7 +78,7 @@ public class TaskListParserTest {
         }
     }
     @Test
-    public void taskListParser_parseCommand_delete_valid_success() {
+    public void taskListParser_parseCommandDeleteValid_success() {
         TaskListParser parser = new TaskListParser();
         String parametersStub = "delete 0101";
         DeleteCommand expected = new DeleteCommand(new Index("0101"));
@@ -91,7 +91,7 @@ public class TaskListParserTest {
         }
     }
     @Test
-    public void taskListParser_parseCommand_find_valid_success() {
+    public void taskListParser_parseCommandFindValid_success() {
         TaskListParser parser = new TaskListParser();
         String parametersStub = "find testtest";
         FindCommand expected = new FindCommand("testtest");
@@ -104,7 +104,7 @@ public class TaskListParserTest {
         }
     }
     @Test
-    public void taskListParser_parseCommand_exit_valid_success() {
+    public void taskListParser_parseCommandExitValid_success() {
         TaskListParser parser = new TaskListParser();
         String parametersStub = "exit";
         ExitCommand expected = new ExitCommand();
@@ -117,10 +117,11 @@ public class TaskListParserTest {
         }
     }
     @Test
-    public void taskListParser_parseCommand_deadline_valid_success() {
+    public void taskListParser_parseCommandDeadlineValid_success() {
         TaskListParser parser = new TaskListParser();
         String parametersStub = "deadline i/0101 c/2020-08-17";
-        DeadlineCommand expected = new DeadlineCommand(new Index("0101"), new CustomizedDeadline("2020-08-17", LocalDate.parse("2020-08-17")));
+        DeadlineCommand expected = new DeadlineCommand(new Index("0101"),
+                new CustomizedDeadline("2020-08-17", LocalDate.parse("2020-08-17")));
         try {
             assertEquals(expected, parser.parseCommand(parametersStub));
         } catch (ParseException e) {
@@ -129,21 +130,9 @@ public class TaskListParserTest {
             e.printStackTrace();
         }
     }
+
     @Test
-    public void taskListParser_parseCommand_get_valid_success() {
-        TaskListParser parser = new TaskListParser();
-        String argumentStab = "get t/Admin";
-        GetCommand expected = new GetCommand("Admin");
-        try {
-            assertEquals(expected, parser.parseCommand(argumentStab));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        } catch (CommandException e) {
-            e.printStackTrace();
-        }
-    }
-    @Test
-    public void taskListParser_parseCommand_help_valid_success() {
+    public void taskListParser_parseCommandHelpValid_success() {
         TaskListParser parser = new TaskListParser();
         String parametersStub = "help";
         HelpCommand expected = new HelpCommand();
@@ -156,7 +145,7 @@ public class TaskListParserTest {
         }
     }
     @Test
-    public void taskListParser_parseCommand_list_valid_success() {
+    public void taskListParser_parseCommandListValid_success() {
         TaskListParser parser = new TaskListParser();
         String parametersStub = "list 5";
         ListCommand expected = new ListCommand(new WeekNumber("5"));
@@ -169,7 +158,7 @@ public class TaskListParserTest {
         }
     }
     @Test
-    public void taskListParser_parseCommand_done_valid_success() {
+    public void taskListParser_parseCommandDoneValid_success() {
         TaskListParser parser = new TaskListParser();
         String parametersStub = "done 0101";
         DoneCommand expected = new DoneCommand(new Index("0101"));
@@ -182,7 +171,7 @@ public class TaskListParserTest {
         }
     }
     @Test
-    public void taskListParser_parseCommand_undone_valid_success() {
+    public void taskListParser_parseCommandUndoneValid_success() {
         TaskListParser parser = new TaskListParser();
         String parametersStub = "undone 0101";
         UndoneCommand expected = new UndoneCommand(new Index("0101"));
@@ -195,7 +184,7 @@ public class TaskListParserTest {
         }
     }
     @Test
-    public void taskListParser_parseCommand_filter_valid1_success() {
+    public void taskListParser_parseCommandFilterValid1_success() {
         TaskListParser parser = new TaskListParser();
         String parametersStub = "filter w/4 k/pending l/official";
         FilterCommand expected = null;
@@ -213,7 +202,7 @@ public class TaskListParserTest {
         }
     }
     @Test
-    public void taskListParser_parseCommand_filter_valid2_success() {
+    public void taskListParser_parseCommandFilterValid2_success() {
         TaskListParser parser = new TaskListParser();
         String parametersStub = "filter k/pending l/official";
         FilterCommand expected = null;
@@ -227,7 +216,7 @@ public class TaskListParserTest {
         }
     }
     @Test
-    public void taskListParser_parseCommand_filter_valid3_success() {
+    public void taskListParser_parseCommandFilterValid3_success() {
         TaskListParser parser = new TaskListParser();
         String parametersStub = "filter w/4 k/done";
         FilterCommand expected = null;
@@ -241,7 +230,7 @@ public class TaskListParserTest {
         }
     }
     @Test
-    public void taskListParser_parseCommand_filter_valid4_success() {
+    public void taskListParser_parseCommandFilterValid4_success() {
         TaskListParser parser = new TaskListParser();
         String parametersStub = "filter k/done";
         FilterCommand expected = null;
@@ -255,7 +244,7 @@ public class TaskListParserTest {
         }
     }
     @Test
-    public void taskListParser_parseCommand_home_valid_success() {
+    public void taskListParser_parseCommandHomeValid_success() {
         TaskListParser parser = new TaskListParser();
         String parametersStub = "home";
         HomeCommand expected = new HomeCommand();

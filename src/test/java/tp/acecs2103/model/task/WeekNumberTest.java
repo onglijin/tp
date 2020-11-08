@@ -2,17 +2,16 @@ package tp.acecs2103.model.task;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class WeekNumberTest {
 
-    WeekNumber wk = new WeekNumber("1");
-    WeekNumber wk1 = new WeekNumber("1");
-    WeekNumber wk2 = new WeekNumber("2");
-
+    private WeekNumber wk = new WeekNumber("1");
+    private WeekNumber wk1 = new WeekNumber("1");
+    private WeekNumber wk2 = new WeekNumber("2");
+    
     @Test
     public void constructor() {
         assertThrows(IllegalArgumentException.class, () -> new WeekNumber("0"));
@@ -20,14 +19,14 @@ class WeekNumberTest {
     }
 
     @Test
-    public void isValidWeekNumber_StringInput_returnTrue() {
+    public void isValidWeekNumber_stringInput_returnTrue() {
         assertTrue(WeekNumber.isValidWeekNumber("1"));
         assertTrue(WeekNumber.isValidWeekNumber("5"));
         assertTrue(WeekNumber.isValidWeekNumber("13"));
     }
 
     @Test
-    public void isValidWeekNumber_StringInput_returnFalse() {
+    public void isValidWeekNumber_stringInput_returnFalse() {
         assertFalse(WeekNumber.isValidWeekNumber("-2"));
         assertFalse(WeekNumber.isValidWeekNumber("0"));
         assertFalse(WeekNumber.isValidWeekNumber("14"));
@@ -36,21 +35,21 @@ class WeekNumberTest {
 
     @Test
     public void getWeekValueInt_null_weekNumberInt() {
-        assertEquals(1,wk1.getWeekValueInt());
+        assertEquals(1, wk1.getWeekValueInt());
     }
 
     @Test
     public void testToString_null_weekNumberString() {
-        assertEquals("1",wk1.value);
+        assertEquals("1", wk1.value);
     }
 
     @Test
-    public void testEquals_ObjectToCompare_returnTrue() {
+    public void testEquals_objectToCompare_returnTrue() {
         assertTrue(wk.equals(wk1));
     }
 
     @Test
-    public void testEquals_ObjectToCompare_returnFalse() {
+    public void testEquals_objectToCompare_returnFalse() {
         assertFalse(wk1.equals(wk2));
         assertFalse(wk1.equals("1"));
         assertFalse(wk1.equals(null));

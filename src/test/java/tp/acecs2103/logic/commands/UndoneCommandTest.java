@@ -8,7 +8,9 @@ import tp.acecs2103.model.UserPrefs;
 import tp.acecs2103.model.task.*;
 import tp.acecs2103.testutil.TypicalTasks;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tp.acecs2103.testutil.Assert.assertThrows;
 
 class UndoneCommandTest {
@@ -34,7 +36,7 @@ class UndoneCommandTest {
     }
 
     @Test
-    public void execute_invalidIndex_NonExistent_fail() {
+    public void execute_invalidIndexNonExistent_fail() {
         Model model = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
 
         Index index = new Index("0203");
@@ -44,7 +46,7 @@ class UndoneCommandTest {
     }
 
     @Test
-    public void execute_invalidIndex_UndoneTask_fail() {
+    public void execute_invalidIndexUndoneTask_fail() {
         Model model = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
 
         Index index = new Index("0101");

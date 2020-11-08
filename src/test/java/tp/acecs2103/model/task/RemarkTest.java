@@ -2,12 +2,13 @@ package tp.acecs2103.model.task;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class RemarkTest {
-    Remark remark1 =  new Remark("remark");
-    Remark remark2 =  new Remark("remark");
-    Remark remark3 =  new Remark("ABC");
+    private Remark remark1 = new Remark("remark");
+    private Remark remark2 = new Remark("remark");
+    private Remark remark3 = new Remark("ABC");
 
     @Test
     public void contains_keyword_returnTrue() {
