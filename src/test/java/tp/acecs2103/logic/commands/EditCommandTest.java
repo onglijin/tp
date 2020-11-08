@@ -276,11 +276,4 @@ public class EditCommandTest {
         EditTaskDescriptor descriptor = new EditTaskDescriptor();
         assertFalse(descriptor.isAnyFieldEdited());
     }
-
-
-
-
-
-
-
 }

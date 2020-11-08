@@ -15,5 +15,4 @@ class TPTest {
     void getCategory_null_correctTaskCategory() {
         assertEquals(TaskCategory.TP,task1.getCategory());
     }
-
 }

@@ -17,5 +17,4 @@ class CommandResultTest {
         assertTrue(MESSAGE_SUCCESS.equals(commandResult.getFeedbackToUser()));
         assertFalse("random".equals(commandResult.getFeedbackToUser()));
     }
-
 }

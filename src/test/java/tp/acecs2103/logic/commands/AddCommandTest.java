@@ -168,8 +168,8 @@ class AddCommandTest {
 
         assertThrows(CommandException.class, () -> new AddCommand(task).execute(model));
     }
-
-    @Test
+    
+   @Test
    public void equals_null_returnTrue() {
         Task task = new Admin(new Index("0203"), new WeekNumber("2"), new Description("Test Task One"),
                 new OfficialDeadline("2020-09-10", LocalDate.of(2020, 9, 10)),
@@ -186,8 +186,8 @@ class AddCommandTest {
         assertTrue(addCommand.equals(addCommand1));
     }
 
-    @Test
-    public void equals_null_returnFalse() {
+   @Test
+   public void equals_null_returnFalse() {
         Task task = new IP(new Index("0203"), new WeekNumber("2"), new Description("Test Task One"),
                 new OfficialDeadline("2020-09-10", LocalDate.of(2020, 9, 10)),
                 null, new Remark("no remark"), false, false);

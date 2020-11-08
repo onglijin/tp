@@ -15,7 +15,7 @@ Given below are my contributions to the project.
     * What it does: Understand user input and give command to logic manager.
     * Justification: This is the start of every command, the parser provide following logic components clear and valid commands.
     * Highlights: To complete this part, the parser should know what the other parts really need and face variation of user input to provide clear and valid commands.
-    
+
 * **Documentation**:
   * User Guide: [\commit](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/161)
     * Update the detailed input format of each command, include:
@@ -23,7 +23,7 @@ Given below are my contributions to the project.
       * Give command explanations.
       * Give command parameters
       * Give command examples.
-      
+ 
   * Developer Guide:
     * Updated the UML diagram for Logical component [\commit](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/138)
     * Updated the use cases [\commit](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/33)

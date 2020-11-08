@@ -241,5 +241,4 @@ public class TaskTest {
                 null, new Remark("no remark"), false, false);
         Assertions.assertFalse(ip.equals(ip1));
     }
-
 }

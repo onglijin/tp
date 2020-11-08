@@ -28,7 +28,6 @@ public class CommandTestUtil {
     public static final String VALID_REMARK_2 = "Remark 2";
     public static final String VALID_DDL_1 = "2020-10-02";
     public static final String VALID_DDL_2 = "2020-11-07";
-    
 
     public static final EditTaskDescriptorBuilder DESC_A;
     public static final EditTaskDescriptorBuilder DESC_B;
@@ -83,5 +82,4 @@ public class CommandTestUtil {
         assertEquals(expectedTaskList, actualModel.getTaskList());
         assertEquals(expectedUiTaskList, actualModel.getUiTaskList());
     }
-
 }

@@ -82,14 +82,4 @@ class ListCommandTest {
         ListCommand listCommand1 =  new ListCommand(weekNumber);
         assertTrue(listCommand.equals(listCommand1));
     }
-
-
-
-
-
-
-
-
-
-
 }

@@ -15,5 +15,4 @@ class IPTest {
     void getCategory_null_correctTaskCategory() {
         assertEquals(TaskCategory.IP,task1.getCategory());
     }
-
 }
