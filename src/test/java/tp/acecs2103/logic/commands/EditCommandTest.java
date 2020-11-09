@@ -58,7 +58,11 @@ public class EditCommandTest {
         Model model = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
         ModelManager expectedModel = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
 
-        Topic reference = new TaskBuilder().buildTopic();
+        Topic reference = new TaskBuilder().withIndex("0201").withWeekNumber("2")
+                .withDescription("Topic One")
+                .withOfficialDeadline("2020-10-10")
+                .withCustomizedDeadline("2020-10-01")
+                .withRemark("New remark").withIsCustomized(true).withIsDone(false).buildTopic();
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(reference).build();
 
         EditCommand editCommand = new EditCommand(new Index("0202"), descriptor);
@@ -87,7 +91,11 @@ public class EditCommandTest {
         Model model = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
         ModelManager expectedModel = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
 
-        IP reference = new TaskBuilder().buildIp();
+        IP reference = new TaskBuilder().withIndex("0301").withWeekNumber("3")
+                .withDescription("Admin One")
+                .withOfficialDeadline("2020-10-10")
+                .withCustomizedDeadline("2020-10-01")
+                .withRemark("New remark").withIsCustomized(true).withIsDone(false).buildIp();
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(reference).build();
 
         EditCommand editCommand = new EditCommand(new Index("0302"), descriptor);
@@ -116,7 +124,9 @@ public class EditCommandTest {
         Model model = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
         ModelManager expectedModel = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
 
-        TP reference = new TaskBuilder().buildTp();
+        TP reference = new TaskBuilder().withIndex("0401").withWeekNumber("4")
+                .withDescription("Tp One").withOfficialDeadline("2020-10-10").withCustomizedDeadline(null)
+                .withRemark("No remark").withIsCustomized(true).withIsDone(false).buildTp();
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(reference).build();
 
         EditCommand editCommand = new EditCommand(new Index("0402"), descriptor);
@@ -145,7 +155,11 @@ public class EditCommandTest {
         Model model = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
         ModelManager expectedModel = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
 
-        IP reference = new TaskBuilder().build();
+        Admin reference = new TaskBuilder().withIndex("0101").withWeekNumber("1")
+                .withDescription("Admin One")
+                .withOfficialDeadline("2020-10-10")
+                .withCustomizedDeadline("2020-10-01")
+                .withRemark("New remark").withIsCustomized(false).withIsDone(false).buildAdmin();
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(reference).build();
 
         EditCommand editCommand = new EditCommand(new Index("0101"), descriptor);
