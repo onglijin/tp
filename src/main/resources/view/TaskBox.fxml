@@ -18,7 +18,7 @@
         </rowConstraints>
          <children>
 
-            <VBox fx:id="box" prefHeight="115.0" prefWidth="200.0" maxWidth="250" styleClass="VBox">
+            <VBox fx:id="box" prefHeight="180.0" prefWidth="200.0" maxWidth="250" styleClass="VBox">
                <children>
                   <Label fx:id="index" maxHeight="-Infinity" minHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" styleClass="Label" text="Index: None" wrapText="true" />
                   <Label fx:id="weekNumber" maxHeight="-Infinity" minHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" styleClass="Label" text="Week Number: None" wrapText="true" />
