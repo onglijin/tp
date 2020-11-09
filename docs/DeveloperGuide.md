@@ -524,7 +524,7 @@ Actor: User
 
 
 
-**Use case: UC09 - Jump back to default page**
+**Use case: UC09 - Filter the task list**
 
 Actor: User
 
@@ -826,3 +826,43 @@ Mark a task as pending if it is marked as done.
 
 1. Input `exit` in command line to save and exit.
 
+
+## **Effort**
+###Difficulty level
+####More entities:
+* Compared with AB3 which has one panel for Person, there are four different kinds of tasks (Admin, Topic, Tp, Ip), and four panels to display the tasks with corresponding categories in Ace CS2103 / T.
+
+####More attributes:
+* In AB3, each person object has 5 attributes: email, name, address, phone, and tags
+* In Ace CS2103 / T, there are nine attributes in each task object: category, index, week number, description, official deadline, customized deadline, remark, status, and whether is a default task or not. 
+
+####More links between attributes:
+* The nine attributes in our task objects are highly linked
+* It makes the logic of processing each command much more complex as more conditions need to be checked and met, and changes to one attribute will inevitably affect other attributes
+* Here are some examples: 
+  * Index needs to be consistent with the week number
+  * Default task cannot be deleted
+  * Customised deadline cannot be set before official deadline if the task is not overdue
+  * Description can only be edited for customised tasks, but not for default task
+  * ...
+* Due to the high amount of links between attributes, we need to consider more exceptions to handle
+   
+###More commands:
+* Compared with AB3, there are more commands in Ace CS2103 / T
+* Examples include:
+   * deadline
+   * done
+   * undone
+   * filter
+   * ... 
+* Because there are nine attributes in every object, commands are more easily to have bugs. When writing code, we need to be more careful and consider all the aspects.
+
+More testing considerations:
+Since some commands may have many fields (e.g. add, edit), we need to ensure no bugs will occur for every field. We spent much time adding and improving our testing code such that it can cover all the possibilities.
+
+Challenges faced & effort required
+Ui
+In this project, we are required to use JavaFX to design the Ui. However, none of us learned JavaFX before. Although some basic concepts are taught in the individual project, the knowledge needed for a team project is much more than that. When designing the Ui, we need to learn from AB3 first and then think about how to utilize the techniques in our project. Besides, we notice that fa particular styling, there are many ways to achieve it: it can be either implemented in .java class, .fxml file, or .css file, which adds many confusions. Last but not least, although we looked into AB3 code to learn how it implements a certain feature, we abandoned the dark style used in AB3 and created our own light color style, which is also a huge challenge because we cannot use the code from AB3 directly.
+
+achievements of the project
+With our best effort, we finally finished the project --- a desktop task manager application used for keeping track of tasks for CS2103/T Software Engineering. During the process, we learned how to implement logic, storage, model, and Ui part for an application, as well as how these components interact with each other. Besides, we realized the importance of teamwork. When a team member encounters difficulties, others will offer help and think of solutions together. Although this project consumes a lot of time and effort, it is quite meaningful because we gain much software engineering experience during the process and also make a group of nice friends.
