@@ -221,7 +221,12 @@ public class Task implements Comparable<Task> {
 
     @Override
     public int compareTo(Task o) {
-        return getOfficialDeadline().compareTo(o.getOfficialDeadline());
+        Deadline ddl1 = getOfficialDeadline() == null ? getCustomizedDeadline() : getOfficialDeadline();
+        assert ddl1 != null;
+        Deadline ddl2 = o.getOfficialDeadline() == null ? o.getCustomizedDeadline() : o.getOfficialDeadline();
+        assert ddl1 != null;
+        assert ddl2 != null;
+        return ddl1.compareTo(ddl2);
     }
 
     @Override
