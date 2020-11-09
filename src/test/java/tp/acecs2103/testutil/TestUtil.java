@@ -1,9 +1,5 @@
 package tp.acecs2103.testutil;
 
-import tp.acecs2103.commons.core.index.Index;
-import tp.acecs2103.model.Model;
-import tp.acecs2103.model.task.Task;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -31,25 +27,4 @@ public class TestUtil {
         }
         return SANDBOX_FOLDER.resolve(fileName);
     }
-
-//    /**
-//     * Returns the middle index of the person in the {@code model}'s person list.
-//     */
-//    public static Index getMidIndex(Model model) {
-//        return Index.fromOneBased(model.getFilteredPersonList().size() / 2);
-//    }
-//
-//    /**
-//     * Returns the last index of the person in the {@code model}'s person list.
-//     */
-//    public static Index getLastIndex(Model model) {
-//        return Index.fromOneBased(model.getFilteredPersonList().size());
-//    }
-//
-//    /**
-//     * Returns the person in the {@code model}'s person list at {@code index}.
-//     */
-//    public static Person getPerson(Model model, Index index) {
-//        return model.getFilteredPersonList().get(index.getZeroBased());
-//    }
 }
