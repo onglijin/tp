@@ -162,8 +162,8 @@ Format 4: `filter k/KEYWORD`
 * The `KEYWORD` can be "pending" or "done". The task manager will filter tasks based on the done status of tasks.
 * The `WEEKNUMBER` can be used to specify which week the user select.
 * The `DEADLINETYPE` can be "official" or "customised", which specify which deadline type the selected task should be ranked by in ascending order.
-* In Format 1 and 3, the KEYWORD can only be "pending".
-* In Format 2 and 4, the KEYWORD can only be "done".
+* In Format 3,4, the KEYWORD can only be "done"
+* In Format 1,2, the KEYWORD can only be "pending"
 
 Example:
 * `filter k/done`: Display all the completed tasks.
