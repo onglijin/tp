@@ -44,7 +44,7 @@ Ace CS2103/T is a **desktop app for managing task requirements of CS2103/T, opti
   e.g. in `list WEEK_NUMBER`, `WEEK_NUMBER` is a parameter which can be used as `list 6`.
 
 * Items in square brackets are optional.<br>
-  e.g `help [PARAMETER]` can be used as `help find` or as `help`.
+  e.g `add i/INDEX w/WEEKNUMBER d/DESCRIPTION c/DEADLINE [r/REMARK] a/CATEGORY` can be used as `add i/0111 w/1 d/new customised task c/2020-09-01 a/admin` or as `add i/0111 w/1 d/new customised task c/2020-09-01 r/new remark a/admin`.
 
 </div>
 
