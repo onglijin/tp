@@ -1,29 +1,35 @@
 package tp.acecs2103.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static tp.acecs2103.testutil.Assert.assertThrows;
+
 import org.junit.jupiter.api.Test;
+
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.ModelManager;
 import tp.acecs2103.model.UserPrefs;
-import tp.acecs2103.model.task.*;
+import tp.acecs2103.model.task.Index;
+import tp.acecs2103.model.task.Task;
 import tp.acecs2103.testutil.TypicalTasks;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static tp.acecs2103.testutil.Assert.assertThrows;
+
 
 class UndoneCommandTest {
     @Test
     public void execute_validIndex_success() {
         Model model = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
 
-        Index index = new Index("0301");
+        Index index = new Index("0402");
         UndoneCommand undoneCommand = new UndoneCommand(index);
         Task task = model.getTaskList().getTask(index);
         task.markAsDone();
 
         CommandResult commandResult = null;
         try {
-            commandResult= undoneCommand.execute(model);
+            commandResult = undoneCommand.execute(model);
         } catch (CommandException e) {
             e.printStackTrace();
         }
@@ -34,7 +40,7 @@ class UndoneCommandTest {
     }
 
     @Test
-    public void execute_invalidIndex_NonExistent_fail() {
+    public void execute_invalidIndexNonExistent_fail() {
         Model model = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
 
         Index index = new Index("0203");
@@ -44,14 +50,14 @@ class UndoneCommandTest {
     }
 
     @Test
-    public void execute_invalidIndex_UndoneTask_fail() {
+    public void execute_invalidIndexUndoneTask_fail() {
         Model model = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
 
-        Index index = new Index("0101");
+        Index index = new Index("0102");
         Task task = model.getTaskList().getTask(index);
-        UndoneCommand doneCommand = new UndoneCommand(index);
+        UndoneCommand undoneCommand = new UndoneCommand(index);
 
-        assertThrows(CommandException.class, () -> doneCommand.execute(model));
+        assertThrows(CommandException.class, () -> undoneCommand.execute(model));
     }
 
     @Test

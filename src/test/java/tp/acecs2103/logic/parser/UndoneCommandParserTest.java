@@ -1,12 +1,12 @@
 package tp.acecs2103.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
-import tp.acecs2103.logic.commands.DoneCommand;
+
 import tp.acecs2103.logic.commands.UndoneCommand;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
 import tp.acecs2103.model.task.Index;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UndoneCommandParserTest {
     @Test
@@ -22,7 +22,7 @@ public class UndoneCommandParserTest {
     }
 
     @Test
-    public void parse_invalidUndoneCommand_emptyArgus_fail() {
+    public void parse_invalidUndoneCommandEmptyArguments_fail() {
         UndoneCommandParser undoneCommandParser = new UndoneCommandParser();
         String parametersStub = "";
         try {
@@ -32,9 +32,9 @@ public class UndoneCommandParserTest {
         }
     }
 
-    //WARNING!!!SHOULD BE FAILED
+    //TODO: WARNING!!!SHOULD BE FAILED
     @Test
-    public void parse_invalidUndoneCommand_invalidIndex1_fail() {
+    public void parse_invalidUndoneCommandInvalidIndex1_fail() {
         UndoneCommandParser undoneCommandParser = new UndoneCommandParser();
         String parametersStub = "01401";
         try {
@@ -45,7 +45,7 @@ public class UndoneCommandParserTest {
     }
 
     @Test
-    public void parse_invalidUndoneCommand_invalidIndex2_fail() {
+    public void parse_invalidUndoneCommandInvalidIndex2_fail() {
         UndoneCommandParser undoneCommandParser = new UndoneCommandParser();
         String parametersStub = "ABC";
         try {

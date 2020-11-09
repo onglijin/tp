@@ -1,21 +1,27 @@
 package tp.acecs2103.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static tp.acecs2103.logic.commands.CommandTestUtil.VALID_REMARK_1;
+import static tp.acecs2103.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static tp.acecs2103.testutil.Assert.assertThrows;
+
 import org.junit.jupiter.api.Test;
+
 import tp.acecs2103.logic.commands.EditCommand.EditTaskDescriptor;
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.ModelManager;
 import tp.acecs2103.model.UserPrefs;
-import tp.acecs2103.model.task.*;
+import tp.acecs2103.model.task.Admin;
+import tp.acecs2103.model.task.IP;
+import tp.acecs2103.model.task.Index;
+import tp.acecs2103.model.task.TP;
+import tp.acecs2103.model.task.Task;
+import tp.acecs2103.model.task.Topic;
 import tp.acecs2103.testutil.EditTaskDescriptorBuilder;
 import tp.acecs2103.testutil.TaskBuilder;
 import tp.acecs2103.testutil.TypicalTasks;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static tp.acecs2103.testutil.Assert.assertThrows;
-
-import static tp.acecs2103.logic.commands.CommandTestUtil.*;
 
 public class EditCommandTest {
     @Test
@@ -37,7 +43,7 @@ public class EditCommandTest {
         Task taskToEdit = expectedModel.getTaskList().getTask(new Index("0102"));
         Task editedTask = null;
         try {
-            editedTask = EditCommand.createEditedTask(taskToEdit,descriptor);
+            editedTask = EditCommand.createEditedTask(taskToEdit, descriptor);
         } catch (CommandException e) {
             e.printStackTrace();
         }
@@ -52,7 +58,11 @@ public class EditCommandTest {
         Model model = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
         ModelManager expectedModel = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
 
-        Topic reference = new TaskBuilder().buildTopic();
+        Topic reference = new TaskBuilder().withIndex("0201").withWeekNumber("2")
+                .withDescription("Topic One")
+                .withOfficialDeadline("2020-10-10")
+                .withCustomizedDeadline("2020-10-01")
+                .withRemark("New remark").withIsCustomized(true).withIsDone(false).buildTopic();
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(reference).build();
 
         EditCommand editCommand = new EditCommand(new Index("0202"), descriptor);
@@ -66,7 +76,7 @@ public class EditCommandTest {
         Task taskToEdit = expectedModel.getTaskList().getTask(new Index("0202"));
         Task editedTask = null;
         try {
-            editedTask = EditCommand.createEditedTask(taskToEdit,descriptor);
+            editedTask = EditCommand.createEditedTask(taskToEdit, descriptor);
         } catch (CommandException e) {
             e.printStackTrace();
         }
@@ -77,11 +87,15 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_allFieldsSpecifiedCustomisedIPTask_success() {
+    public void execute_allFieldsSpecifiedCustomisedIpTask_success() {
         Model model = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
         ModelManager expectedModel = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
 
-        IP reference = new TaskBuilder().buildIp();
+        IP reference = new TaskBuilder().withIndex("0301").withWeekNumber("3")
+                .withDescription("Admin One")
+                .withOfficialDeadline("2020-10-10")
+                .withCustomizedDeadline("2020-10-01")
+                .withRemark("New remark").withIsCustomized(true).withIsDone(false).buildIp();
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(reference).build();
 
         EditCommand editCommand = new EditCommand(new Index("0302"), descriptor);
@@ -95,7 +109,7 @@ public class EditCommandTest {
         Task taskToEdit = expectedModel.getTaskList().getTask(new Index("0302"));
         Task editedTask = null;
         try {
-            editedTask = EditCommand.createEditedTask(taskToEdit,descriptor);
+            editedTask = EditCommand.createEditedTask(taskToEdit, descriptor);
         } catch (CommandException e) {
             e.printStackTrace();
         }
@@ -106,11 +120,13 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_allFieldsSpecifiedCustomisedTPTask_success() {
+    public void execute_allFieldsSpecifiedCustomisedTpTask_success() {
         Model model = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
         ModelManager expectedModel = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
 
-        TP reference = new TaskBuilder().buildTp();
+        TP reference = new TaskBuilder().withIndex("0401").withWeekNumber("4")
+                .withDescription("Tp One").withOfficialDeadline("2020-10-10").withCustomizedDeadline(null)
+                .withRemark("No remark").withIsCustomized(true).withIsDone(false).buildTp();
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(reference).build();
 
         EditCommand editCommand = new EditCommand(new Index("0402"), descriptor);
@@ -124,7 +140,7 @@ public class EditCommandTest {
         Task taskToEdit = expectedModel.getTaskList().getTask(new Index("0402"));
         Task editedTask = null;
         try {
-            editedTask = EditCommand.createEditedTask(taskToEdit,descriptor);
+            editedTask = EditCommand.createEditedTask(taskToEdit, descriptor);
         } catch (CommandException e) {
             e.printStackTrace();
         }
@@ -139,7 +155,11 @@ public class EditCommandTest {
         Model model = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
         ModelManager expectedModel = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
 
-        IP reference = new TaskBuilder().build();
+        Admin reference = new TaskBuilder().withIndex("0101").withWeekNumber("1")
+                .withDescription("Admin One")
+                .withOfficialDeadline("2020-10-10")
+                .withCustomizedDeadline("2020-10-01")
+                .withRemark("New remark").withIsCustomized(false).withIsDone(false).buildAdmin();
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(reference).build();
 
         EditCommand editCommand = new EditCommand(new Index("0101"), descriptor);
@@ -153,7 +173,7 @@ public class EditCommandTest {
         Task taskToEdit = expectedModel.getTaskList().getTask(new Index("0101"));
         Task editedTask = null;
         try {
-            editedTask = EditCommand.createEditedTask(taskToEdit,descriptor);
+            editedTask = EditCommand.createEditedTask(taskToEdit, descriptor);
         } catch (CommandException e) {
             e.printStackTrace();
         }
@@ -193,7 +213,7 @@ public class EditCommandTest {
         Task taskToEdit = expectedModel.getTaskList().getTask(new Index("0101"));
         Task editedTask = null;
         try {
-            editedTask = EditCommand.createEditedTask(taskToEdit,descriptor);
+            editedTask = EditCommand.createEditedTask(taskToEdit, descriptor);
         } catch (CommandException e) {
             e.printStackTrace();
         }
@@ -276,11 +296,4 @@ public class EditCommandTest {
         EditTaskDescriptor descriptor = new EditTaskDescriptor();
         assertFalse(descriptor.isAnyFieldEdited());
     }
-
-
-
-
-
-
-
 }

@@ -1,18 +1,12 @@
 package tp.acecs2103.logic.commands;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static tp.acecs2103.testutil.Assert.assertThrows;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static tp.acecs2103.testutil.Assert.assertThrows;
 
 import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.TaskList;
 import tp.acecs2103.model.UiTaskList;
-import tp.acecs2103.model.exceptions.InvalidTaskListOperationException;
-import tp.acecs2103.model.task.Task;
-import tp.acecs2103.model.task.Index;
 import tp.acecs2103.testutil.EditTaskDescriptorBuilder;
 
 /**
@@ -28,7 +22,6 @@ public class CommandTestUtil {
     public static final String VALID_REMARK_2 = "Remark 2";
     public static final String VALID_DDL_1 = "2020-10-02";
     public static final String VALID_DDL_2 = "2020-11-07";
-    
 
     public static final EditTaskDescriptorBuilder DESC_A;
     public static final EditTaskDescriptorBuilder DESC_B;
@@ -77,11 +70,10 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         TaskList expectedTaskList = new TaskList(actualModel.getTaskList());
-        UiTaskList expectedUiTaskList= new UiTaskList(actualModel.getUiTaskList().getCombinedTaskList());
+        UiTaskList expectedUiTaskList = new UiTaskList(actualModel.getUiTaskList().getCombinedTaskList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedTaskList, actualModel.getTaskList());
         assertEquals(expectedUiTaskList, actualModel.getUiTaskList());
     }
-
 }
