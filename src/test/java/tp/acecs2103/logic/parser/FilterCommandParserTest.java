@@ -98,7 +98,7 @@ public class FilterCommandParserTest {
     }
 
     @Test
-    public void parse_invalidFilterCommandWKL_fail() {
+    public void parse_invalidFilterCommandwkl_fail() {
         FilterCommandParser filterCommandParser = new FilterCommandParser();
         String parametersStub = " w/4 k/done l/official";
         try {
