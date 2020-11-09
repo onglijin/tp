@@ -14,7 +14,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/perpetual09.png" width="200px">
 
 [[github](https://github.com/Perpetual09)]
-
 [[portfolio](https://ay2021s1-cs2103-t14-4.github.io/tp/team/perpetual09.html)]
 
 * Role: Developer
