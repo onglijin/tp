@@ -87,6 +87,7 @@ public class TaskListParser {
 
         case HomeCommand.COMMAND_WORD:
             return new HomeCommand();
+
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
         }

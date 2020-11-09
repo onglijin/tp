@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 
-import tp.acecs2103.commons.core.index.Index;
 import tp.acecs2103.commons.util.StringUtil;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
 import tp.acecs2103.model.task.TaskCategory;
@@ -48,21 +47,6 @@ public class ParserUtil {
         return trimmedIndex;
     }
 
-    /**
-     * Parses {@code onBasedIndex} into an {@Code Index} and returns it. Leading and trailing whitespaces will be
-     * trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
-     */
-    public static Index parseIndexObj(String oneBasedIndex) throws ParseException {
-        requireNonNull(oneBasedIndex);
-        String trimmedIndex = oneBasedIndex.trim();
-        try {
-            Index test = new Index(trimmedIndex);
-        } catch (IndexOutOfBoundsException i) {
-            throw new ParseException(MESSAGE_INVALID_WEEKNUMBER);
-        }
-        return new Index(trimmedIndex);
-    }
     /**
      * Parses a week number.
      * @param weekNumber
