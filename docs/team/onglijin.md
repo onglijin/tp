@@ -16,24 +16,25 @@ Given below are my contributions to the project.
     * Justification: This allows test code to be written in a way that each component can be tested independently and for the behaviour of the component to be contained within the class and be unknown to the public.
     * Highlights: This enhancement affects the Task class and all existing commands and commands to be added in the future. It required an in-depth analysis of the existing code. The implementation was challenging as it required changes to most of the exisitng files.
 
-* **UI**: Added the UI components to display the week number as well as command feedback
+* **UI**: Added the UI components to display the week number as well as command feedback [\#86](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/86)
     * What it does: Allows the logic to display the week number as well as command feedback in the components
     * Justification: The UI components are needed for the application to looked as planed
 
 * **Documentation**:
   * User Guide:
     * Updated quick start of the documentation [\#5](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/5)
-    * Added documentation for the features `delete` and `exit` [\#5](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/5)
+    * Added documentation for the features `delete` and `exit`, as well as command summary [\#5](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/5), [\#46](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/46)
     * Updated FAQ section of the documentation and the command summary [\#5](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/5)
     * Update user guide to fix inconsistencies and errors [\#213](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/213), [\#214](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/214), [\#215](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/215)
 
   * Developer Guide:
     * Updated the UML diagram for UI component and the description under UI.java [\#127](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/127)
-    * Updated the user stories [\#153](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/153)
+    * Updated the user stories [\#50](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/50), [\#153](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/153)
+    * Contributed to the instruction for manual testing [\#320](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/320)
 
 * **Contributions to team-based tasks**:
   * Necessary general code enhancement:
-    * Renaming the product [\#5](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/5), [\#6](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/6)
+    * Renaming the product [\#5](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/5), [\#6](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/6), [\#47](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/47)
     * Changing the product icon [\#86](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/86)
   * Enabled assertions in team repo [\#118](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/118)
   * Fixed CI errors [\#275](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/275)
