@@ -15,8 +15,4 @@ class TpTest {
     void getCategory_null_correctTaskCategory() {
         assertEquals(TaskCategory.TP, task1.getCategory());
     }
-<<<<<<< HEAD:src/test/java/tp/acecs2103/model/task/TPTest.java
 }
-=======
-}
->>>>>>> upstream/master:src/test/java/tp/acecs2103/model/task/TpTest.java
