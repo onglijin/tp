@@ -206,6 +206,5 @@ Action | Format, Examples
 **Find** | `find KEYWORD` e.g., `find project` <br>
 **Filter** | `filter [w/WEEKNUMBER] k/KEYWORD [l/DEADLINETYPE]` e.g., `filter w/4 k/pending l/official` <br>
 **Home** | `home`<br>
-**Help** | `help PARAMETER`<br>
-**Get**  | `get PARAMETER` <br>
+**Help** | `help`<br>
 **List** | `list WEEK_NUMBER`  e.g., `list 6` <br>
