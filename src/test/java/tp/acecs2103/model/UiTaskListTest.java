@@ -1,10 +1,11 @@
 package tp.acecs2103.model;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import tp.acecs2103.testutil.TypicalTasks;
 
-import java.util.ArrayList;
+import tp.acecs2103.testutil.TypicalTasks;
 
 public class UiTaskListTest {
     private TaskList taskList = TypicalTasks.getTypicalTaskList();
