@@ -208,4 +208,4 @@ Action | Format, Examples
 **Filter** | `filter [w/WEEKNUMBER] k/KEYWORD [l/DEADLINETYPE]` e.g., `filter w/4 k/pending l/official` <br>
 **Home** | `home`<br>
 **Help** | `help PARAMETER`<br>
-**Get**  | `get PARAMETER` <br>
+
