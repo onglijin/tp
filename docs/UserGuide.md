@@ -35,11 +35,11 @@ Ace CS2103/T is a **desktop app for managing task requirements of CS2103/T, opti
 --------------------------------------------------------------------------------------------------------------------
 ## Before you start
 * Tasks are displayed in 4 columns for 4 categories of CS2103/T tasks, namely Admin, Topic, IP and TP.
-* Time range of tasks displayed in each column is shown at the header of the column, together with the task category information.
+* Time range of tasks displayed in each column is shown in the header of the column, beside the task category.
   For example, `Week 1 to Week 13` means the tasks listed in the column range from week 1 to 13. `Week 13 to Week 13` means the tasks listed in the column
   are all from week 13.
 * When the app is first opened, task list for the current week will be displayed as default. You may navigate to any week using `list` command.
-* You may refer to the progress bar at the top left corner of the app for the current week number and the relative completion of the semester(assuming 13 weeks in total for a semester).
+* You may refer to the progress bar at the top left corner of the app for the current week number and the relative completion of the semester (assuming 13 weeks in total for a semester).
 * Tasks are colored coded for different status of completion. 
   * Green: task is done
   * Grey: task is pending and official deadline has not passed
