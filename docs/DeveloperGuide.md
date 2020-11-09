@@ -573,7 +573,6 @@ Actor: User
 7.  Help information and pre-load instructions will be displayed within 1 second.
 8.  The application should load in 2 second when the number of customized tasks are within 1000.
 9.  A user will be prohibited from editing the pre-load tasks or information.
-*{More to be added}*
 
 ### Glossary
 
