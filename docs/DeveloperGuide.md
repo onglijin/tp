@@ -559,9 +559,6 @@ Actor: User
          Use case ends.
 
 
-
-
-
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -582,4 +579,57 @@ Actor: User
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Appendix: Instructions for manual testing**
 
+Given below are instructions to test the app manually.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+testers are expected to do more *exploratory* testing.
+
+</div>
+
+### Launch and shutdown
+
+1. Initial launch
+
+   1. Download the jar file and copy into an empty folder
+
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample tasks. The window size may not be optimum.
+
+1. Saving window preferences
+
+   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+
+   1. Re-launch the app by double-clicking the jar file.<br>
+       Expected: The most recent window size and location is retained.
+
+1. Shutdown
+   1. Input `exit` in command line to shut the app down.
+
+### Deleting a task
+
+1. Deleting a customised task if it exists in the task list
+
+   1. Prerequisites: Ensure that the task does exist in the task list by listing all tasks for the relevant week. 
+   If there is no customized task created yet in the task list, add customized tasks using add command.
+   For example, `add i/0109 w/1 d/update documentation c/2020-10-02 r/check tp dashboard a/Tp` to add
+   a customized task with index 0109.
+
+   1. Test case: `delete 0101`<br>
+      Expected: No task is deleted. Error message will be shown in the status message, as task indexed at 0101 is a default task that cannot be deleted.
+
+   1. Test case: `delete 0`<br>
+      Expected: No task is deleted. Error details shown in the status message as the task index is invalid. Status bar remains the same.
+
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+1. _{ more test cases …​ }_
+
+### Saving data
+
+1. Dealing with missing/corrupted data files
+
+   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+
+1. _{ more test cases …​ }_
