@@ -7,7 +7,6 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
 
 import tp.acecs2103.logic.commands.DeadlineCommand;
-import tp.acecs2103.logic.commands.exceptions.CommandException;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
 import tp.acecs2103.model.task.CustomizedDeadline;
 import tp.acecs2103.model.task.Index;
