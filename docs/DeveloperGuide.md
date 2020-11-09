@@ -524,7 +524,7 @@ Actor: User
 
 
 
-**Use case: UC09 - Filter the task list**
+**Use case: UC09 - Go back to home page**
 
 Actor: User
 
@@ -534,8 +534,6 @@ Actor: User
 2. Task manager update UI to the list of current week
 
     Use case ends
-
-
 
 
 **Use case: UC10 - Exit the task manager**
@@ -551,10 +549,35 @@ Actor: User
 
 **Extensions**
 
-*a. User clicks on exit button to exit
+a. User clicks on exit button to exit
 
-    *a1. Task manager shows goodbye words and exits
+    a1. Task manager shows goodbye words and exits
          Use case ends.
+
+**Use case: UC11 - Filter tasks**
+         
+Actor: User
+
+**MSS**
+
+1. User asks for filter tasks, provide keywords(done or pending), deadline type(official or customized), week number. And the provided parameters follow the requirement in UserGuide.
+2. Task show tasks found and sort them based on the deadline of specified deadline type.
+
+  Use code ends
+
+**Extensions**
+
+a. The provided parameters do not follow the requirement in UserGuide.
+
+    a1. Task manager informs the user to follow the requirement and shows the correct examples.
+            Use case ends    
+         
+         
+         
+         
+         
+         
+         
 
 ### Non-Functional Requirements
 
@@ -846,23 +869,31 @@ Mark a task as pending if it is marked as done.
   * ...
 * Due to the high amount of links between attributes, we need to consider more exceptions to handle
    
-###More commands:
-* Compared with AB3, there are more commands in Ace CS2103 / T
+####More commands:
+* Compared with AB3, there are more commands in Ace CS2103/T
 * Examples include:
    * deadline
    * done
    * undone
    * filter
    * ... 
-* Because there are nine attributes in every object, commands are more easily to have bugs. When writing code, we need to be more careful and consider all the aspects.
+* Because there are nine attributes in every object, commands are more easily to have bugs. When writing code, we need to be more careful and consider unintended consequences on other attributes and their compatibility.
 
-More testing considerations:
-Since some commands may have many fields (e.g. add, edit), we need to ensure no bugs will occur for every field. We spent much time adding and improving our testing code such that it can cover all the possibilities.
+####More testing considerations:
+* Some commands may have many fields (e.g. add, edit), so we need to ensure the absence of bug for every field. 
+* We spent much time adding and improving our testing codes such that it can cover most possibilities.
 
-Challenges faced & effort required
-Ui
-In this project, we are required to use JavaFX to design the Ui. However, none of us learned JavaFX before. Although some basic concepts are taught in the individual project, the knowledge needed for a team project is much more than that. When designing the Ui, we need to learn from AB3 first and then think about how to utilize the techniques in our project. Besides, we notice that fa particular styling, there are many ways to achieve it: it can be either implemented in .java class, .fxml file, or .css file, which adds many confusions. Last but not least, although we looked into AB3 code to learn how it implements a certain feature, we abandoned the dark style used in AB3 and created our own light color style, which is also a huge challenge because we cannot use the code from AB3 directly.
+###Challenges faced & effort required
+####Ui
+* In this project, we are required to use JavaFX to design the Ui. However, none of us learned JavaFX before. Although some basic concepts are taught in the individual project, the knowledge needed for a team project is much more than that. 
+* When designing the Ui, we need to learn from AB3 first and then think about how to adapt the techniques in our project. 
+* Besides, we notice that for a particular styling, there are many ways to achieve it: it can be either implemented in .java class, .fxml file, or .css file, which adds many confusions. 
+* Last but not least, although we looked into AB3 code to learn how it implements a certain feature, we abandoned the dark style used in AB3 and created our own light color style, which is also a huge challenge because we cannot use the code from AB3 directly.
+Similarly, as all the tasks are divided into four categories for display, we need to include four category panels instead, which is different from AB3 so we cannot reuse its codes for UI.
 
-achievements of the project
+####Logic
+* In this project, the logic part is the core of functions. 
+* Implementation of each command requires the combination of different parts of logic. We need to understand user input, give proper commands, execute the commands and give correct feedback or exceptions. Jumping between different parts of the project is complex and debugging is long and painful.
+####Achievements of the project
 With our best effort, we finally finished the project --- a desktop task manager application used for keeping track of tasks for CS2103/T Software Engineering. During the process, we learned how to implement logic, storage, model, and Ui part for an application, as well as how these components interact with each other. Besides, we realized the importance of teamwork. When a team member encounters difficulties, others will offer help and think of solutions together. Although this project consumes a lot of time and effort, it is quite meaningful because we gain much software engineering experience during the process and also make a group of nice friends.
 

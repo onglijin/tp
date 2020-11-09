@@ -174,7 +174,6 @@ public class TaskList {
             if (byOfficialDeadline) {
                 Collections.sort(additionalList);
             } else {
-
                 Collections.sort(additionalList, (o1, o2) -> {
                     Deadline ddl1 = (o1.getCustomizedDeadline() != null)
                             ? o1.getCustomizedDeadline() : o1.getOfficialDeadline();
@@ -287,6 +286,7 @@ public class TaskList {
         Task task = taskList.get(i);
         if (!task.isDone()) {
             task.markAsDone();
+            timeRange = task.getWeekNumber();
             return find();
         }
         throw new InvalidTaskListOperationException("The task is already marked as done.");
