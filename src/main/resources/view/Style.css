@@ -25,15 +25,15 @@
     -fx-background-radius: 10;
 }
 .pending-task {
-    -fx-background-color:  #D3D3D3;
+    -fx-background-color:  #D5DBDB;
 }
 
 .done-task {
-    -fx-background-color:  #32cd32;
+    -fx-background-color:  #58D68D;
 }
 
 .overdue-task {
-    -fx-background-color:  #ff4500;
+    -fx-background-color:  #EC7063;
 }
 
 .Label {
@@ -92,9 +92,9 @@
 }
 
 .list-cell {
-    -fx-label-padding: 10 0 10 10;
+    -fx-label-padding: 20 0 20 10;
     -fx-graphic-text-gap : 0;
-    -fx-padding: 10 0 10 10;
+    -fx-padding: 20 0 20 10;
 }
 
 .list-cell:filled:even {

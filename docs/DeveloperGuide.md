@@ -101,8 +101,6 @@ The `Model`,
 
 
 
-
-
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
@@ -264,8 +262,7 @@ It is to separate tasks which should be used for Ui display from TaskList used i
 The UiTaskList must be refreshed every time after the command is run in case there is any change for it.
 
 --------------------------------------------------------------------------------------------------------------------
-=======
->>>>>>> upstream/master
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -298,24 +295,19 @@ Provide CS2103 and CS2103/T students with integrated timeline and checklists for
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                   | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | learn about the commands       | understand how to use the features of the app                 |
-| `* * *`  | user                                       | get the tP GitHub link         | check the GitHub updates easily                                                                       |
-| `* * *`  | user                                       | get the module overview        | have a general idea about the course                                  |
-| `* * *`  | user                                       | get Microsoft Team links       | get updates from the teaching team
-| `* * *`  | user                                       | get progress dashboard links   | keep track of the progress for iP and tP
-| `* * *`  | user                                       | add a customized task          | track additional tasks beside the preloaded ones from the CS2103/T website
-| `* * *`  | user                                       | edit a customized task         | include an update or correct a mistake
-| `* * *`  | user                                       | delete a customized task       | remove a task that I do not want anymore
-| `* * *`  | user                                       | search for tasks using a keyword | find a specific task without reading through the whole task list
+| Priority | As a …​                                    | I want to …​                        | So that I can…​                                                        |
+| -------- | ------------------------------------------ | ----------------------------------- | ---------------------------------------------------------------------- |
+| `* * *`  | new user                                   | learn about the commands            | understand how to use the features of the app|
+| `* * *`  | user                                       | add a customized task               | track additional tasks beside the preloaded ones from the CS2103/T website
+| `* * *`  | user                                       | edit a customized task              | include an update or correct a mistake
+| `* * *`  | user                                       | delete a customized task            | remove a task that I do not want anymore
+| `* * *`  | user                                       | search for tasks using a keyword    | find a specific task without reading through the whole task list
+| `* * *`  | user                                       | search for tasks using category     | find tasks with similar categories
 | `* * *`  | user                                       | add a customised deadline to a task | record when a task needs to be done according to my own schedule
-| `* * *`  | user                                       | read instructions on how to initialize IntelliJ and other essential tools        |
-| `* *`    | user                                       | get Prof and TA emails         | ask them questions to clear doubts      |
-| `*`      | user with many tasks in the task manager   | find task by keyword           | locate a task easily
-                                                |
-
-*{More to be added}*
+| `* *`    | user                                       | list down tasks of a specific week  | check task history
+| `* *`    | user                                       | mark an undone task as done         | know which task is finished clearly
+| `* *`    | user                                       | mark a done task as undone          | correct wrongly marked task
+| `*`      | user                                       | see the time bar of the semester    | the overall progress of the module
 
 ### Use cases
 
@@ -325,50 +317,15 @@ Actor: User
 
 **MSS**
 
-1.  User asks for help information of a specified command name
-2.  Task manager shows information about the asking command name
+1.  User asks for help information
+2.  Task manager shows link to the User Guide page
 
     Use case ends
 
-**Extensions**
-
-1a. User does not provide specified command name
-
-    1a1. Task manager lists all the commands used in this software.
-        Use case ends
-
-1b. User input an invalid command name
-
-    1b1. Task manager informs user the invalidation of the command name and lists all the command used in this software
-        Use case ends
 
 
 
-
-**Use case: UC02 - View admin information**
-
-Actor: User
-
-**MSS**
-
-1.  User asks for specified administrative information by parameters
-2.  Task manager shows the admin information asked by user.
-
-    Use case ends
-
-**Extensions**
-
-1a. Parameter provided by user is invalid
-
-    1a1.  Task manager informs user the parameter is invalid and lists all the valid parameters.
-        Use case ends
-
-1b. User does not provide parameter
-
-    1b1. Task manager lists all the valid parameters.
-        Use case ends
-
-**Use case: UC03 - Search for tasks**
+**Use case: UC02 - Search for tasks**
 
 Actor: User
 
@@ -394,7 +351,7 @@ Actor: User
 
 
 
-**Use case: UC04 - Check task list**
+**Use case: UC03 - Check task list**
 
 Actor: User
 
@@ -420,7 +377,7 @@ Actor: User
 
 
 
-**Use case: UC05 - Add customized deadline to a task**
+**Use case: UC04 - Add customized deadline to a task**
 
 Actor: User
 
@@ -455,15 +412,16 @@ Actor: User
 
 
 
-**Use case: UC06 - Add a customized task**
+**Use case: UC05 - Add a customized task**
 
 Actor: User
 
 **MSS**
+
 1.  User requests for adding customized task and provides the necessary information
 2.  Task manager adds the task and shows user an overview of task added
 
-    Use case ends.
+    Use case ends
 
 **Extensions**
 
@@ -475,6 +433,32 @@ Actor: User
 1b.  Information provided by user is not in correct format
 
     1b1.  Task manager informs user the correct format and asks for a new order
+        Use case ends
+
+
+
+
+**Use case: UC06 - Edit a customized task**
+
+Actor: User
+
+**MSS**
+
+1. User requests for editing a customized task and provides the necessary information
+2. Task manager edit the task and update the UI
+
+    Use case ends
+
+**Extensions**
+
+1a. Information provided by user is not complete
+
+    1a1. Task manager informs the user to provide the complete information and informs the user the correct format
+        Use case ends
+
+1b. Information provided by the user is not in correct format
+
+    1a1. Task manager informs the user to provide the complete information and informs the user the correct format
         Use case ends
 
 
@@ -503,14 +487,65 @@ Actor: User
     2a1. Task manager informs the user to provide a valid task index
         Use case ends
 
+3a. User attempts to delete a default task
+
+    3a1. Task manager informs the user that only customized task can be deleted
+        Use case ends
 
 
 
-**Use case: UC08 - Exit the task manager**
+
+**Use case: UC08 - Mark a task as done/undone**
 
 Actor: User
 
 **MSS**
+
+1. User asks for marking a task as done/undone by giving the task index
+2. Task manager mark the task and update the done/undone status on the UI
+
+    Use case ends
+
+**Extensions**
+
+1a. User provides an invalid task index
+
+    1a1. Task manager informs the user to provide a valid task index
+        Use case ends
+
+2a. User does not provide task index
+
+    2a1. Task manager informs the user to provide a valid task index
+        Use case ends
+
+3a. User attempts to mark a done task as done again or mark an undone task as undone again
+
+    3a1. Task manager informs the user that the task has been marked already
+        Use case ends
+
+
+
+
+**Use case: UC09 - Jump back to default page**
+
+Actor: User
+
+**MSS**
+
+1. User asks for back to the default page(the task list of current week)
+2. Task manager update UI to the list of current week
+
+    Use case ends
+
+
+
+
+**Use case: UC10 - Exit the task manager**
+
+Actor: User
+
+**MSS**
+
 1.  User requests to exit from task manager
 2.  Task manager shows goodbye words and stops program
 
@@ -538,7 +573,6 @@ Actor: User
 7.  Help information and pre-load instructions will be displayed within 1 second.
 8.  The application should load in 2 second when the number of customized tasks are within 1000.
 9.  A user will be prohibited from editing the pre-load tasks or information.
-*{More to be added}*
 
 ### Glossary
 
