@@ -13,14 +13,14 @@ public class Index {
             "Your index format is wrong. Indexes should always start with 0, "
                     + "only contain numbers, be at least 4 digits long and should not be blank.\n"
                     + "E.g. 0101: first task of week 1\n"
-                    + "01314: 14th task fo week 13";
+                    + "01314: 14th task of week 13";
 
     /**
      *  The first character of the index must be a '0',
-     *  followed by a number from '1' to '9',
+     *  followed by a number from '1' to '9' and a number from '0' to '9',
      *  with any number of '0' to '9' padded behind.
      */
-    public static final String VALIDATION_REGEX = "\\A[0][1-9][0-9]+\\z";
+    public static final String VALIDATION_REGEX = "\\A[0][1-9][0-9][0-9]+\\z";
 
     public final String value;
 
