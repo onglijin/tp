@@ -33,6 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/onglijin.png" width="200px">
 
 [[github](https://github.com/onglijin)]
+[portfolio](https://ay2021s1-cs2103-t14-4.github.io/tp/team/onglijin.html)
 
 * Role: Developer
 
@@ -41,7 +42,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/xia-liyi.png" width="200px">
 
 [[github](http://github.com/xia-liyi) ]
-[[portfolio](https://ay2021s1-cs2103-t14-4.github.io/tp/team/xia-liyi.html) ]
+[[portfolio](https://ay2021s1-cs2103-t14-4.github.io/tp/team/xia-liyi.html)]
 
 * Role: Developer
 
