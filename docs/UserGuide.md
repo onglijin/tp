@@ -115,22 +115,25 @@ Format: `delete TASK_INDEX`
 Example:
 * `delete 0109`: Task indexed at 0109 will be deleted.
 
-### Editing a customised task: `edit`
+### Editing a task: `edit`
 
 Edits a customised task in the task manager.
 
-Format: `edit i/INDEX [w/WEEK_NUMBER][d/DESCRIPTION] [c/DEADLINE] [r/REMARK]`
+Format: `edit i/INDEX [d/DESCRIPTION] [c/DEADLINE] [r/REMARK]`
 
-* The task with INDEX as index will be updated with WEEK_NUMBER as the new weeknumber, DESCRIPTION as the new description, DEADLINE as the new customised deadline, REMARK as the new remark, CATEGORY as the category will be added into task list.
+* The task with INDEX as index will be updated with DESCRIPTION as the new description, DEADLINE as the new customised deadline, REMARK as the new remark, CATEGORY as the category will be added into task list.
 * The INDEX is compulsory, all other parameters are optional.
-* Only customised task can be edited.
+* For default task, only DEADLINE and REMARK can be edited.
+* For customised task, DESCRIPTION, DEADLINE and REMARK can be edited.
 
 Example:
 * `edit i/0109 d/updated description r/updated remark`:
-Customised task indexed at 0109 is to be updated with "updated description" as its new description,
+Customised task indexed at 0109 updates with "updated description" as its new description.
+* `edit i/0101 c/2020-09-01 r/updated remark`:
+Default task indexed at 0101 updates with "2020-09-01" as its customised deadline and "updated remark" as its remark.
 
 
-### Mark a task as done/undone: `done` and `undone`
+### Mark a task as done: `done`
 
 Marks a task in the task manager as done or undone.
 
@@ -141,6 +144,8 @@ Format of `done`: `done TASK_INDEX`
 Example:
 * `done 0101`:
 Mark task with index 0101 as done.
+
+### Mark a task as undone: `undone`
 
 Format of `undone`: `undone TASK_INDEX`
 
@@ -198,11 +203,11 @@ Format: `exit`
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add i/INDEX w/WEEKNUMBER d/DESCRIPTION c/DEADLINE r/REMARK a/CATEGORY` <br> e.g. 'add i/0109 w/1 d/update documentation c/2020-10-02 r/check tp dashboard a/Tp'
+**Add** | `add i/INDEX w/WEEKNUMBER d/DESCRIPTION c/DEADLINE r/REMARK a/CATEGORY` <br> e.g. `add i/0109 w/1 d/update documentation c/2020-10-02 r/check tp dashboard a/Tp`
 **Deadline** | `deadline i/TASK_NUMBER c/DEADLINE` <br> e.g., `deadline i/0601 c/2020-09-20`
 **Delete** | `delete TASK_NUMBER`<br> e.g., `delete 0109`
 **Done** | `done TASK_INDEX` <br> e.g., `done 0101`
-**Edit** | `edit i/INDEX [w/WEEK_NUMBER] [d/DESCRIPTION] [c/DEADLINE] [r/REMARK]` <br> e.g. 'edit i/0109 d/updated description r/updated remark'
+**Edit** | `edit i/INDEX [d/DESCRIPTION] [c/DEADLINE] [r/REMARK]` <br> e.g. `edit i/0101 c/2020-09-01 r/updated remark`
 **Exit** | `exit`
 **Filter** | `filter [w/WEEKNUMBER] k/KEYWORD [l/DEADLINETYPE]` e.g., `filter w/4 k/pending l/official` <br>
 **Find** | `find KEYWORD` e.g., `find project` <br>
