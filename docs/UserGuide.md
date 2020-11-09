@@ -97,6 +97,7 @@ Format: `add i/INDEX w/WEEKNUMBER d/DESCRIPTION c/DEADLINE [r/REMARK] a/CATEGORY
 
 * The task with INDEX as index, WEEKNUMBER as week number, DESCRIPTION as description, DEADLINE as customised deadline, REMARK as remark, CATEGORY as the category will be added into task list.
 * The INDEX, WEEKNUMBER, DESCRIPTION, DEADLINE and CATEGORY are compulsory, the REMARK is optional.
+* The first letter of CATEGORY has to be in caps. Available categories: Ip, Tp, Topic, Admin
 
 Example:
 * `add i/0109 w/1 d/update documentation c/2020-08-14 r/check tp dashboard a/Tp`:
