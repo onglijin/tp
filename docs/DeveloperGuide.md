@@ -296,9 +296,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                    | I want to …​                        | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ----------------------------------- | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | learn about the commands            | understand how to use the features of the app|
-| `* * *`  | user                                       | add a customized task               | track additional tasks beside the preloaded ones from the CS2103/T website
-| `* * *`  | user                                       | edit a customized task              | include an update or correct a mistake
-| `* * *`  | user                                       | delete a customized task            | remove a task that I do not want anymore
+| `* * *`  | user                                       | add a customised task               | track additional tasks beside the preloaded ones from the CS2103/T website
+| `* * *`  | user                                       | edit a customised task              | include an update or correct a mistake
+| `* * *`  | user                                       | delete a customised task            | remove a task that I do not want anymore
 | `* * *`  | user                                       | search for tasks using a keyword    | find a specific task without reading through the whole task list
 | `* * *`  | user                                       | search for tasks using category     | find tasks with similar categories
 | `* * *`  | user                                       | add a customised deadline to a task | record when a task needs to be done according to my own schedule
@@ -375,13 +375,13 @@ Actor: User
 
 
 
-**Use case: UC04 - Add customized deadline to a task**
+**Use case: UC04 - Add customised deadline to a task**
 
 Actor: User
 
 **MSS**
 
-1.  User requests for adding a customized deadline to a task and provides task index and deadline
+1.  User requests for adding a customised deadline to a task and provides task index and deadline
 2.  Task manager add the deadline to the task and show overview of the task
 
     Use case ends
@@ -410,13 +410,13 @@ Actor: User
 
 
 
-**Use case: UC05 - Add a customized task**
+**Use case: UC05 - Add a customised task**
 
 Actor: User
 
 **MSS**
 
-1.  User requests for adding customized task and provides the necessary information
+1.  User requests for adding customised task and provides the necessary information
 2.  Task manager adds the task and shows user an overview of task added
 
     Use case ends
@@ -436,13 +436,13 @@ Actor: User
 
 
 
-**Use case: UC06 - Edit a customized task**
+**Use case: UC06 - Edit a customised task**
 
 Actor: User
 
 **MSS**
 
-1. User requests for editing a customized task and provides the necessary information
+1. User requests for editing a customised task and provides the necessary information
 2. Task manager edit the task and update the UI
 
     Use case ends
@@ -462,13 +462,13 @@ Actor: User
 
 
 
-**Use case: UC07 - Delete a customized task**
+**Use case: UC07 - Delete a customised task**
 
 Actor: User
 
 **MSS**
 
-1.  User asks for deleting a customized task by giving task index
+1.  User asks for deleting a customised task by giving task index
 2.  Task manager deletes the task and informs user the task content deleted
 
     Use case ends
@@ -487,7 +487,7 @@ Actor: User
 
 3a. User attempts to delete a default task
 
-    3a1. Task manager informs the user that only customized task can be deleted
+    3a1. Task manager informs the user that only customised task can be deleted
         Use case ends
 
 
@@ -563,16 +563,16 @@ Actor: User
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  A user who enrolled in CS2103/T should be quite familiar with default tasks every week, which are pre-loaded in the application.
 5.  Modified data will be updated within 1 second.
-6.  Should be able to contain up to 1000 customized tasks created by user.
+6.  Should be able to contain up to 1000 customised tasks created by user.
 7.  Help information and pre-load instructions will be displayed within 1 second.
-8.  The application should load in 2 second when the number of customized tasks are within 1000.
+8.  The application should load in 2 second when the number of customised tasks are within 1000.
 9.  A user will be prohibited from editing the pre-load tasks or information.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-* **Customize tasks**: use `add` to add customized tasks into application which make it more personal
+* **Customise tasks**: use `add` to add customised tasks into application which make it more personal
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -605,7 +605,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding a task
 
-1. Adding a customized task into task list
+1. Adding a customised task into task list
 
 	1. Prerequisites: Ensure that the index of adding task is not occupied.
 	Provide necessary information, include: index, week number, description, deadline, category.
@@ -616,7 +616,7 @@ testers are expected to do more *exploratory* testing.
 			index: 0109
 			week number: 1
 			description: update documentation
-			customized deadline: 2020-10-02
+			customised deadline: 2020-10-02
 			remark: check tp dashboard
 		is created under "Tp" category, and marked as undone.
 		If your page is not switched to week 1, use 'list 1'<br> to switch to week 1
@@ -626,7 +626,7 @@ testers are expected to do more *exploratory* testing.
 			index: 0110
 			week number: 1
 			description: Cyberpunk2077
-			customized deadline: 2020-12-10
+			customised deadline: 2020-12-10
 		is created under "Ip" category, and marked as undone.
 		If your page is not switched to week 1, use 'list 1'<br> to switch to week 1
 
@@ -673,8 +673,8 @@ Set customised deadline for a task
 
 Deleting a customised task if it exists in the task list
 
-   1. Prerequisites: Ensure that the task does exist in the task list. One way you can check is by listing all tasks for the relevant week. 
-   If there is no customized task created yet in the task list, add customized tasks using add command.
+   1. Prerequisites: Ensure that the task does exist in the task list by listing all tasks for the relevant week. 
+   If there is no customised task created yet in the task list, add customised tasks using add command.
    For example, `add i/0109 w/1 d/update documentation c/2020-10-02 r/check tp dashboard a/Tp` to add
    a customized task with index 0109. 
    
@@ -821,7 +821,6 @@ Mark a task as pending if it is marked as done.
     1. Test case: `list 0` <br>
        Expected: No task is listed. Error details will be shown in the status message as the week number is not between 1 and 13.
     
-		
 ### Saving data
 
 1. Input `exit` in command line to save and exit.
@@ -866,3 +865,4 @@ In this project, we are required to use JavaFX to design the Ui. However, none o
 
 achievements of the project
 With our best effort, we finally finished the project --- a desktop task manager application used for keeping track of tasks for CS2103/T Software Engineering. During the process, we learned how to implement logic, storage, model, and Ui part for an application, as well as how these components interact with each other. Besides, we realized the importance of teamwork. When a team member encounters difficulties, others will offer help and think of solutions together. Although this project consumes a lot of time and effort, it is quite meaningful because we gain much software engineering experience during the process and also make a group of nice friends.
+
