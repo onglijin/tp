@@ -56,7 +56,7 @@ public class UndoneCommand extends Command {
         if (other == null || !(other instanceof UndoneCommand)) {
             return false;
         } else {
-            return this.targetIndex.equals(((UndoneCommand)other).targetIndex);
+            return this.targetIndex.equals(((UndoneCommand) other).targetIndex);
         }
     }
 }

@@ -4,20 +4,20 @@ import org.junit.jupiter.api.Test;
 
 public class PrefixTest {
     @Test
-    public void prefix_GetPrefix_test_success() {
+    public void prefix_getPrefix_success() {
         Prefix prefix = new Prefix("1234567890abcdefg");
         assert prefix.getPrefix().equals("1234567890abcdefg");
     }
 
     @Test
-    public void prefix_hashCode_test_success() {
+    public void prefix_hashCode_success() {
         Prefix prefix = new Prefix("1234567890abcdefg");
         Prefix nullPrefix = new Prefix(null);
         assert prefix.hashCode() == "1234567890abcdefg".hashCode() && nullPrefix.hashCode() == 0;
     }
 
     @Test
-    public void prefix_equals_test_success() {
+    public void prefix_equals_success() {
         Prefix prefixA = new Prefix("123");
         Prefix prefixB = new Prefix(null);
         Prefix prefixC = new Prefix("abc");

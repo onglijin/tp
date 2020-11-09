@@ -6,8 +6,6 @@ import tp.acecs2103.commons.core.Messages;
 import tp.acecs2103.model.Model;
 import tp.acecs2103.model.task.WeekNumber;
 
-import javax.swing.text.html.ListView;
-
 /**
  * Lists all persons in the address book to the user.
  */
@@ -19,7 +17,7 @@ public class ListCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": List all tasks for the week indicated.\n"
             + "Parameters: WEEK_NUMBER (an integer in range [1,13])\n"
-            + "Example: " + COMMAND_WORD + "7";
+            + "Example: " + COMMAND_WORD + " 7";
 
     private final WeekNumber weekNumber;
 

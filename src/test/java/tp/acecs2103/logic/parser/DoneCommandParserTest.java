@@ -1,11 +1,12 @@
 package tp.acecs2103.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
+
 import tp.acecs2103.logic.commands.DoneCommand;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
 import tp.acecs2103.model.task.Index;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DoneCommandParserTest {
     @Test
@@ -21,7 +22,7 @@ public class DoneCommandParserTest {
     }
 
     @Test
-    public void parse_invalidDoneCommand_emptyArgus_fail() {
+    public void parse_invalidDoneCommandEmptyArguments_fail() {
         DoneCommandParser doneCommandParser = new DoneCommandParser();
         String parametersStub = "";
         try {
@@ -31,9 +32,8 @@ public class DoneCommandParserTest {
         }
     }
 
-    //WARNING!!!SHOULD BE FAILED
     @Test
-    public void parse_invalidDoneCommand_invalidIndex1_fail() {
+    public void parse_invalidDoneCommandInvalidIndex1_fail() {
         DoneCommandParser doneCommandParser = new DoneCommandParser();
         String parametersStub = "01401";
         try {
@@ -44,9 +44,20 @@ public class DoneCommandParserTest {
     }
 
     @Test
-    public void parse_invalidDoneCommand_invalidIndex2_fail() {
+    public void parse_invalidDoneCommandInvalidIndex2_fail() {
         DoneCommandParser doneCommandParser = new DoneCommandParser();
         String parametersStub = "ABC";
+        try {
+            doneCommandParser.parse(parametersStub);
+        } catch (ParseException e) {
+            assert true;
+        }
+    }
+
+    @Test
+    public void parse_invalidDoneCommandInvalidIndex3_fail() {
+        DoneCommandParser doneCommandParser = new DoneCommandParser();
+        String parametersStub = "0199";
         try {
             doneCommandParser.parse(parametersStub);
         } catch (ParseException e) {

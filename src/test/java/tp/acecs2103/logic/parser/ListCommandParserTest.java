@@ -1,13 +1,12 @@
 package tp.acecs2103.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
-import tp.acecs2103.logic.commands.DoneCommand;
+
 import tp.acecs2103.logic.commands.ListCommand;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
-import tp.acecs2103.model.task.Index;
 import tp.acecs2103.model.task.WeekNumber;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ListCommandParserTest {
     @Test
@@ -35,7 +34,7 @@ public class ListCommandParserTest {
     }
 
     @Test
-    public void parse_invalidListCommand_invalidWeekNumber1_fail() {
+    public void parse_invalidListCommandInvalidWeekNumber1_fail() {
         ListCommandParser listCommandParser = new ListCommandParser();
         String parametersStub = "0";
         try {
@@ -46,7 +45,7 @@ public class ListCommandParserTest {
     }
 
     @Test
-    public void parse_invalidListCommand_invalidWeekNumber2_fail() {
+    public void parse_invalidListCommandInvalidWeekNumber2_fail() {
         ListCommandParser listCommandParser = new ListCommandParser();
         String parametersStub = "14";
         try {
@@ -57,7 +56,7 @@ public class ListCommandParserTest {
     }
 
     @Test
-    public void parse_invalidListCommand_invalidWeekNumber3_fail() {
+    public void parse_invalidListCommandInvalidWeekNumber3_fail() {
         ListCommandParser listCommandParser = new ListCommandParser();
         String parametersStub = "10000";
         try {
@@ -68,7 +67,7 @@ public class ListCommandParserTest {
     }
 
     @Test
-    public void parse_invalidListCommand_noArgument_fail() {
+    public void parse_invalidListCommandNoArgument_fail() {
         ListCommandParser listCommandParser = new ListCommandParser();
         String parametersStub = "";
         try {

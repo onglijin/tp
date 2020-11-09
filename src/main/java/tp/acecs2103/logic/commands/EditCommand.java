@@ -46,6 +46,9 @@ public class EditCommand extends Command {
         "Only customised deadline and remark can be changed for a default task.";
     public static final String MESSAGE_INVALID_INDEX = "\nTask with the input index does not exist in the task list."
             + " Please try again.";
+    public static final String MESSAGE_INVALID_WEEK =
+            "Invalid edition. Week number should be consistent with the index.\n"
+            + "Please try again.";
 
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
@@ -92,6 +95,10 @@ public class EditCommand extends Command {
         if (!taskToEdit.isCustomized()) {
             if (!(editTaskDescriptor.weekNumber == null && editTaskDescriptor.description == null)) {
                 throw new CommandException(MESSAGE_INVALID_EDITION);
+            }
+        } else {
+            if (!(editTaskDescriptor.weekNumber.equals(taskToEdit.getWeekNumberFromIndex()))) {
+                throw new CommandException(MESSAGE_INVALID_WEEK);
             }
         }
 
@@ -254,7 +261,8 @@ public class EditCommand extends Command {
             boolean flagDescription;
             boolean flagCustomizedDeadline;
             boolean flagRemark;
-            if ((this.weekNumber == null && e.weekNumber != null) || (this.weekNumber != null && e.weekNumber == null)) {
+            if ((this.weekNumber == null && e.weekNumber != null)
+                    || (this.weekNumber != null && e.weekNumber == null)) {
                 flagWeekNumber = false;
             } else if (this.weekNumber == null) {
                 flagWeekNumber = true;
@@ -262,7 +270,8 @@ public class EditCommand extends Command {
                 flagWeekNumber = this.weekNumber.equals(e.weekNumber);
             }
 
-            if ((this.customizedDeadline == null && e.customizedDeadline != null) || (this.customizedDeadline != null && e.customizedDeadline == null)) {
+            if ((this.customizedDeadline == null && e.customizedDeadline != null)
+                    || (this.customizedDeadline != null && e.customizedDeadline == null)) {
                 flagCustomizedDeadline = false;
             } else if (this.customizedDeadline == null) {
                 flagCustomizedDeadline = true;
@@ -270,7 +279,8 @@ public class EditCommand extends Command {
                 flagCustomizedDeadline = this.customizedDeadline.equals(e.customizedDeadline);
             }
 
-            if ((this.description == null && e.description != null) || (this.description != null && e.description == null)) {
+            if ((this.description == null && e.description != null)
+                    || (this.description != null && e.description == null)) {
                 flagDescription = false;
             } else if (this.description == null) {
                 flagDescription = true;

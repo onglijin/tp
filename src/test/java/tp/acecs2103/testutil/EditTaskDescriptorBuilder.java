@@ -1,17 +1,13 @@
 package tp.acecs2103.testutil;
 
 import java.time.LocalDate;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import tp.acecs2103.logic.commands.EditCommand.EditTaskDescriptor;
-import tp.acecs2103.model.task.Task;
-import tp.acecs2103.model.task.WeekNumber;
+import tp.acecs2103.model.task.CustomizedDeadline;
 import tp.acecs2103.model.task.Description;
 import tp.acecs2103.model.task.Remark;
-import tp.acecs2103.model.task.CustomizedDeadline;
-
+import tp.acecs2103.model.task.Task;
+import tp.acecs2103.model.task.WeekNumber;
 
 /**
  * A utility class to help with building EditTaskDescriptor objects.

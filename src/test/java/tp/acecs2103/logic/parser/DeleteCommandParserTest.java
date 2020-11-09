@@ -1,12 +1,12 @@
 package tp.acecs2103.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
+
 import tp.acecs2103.logic.commands.DeleteCommand;
 import tp.acecs2103.logic.parser.exceptions.ParseException;
-import tp.acecs2103.model.task.*;
-
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import tp.acecs2103.model.task.Index;
 
 public class DeleteCommandParserTest {
     @Test
@@ -22,7 +22,7 @@ public class DeleteCommandParserTest {
     }
 
     @Test
-    public void parse_invalidDeleteCommand_emptyArgs_fail() {
+    public void parse_invalidDeleteCommandEmptyArguments_fail() {
         DeleteCommandParser deleteCommandParser = new DeleteCommandParser();
         String parametersStub = "";
         try {
@@ -33,7 +33,7 @@ public class DeleteCommandParserTest {
     }
 
     @Test
-    public void parse_invalidDeleteCommand_invalidIndex1_fail() {
+    public void parse_invalidDeleteCommandInvalidIndex_fail() {
         DeleteCommandParser deleteCommandParser = new DeleteCommandParser();
         String parametersStub = "010101";
         try {
@@ -44,7 +44,19 @@ public class DeleteCommandParserTest {
     }
 
     @Test
-    public void parse_invalidDeleteCommand_invalidIndex2_fail() {
+    public void parse_validTwoDigitsWeekDeleteCommand_success() {
+        DeleteCommandParser deleteCommandParser = new DeleteCommandParser();
+        String parametersStub = "01301";
+        DeleteCommand expected = new DeleteCommand(new Index("01301"));
+        try {
+            assertEquals(expected, deleteCommandParser.parse(parametersStub));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void parse_invalidWeekDeleteCommandInvalidIndex_fail() {
         DeleteCommandParser deleteCommandParser = new DeleteCommandParser();
         String parametersStub = "01401";
         try {
