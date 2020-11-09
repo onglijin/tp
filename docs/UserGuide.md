@@ -148,9 +148,9 @@ Example:
 * `undone 0101`:
 Mark task with index 0101 as pending.
 
-### Filter selected tasks base on various criteria: `filter`
+### Filter selected tasks based on various criteria: `filter`
 
-Filters the tasks based on selected condition and rank them by deadline.
+Filters the tasks based on selected criteria and order them by deadline.
 
 Format 1: `filter w/WEEKNUMBER k/KEYWORD l/DEADLINETYPE` <br>
 Format 2: `filter k/KEYWORD l/DEADLINETYPE` <br>
