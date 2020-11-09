@@ -55,8 +55,10 @@ public class AppUtil {
         int difference = (int) weekOne.until(currentTime, ChronoUnit.DAYS);
         if (difference / 7 <= 6) {
             return new WeekNumber(Integer.toString(difference / 7 + 1));
-        } else {
+        } else if (difference / 7 <= 13){
             return new WeekNumber(Integer.toString(difference / 7));
+        } else {
+            return new WeekNumber(Integer.toString(13));
         }
 
     }
