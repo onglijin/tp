@@ -18,7 +18,7 @@ Given below are my contributions to the project.
     (Pull Request [#57](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/57) [#73](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/73))
     * ModelManager: It is an interface for other components to access model.
     (Pull Request [#80](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/80))
-    
+
 * **Storage Component**: Added Storage Component
     * What it does: In charge of Storage component including creation, bug shooting, maintenance, etc.
     * Justification: The Storage component is to store user's data (tasks) and preferences. A good Storage component ensures the user data can be written and read back correctly.
@@ -41,6 +41,6 @@ Given below are my contributions to the project.
   * Cleaned the code to pass CI for several times: Pull Requests [#91](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/91) [#94](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/94) [#240](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/240)
   * Helped teammates to debug the code.
   * Added the test code: Pull Request [#222](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/222)
-  
+
 * **Community**:
   * Bugs reported to other teams: [\link](https://github.com/XIA-LIYI/ped/issues)

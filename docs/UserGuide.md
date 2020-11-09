@@ -20,7 +20,6 @@ Ace CS2103/T is a **desktop app for managing task requirements of CS2103/T, opti
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/w13.png)
-   ![Ui](images/w6.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will get you the link for user guide.<br>
    Some example commands you can try:
@@ -45,41 +44,15 @@ Ace CS2103/T is a **desktop app for managing task requirements of CS2103/T, opti
   e.g. in `list WEEK_NUMBER`, `WEEK_NUMBER` is a parameter which can be used as `list 6`.
 
 * Items in square brackets are optional.<br>
-  e.g `help [PARAMETER]` can be used as `help find` or as `help`.
+  e.g `add i/INDEX w/WEEKNUMBER d/DESCRIPTION c/DEADLINE [r/REMARK] a/CATEGORY` can be used as `add i/0111 w/1 d/new customised task c/2020-09-01 a/admin` or as `add i/0111 w/1 d/new customised task c/2020-09-01 r/new remark a/admin`.
 
 </div>
 
-### Viewing help: `help` *(Coming soon)*
+### Viewing help: `help`
 
-Lists all available commands or format and usage for a specified command.
+Lists the website for the user guide.
 
-Format: `help [PARAMETER]`
-
-List of PARAMETERs :
-
-* No parameters: List all the supported commands for the task manager.
-* get: `get PARAMETER`. Gets specified administrative information by parameters.
-* find: `find KEYWORD`. Lists all tasks that contain the keyword.
-* list: `list WEEK_NUMBER`. Lists all tasks in a specific week.
-* deadline: `deadline i/TASK_NUMBER c/DEADLINE`. Adds a customized deadline to a preloaded task.
-* add: `add d/DESCRIPTION c/DEADLINE r/REMARKS`. Adds a customized task in the task manager.
-* delete: `delete TASK_NUMBER`. Deletes a customized task in the task manager.
-* exit: `exit`. Exits the task manager.
-
-### Viewing administrative information: `get` *(Coming soon)*
-
-Gets specified administrative information by parameters.
-
-Format: `get PARAMETER`
-
-List of PARAMETERs :
-
-* contact: Returns the email addresses of professors and TAs in charge of CS2103/T.
-* faq: Returns preloaded FAQs on CS2103/T.
-* overview: Returns the preloaded module overview.
-* progress: Returns the links to iP and tP progress dashboards.
-* setup: Returns the preloaded instructions about how to set up Github, IntelliJ and SourceTree.
-* tp: Returns the team project Github link if it is available. Otherwise, user is prompted to key in the link.
+Format: `help`
 
 ### Finding relevant tasks: `find`
 
@@ -91,7 +64,7 @@ Format: `find KEYWORD`
 * Operates rough search in the task list.
 
 Example:
-* `find book`: Returns all tasks containing keyword “book” in their descriptions or remarks.
+* `find project`: Returns all tasks containing keyword “project” in their descriptions or remarks.
 
 ### List tasks: `list`
 
@@ -178,16 +151,16 @@ Mark task with index 0109 as pending.
 
 Filters the tasks based on selected condition and rank them by deadline.
 
-Format 1: `filter w/WEEKNUMBER k/KEYWORD l/DEADLINETYPE`
-Format 2: `filter k/KEYWORD l/DEADLINETYPE`
-Format 3: `filter w/WEEKNUMBER k/KEYWORD`
+Format 1: `filter w/WEEKNUMBER k/KEYWORD l/DEADLINETYPE` <br>
+Format 2: `filter k/KEYWORD l/DEADLINETYPE` <br>
+Format 3: `filter w/WEEKNUMBER k/KEYWORD` <br>
 Format 4: `filter k/KEYWORD`
 
 * The `KEYWORD` can be "pending" or "done". The task manager will filter tasks based on the done status of tasks.
 * The `WEEKNUMBER` can be used to specify which week the user select.
 * The `DEADLINETYPE` can be "official" or "customised", which specify which deadline type the selected task should be ranked by in ascending order.
-* In Format 2,4, the KEYWORD can only be "done"
-* In Format 1,3, the KEYWORD can only be "pending"
+* In Format 1 and 3, the KEYWORD can only be "pending".
+* In Format 2 and 4, the KEYWORD can only be "done".
 
 Example:
 * `filter k/done`: Display all the completed tasks.
@@ -226,7 +199,7 @@ Action | Format, Examples
 **Deadline** | `deadline i/TASK_NUMBER c/DEADLINE` <br> e.g., `deadline i/0601 c/2020-09-20`
 **Edit** | `edit i/INDEX [w/WEEK_NUMBER] [d/DESCRIPTION] [c/DEADLINE] [r/REMARK]` <br> e.g. 'edit i/0109 d/updated description r/updated remark'
 **Delete** | `delete TASK_NUMBER`<br> e.g., `delete 0601`
-**Find** | `find KEYWORD` e.g., `find book` <br>
+**Find** | `find KEYWORD` e.g., `find project` <br>
 **List** | `list WEEK_NUMBER`  e.g., `list 6` <br>
 **Filter** | `filter [w/WEEKNUMBER] k/KEYWORD [l/DEADLINETYPE]` e.g., `filter w/4 k/pending l/official` <br>
 **Home** | `home`<br>
