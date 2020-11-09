@@ -137,16 +137,16 @@ Format of `done`: `done TASK_INDEX`
 * The task at TASK_INDEX will be marked as done.
 
 Example:
-* `done 0109`:
-Mark task with index 0109 as done.
+* `done 0101`:
+Mark task with index 0101 as done.
 
 Format of `undone`: `undone TASK_INDEX`
 
 * The task at TASK_INDEX will be marked as pending.
 
 Example:
-* `undone 0109`:
-Mark task with index 0109 as pending.
+* `undone 0101`:
+Mark task with index 0101 as pending.
 
 ### Rank selected tasks base on deadline: `filter`
 
