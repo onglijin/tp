@@ -1,7 +1,7 @@
 [![CI Status](https://github.com/AY2021S1-CS2103-T14-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103-T14-4/tp/actions)
 
 ![Ui](docs/images/w6.png)
-![Ui](docs/images/w13.png)
+![Ui](docs/images/Ui.png)
 
 Ace CS2103/T helps CS2103/T students manage their tasks. It is optimized for CLI users so that each task can be managed faster by typing in commands.
 
