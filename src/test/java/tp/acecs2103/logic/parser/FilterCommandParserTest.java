@@ -74,7 +74,7 @@ public class FilterCommandParserTest {
     }
 
     @Test
-    public void parse_invalidFilterCommand_k_pending_fail() {
+    public void parse_invalidFilterCommandK_fail() {
         FilterCommandParser filterCommandParser = new FilterCommandParser();
         String parametersStub = " k/pending";
         try {
@@ -86,7 +86,7 @@ public class FilterCommandParserTest {
     }
 
     @Test
-    public void parse_invalidFilterCommand_kl_done_fail() {
+    public void parse_invalidFilterCommandKL_fail() {
         FilterCommandParser filterCommandParser = new FilterCommandParser();
         String parametersStub = " k/done l/official";
         try {
@@ -98,7 +98,7 @@ public class FilterCommandParserTest {
     }
 
     @Test
-    public void parse_invalidFilterCommand_wkl_done_fail() {
+    public void parse_invalidFilterCommandwkl_fail() {
         FilterCommandParser filterCommandParser = new FilterCommandParser();
         String parametersStub = " w/4 k/done l/official";
         try {
@@ -110,7 +110,7 @@ public class FilterCommandParserTest {
     }
 
     @Test
-    public void parse_invalidFilterCommand_emptyArgument_fail() {
+    public void parse_invalidFilterCommandemptyArgument_fail() {
         FilterCommandParser filterCommandParser = new FilterCommandParser();
         String parametersStub = " ";
         try {
