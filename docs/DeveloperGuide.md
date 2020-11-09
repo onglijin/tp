@@ -42,13 +42,13 @@ Each of the four components,
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
-![Class Diagram of the Logic Component](images/Ace2103LogicClassDiagram.jpg)
+![Class Diagram of the Logic Component](images/AceCS2103LogicClassDiagram.jpg)
 
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-![Sequence Diagram for Delete 1 command](images/Ace2103DeleteSequenceDiagram.jpg)
+![Sequence Diagram for Delete 1 command](images/AceCS2103DeleteSequenceDiagram.jpg)
 
 
 The sections below give more details of each component.
@@ -71,7 +71,7 @@ The `UI` component,
 
 ### Logic component
 
-![Structure of the Logic Component](images/Ace2103LogicClassDiagram.jpg)
+![Structure of the Logic Component](images/AceCS2103LogicClassDiagram.jpg)
 
 **API** :
 [`Logic.java`](https://github.com/AY2021S1-CS2103-T14-4/tp/blob/master/src/main/java/tp/acecs2103/logic/Logic.java)
@@ -84,7 +84,7 @@ The `UI` component,
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 0101")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/Ace2103DeleteSequenceDiagram.jpg)
+![Interactions Inside the Logic Component for the `delete 1` Command](images/AceCS2103DeleteSequenceDiagram.jpg)
 
 ### Model component
 
