@@ -263,8 +263,6 @@ The UiTaskList must be refreshed every time after the command is run in case the
 
 --------------------------------------------------------------------------------------------------------------------
 
---------------------------------------------------------------------------------------------------------------------
-
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
@@ -526,7 +524,7 @@ Actor: User
 
 
 
-**Use case: UC09 - Jump back to default page**
+**Use case: UC09 - Filter the task list**
 
 Actor: User
 
@@ -557,7 +555,6 @@ Actor: User
 
     *a1. Task manager shows goodbye words and exits
          Use case ends.
-
 
 ### Non-Functional Requirements
 
@@ -651,24 +648,73 @@ testers are expected to do more *exploratory* testing.
 	8. Test case: 'add i/0109 w/1 d/update documentation c/2020-10-02 r/check tp dashboard a/Haha'<br>
 		Expected: No task is added. Error message will inform you that the category you provided is unexisted.
 
+### (Set) Deadline for tasks
+
+Set customised deadline for a task
+
+   1. Prerequisites: The task indicated should exist in the task list.
+   1. Note that format for index follows this convention: 0 + week number + 2 digits, e.g. `0101`,`01011`,`01208`
+
+   1. Test case: `deadline i/0701 c/2020-09-29`<br>
+      Expected: Customised deadline for task indexed at 0701 is set. Success message shown in feedback box.
+
+   1. Test case: `deadline i/0601 c/2020-09-29`<br>
+      * Assuming this task is not overdue yet, i.e. the current time is before the official deadline of the task (2020-09-17).
+      
+      Expected: No customised deadline will be set. Error details will be shown in the status message, as task indexed at 0601 has an official deadline before 2020-09-29.
+
+   1. Test case: `deadline i/0620 c/2020-09-29`<br>
+      Expected: No customised deadline will be set. Error details will be shown in the status message, as task index provided is invalid.
+   
+   1. Other incorrect delete commands to try: `deadline`, `undone i/1`, `...` 
+      Expected: Similar to previous. 
+      
 ### Deleting a task
 
-1. Deleting a customised task if it exists in the task list
+Deleting a customised task if it exists in the task list
 
    1. Prerequisites: Ensure that the task does exist in the task list by listing all tasks for the relevant week. 
    If there is no customised task created yet in the task list, add customised tasks using add command.
    For example, `add i/0109 w/1 d/update documentation c/2020-10-02 r/check tp dashboard a/Tp` to add
-   a customised task with index 0109.
+   a customized task with index 0109. 
+   
+   1. Note that format for index follows this convention: 0 + week number + 2 digits, e.g. `0101`,`01011`,`01208`
 
+   1. Test case: `delete 0109`<br>
+            Expected: Customised task indexed at 0109 is deleted from the task list. Success message shown.
+            
    1. Test case: `delete 0101`<br>
-      Expected: No task is deleted. Error message will be shown in the status message, as task indexed at 0101 is a default task that cannot be deleted.
+      Expected: No task is deleted. Error details will be shown in the status message, as task indexed at 0101 is a default task that cannot be deleted.
 
    1. Test case: `delete 0`<br>
-      Expected: No task is deleted. Error details will be shown in the status message as the task index is invalid. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+      Expected: No task is deleted. Error details shown in the status message as the task index is invalid. 
+   
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is any string that does not follow the index format)<br>
       Expected: Similar to previous.
 
+
+### Done a task
+
+Mark a task as done if it is not done yet.
+
+   1. Prerequisites: The task to be marked as done should be in pending status (not done yet). You can check the completion status by 
+   observing the task color: red or grey for pending tasks, green for completed tasks.
+   
+   1. Note that format for index follows this convention: 0 + week number + 2 digits, e.g. `0101`,`01011`,`01208`
+
+   1. Test case: `done 0101`<br>
+      Expected: Pending task indexed at 0101 is marked as done correctly. Success message shown in feedback box.
+       Task color changes from grey/red to green.
+       * Note: if you type `done 0101` again, error message will be shown to remind you that this task has been marked as done.
+            
+   1. Test case: `done 0120`<br>
+      Expected: No task is marked as done. Error details will be shown in the status message, as task indexed at 0120 does not exist.
+
+   1. Test case: `done 0`<br>
+      Expected: No task is marked as done. Error details shown in the status message as the task index is invalid. 
+   
+   1. Other incorrect delete commands to try: `done`, `done x`, `...` (where x is any string that does not follow the index format)<br>
+      Expected: Similar to previous.
 
 ### Editing a task
 
@@ -680,32 +726,78 @@ testers are expected to do more *exploratory* testing.
     a customised task with index 0109.
     
     1. Test case: `edit i/0101 c/2020-09-01 r/updated remark` <br>
-       Expected: Customised deadline and remark is updated for task indexed at 0101.
+       Expected: Customised deadline and remark is updated for task indexed at 0101. Success message shown in feedback box.
     
     1. Test case: `edit i/0109 d/updated description r/updated remark` <br>
-       Expected: Description, customised deadline and remark is updated for task indexed at 0109.
+       Expected: Description, customised deadline and remark is updated for task indexed at 0109. Success message shown in feedback box.
     
     1. Test case: `edit i/0101 d/updated description r/updated remark`
        Expected: No task is edited. Error details will be shown in the status message as the task indexed at 0101 is a default task and the description cannot be edited.
-    
+
+     
+### Filter task list
+
+Filter task list according to certain criteria
+
+   1. Test case: `filter k/done`<br>
+      Expected: All completed tasks are displayed. Success message shown in feedback box. Note that no task will be displayed if none of the tasks in task list is done yet.
+
+   1. Test case: `filter w/4 k/done`<br>
+   Expected: All completed tasks in week 4 are displayed. Success message shown in feedback box.
+   
+   1. Test case: `filter k/pending l/official`<br>
+      Expected: All pending tasks are displayed in ascending order of official deadline. Success message shown in feedback box.
+      * Note: customised deadline will be used for comparison between tasks if certain tasks do not have official deadline
+   
+   1. Test case: `filter w/4 k/pending l/customised`<br>
+      Expected: All pending tasks in week 4 are displayed in ascending order of customised deadline. Success message shown in feedback box.
+      * Note: official deadline will be used for comparison between tasks if certain tasks do not have customised deadline
+   
+   1. Test case: `filter w/4`<br>
+      Expected: Task list displayed will not be changed. Error details will be shown in the status message, as keyword for filter is not specified.
+   
+   1. Test case: `filter w/4 k/pending`<br>
+      Expected: Task list displayed will not be changed. Error details will be shown in the status message, as type of deadline is a compulsory input for filtering pending tasks.
+      
+   1. Other incorrect delete commands to try: `filter`, `filter x`, `...` (for x being any irrelevant string)
+      Expected: Similar to previous.       
+
+
 ### Finding a task
   
 1. Finding a task by a keyword
 
     1. Test case: `find project` <br>
-       Expected: Tasks with "project" in its description or remark will be listed.
+       Expected: Tasks with "project" in its description or remark will be listed. Success message shown in feedback box.
 
-### Listing tasks
+                     
+### Undone a task
 
-1. Listing all tasks for a certain week.
+Mark a task as pending if it is marked as done.
 
-    1. Test case: `list 6` <br>
-       Expected: Tasks with week number 6 will be listed.
-       
-    1. Test case: `list 0` <br>
-       Expected: No task is listed. Error details will be shown in the status message as the week number is not between 1 and 13.
-    
-### Going to home page
+   1. Prerequisites: The task to be marked as pending should be in done status. You can check the completion status by 
+   observing the task color: red or grey for pending tasks, green for completed tasks.
+   
+   1. Note that format for index follows this convention: 0 + week number + 2 digits, e.g. `0101`,`01011`,`01208`
+
+   1. Test case: `done 0101` `undone 0101`<br>
+      Expected: 
+      * for `done 0101`: Pending task indexed at 0101 is marked as done correctly. Success message shown in feedback box.
+       Task color changes from grey/red to green.
+      * for `undone 0101`: Done task indexed at 0101 is marked as pending correctly. Success message shown in feedback box.
+                                      Task color changes from green to grey/red.
+       * Note: if you type `undone 0101` again, error message will be shown to remind you that this task is not marked done yet.
+            
+   1. Test case: `undone 0120`<br>
+      Expected: No task is marked as pending. Error details will be shown in the status message, as task indexed at 0120 does not exist.
+
+   1. Test case: `undone 0`<br>
+      Expected: No task is marked as pending. Error details shown in the status message as the task index is invalid. 
+   
+   1. Other incorrect delete commands to try: `undone`, `undone x`, `...` (where x is any string that does not follow the index format)<br>
+      Expected: Similar to previous.      
+
+### Home page
 
 1. Switch current page to the task list of current week(home page).
 
@@ -717,8 +809,60 @@ testers are expected to do more *exploratory* testing.
 1. Getting help information
 
 	1. Test case: 'help'<br>
-		Expected: Get a link to the UserGuide page.
-		
+		Expected: Get a link to the UserGuide page.          
+
+### Listing tasks
+
+1. Listing all tasks for a certain week.
+
+    1. Test case: `list 6` <br>
+       Expected: Tasks with week number 6 will be listed.
+       
+    1. Test case: `list 0` <br>
+       Expected: No task is listed. Error details will be shown in the status message as the week number is not between 1 and 13.
+    
 ### Saving data
 
 1. Input `exit` in command line to save and exit.
+
+
+## **Effort**
+###Difficulty level
+####More entities:
+* Compared with AB3 which has one panel for Person, there are four different kinds of tasks (Admin, Topic, Tp, Ip), and four panels to display the tasks with corresponding categories in Ace CS2103 / T.
+
+####More attributes:
+* In AB3, each person object has 5 attributes: email, name, address, phone, and tags
+* In Ace CS2103 / T, there are nine attributes in each task object: category, index, week number, description, official deadline, customized deadline, remark, status, and whether is a default task or not. 
+
+####More links between attributes:
+* The nine attributes in our task objects are highly linked
+* It makes the logic of processing each command much more complex as more conditions need to be checked and met, and changes to one attribute will inevitably affect other attributes
+* Here are some examples: 
+  * Index needs to be consistent with the week number
+  * Default task cannot be deleted
+  * Customised deadline cannot be set before official deadline if the task is not overdue
+  * Description can only be edited for customised tasks, but not for default task
+  * ...
+* Due to the high amount of links between attributes, we need to consider more exceptions to handle
+   
+###More commands:
+* Compared with AB3, there are more commands in Ace CS2103 / T
+* Examples include:
+   * deadline
+   * done
+   * undone
+   * filter
+   * ... 
+* Because there are nine attributes in every object, commands are more easily to have bugs. When writing code, we need to be more careful and consider all the aspects.
+
+More testing considerations:
+Since some commands may have many fields (e.g. add, edit), we need to ensure no bugs will occur for every field. We spent much time adding and improving our testing code such that it can cover all the possibilities.
+
+Challenges faced & effort required
+Ui
+In this project, we are required to use JavaFX to design the Ui. However, none of us learned JavaFX before. Although some basic concepts are taught in the individual project, the knowledge needed for a team project is much more than that. When designing the Ui, we need to learn from AB3 first and then think about how to utilize the techniques in our project. Besides, we notice that fa particular styling, there are many ways to achieve it: it can be either implemented in .java class, .fxml file, or .css file, which adds many confusions. Last but not least, although we looked into AB3 code to learn how it implements a certain feature, we abandoned the dark style used in AB3 and created our own light color style, which is also a huge challenge because we cannot use the code from AB3 directly.
+
+achievements of the project
+With our best effort, we finally finished the project --- a desktop task manager application used for keeping track of tasks for CS2103/T Software Engineering. During the process, we learned how to implement logic, storage, model, and Ui part for an application, as well as how these components interact with each other. Besides, we realized the importance of teamwork. When a team member encounters difficulties, others will offer help and think of solutions together. Although this project consumes a lot of time and effort, it is quite meaningful because we gain much software engineering experience during the process and also make a group of nice friends.
+
