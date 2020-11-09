@@ -72,4 +72,52 @@ public class FilterCommandParserTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void parse_invalidFilterCommandK_fail() {
+        FilterCommandParser filterCommandParser = new FilterCommandParser();
+        String parametersStub = " k/pending";
+        try {
+            filterCommandParser.parse(parametersStub);
+            assert false;
+        } catch (ParseException | CommandException e) {
+            assert true;
+        }
+    }
+
+    @Test
+    public void parse_invalidFilterCommandKL_fail() {
+        FilterCommandParser filterCommandParser = new FilterCommandParser();
+        String parametersStub = " k/done l/official";
+        try {
+            filterCommandParser.parse(parametersStub);
+            assert false;
+        } catch (ParseException | CommandException e) {
+            assert true;
+        }
+    }
+
+    @Test
+    public void parse_invalidFilterCommandwkl_fail() {
+        FilterCommandParser filterCommandParser = new FilterCommandParser();
+        String parametersStub = " w/4 k/done l/official";
+        try {
+            filterCommandParser.parse(parametersStub);
+            assert false;
+        } catch (ParseException | CommandException e) {
+            assert true;
+        }
+    }
+
+    @Test
+    public void parse_invalidFilterCommandemptyArgument_fail() {
+        FilterCommandParser filterCommandParser = new FilterCommandParser();
+        String parametersStub = " ";
+        try {
+            filterCommandParser.parse(parametersStub);
+            assert false;
+        } catch (ParseException | CommandException e) {
+            assert true;
+        }
+    }
 }

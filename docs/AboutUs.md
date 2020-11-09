@@ -13,11 +13,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/perpetual09.png" width="200px">
 
-[[homepage](https://github.com/Perpetual09)]
-
 [[github](https://github.com/Perpetual09)]
-
-[[portfolio](https://github.com/Perpetual09/tp)]
+[[portfolio](https://ay2021s1-cs2103-t14-4.github.io/tp/team/perpetual09.html)]
 
 * Role: Developer
 
@@ -26,12 +23,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/unicornjin.png" width="200px">
 
 [[github](https://github.com/UnicornJin)]
+[[portfolio](https://ay2021s1-cs2103-t14-4.github.io/tp/team/unicornjin.html)]
 
 ### Ong Li Jin
 
 <img src="images/onglijin.png" width="200px">
 
 [[github](https://github.com/onglijin)]
+[[portfolio](https://ay2021s1-cs2103-t14-4.github.io/tp/team/onglijin.html)]
 
 * Role: Developer
 
@@ -39,8 +38,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/xia-liyi.png" width="200px">
 
-[[github](http://github.com/xia-liyi) ]
-[[portfolio](https://ay2021s1-cs2103-t14-4.github.io/tp/team/xia-liyi.html) ]
+[[github](http://github.com/xia-liyi)]
+[[portfolio](https://ay2021s1-cs2103-t14-4.github.io/tp/team/xia-liyi.html)]
 
 * Role: Developer
 
@@ -49,5 +48,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/zhang-yunjie.png" width="200px">
 
 [[github](http://github.com/zhang-yunjie)]
+[[portfolio](https://ay2021s1-cs2103-t14-4.github.io/tp/team/zhang-yunjie.html)]
 
 * Role: Developer

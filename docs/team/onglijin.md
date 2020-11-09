@@ -38,4 +38,4 @@ Given below are my contributions to the project.
   * Enabled assertions in team repo [\#118](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/118)
 
 * **Community**:
-  * PRs reviewed : [\#7](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/7), [\#013](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/103), [\#131](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/131)
+  * PRs reviewed : [\#7](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/7), [\#103](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/103), [\#131](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/131)
