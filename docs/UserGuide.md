@@ -121,7 +121,7 @@ Edits a customised task in the task manager.
 
 Format: `edit i/INDEX [w/WEEK_NUMBER][d/DESCRIPTION] [c/DEADLINE] [r/REMARK]`
 
-* The task with INDEX as index will be updated with WEEK_NUMBER as the new weeknumber, DESCRIPTION as the new description, DEADLINE as the new customised deadline, REMARK as the new remark, CATEGORY as the category will be added into task list.
+* The task with INDEX as index will be updated with WEEK_NUMBER as the new week number, DESCRIPTION as the new description, DEADLINE as the new customised deadline, REMARK as the new remark, CATEGORY as the category will be added into task list.
 * The INDEX is compulsory, all other parameters are optional.
 * Only customised task can be edited.
 
@@ -130,7 +130,7 @@ Example:
 Customised task indexed at 0109 is to be updated with "updated description" as its new description,
 
 
-### Mark a task as done/undone: `done` and `undone`
+### Mark a task as done: `done`
 
 Marks a task in the task manager as done or undone.
 
@@ -141,6 +141,8 @@ Format of `done`: `done TASK_INDEX`
 Example:
 * `done 0101`:
 Mark task with index 0101 as done.
+
+### Mark a task as undone: `undone`
 
 Format of `undone`: `undone TASK_INDEX`
 
