@@ -35,6 +35,8 @@ Ace CS2103/T is a **desktop app for managing task requirements of CS2103/T, opti
 7. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## About UI
 * Tasks are displayed in 4 columns for 4 categories of CS2103/T tasks, namely Admin, Topic, IP and TP.
 * Time range of tasks displayed in each column is shown in the header of the column, beside the task category.
