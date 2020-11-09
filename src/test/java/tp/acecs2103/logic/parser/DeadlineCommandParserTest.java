@@ -56,6 +56,8 @@ public class DeadlineCommandParserTest {
             deadlineCommandParser.parse(parametersStub);
         } catch (ParseException e) {
             assert true;
+        } catch (IllegalArgumentException e) {
+            assert true;
         }
     }
 
