@@ -76,5 +76,4 @@ class UndoneCommandTest {
         assertFalse(doneCommand.equals(null));
         assertFalse(doneCommand.equals("0101"));
     }
-
 }

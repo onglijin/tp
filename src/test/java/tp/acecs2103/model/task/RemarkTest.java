@@ -30,7 +30,4 @@ class RemarkTest {
         assertFalse(remark1.equals(null));
         assertFalse(remark1.equals("remark"));
     }
-
-
-
 }

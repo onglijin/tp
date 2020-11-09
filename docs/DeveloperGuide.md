@@ -579,7 +579,7 @@ Actor: User
 
     2a1. Task manager informs the user to provide a valid task index
         Use case ends
-        
+
 3a. User attempts to delete a default task
 
     3a1. Task manager informs the user that only customized task can be deleted
@@ -598,19 +598,19 @@ Actor: User
 2. Task manager mark the task and update the done/undone status on the UI
 
     Use case ends
-    
+
 **Extensions**
 
 1a. User provides an invalid task index
 
     1a1. Task manager informs the user to provide a valid task index
         Use case ends
-    
+
 2a. User does not provide task index
-    
+
     2a1. Task manager informs the user to provide a valid task index
         Use case ends
-        
+
 3a. User attempts to mark a done task as done again or mark an undone task as undone again
 
     3a1. Task manager informs the user that the task has been marked already
