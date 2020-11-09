@@ -46,7 +46,8 @@ public class EditCommand extends Command {
         "Only customised deadline and remark can be changed for a default task.";
     public static final String MESSAGE_INVALID_INDEX = "\nTask with the input index does not exist in the task list."
             + " Please try again.";
-    public static final String MESSAGE_INVALID_WEEK = "Invalid edition. Week number should be consistent with the index.\n"
+    public static final String MESSAGE_INVALID_WEEK = 
+            "Invalid edition. Week number should be consistent with the index.\n"
             + "Please try again.";
 
     private final Index index;
