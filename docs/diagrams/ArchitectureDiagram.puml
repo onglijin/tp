@@ -10,7 +10,6 @@ Package " "<<Rectangle>>{
     Class Storage STORAGE_COLOR
     Class Model MODEL_COLOR
     Class Main #grey
-    Class Commons LOGIC_COLOR_T2
 }
 
 Class "<$user>" as User MODEL_COLOR_T2
