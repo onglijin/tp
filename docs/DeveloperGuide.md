@@ -7,7 +7,7 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+# **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
@@ -260,8 +260,6 @@ It is to separate tasks which should be used for Ui display from TaskList used i
 <br/>
 **Other Considerations:**
 The UiTaskList must be refreshed every time after the command is run in case there is any change for it.
-
---------------------------------------------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -558,7 +556,6 @@ Actor: User
     *a1. Task manager shows goodbye words and exits
          Use case ends.
 
-
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -604,8 +601,74 @@ testers are expected to do more *exploratory* testing.
        Expected: The most recent window size and location is retained.
 
 1. Shutdown
-   1. Input `exit` in command line to shut the app down.
+   1. Input `exit` in command line to save and exit.
 
+### Adding a task
+
+1. Adding a customized task into task list
+
+	1. Prerequisites: Ensure that the index of adding task is not occupied.
+	Provide necessary information, include: index, week number, description, deadline, category.
+	The remark parameter is optional.
+
+	1. Test case: 'add i/0109 w/1 d/update documentation c/2020-10-02 r/check tp dashboard a/Tp'<br>
+		Expected: A task with:
+			index: 0109
+			week number: 1
+			description: update documentation
+			customized deadline: 2020-10-02
+			remark: check tp dashboard
+		is created under "Tp" category, and marked as undone.
+		If your page is not switched to week 1, use 'list 1'<br> to switch to week 1
+
+	2. Test case: 'add i/0110 w/1 d/Cyberpunk2077 c/2020-12-10 a/Ip'<br>
+		Expected: A task with:
+			index: 0110
+			week number: 1
+			description: Cyberpunk2077
+			customized deadline: 2020-12-10
+		is created under "Ip" category, and marked as undone.
+		If your page is not switched to week 1, use 'list 1'<br> to switch to week 1
+
+	3. Test case: 'add w/1 d/update documentation c/2020-10-02 r/check tp dashboard a/Tp'<br>
+		Expected: No task is added. Error message will inform you that there is/are some necessary parameters missing.
+
+	4. Test case: 'add i/01401 w/14 d/update documentation c/2020-10-02 r/check tp dashboard a/Tp'<br>
+		Expected: No task is added. Error message will inform you that the index and week number is invalid.
+
+	5. Test case: 'add i/0109 w/11 d/update documentation c/2020-10-02 r/check tp dashboard a/Tp'<br>
+		Expected: No task is added. Error message will inform you that the index is not match to week number.
+
+	6. Test case: 'add i/0109 w/1 d/update documentation c/2020-10-02 r/check tp dashboard a/Tp x/dummy'<br>
+		Expected: No task is added. Error message will inform you that there are some unexpected parameters in the command.
+
+	7. Test case: 'add i/0109 w/1 d/update documentation c/2020-19-75 r/check tp dashboard a/Tp'<br>
+		Expected: No task is added. Error message will inform you that the deadline previded is an invalid date.
+
+	8. Test case: 'add i/0109 w/1 d/update documentation c/2020-10-02 r/check tp dashboard a/Haha'<br>
+		Expected: No task is added. Error message will inform you that the category you provided is unexisted.
+
+### (Set) Deadline for tasks
+
+Set customised deadline for a task
+
+   1. Prerequisites: The task indicated should exist in the task list.
+   1. Note that format for index follows this convention: 0 + week number + 2 digits, e.g. `0101`,`01011`,`01208`
+
+   1. Test case: `deadline i/0701 c/2020-09-29`<br>
+      Expected: Customised deadline for task indexed at 0701 is set. Success message shown in feedback box.
+
+   1. Test case: `deadline i/0601 c/2020-09-29`<br>
+      * Assuming this task is not overdue yet, i.e. the current time is before the official deadline of the task (2020-09-17).
+      
+      Expected: No customised deadline will be set. Error details will be shown in the status message, as task indexed at 0601 has an official deadline before 2020-09-29.
+
+   1. Test case: `deadline i/0620 c/2020-09-29`<br>
+      Expected: No customised deadline will be set. Error details will be shown in the status message, as task index provided is invalid.
+   
+   1. Other incorrect delete commands to try: `deadline`, `undone i/1`, `...` 
+      Expected: Similar to previous. 
+      
 ### Deleting a task
 
 Deleting a customised task if it exists in the task list
@@ -652,8 +715,62 @@ Mark a task as done if it is not done yet.
    
    1. Other incorrect delete commands to try: `done`, `done x`, `...` (where x is any string that does not follow the index format)<br>
       Expected: Similar to previous.
+
+### Editing a task
+
+1. Editing a task if it exists in the task list
+    
+    1. Prerequisite: Ensure that the task exits in the task list. One way you can check is by listing all tasks for the relevant week.
+    If the task does not exist in the task list, you can add a customised task by using the add command.
+    For example, `add i/0109 w/1 d/update documentation c/2020-10-02 r/check tp dashboard a/Tp` to add
+    a customised task with index 0109.
+    
+    1. Test case: `edit i/0101 c/2020-09-01 r/updated remark` <br>
+       Expected: Customised deadline and remark is updated for task indexed at 0101. Success message shown in feedback box.
+    
+    1. Test case: `edit i/0109 d/updated description r/updated remark` <br>
+       Expected: Description, customised deadline and remark is updated for task indexed at 0109. Success message shown in feedback box.
+    
+    1. Test case: `edit i/0101 d/updated description r/updated remark`
+       Expected: No task is edited. Error details will be shown in the status message as the task indexed at 0101 is a default task and the description cannot be edited.
+
+     
+### Filter task list
+
+Filter task list according to certain criteria
+
+   1. Test case: `filter k/done`<br>
+      Expected: All completed tasks are displayed. Success message shown in feedback box. Note that no task will be displayed if none of the tasks in task list is done yet.
+
+   1. Test case: `filter w/4 k/done`<br>
+   Expected: All completed tasks in week 4 are displayed. Success message shown in feedback box.
+   
+   1. Test case: `filter k/pending l/official`<br>
+      Expected: All pending tasks are displayed in ascending order of official deadline. Success message shown in feedback box.
+      * Note: customised deadline will be used for comparison between tasks if certain tasks do not have official deadline
+   
+   1. Test case: `filter w/4 k/pending l/customised`<br>
+      Expected: All pending tasks in week 4 are displayed in ascending order of customised deadline. Success message shown in feedback box.
+      * Note: official deadline will be used for comparison between tasks if certain tasks do not have customised deadline
+   
+   1. Test case: `filter w/4`<br>
+      Expected: Task list displayed will not be changed. Error details will be shown in the status message, as keyword for filter is not specified.
+   
+   1. Test case: `filter w/4 k/pending`<br>
+      Expected: Task list displayed will not be changed. Error details will be shown in the status message, as type of deadline is a compulsory input for filtering pending tasks.
       
-      
+   1. Other incorrect delete commands to try: `filter`, `filter x`, `...` (for x being any irrelevant string)
+      Expected: Similar to previous.       
+
+
+### Finding a task
+  
+1. Finding a task by a keyword
+
+    1. Test case: `find project` <br>
+       Expected: Tasks with "project" in its description or remark will be listed. Success message shown in feedback box.
+
+                     
 ### Undone a task
 
 Mark a task as pending if it is marked as done.
@@ -680,50 +797,32 @@ Mark a task as pending if it is marked as done.
    1. Other incorrect delete commands to try: `undone`, `undone x`, `...` (where x is any string that does not follow the index format)<br>
       Expected: Similar to previous.      
 
-### Set deadline
+### Home page
 
-Set customised deadline for a task
+1. Switch current page to the task list of current week(home page).
 
-   1. Prerequisites: The task indicated should exist in the task list.
-   1. Note that format for index follows this convention: 0 + week number + 2 digits, e.g. `0101`,`01011`,`01208`
+	1. Test case: 'home'<br>
+		Expected: Shown task list is switched to current week page.
+		
+### Help information
 
-   1. Test case: `deadline i/0701 c/2020-09-29`<br>
-      Expected: Customised deadline for task indexed at 0701 is set. Success message shown in feedback box.
+1. Getting help information
 
-   1. Test case: `deadline i/0601 c/2020-09-29`<br>
-      * Assuming this task is not overdue yet, i.e. the current time is before the official deadline of the task (2020-09-17).
-      
-      Expected: No customised deadline will be set. Error details will be shown in the status message, as task indexed at 0601 has an official deadline before 2020-09-29.
+	1. Test case: 'help'<br>
+		Expected: Get a link to the UserGuide page.          
 
-   1. Test case: `deadline i/0620 c/2020-09-29`<br>
-      Expected: No customised deadline will be set. Error details will be shown in the status message, as task index provided is invalid.
-   
-   1. Other incorrect delete commands to try: `deadline`, `undone i/1`, `...` 
-      Expected: Similar to previous. 
-      
-### Filter task list
+### Listing tasks
 
-Filter task list according to certain criteria
+1. Listing all tasks for a certain week.
 
-   1. Test case: `filter k/done`<br>
-      Expected: All completed tasks are displayed. Success message shown in feedback box. Note that no task will be displayed if none of the tasks in task list is done yet.
+    1. Test case: `list 6` <br>
+       Expected: Tasks with week number 6 will be listed.
+       
+    1. Test case: `list 0` <br>
+       Expected: No task is listed. Error details will be shown in the status message as the week number is not between 1 and 13.
+    
+		
+### Saving data
 
-   1. Test case: `filter w/4 k/done`<br>
-   Expected: All completed tasks in week 4 are displayed. Success message shown in feedback box.
-   
-   1. Test case: `filter k/pending l/official`<br>
-      Expected: All pending tasks are displayed in ascending order of official deadline. Success message shown in feedback box.
-      * Note: customised deadline will be used for comparison between tasks if certain tasks do not have official deadline
-   
-   1. Test case: `filter w/4 k/pending l/customised`<br>
-      Expected: All pending tasks in week 4 are displayed in ascending order of customised deadline. Success message shown in feedback box.
-      * Note: official deadline will be used for comparison between tasks if certain tasks do not have customised deadline
-   
-   1. Test case: `filter w/4`<br>
-      Expected: Task list displayed will not be changed. Error details will be shown in the status message, as keyword for filter is not specified.
-   
-   1. Test case: `filter w/4 k/pending`<br>
-      Expected: Task list displayed will not be changed. Error details will be shown in the status message, as type of deadline is a compulsory input for filtering pending tasks.
-      
-   1. Other incorrect delete commands to try: `filter`, `filter x`, `...` (for x being any irrelevant string)
-      Expected: Similar to previous.                 
+1. Input `exit` in command line to save and exit.
+
