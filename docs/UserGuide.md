@@ -77,9 +77,9 @@ Format: `list WEEK_NUMBER`
 Example:
 * `list 6`: Returns all tasks in teaching week 6.
 
-### Adding a customized deadline: `deadline`
+### Adding a customised deadline: `deadline`
 
-Adds a customized deadline to a preloaded task.
+Adds a customised deadline to a preloaded task.
 
 Format: `deadline i/TASK_INDEX c/DEADLINE`
 
@@ -87,11 +87,11 @@ Format: `deadline i/TASK_INDEX c/DEADLINE`
 * The deadline should be given in the format: "YYYY-MM-DD"
 
 Example:
-* `deadline i/0601 c/2020-09-29`: Adds a customized deadline on 29th September 2020 to the first task of teaching week 6 which is indexed at TASK_NUMBER 0601.
+* `deadline i/0601 c/2020-09-29`: Adds a customised deadline on 29th September 2020 to the first task of teaching week 6 which is indexed at TASK_NUMBER 0601.
 
-### Adding a customized task: `add`
+### Adding a customised task: `add`
 
-Adds a customized task in the task manager.
+Adds a customised task in the task manager.
 
 Format: `add i/INDEX w/WEEKNUMBER d/DESCRIPTION c/DEADLINE [r/REMARK] a/CATEGORY`
 
@@ -103,25 +103,27 @@ Example:
 * `add i/0109 w/1 d/update documentation c/2020-08-14 r/check tp dashboard a/Tp`:
 Task to update documentation with deadline set on 2020-08-14 of category tp with a remark to check tp dashboard is added to the task list.
 
-### Deleting a customized task: `delete`
+### Deleting a customised task: `delete`
 
-Deletes a customized task in the task manager. An exception will occur if task indicated by index is a default task.
+Deletes a customised task in the task manager. An exception will occur if task indicated by index is a default task.
 
 Format: `delete TASK_INDEX`
 
-* The task indexed at TASK_INDEX will be deleted.
+* The task indexed at TASK_INDEX will be deleted. 
+* Only customised tasks can be deleted.
 
 Example:
-* `delete 0601`: Task indexed at 0601 will be deleted.
+* `delete 0109`: Task indexed at 0109 will be deleted.
 
-### Editing a customized task: `edit`
+### Editing a customised task: `edit`
 
-Edits a customized task in the task manager.
+Edits a customised task in the task manager.
 
 Format: `edit i/INDEX [w/WEEK_NUMBER][d/DESCRIPTION] [c/DEADLINE] [r/REMARK]`
 
 * The task with INDEX as index will be updated with WEEK_NUMBER as the new weeknumber, DESCRIPTION as the new description, DEADLINE as the new customised deadline, REMARK as the new remark, CATEGORY as the category will be added into task list.
 * The INDEX is compulsory, all other parameters are optional.
+* Only customised task can be edited.
 
 Example:
 * `edit i/0109 d/updated description r/updated remark`:
@@ -198,12 +200,11 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add i/INDEX w/WEEKNUMBER d/DESCRIPTION c/DEADLINE r/REMARK a/CATEGORY` <br> e.g. 'add i/0109 w/1 d/update documentation c/2020-10-02 r/check tp dashboard a/Tp'
 **Deadline** | `deadline i/TASK_NUMBER c/DEADLINE` <br> e.g., `deadline i/0601 c/2020-09-20`
+**Delete** | `delete TASK_NUMBER`<br> e.g., `delete 0109`
 **Edit** | `edit i/INDEX [w/WEEK_NUMBER] [d/DESCRIPTION] [c/DEADLINE] [r/REMARK]` <br> e.g. 'edit i/0109 d/updated description r/updated remark'
-**Delete** | `delete TASK_NUMBER`<br> e.g., `delete 0601`
+**Exit** | `exit`
 **Find** | `find KEYWORD` e.g., `find project` <br>
-**List** | `list WEEK_NUMBER`  e.g., `list 6` <br>
 **Filter** | `filter [w/WEEKNUMBER] k/KEYWORD [l/DEADLINETYPE]` e.g., `filter w/4 k/pending l/official` <br>
 **Home** | `home`<br>
-**Help** | `help PARAMETER`<br>
-**Get**  | `get PARAMETER` <br>
-**Exit** | `exit`
+**Help** | `help`<br>
+**List** | `list WEEK_NUMBER`  e.g., `list 6` <br>

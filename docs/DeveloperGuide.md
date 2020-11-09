@@ -101,8 +101,6 @@ The `Model`,
 
 
 
-
-
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
@@ -264,8 +262,7 @@ It is to separate tasks which should be used for Ui display from TaskList used i
 The UiTaskList must be refreshed every time after the command is run in case there is any change for it.
 
 --------------------------------------------------------------------------------------------------------------------
-=======
->>>>>>> upstream/master
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -576,7 +573,6 @@ Actor: User
 7.  Help information and pre-load instructions will be displayed within 1 second.
 8.  The application should load in 2 second when the number of customized tasks are within 1000.
 9.  A user will be prohibited from editing the pre-load tasks or information.
-*{More to be added}*
 
 ### Glossary
 
