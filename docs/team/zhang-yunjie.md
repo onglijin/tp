@@ -12,7 +12,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense_link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=zhang-yunjie&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Logic Component**: Add and modify classes for all commands
- * What it does: Specify logic for creation of each valid command and expected behavior.
+    * What it does: Specify logic for creation of each valid command and expected behavior.
     * Justification: It works together with relevant parser classes and model classes to operate commands on sample task list.
     * Related Pull Request: [#85](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/85), [#151](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/151),
     [#168](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/168)
@@ -23,7 +23,7 @@ Given below are my contributions to the project.
     * Related Pull Request: [#85](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/85), [#104](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/104)
     
 * **Sample Data**: Modify sample data to simulate actual task data of CS2103/T module
- * What it does: Be loaded as the initial list of tasks when the app opens.
+    * What it does: Be loaded as the initial list of tasks when the app opens.
     * Justification: To simulate the actual scenario of using the app for the target users.
     * Related Pull Request: [#162](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/162)
     
