@@ -48,37 +48,11 @@ Ace CS2103/T is a **desktop app for managing task requirements of CS2103/T, opti
 
 </div>
 
-### Viewing help: `help` *(Coming soon)*
+### Viewing help: `help`
 
-Lists all available commands or format and usage for a specified command.
+Lists the website for the user guide.
 
-Format: `help [PARAMETER]`
-
-List of PARAMETERs :
-
-* No parameters: List all the supported commands for the task manager.
-* get: `get PARAMETER`. Gets specified administrative information by parameters.
-* find: `find KEYWORD`. Lists all tasks that contain the keyword.
-* list: `list WEEK_NUMBER`. Lists all tasks in a specific week.
-* deadline: `deadline i/TASK_NUMBER c/DEADLINE`. Adds a customized deadline to a preloaded task.
-* add: `add d/DESCRIPTION c/DEADLINE r/REMARKS`. Adds a customized task in the task manager.
-* delete: `delete TASK_NUMBER`. Deletes a customized task in the task manager.
-* exit: `exit`. Exits the task manager.
-
-### Viewing administrative information: `get` *(Coming soon)*
-
-Gets specified administrative information by parameters.
-
-Format: `get PARAMETER`
-
-List of PARAMETERs :
-
-* contact: Returns the email addresses of professors and TAs in charge of CS2103/T.
-* faq: Returns preloaded FAQs on CS2103/T.
-* overview: Returns the preloaded module overview.
-* progress: Returns the links to iP and tP progress dashboards.
-* setup: Returns the preloaded instructions about how to set up Github, IntelliJ and SourceTree.
-* tp: Returns the team project Github link if it is available. Otherwise, user is prompted to key in the link.
+Format: `help`
 
 ### Finding relevant tasks: `find`
 
