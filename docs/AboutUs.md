@@ -51,5 +51,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/zhang-yunjie.png" width="200px">
 
 [[github](http://github.com/zhang-yunjie)]
+[portfolio](https://ay2021s1-cs2103-t14-4.github.io/tp/team/zhang-yunjie.html)
 
 * Role: Developer
