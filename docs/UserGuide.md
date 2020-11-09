@@ -44,7 +44,7 @@ Ace CS2103/T is a **desktop app for managing task requirements of CS2103/T, opti
   e.g. in `list WEEK_NUMBER`, `WEEK_NUMBER` is a parameter which can be used as `list 6`.
 
 * Items in square brackets are optional.<br>
-  e.g `add i/INDEX w/WEEKNUMBER d/DESCRIPTION c/DEADLINE [r/REMARK] a/CATEGORY` can be used as `add i/0111 w/1 d/new customised task c/2020-09-01 a/admin` or as `add i/0111 w/1 d/new customised task c/2020-09-01 r/new remark a/admin`.
+  e.g `add i/INDEX w/WEEKNUMBER d/DESCRIPTION c/DEADLINE [r/REMARK] a/CATEGORY` can be used as `add i/0111 w/1 d/new customised task c/2020-09-01 a/Admin` or as `add i/0111 w/1 d/new customised task c/2020-09-01 r/new remark a/Admin`.
 
 </div>
 
@@ -97,6 +97,7 @@ Format: `add i/INDEX w/WEEKNUMBER d/DESCRIPTION c/DEADLINE [r/REMARK] a/CATEGORY
 
 * The task with INDEX as index, WEEKNUMBER as week number, DESCRIPTION as description, DEADLINE as customised deadline, REMARK as remark, CATEGORY as the category will be added into task list.
 * The INDEX, WEEKNUMBER, DESCRIPTION, DEADLINE and CATEGORY are compulsory, the REMARK is optional.
+* The first letter of CATEGORY has to be in caps. Available categories: Ip, Tp, Topic, Admin
 
 Example:
 * `add i/0109 w/1 d/update documentation c/2020-08-14 r/check tp dashboard a/Tp`:
@@ -136,20 +137,20 @@ Format of `done`: `done TASK_INDEX`
 * The task at TASK_INDEX will be marked as done.
 
 Example:
-* `done 0109`:
-Mark task with index 0109 as done.
+* `done 0101`:
+Mark task with index 0101 as done.
 
 Format of `undone`: `undone TASK_INDEX`
 
 * The task at TASK_INDEX will be marked as pending.
 
 Example:
-* `undone 0109`:
-Mark task with index 0109 as pending.
+* `undone 0101`:
+Mark task with index 0101 as pending.
 
-### Rank selected tasks base on deadline: `filter`
+### Filter selected tasks based on various criteria: `filter`
 
-Filters the tasks based on selected condition and rank them by deadline.
+Filters the tasks based on selected criteria and order them by deadline.
 
 Format 1: `filter w/WEEKNUMBER k/KEYWORD l/DEADLINETYPE` <br>
 Format 2: `filter k/KEYWORD l/DEADLINETYPE` <br>
@@ -159,8 +160,8 @@ Format 4: `filter k/KEYWORD`
 * The `KEYWORD` can be "pending" or "done". The task manager will filter tasks based on the done status of tasks.
 * The `WEEKNUMBER` can be used to specify which week the user select.
 * The `DEADLINETYPE` can be "official" or "customised", which specify which deadline type the selected task should be ranked by in ascending order.
-* In Format 1 and 3, the KEYWORD can only be "pending".
-* In Format 2 and 4, the KEYWORD can only be "done".
+* In Format 3,4, the KEYWORD can only be "done"
+* In Format 1,2, the KEYWORD can only be "pending"
 
 Example:
 * `filter k/done`: Display all the completed tasks.
