@@ -18,7 +18,7 @@ Given below are my contributions to the project.
     [#168](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/168)
    
 * **Model Component**: Modify classes under Model Components
- * What I did: Modify and refactor model components to comply with design of logic component.
+    * What I did: Modify and refactor model components to comply with design of logic component.
     * Justification: Model Component provides the basic functions for interactions between objects, which are used in design of Logic Component.
     * Related Pull Request: [#85](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/85), [#104](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/104)
     
