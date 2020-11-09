@@ -20,7 +20,6 @@ Ace CS2103/T is a **desktop app for managing task requirements of CS2103/T, opti
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/w13.png)
-   ![Ui](images/w6.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will get you the link for user guide.<br>
    Some example commands you can try:
