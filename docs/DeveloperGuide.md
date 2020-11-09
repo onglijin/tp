@@ -604,7 +604,7 @@ testers are expected to do more *exploratory* testing.
        Expected: The most recent window size and location is retained.
 
 1. Shutdown
-   1. Input `exit` in command line to shut the app down.
+   1. Input `exit` in command line to save and exit.
 
 ### Deleting a task
 
@@ -662,4 +662,69 @@ testers are expected to do more *exploratory* testing.
     
 ### Saving data
 
-1. Input `exit` in command line to save and exit.
+
+1. Dealing with missing/corrupted data files
+
+   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+
+1. _{ more test cases …​ }_
+
+### Adding a task
+
+1. Adding a customized task into task list
+
+	1. Prerequisites: Ensure that the index of adding task is not occupied.
+	Provide necessary information, include: index, week number, description, deadline, category.
+	The remark parameter is optional.
+
+	1. Test case: 'add i/0109 w/1 d/update documentation c/2020-10-02 r/check tp dashboard a/Tp'<br>
+		Expected: A task with:
+			index: 0109
+			week number: 1
+			description: update documentation
+			customized deadline: 2020-10-02
+			remark: check tp dashboard
+		is created under "Tp" category, and marked as undone.
+		If your page is not switched to week 1, use 'list 1'<br> to switch to week 1
+
+	2. Test case: 'add i/0110 w/1 d/Cyberpunk2077 c/2020-12-10 a/Ip'<br>
+		Expected: A task with:
+			index: 0110
+			week number: 1
+			description: Cyberpunk2077
+			customized deadline: 2020-12-10
+		is created under "Ip" category, and marked as undone.
+		If your page is not switched to week 1, use 'list 1'<br> to switch to week 1
+
+	3. Test case: 'add w/1 d/update documentation c/2020-10-02 r/check tp dashboard a/Tp'<br>
+		Expected: No task is added. Error message will inform you that there is/are some necessary parameters missing.
+
+	4. Test case: 'add i/01401 w/14 d/update documentation c/2020-10-02 r/check tp dashboard a/Tp'<br>
+		Expected: No task is added. Error message will inform you that the index and week number is invalid.
+
+	5. Test case: 'add i/0109 w/11 d/update documentation c/2020-10-02 r/check tp dashboard a/Tp'<br>
+		Expected: No task is added. Error message will inform you that the index is not match to week number.
+
+	6. Test case: 'add i/0109 w/1 d/update documentation c/2020-10-02 r/check tp dashboard a/Tp x/dummy'<br>
+		Expected: No task is added. Error message will inform you that there are some unexpected parameters in the command.
+
+	7. Test case: 'add i/0109 w/1 d/update documentation c/2020-19-75 r/check tp dashboard a/Tp'<br>
+		Expected: No task is added. Error message will inform you that the deadline previded is an invalid date.
+
+	8. Test case: 'add i/0109 w/1 d/update documentation c/2020-10-02 r/check tp dashboard a/Haha'<br>
+		Expected: No task is added. Error message will inform you that the category you provided is unexisted.
+
+### Help information
+
+1. Getting help information
+
+	1. Test case: 'help'<br>
+		Expected: Get a link to the UserGuide page.
+
+### Go to home page
+
+1. Switch current page to the task list of current week(home page).
+
+	1. Test case: 'home'<br>
+		Expected: Shown task list is switched to current week page.
+
