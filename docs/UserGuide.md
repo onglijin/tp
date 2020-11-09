@@ -19,7 +19,7 @@ Ace CS2103/T is a **desktop app for managing task requirements of CS2103/T, opti
 3. Make sure your computer screen resolution reaches the minimum requirement (1095 * 770).
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/w13.png)
+   ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will get you the link for user guide.<br>
    Some example commands you can try:
@@ -33,6 +33,18 @@ Ace CS2103/T is a **desktop app for managing task requirements of CS2103/T, opti
 6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+## Before you start
+* Tasks are displayed in 4 columns for 4 categories of CS2103/T tasks, namely Admin, Topic, IP and TP.
+* Time range of tasks displayed in each column is shown at the header of the column, together with the task category information.
+  For example, `Week 1 to Week 13` means the tasks listed in the column range from week 1 to 13. `Week 13 to Week 13` means the tasks listed in the column
+  are all from week 13.
+* When the app is first opened, task list for the current week will be displayed as default. You may navigate to any week using `list` command.
+* You may refer to the progress bar at the top left corner of the app for the current week number and the relative completion of the semester(assuming 13 weeks in total for a semester).
+* Tasks are colored coded for different status of completion. 
+  * Green: task is done
+  * Grey: task is pending and official deadline has not passed
+  * Red: task is pending and official deadline has passed (task is overdue)
+
 
 ## Features
 
@@ -79,15 +91,16 @@ Example:
 
 ### Adding a customised deadline: `deadline`
 
-Adds a customised deadline to a preloaded task.
+Adds a customised deadline to a task.
 
 Format: `deadline i/TASK_INDEX c/DEADLINE`
 
 * The task indexed at TASK_INDEX will be given a DEADLINE.
 * The deadline should be given in the format: "YYYY-MM-DD"
+* Note: the customised deadline should be BEFORE the official deadline if the task is not overdue yet. No restriction if the official deadline has passed.
 
 Example:
-* `deadline i/0601 c/2020-09-29`: Adds a customised deadline on 29th September 2020 to the first task of teaching week 6 which is indexed at TASK_NUMBER 0601.
+* `deadline i/0601 c/2020-09-10`: Adds a customised deadline on 10th September 2020 to the first task of teaching week 6 which is indexed at TASK_NUMBER 0601.
 
 ### Adding a customised task: `add`
 
@@ -200,12 +213,14 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add i/INDEX w/WEEKNUMBER d/DESCRIPTION c/DEADLINE r/REMARK a/CATEGORY` <br> e.g. 'add i/0109 w/1 d/update documentation c/2020-10-02 r/check tp dashboard a/Tp'
 **Deadline** | `deadline i/TASK_NUMBER c/DEADLINE` <br> e.g., `deadline i/0601 c/2020-09-20`
-**Edit** | `edit i/INDEX [w/WEEK_NUMBER] [d/DESCRIPTION] [c/DEADLINE] [r/REMARK]` <br> e.g. 'edit i/0109 d/updated description r/updated remark'
 **Delete** | `delete TASK_NUMBER`<br> e.g., `delete 0109`
+**Done** | `done TASK_INDEX` <br> e.g., `done 0101`
+**Edit** | `edit i/INDEX [w/WEEK_NUMBER] [d/DESCRIPTION] [c/DEADLINE] [r/REMARK]` <br> e.g. 'edit i/0109 d/updated description r/updated remark'
 **Exit** | `exit`
-**Find** | `find KEYWORD` e.g., `find project` <br>
-**List** | `list WEEK_NUMBER`  e.g., `list 6` <br>
 **Filter** | `filter [w/WEEKNUMBER] k/KEYWORD [l/DEADLINETYPE]` e.g., `filter w/4 k/pending l/official` <br>
+**Find** | `find KEYWORD` e.g., `find project` <br>
 **Home** | `home`<br>
-**Help** | `help PARAMETER`<br>
+**Help** | `help`<br>
+**List** | `list WEEK_NUMBER`  e.g., `list 6` <br>
+**Undone** | `undone TASK_INDEX` <br> e.g., `undone 0101`
 

@@ -608,28 +608,122 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a task
 
-1. Deleting a customised task if it exists in the task list
+Deleting a customised task if it exists in the task list
 
-   1. Prerequisites: Ensure that the task does exist in the task list by listing all tasks for the relevant week. 
+   1. Prerequisites: Ensure that the task does exist in the task list. One way you can check is by listing all tasks for the relevant week. 
    If there is no customized task created yet in the task list, add customized tasks using add command.
    For example, `add i/0109 w/1 d/update documentation c/2020-10-02 r/check tp dashboard a/Tp` to add
-   a customized task with index 0109.
+   a customized task with index 0109. 
+   
+   1. Note that format for index follows this convention: 0 + week number + 2 digits, e.g. `0101`,`01011`,`01208`
 
+   1. Test case: `delete 0109`<br>
+            Expected: Customised task indexed at 0109 is deleted from the task list. Success message shown.
+            
    1. Test case: `delete 0101`<br>
-      Expected: No task is deleted. Error message will be shown in the status message, as task indexed at 0101 is a default task that cannot be deleted.
+      Expected: No task is deleted. Error details will be shown in the status message, as task indexed at 0101 is a default task that cannot be deleted.
 
    1. Test case: `delete 0`<br>
-      Expected: No task is deleted. Error details shown in the status message as the task index is invalid. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+      Expected: No task is deleted. Error details shown in the status message as the task index is invalid. 
+   
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is any string that does not follow the index format)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
 
-### Saving data
+### Done a task
 
-1. Dealing with missing/corrupted data files
+Mark a task as done if it is not done yet.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Prerequisites: The task to be marked as done should be in pending status (not done yet). You can check the completion status by 
+   observing the task color: red or grey for pending tasks, green for completed tasks.
+   
+   1. Note that format for index follows this convention: 0 + week number + 2 digits, e.g. `0101`,`01011`,`01208`
 
-1. _{ more test cases …​ }_
+   1. Test case: `done 0101`<br>
+      Expected: Pending task indexed at 0101 is marked as done correctly. Success message shown in feedback box.
+       Task color changes from grey/red to green.
+       * Note: if you type `done 0101` again, error message will be shown to remind you that this task has been marked as done.
+            
+   1. Test case: `done 0120`<br>
+      Expected: No task is marked as done. Error details will be shown in the status message, as task indexed at 0120 does not exist.
+
+   1. Test case: `done 0`<br>
+      Expected: No task is marked as done. Error details shown in the status message as the task index is invalid. 
+   
+   1. Other incorrect delete commands to try: `done`, `done x`, `...` (where x is any string that does not follow the index format)<br>
+      Expected: Similar to previous.
+      
+      
+### Undone a task
+
+Mark a task as pending if it is marked as done.
+
+   1. Prerequisites: The task to be marked as pending should be in done status. You can check the completion status by 
+   observing the task color: red or grey for pending tasks, green for completed tasks.
+   
+   1. Note that format for index follows this convention: 0 + week number + 2 digits, e.g. `0101`,`01011`,`01208`
+
+   1. Test case: `done 0101` `undone 0101`<br>
+      Expected: 
+      * for `done 0101`: Pending task indexed at 0101 is marked as done correctly. Success message shown in feedback box.
+       Task color changes from grey/red to green.
+      * for `undone 0101`: Done task indexed at 0101 is marked as pending correctly. Success message shown in feedback box.
+                                      Task color changes from green to grey/red.
+       * Note: if you type `undone 0101` again, error message will be shown to remind you that this task is not marked done yet.
+            
+   1. Test case: `undone 0120`<br>
+      Expected: No task is marked as pending. Error details will be shown in the status message, as task indexed at 0120 does not exist.
+
+   1. Test case: `undone 0`<br>
+      Expected: No task is marked as pending. Error details shown in the status message as the task index is invalid. 
+   
+   1. Other incorrect delete commands to try: `undone`, `undone x`, `...` (where x is any string that does not follow the index format)<br>
+      Expected: Similar to previous.      
+
+### Set deadline
+
+Set customised deadline for a task
+
+   1. Prerequisites: The task indicated should exist in the task list.
+   1. Note that format for index follows this convention: 0 + week number + 2 digits, e.g. `0101`,`01011`,`01208`
+
+   1. Test case: `deadline i/0701 c/2020-09-29`<br>
+      Expected: Customised deadline for task indexed at 0701 is set. Success message shown in feedback box.
+
+   1. Test case: `deadline i/0601 c/2020-09-29`<br>
+      * Assuming this task is not overdue yet, i.e. the current time is before the official deadline of the task (2020-09-17).
+      
+      Expected: No customised deadline will be set. Error details will be shown in the status message, as task indexed at 0601 has an official deadline before 2020-09-29.
+
+   1. Test case: `deadline i/0620 c/2020-09-29`<br>
+      Expected: No customised deadline will be set. Error details will be shown in the status message, as task index provided is invalid.
+   
+   1. Other incorrect delete commands to try: `deadline`, `undone i/1`, `...` 
+      Expected: Similar to previous. 
+      
+### Filter task list
+
+Filter task list according to certain criteria
+
+   1. Test case: `filter k/done`<br>
+      Expected: All completed tasks are displayed. Success message shown in feedback box. Note that no task will be displayed if none of the tasks in task list is done yet.
+
+   1. Test case: `filter w/4 k/done`<br>
+   Expected: All completed tasks in week 4 are displayed. Success message shown in feedback box.
+   
+   1. Test case: `filter k/pending l/official`<br>
+      Expected: All pending tasks are displayed in ascending order of official deadline. Success message shown in feedback box.
+      * Note: customised deadline will be used for comparison between tasks if certain tasks do not have official deadline
+   
+   1. Test case: `filter w/4 k/pending l/customised`<br>
+      Expected: All pending tasks in week 4 are displayed in ascending order of customised deadline. Success message shown in feedback box.
+      * Note: official deadline will be used for comparison between tasks if certain tasks do not have customised deadline
+   
+   1. Test case: `filter w/4`<br>
+      Expected: Task list displayed will not be changed. Error details will be shown in the status message, as keyword for filter is not specified.
+   
+   1. Test case: `filter w/4 k/pending`<br>
+      Expected: Task list displayed will not be changed. Error details will be shown in the status message, as type of deadline is a compulsory input for filtering pending tasks.
+      
+   1. Other incorrect delete commands to try: `filter`, `filter x`, `...` (for x being any irrelevant string)
+      Expected: Similar to previous.                 
