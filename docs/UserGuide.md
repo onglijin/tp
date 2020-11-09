@@ -202,10 +202,10 @@ Action | Format, Examples
 **Deadline** | `deadline i/TASK_NUMBER c/DEADLINE` <br> e.g., `deadline i/0601 c/2020-09-20`
 **Edit** | `edit i/INDEX [w/WEEK_NUMBER] [d/DESCRIPTION] [c/DEADLINE] [r/REMARK]` <br> e.g. 'edit i/0109 d/updated description r/updated remark'
 **Delete** | `delete TASK_NUMBER`<br> e.g., `delete 0109`
+**Exit** | `exit`
 **Find** | `find KEYWORD` e.g., `find project` <br>
 **List** | `list WEEK_NUMBER`  e.g., `list 6` <br>
 **Filter** | `filter [w/WEEKNUMBER] k/KEYWORD [l/DEADLINETYPE]` e.g., `filter w/4 k/pending l/official` <br>
 **Home** | `home`<br>
 **Help** | `help PARAMETER`<br>
 **Get**  | `get PARAMETER` <br>
-**Exit** | `exit`
