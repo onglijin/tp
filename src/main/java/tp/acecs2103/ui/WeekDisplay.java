@@ -28,7 +28,7 @@ public class WeekDisplay extends UiPart<Region> {
         if (remainWeek < 0) {
             weekNumber.setText("The end is near!");
         } else if (remainWeek == 0) {
-            weekNumber.setText("Now is Week " + weekToDisplay + ". The end is near!");
+            weekNumber.setText("The end is near!");
         } else if (remainWeek == 1) {
             weekNumber.setText("Now is Week " + weekToDisplay + ". There is " + remainWeek + " week left.");
         } else {
