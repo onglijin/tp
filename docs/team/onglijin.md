@@ -23,7 +23,7 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Updated quick start of the documentation [\#5](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/5)
-    * Added documentation for the features `add`,`delete` and `exit` [\#5](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/5)
+    * Added documentation for the features `delete` and `exit` [\#5](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/5)
     * Updated FAQ section of the documentation and the command summary [\#5](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/5)
     * Update user guide to fix inconsistencies and errors [\#213](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/213), [\#214](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/214), [\#215](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/215)
 
