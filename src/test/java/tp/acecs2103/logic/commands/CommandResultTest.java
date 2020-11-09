@@ -15,7 +15,7 @@ class CommandResultTest {
     public void getFeedback_null_string() {
         Model model = new ModelManager(TypicalTasks.getTypicalTaskList(), new UserPrefs());
         CommandResult commandResult = new ClearCommand().execute(model);
-        String messageSuccess = "Address book has been cleared!";
+        String messageSuccess = "Task List has been cleared!";
         assertTrue(messageSuccess.equals(commandResult.getFeedbackToUser()));
         assertFalse("random".equals(commandResult.getFeedbackToUser()));
     }
