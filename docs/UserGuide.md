@@ -117,7 +117,7 @@ Example:
 
 ### Editing a task: `edit`
 
-Edits a customised task in the task manager.
+Edits a task in the task manager.
 
 Format: `edit i/INDEX [d/DESCRIPTION] [c/DEADLINE] [r/REMARK]`
 
@@ -127,11 +127,10 @@ Format: `edit i/INDEX [d/DESCRIPTION] [c/DEADLINE] [r/REMARK]`
 * For customised task, DESCRIPTION, DEADLINE and REMARK can be edited.
 
 Example:
-* `edit i/0109 d/updated description r/updated remark`:
-Customised task indexed at 0109 updates with "updated description" as its new description.
 * `edit i/0101 c/2020-09-01 r/updated remark`:
 Default task indexed at 0101 updates with "2020-09-01" as its customised deadline and "updated remark" as its remark.
-
+* `edit i/0109 d/updated description r/updated remark`:
+Customised task indexed at 0109 updates with "updated description" as its new description.
 
 ### Mark a task as done: `done`
 

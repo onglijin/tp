@@ -7,7 +7,7 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+# **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
@@ -604,29 +604,64 @@ testers are expected to do more *exploratory* testing.
        Expected: The most recent window size and location is retained.
 
 1. Shutdown
-   1. Input `exit` in command line to shut the app down.
+   1. Input `exit` in command line to save and exit.
 
 ### Deleting a task
 
 1. Deleting a customised task if it exists in the task list
 
    1. Prerequisites: Ensure that the task does exist in the task list by listing all tasks for the relevant week. 
-   If there is no customized task created yet in the task list, add customized tasks using add command.
+   If there is no customized task created yet in the task list, add customised tasks using add command.
    For example, `add i/0109 w/1 d/update documentation c/2020-10-02 r/check tp dashboard a/Tp` to add
-   a customized task with index 0109.
+   a customised task with index 0109.
 
    1. Test case: `delete 0101`<br>
       Expected: No task is deleted. Error message will be shown in the status message, as task indexed at 0101 is a default task that cannot be deleted.
 
    1. Test case: `delete 0`<br>
-      Expected: No task is deleted. Error details shown in the status message as the task index is invalid. Status bar remains the same.
+      Expected: No task is deleted. Error details will be shown in the status message as the task index is invalid. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
 
+### Editing a task
+
+1. Editing a task if it exists in the task list
+    
+    1. Prerequisite: Ensure that the task exits in the task list. One way you can check is by listing all tasks for the relevant week.
+    If the task does not exist in the task list, you can add a customised task by using the add command.
+    For example, `add i/0109 w/1 d/update documentation c/2020-10-02 r/check tp dashboard a/Tp` to add
+    a customised task with index 0109.
+    
+    1. Test case: `edit i/0101 c/2020-09-01 r/updated remark` <br>
+       Expected: Customised deadline and remark is updated for task indexed at 0101.
+    
+    1. Test case: `edit i/0109 d/updated description r/updated remark` <br>
+       Expected: Description, customised deadline and remark is updated for task indexed at 0109.
+    
+    1. Test case: `edit i/0101 d/updated description r/updated remark`
+       Expected: No task is edited. Error details will be shown in the status message as the task indexed at 0101 is a default task and the description cannot be edited.
+    
+### Finding a task
+  
+1. Finding a task by a keyword
+
+    1. Test case: `find project` <br>
+       Expected: Tasks with "project" in its description or remark will be listed.
+
+### Listing tasks
+
+1. Listing all tasks for a certain week.
+
+    1. Test case: `list 6` <br>
+       Expected: Tasks with week number 6 will be listed.
+       
+    1. Test case: `list 0` <br>
+       Expected: No task is listed. Error details will be shown in the status message as the week number is not between 1 and 13.
+    
 ### Saving data
+
 
 1. Dealing with missing/corrupted data files
 
@@ -692,3 +727,4 @@ testers are expected to do more *exploratory* testing.
 
 	1. Test case: 'home'<br>
 		Expected: Shown task list is switched to current week page.
+
