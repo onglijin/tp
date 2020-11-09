@@ -101,8 +101,6 @@ The `Model`,
 
 
 
-
-
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
@@ -264,8 +262,7 @@ It is to separate tasks which should be used for Ui display from TaskList used i
 The UiTaskList must be refreshed every time after the command is run in case there is any change for it.
 
 --------------------------------------------------------------------------------------------------------------------
-=======
->>>>>>> upstream/master
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
