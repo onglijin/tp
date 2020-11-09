@@ -30,9 +30,23 @@ Ace CS2103/T is a **desktop app for managing task requirements of CS2103/T, opti
 
    * **`exit`** : Exits the app.
 
-6. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [About UI](#about-ui) below for details on the app UI.
+
+7. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+## About UI
+* Tasks are displayed in 4 columns for 4 categories of CS2103/T tasks, namely Admin, Topic, IP and TP.
+* Time range of tasks displayed in each column is shown in the header of the column, beside the task category.
+  For example, `Week 1 to Week 13` means the tasks listed in the column range from week 1 to 13. `Week 13 to Week 13` means the tasks listed in the column
+  are all from week 13.
+* When the app is first opened, task list for the current week will be displayed as default. You may navigate to any week using `list` command.
+* You may refer to the progress bar at the top left corner of the app for the current week number and the relative completion of the semester (assuming 13 weeks in total for a semester).
+* Tasks are colored coded for different status of completion. 
+  * Green: task is done
+  * Grey: task is pending and official deadline has not passed
+  * Red: task is pending and official deadline has passed (task is overdue)
+
 
 ## Features
 
@@ -61,7 +75,7 @@ Lists all tasks that contain the keyword.
 Format: `find KEYWORD`
 
 * The KEYWORD is a letter string in the description and remark of tasks to be returned.
-* Operates rough search in the task list.
+* Operates rough search in the task list. KEYWORD is case-insensitive.
 
 Example:
 * `find project`: Returns all tasks containing keyword “project” in their descriptions or remarks.
@@ -79,15 +93,16 @@ Example:
 
 ### Adding a customised deadline: `deadline`
 
-Adds a customised deadline to a preloaded task.
+Adds a customised deadline to a task.
 
 Format: `deadline i/TASK_INDEX c/DEADLINE`
 
 * The task indexed at TASK_INDEX will be given a DEADLINE.
 * The deadline should be given in the format: "YYYY-MM-DD"
+* Note: the customised deadline should be BEFORE the official deadline if the task is not overdue yet. No restriction if the official deadline has passed.
 
 Example:
-* `deadline i/0601 c/2020-09-29`: Adds a customised deadline on 29th September 2020 to the first task of teaching week 6 which is indexed at TASK_NUMBER 0601.
+* `deadline i/0601 c/2020-09-10`: Adds a customised deadline on 10th September 2020 to the first task of teaching week 6 which is indexed at TASK_NUMBER 0601.
 
 ### Adding a customised task: `add`
 
@@ -98,6 +113,13 @@ Format: `add i/INDEX w/WEEKNUMBER d/DESCRIPTION c/DEADLINE [r/REMARK] a/CATEGORY
 * The task with INDEX as index, WEEKNUMBER as week number, DESCRIPTION as description, DEADLINE as customised deadline, REMARK as remark, CATEGORY as the category will be added into task list.
 * The INDEX, WEEKNUMBER, DESCRIPTION, DEADLINE and CATEGORY are compulsory, the REMARK is optional.
 * The first letter of CATEGORY has to be in caps. Available categories: Ip, Tp, Topic, Admin
+* The index should follow the naming convention below:
+   * always start with 0
+   * only contain numbers
+   * be at least 4 digits long
+   * should not be blank
+   * E.g. `0101`: first task of week 1, `01314`: 14th task of week 13
+* The index should be consistent with week number. E.g. `01215` is a valid index for tasks in week 12, while `01115` is invalid for week 12 tasks.
 
 Example:
 * `add i/0109 w/1 d/update documentation c/2020-08-14 r/check tp dashboard a/Tp`:
@@ -111,6 +133,7 @@ Format: `delete TASK_INDEX`
 
 * The task indexed at TASK_INDEX will be deleted. 
 * Only customised tasks can be deleted.
+* You cannot delete a task if it does not exit in the task list.
 
 Example:
 * `delete 0109`: Task indexed at 0109 will be deleted.
@@ -139,6 +162,7 @@ Marks a task in the task manager as done or undone.
 Format of `done`: `done TASK_INDEX`
 
 * The task at TASK_INDEX will be marked as done.
+* You can only mark a pending (undone) task as done. 
 
 Example:
 * `done 0101`:
@@ -149,6 +173,7 @@ Mark task with index 0101 as done.
 Format of `undone`: `undone TASK_INDEX`
 
 * The task at TASK_INDEX will be marked as pending.
+* You can only mark a done task as pending.
 
 Example:
 * `undone 0101`:
@@ -163,11 +188,11 @@ Format 2: `filter k/KEYWORD l/DEADLINETYPE` <br>
 Format 3: `filter w/WEEKNUMBER k/KEYWORD` <br>
 Format 4: `filter k/KEYWORD`
 
-* The `KEYWORD` can be "pending" or "done". The task manager will filter tasks based on the done status of tasks.
-* The `WEEKNUMBER` can be used to specify which week the user select.
+* The `KEYWORD` can be "pending" or "done". The task manager will filter tasks based on the done status of tasks. It is compulsory for all formats.
+* The `WEEKNUMBER` can be used to specify which week the user select, it is optional. Without it, you are filtering ALL tasks in the task list.
 * The `DEADLINETYPE` can be "official" or "customised", which specify which deadline type the selected task should be ranked by in ascending order.
-* In Format 3,4, the KEYWORD can only be "done"
 * In Format 1,2, the KEYWORD can only be "pending"
+* In Format 3,4, the KEYWORD can only be "done"
 
 Example:
 * `filter k/done`: Display all the completed tasks.
@@ -214,3 +239,4 @@ Action | Format, Examples
 **Help** | `help`<br>
 **List** | `list WEEK_NUMBER`  e.g., `list 6` <br>
 **Undone** | `undone TASK_INDEX` <br> e.g., `undone 0101`
+
