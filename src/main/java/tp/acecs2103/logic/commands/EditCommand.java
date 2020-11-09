@@ -93,12 +93,14 @@ public class EditCommand extends Command {
         throws CommandException {
         assert taskToEdit != null;
         if (!taskToEdit.isCustomized()) {
-            if (!(editTaskDescriptor.weekNumber == null && editTaskDescriptor.description == null)) {
+            if (editTaskDescriptor.weekNumber != null && editTaskDescriptor.description != null) {
                 throw new CommandException(MESSAGE_INVALID_EDITION);
             }
         } else {
-            if (!(editTaskDescriptor.weekNumber.equals(taskToEdit.getWeekNumberFromIndex()))) {
-                throw new CommandException(MESSAGE_INVALID_WEEK);
+            if (editTaskDescriptor.weekNumber != null) {
+                if (!(editTaskDescriptor.weekNumber.equals(taskToEdit.getWeekNumberFromIndex()))) {
+                    throw new CommandException(MESSAGE_INVALID_WEEK);
+                }
             }
         }
 
