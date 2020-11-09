@@ -34,7 +34,7 @@ Given below are my contributions to the project.
 
 * **Contributions to team-based tasks**:
   * Necessary general code enhancement:
-    * Renaming the product [\#5](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/5), [\#6](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/6), [\#47](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/47)
+    * Renaming the product [\#5](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/5), [\#47](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/47)
     * Changing the product icon [\#86](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/86)
   * Enabled assertions in team repo [\#118](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/118)
   * Fixed CI errors [\#275](https://github.com/AY2021S1-CS2103-T14-4/tp/pull/275)
