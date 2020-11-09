@@ -151,9 +151,9 @@ Mark task with index 0109 as pending.
 
 Filters the tasks based on selected condition and rank them by deadline.
 
-Format 1: `filter w/WEEKNUMBER k/KEYWORD l/DEADLINETYPE` <\br>
-Format 2: `filter k/KEYWORD l/DEADLINETYPE` <\br>
-Format 3: `filter w/WEEKNUMBER k/KEYWORD` <\br>
+Format 1: `filter w/WEEKNUMBER k/KEYWORD l/DEADLINETYPE` <br>
+Format 2: `filter k/KEYWORD l/DEADLINETYPE` <br>
+Format 3: `filter w/WEEKNUMBER k/KEYWORD` <br>
 Format 4: `filter k/KEYWORD`
 
 * The `KEYWORD` can be "pending" or "done". The task manager will filter tasks based on the done status of tasks.
